@@ -1,0 +1,67 @@
+.top-bar .name h1 a:before {
+  background: url('../img/logo/logo-topbar.png') no-repeat center center;
+  content: "";
+  display: inline-block;
+  height: 40px;
+  position: relative;
+  width: 100px;
+}
+
+.img-circular {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#profile-picture.img-circular {
+  width: rem-calc(32);
+  height: rem-calc(32);
+  border: rem-calc(3) solid $primary-color;
+  display: inline-block;
+  vertical-align: middle;
+  background: url(http://i.imgur.com/ztQQtqn.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+#profile-name {
+  padding-left: rem-calc(5);
+}
+
+#profile-topbar {
+  display: inline-block;
+}
+
+input[type="text"].dream-search {
+  @media #{$medium-up}
+  {
+    width: 75%;
+    margin-left: 25%;
+  }
+  opacity: .5;
+}
+
+input[type="text"].dream-search:focus {
+  @media #{$medium-up}
+  {
+    width: 100%;
+    margin-left: 0%;
+    transition: ease-in-out, width .35s ease-in-out, margin-left .35s ease-in-out;
+  }
+  opacity: 1;
+}
+
+@media only screen and (max-width: 40em) {
+  .top-bar-section .has-dropdown > a:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: inset rem-calc(5);
+    border-color: #dddddd transparent transparent transparent;
+    border-left-style: solid;
+    margin-right: rem-calc(15);
+    margin-top: rem-calc(-4.5);
+    position: absolute;
+    top: 50%;
+    right: 0;
+  }
+}

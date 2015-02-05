@@ -1,0 +1,17 @@
+.slick-prev:before, .slick-next:before
+{
+  color: $primary-color !important;
+  width: 200% !important;
+  height: 200% !important;
+}
+
+.slick-dots li button:before
+{
+  color: $primary-color !important;
+}
+
+.img-artist-album
+{
+  width: 100%;
+  height: 100%;
+}
