@@ -89,7 +89,7 @@ body {
   color: #222;
   padding: 0;
   margin: 0;
-  font-family: "Roboto", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-style: normal;
   line-height: 1.5;
@@ -1703,7 +1703,7 @@ select {
   color: #222222;
   padding: 1rem;
   display: block;
-  font-family: "Roboto", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
   font-size: 1rem;
 }
 /* line 143, ../bower_components/foundation/scss/foundation/components/_accordion.scss */
@@ -2410,7 +2410,7 @@ button, .button {
   border-style: solid;
   border-width: 0;
   cursor: pointer;
-  font-family: "Roboto", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
   font-weight: normal;
   line-height: normal;
   margin: 0 0 1.25rem;
@@ -4256,7 +4256,7 @@ select {
   border-color: #cccccc;
   padding: 0.5rem;
   font-size: 0.875rem;
-  font-family: "Roboto", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
   color: rgba(0, 0, 0, 0.75);
   line-height: normal;
   border-radius: 0;
@@ -4934,7 +4934,7 @@ kbd {
 /* line 91, ../bower_components/foundation/scss/foundation/components/_labels.scss */
 .label {
   font-weight: normal;
-  font-family: "Roboto", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
   text-align: center;
   text-decoration: none;
   line-height: 1;
@@ -5505,7 +5505,7 @@ ul.pagination li {
   color: #EEEEEE;
   font-weight: normal;
   font-size: 1rem;
-  font-family: "Roboto", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
 }
 /* line 143, ../bower_components/foundation/scss/foundation/components/_pricing-tables.scss */
 .pricing-table .price {
@@ -5515,7 +5515,7 @@ ul.pagination li {
   color: #333333;
   font-weight: normal;
   font-size: 2rem;
-  font-family: "Roboto", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
 }
 /* line 144, ../bower_components/foundation/scss/foundation/components/_pricing-tables.scss */
 .pricing-table .description {
@@ -5871,7 +5871,7 @@ ul.pagination li {
   padding: 0.875rem 0;
   list-style-type: none;
   list-style-position: outside;
-  font-family: "Roboto", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
 }
 /* line 70, ../bower_components/foundation/scss/foundation/components/_side-nav.scss */
 .side-nav li {
@@ -5895,7 +5895,7 @@ ul.pagination li {
 .side-nav li.active > a:first-child:not(.button) {
   color: #ff2525;
   font-weight: normal;
-  font-family: "Roboto", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
 }
 /* line 93, ../bower_components/foundation/scss/foundation/components/_side-nav.scss */
 .side-nav li.divider {
@@ -6089,7 +6089,7 @@ ul.pagination li {
   display: inline;
   margin-left: 1rem;
   margin-bottom: 0;
-  font-family: "Roboto", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-size: 0.875rem;
   color: #999999;
@@ -6368,7 +6368,7 @@ table tr td {
   background-color: #EFEFEF;
   color: #222222;
   padding: 1rem 2rem;
-  font-family: "Roboto", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
   font-size: 1rem;
 }
 /* line 49, ../bower_components/foundation/scss/foundation/components/_tabs.scss */
@@ -6806,7 +6806,7 @@ meta.foundation-mq-topbar {
   color: #FFFFFF;
   padding: 12px 0 12px 0;
   padding-left: 0.9375rem;
-  font-family: "Roboto", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
   font-size: 0.8125rem;
   font-weight: normal;
   text-transform: none;
@@ -7610,7 +7610,7 @@ p aside {
 /* Default header styles */
 /* line 252, ../bower_components/foundation/scss/foundation/components/_type.scss */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Roboto", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-style: normal;
   color: #222222;
@@ -14029,7 +14029,7 @@ button.radius, .button.radius {
 #profile-picture.img-circular {
   width: 2rem;
   height: 2rem;
-  border: 0.1875rem solid #c60000;
+  border: 0.125rem solid #c60000;
   display: inline-block;
   vertical-align: middle;
   background: url(http://i.imgur.com/ztQQtqn.jpg) no-repeat center center;
@@ -14091,7 +14091,7 @@ input[type="text"].dream-search:focus {
 /* line 1, ../scss/_artist.scss */
 .type-label {
   font-weight: normal;
-  font-family: "Roboto", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
   text-align: center;
   text-decoration: none;
   line-height: 1;
@@ -14121,7 +14121,7 @@ input[type="text"].dream-search:focus {
 .year-label {
   width: 100%;
   font-weight: normal;
-  font-family: "Roboto", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
   text-align: center;
   text-decoration: none;
   line-height: 1;
@@ -14613,7 +14613,7 @@ a {
 /* line 63, ../scss/_albums.scss */
 .type-label {
   font-weight: normal;
-  font-family: "Roboto", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
   text-align: center;
   text-decoration: none;
   line-height: 1;
