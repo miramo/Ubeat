@@ -14379,59 +14379,6 @@ input[type="text"].dream-search:focus {
 }
 
 /* line 120, ../scss/_artist.scss */
-.artist-albums {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0;
-  margin-bottom: 0;
-  max-width: 62.5rem;
-  padding: 0.625rem;
-}
-/* line 172, ../bower_components/foundation/scss/foundation/components/_global.scss */
-.artist-albums:before, .artist-albums:after {
-  content: " ";
-  display: table;
-}
-/* line 173, ../bower_components/foundation/scss/foundation/components/_global.scss */
-.artist-albums:after {
-  clear: both;
-}
-
-/* line 127, ../scss/_artist.scss */
-.artist-panel {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #d8d8d8;
-  margin-bottom: 1.25rem;
-  padding: 1.25rem;
-  background: #f2f2f2;
-  color: #333333;
-  border: 0.625rem;
-}
-/* line 55, ../bower_components/foundation/scss/foundation/components/_panels.scss */
-.artist-panel > :first-child {
-  margin-top: 0;
-}
-/* line 56, ../bower_components/foundation/scss/foundation/components/_panels.scss */
-.artist-panel > :last-child {
-  margin-bottom: 0;
-}
-/* line 61, ../bower_components/foundation/scss/foundation/components/_panels.scss */
-.artist-panel h1, .artist-panel h2, .artist-panel h3, .artist-panel h4, .artist-panel h5, .artist-panel h6, .artist-panel p, .artist-panel li, .artist-panel dl {
-  color: #333333;
-}
-/* line 68, ../bower_components/foundation/scss/foundation/components/_panels.scss */
-.artist-panel h1, .artist-panel h2, .artist-panel h3, .artist-panel h4, .artist-panel h5, .artist-panel h6 {
-  line-height: 1;
-  margin-bottom: 0.625rem;
-}
-/* line 70, ../bower_components/foundation/scss/foundation/components/_panels.scss */
-.artist-panel h1.subheader, .artist-panel h2.subheader, .artist-panel h3.subheader, .artist-panel h4.subheader, .artist-panel h5.subheader, .artist-panel h6.subheader {
-  line-height: 1.4;
-}
-
-/* line 134, ../scss/_artist.scss */
 .artist-panel img {
   width: 100%;
   height: auto;
@@ -14527,8 +14474,7 @@ a {
   margin-bottom: 0;
   max-width: 62.5rem;
   border: 0;
-  padding-bottom: 0.3125rem;
-  padding-top: 0.3125rem;
+  padding: 0.3125rem 0.9375rem;
   margin-bottom: 0;
 }
 /* line 172, ../bower_components/foundation/scss/foundation/components/_global.scss */
@@ -14542,7 +14488,7 @@ a {
 }
 
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 32, ../scss/_albums.scss */
+  /* line 31, ../scss/_albums.scss */
   .album-infos {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -14551,7 +14497,7 @@ a {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 32, ../scss/_albums.scss */
+  /* line 31, ../scss/_albums.scss */
   .album-infos {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -14560,7 +14506,7 @@ a {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 32, ../scss/_albums.scss */
+  /* line 31, ../scss/_albums.scss */
   .album-infos {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -14570,7 +14516,7 @@ a {
 }
 
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 48, ../scss/_albums.scss */
+  /* line 47, ../scss/_albums.scss */
   .album-picture {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -14579,7 +14525,7 @@ a {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 48, ../scss/_albums.scss */
+  /* line 47, ../scss/_albums.scss */
   .album-picture {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -14588,7 +14534,7 @@ a {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 48, ../scss/_albums.scss */
+  /* line 47, ../scss/_albums.scss */
   .album-picture {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -14597,7 +14543,7 @@ a {
   }
 }
 
-/* line 63, ../scss/_albums.scss */
+/* line 62, ../scss/_albums.scss */
 .type-label {
   font-weight: normal;
   font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
@@ -14614,7 +14560,7 @@ a {
   color: #FFFFFF;
 }
 
-/* line 71, ../scss/_albums.scss */
+/* line 70, ../scss/_albums.scss */
 #tool-bar .button, button {
   overflow: hidden;
   white-space: nowrap;
@@ -14625,45 +14571,18 @@ a {
   margin-bottom: 0.1875rem;
 }
 
-/* line 82, ../scss/_albums.scss */
+/* line 81, ../scss/_albums.scss */
 #tool-bar input {
   margin-top: 0.1875rem;
   margin-bottom: 0.1875rem;
   height: 1.75rem;
 }
 
-/* line 89, ../scss/_albums.scss */
+/* line 88, ../scss/_albums.scss */
 .tool-bar-panel {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #d8d8d8;
-  margin-bottom: 1.25rem;
-  padding: 1.25rem;
-  background: #f2f2f2;
-  color: #333333;
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
   margin-bottom: 0;
-  border-radius: 0.1875rem;
-}
-/* line 55, ../bower_components/foundation/scss/foundation/components/_panels.scss */
-.tool-bar-panel > :first-child {
-  margin-top: 0;
-}
-/* line 56, ../bower_components/foundation/scss/foundation/components/_panels.scss */
-.tool-bar-panel > :last-child {
-  margin-bottom: 0;
-}
-/* line 61, ../bower_components/foundation/scss/foundation/components/_panels.scss */
-.tool-bar-panel h1, .tool-bar-panel h2, .tool-bar-panel h3, .tool-bar-panel h4, .tool-bar-panel h5, .tool-bar-panel h6, .tool-bar-panel p, .tool-bar-panel li, .tool-bar-panel dl {
-  color: #333333;
-}
-/* line 68, ../bower_components/foundation/scss/foundation/components/_panels.scss */
-.tool-bar-panel h1, .tool-bar-panel h2, .tool-bar-panel h3, .tool-bar-panel h4, .tool-bar-panel h5, .tool-bar-panel h6 {
-  line-height: 1;
-  margin-bottom: 0.625rem;
-}
-/* line 70, ../bower_components/foundation/scss/foundation/components/_panels.scss */
-.tool-bar-panel h1.subheader, .tool-bar-panel h2.subheader, .tool-bar-panel h3.subheader, .tool-bar-panel h4.subheader, .tool-bar-panel h5.subheader, .tool-bar-panel h6.subheader {
-  line-height: 1.4;
+  margin-left: 0.9375rem;
+  margin-right: 0.9375rem;
 }

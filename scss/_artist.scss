@@ -75,13 +75,14 @@
 .artist-picture
 {
   @include grid-row();
-  @media #{$small-only} and (orientation: landscape) {
+  @media #{$small-only} and (orientation: landscape)
+  {
     padding: 1em 0;
     @include grid-column(4);
   }
-  @media #{$small-only} and (orientation: portrait) {
+  @media #{$small-only} and (orientation: portrait)
+  {
     padding: 1em 0;
-//    @include grid-column(8);
   }
   @media #{$medium-up}
   {
@@ -115,20 +116,6 @@
   {
     @include block-grid(3);
   }
-}
-
-.artist-albums
-{
-  @include grid-row();
-
-  padding: rem-calc(10);
-}
-
-.artist-panel
-{
-  @include panel();
-
-  border: rem-calc(10);
 }
 
 .artist-panel img

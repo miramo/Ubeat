@@ -24,8 +24,7 @@ a
   @include grid-row(12);
 
   border: rem-calc(0);
-  padding-bottom: rem-calc(5);
-  padding-top: rem-calc(5);
+  padding: rem-calc(5) rem-calc(15);
   margin-bottom: rem-calc(0);
 }
 
@@ -88,9 +87,9 @@ a
 
 .tool-bar-panel
 {
-  @include panel();
   padding-top: rem-calc(5);
   padding-bottom: rem-calc(5);
   margin-bottom: rem-calc(0);
-  border-radius: rem-calc(3);
+  margin-left: rem-calc(15);
+  margin-right: rem-calc(15);
 }
