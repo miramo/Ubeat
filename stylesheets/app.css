@@ -14441,7 +14441,6 @@ input[type="text"].dream-search:focus {
   position: absolute;
   left: 0;
   z-index: 0;
-  width: 100%;
 }
 
 /* line 1, ../scss/_albums.scss */

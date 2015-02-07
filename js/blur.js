@@ -2,32 +2,13 @@
  * Created by BlackWires on 27/01/2015.
  */
 
-var canvas = document.getElementById("topCanvas");
-var canvasContext = canvas.getContext("2d");
-var canvasBackground = new Image();
+var blur = new Blur({
+    el        : document.querySelector('body'),
+    path      : 'img/hypnoflip.png',
+    radius    : 50,
+    fullscreen: true
+});
 
-canvasBackground.onload = function ()
+$(document).ready(function ()
 {
-    $(window).on('resize orientationChanged', resizeCanvas());
-    $(document).on('resize orientationChanged', resizeCanvas());
-    resizeCanvas();
-    drawBlur();
-}
-
-function resizeCanvas()
-{
-    canvas.width = $(document).width();
-    canvas.height = $(document).height();
-}
-
-var drawBlur = function ()
-{
-    // Store the width and height of the canvas for below
-    var w = canvas.width;
-    var h = canvas.height;
-
-    // This draws the image we just loaded to our canvas
-    canvasContext.drawImage(canvasBackground, 0, 0, w, h);
-    // This blurs the contents of the entire canvas
-    stackBlurCanvasRGBA("topCanvas", 0, 0, w, h, 100);
-};
+});

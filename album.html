@@ -62,7 +62,6 @@
 
 <main>
     <div class="artist-header">
-        <canvas class="artist-header__background" id="topCanvas" data-stellar-ratio="2"></canvas>
         <div class="row">
             <div class="artist-picture">
                 <img src="img/hypnoflip.png" class="img-artist-album">
@@ -229,13 +228,14 @@
 <script src="bower_components/foundation/js/foundation.min.js"></script>
 <script src="bower_components/fastclick/lib/fastclick.js"></script>
 <script src="bower_components/jquery.stellar/jquery.stellar.min.js"></script>
-<script src="bower_components/StackBlur/StackBlur.js"></script>
+<script src="js/libs/class.js"></script>
+<script src="js/libs/stackblur.min.js"></script>
 <script src="js/app.js"></script>
 <script src="js/blur.js"></script>
 <script src="js/displayPlayButton.js"></script>
 <script>
     displayPlayButton();
-    canvasBackground.src = 'img/hypnoflip.png';
+    blur.init({ el : document.querySelector('.artist-header'), path : 'img/hypnoflip.png' });
     $(document).foundation('interchange', 'reflow');
     $.stellar({
         responsive: true,
