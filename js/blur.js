@@ -8,13 +8,20 @@ var canvasBackground = new Image();
 
 canvasBackground.onload = function ()
 {
+    $(window).on('resize orientationChanged', resizeCanvas());
+    $(document).on('resize orientationChanged', resizeCanvas());
+    resizeCanvas();
     drawBlur();
+}
+
+function resizeCanvas()
+{
+    canvas.width = $(document).width();
+    canvas.height = $(document).height();
 }
 
 var drawBlur = function ()
 {
-    canvas.width = window.outerWidth;
-    canvas.height = window.outerHeight;
     // Store the width and height of the canvas for below
     var w = canvas.width;
     var h = canvas.height;

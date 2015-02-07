@@ -14494,20 +14494,7 @@ input[type="text"].dream-search:focus {
   position: absolute;
   left: 0;
   z-index: 0;
-  height: 100%;
   width: 100%;
-}
-@media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 53, ../scss/_index.scss */
-  .new-artists-blur__background {
-    height: 150%;
-  }
-}
-@media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 53, ../scss/_index.scss */
-  .new-artists-blur__background {
-    height: 200%;
-  }
 }
 
 /* line 1, ../scss/_albums.scss */
