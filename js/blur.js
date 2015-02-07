@@ -4,7 +4,7 @@
 
 var blur = new Blur({
     el        : document.querySelector('body'),
-    path      : 'img/hypnoflip.png',
+    path      : '',
     radius    : 50,
     fullscreen: true
 });
