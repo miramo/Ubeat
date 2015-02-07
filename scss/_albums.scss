@@ -1,0 +1,95 @@
+.album-title h1
+{
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+}
+
+a
+{
+  color: inherit;
+}
+
+.hide-play-button
+{
+  visibility: hidden;
+}
+
+.music-row:hover
+{
+  background: rgba(235, 244, 255, 1);
+}
+
+.row-infos-list
+{
+  @include grid-row(12);
+
+  border: rem-calc(0);
+  padding: rem-calc(5) rem-calc(15);
+  margin-bottom: rem-calc(0);
+}
+
+.album-infos
+{
+  @media #{$small-only} and (orientation: landscape)
+  {
+    @include grid-column(8);
+  }
+  @media #{$small-only} and (orientation: portrait)
+  {
+    @include grid-column(12);
+  }
+  @media #{$medium-up}
+  {
+    @include grid-column(8);
+  }
+}
+
+.album-picture
+{
+  @media #{$small-only} and (orientation: landscape)
+  {
+    @include grid-column(4);
+  }
+  @media #{$small-only} and (orientation: portrait)
+  {
+    @include grid-column(12);
+  }
+  @media #{$medium-up}
+  {
+    @include grid-column(4);
+  }
+}
+.type-label
+{
+  @include label
+  (
+    $text-size: em-calc(12)
+  );
+}
+
+#tool-bar .button, button
+{
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  text-overflow: ellipsis;
+  height: rem-calc(28);
+  margin-top: rem-calc(3);
+  margin-bottom: rem-calc(3);
+}
+
+#tool-bar input
+{
+  margin-top: rem-calc(3);
+  margin-bottom: rem-calc(3);
+  height: rem-calc(28);
+}
+
+.tool-bar-panel
+{
+  padding-top: rem-calc(5);
+  padding-bottom: rem-calc(5);
+  margin-bottom: rem-calc(0);
+  margin-left: rem-calc(15);
+  margin-right: rem-calc(15);
+}

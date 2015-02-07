@@ -1,0 +1,59 @@
+.new-artists
+{
+  margin-top : rem-calc(20);
+  z-index    : -1;
+}
+
+.slider-index
+{
+  margin : rem-calc(20) rem-calc(30);
+}
+
+.slider-index-element
+{
+  margin  : 0 rem-calc(8);
+  opacity : 0.8;
+}
+
+.slider-index-element img
+{
+  width  : 100%;
+  margin : 0 auto;
+}
+
+.year-label-index
+{
+  background : $primary-color;
+  color      : $white;
+  width      : 100%;
+  text-align : center;
+  font-size  : rem-calc(12);
+  margin     : 0 auto;
+}
+
+.slider-index-element.slick-center
+{
+  opacity   : 1;
+  transform : scale(1.08);
+}
+
+.latest-item-element h5
+{
+  overflow      : hidden;
+  white-space   : nowrap;
+  display       : block;
+  text-overflow : ellipsis;
+}
+
+.new-artists-blur
+{
+  position : relative;
+  overflow : hidden;
+
+  &__background
+  {
+    position : absolute;
+    left     : 0;
+    z-index  : 0;
+  }
+}

@@ -1,0 +1,189 @@
+/* Minor changes at paddings and font sizes */
+button, .button {
+  cursor: pointer;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  line-height: normal;
+  margin: 0 0 1.25rem;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  padding-top: 0.6rem;
+  padding-right: 1rem;
+  padding-bottom: 0.6rem;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+  background-color: #008cba;
+  border-color: #0079a1;
+  color: white;
+  -webkit-transition: background-color 300ms ease-out;
+  -moz-transition: background-color 300ms ease-out;
+  transition: background-color 300ms ease-out;
+  -webkit-appearance: none;
+  border: none;
+  font-weight: normal !important;
+}
+button:hover, button:focus, .button:hover, .button:focus {
+  background-color: #0079a1;
+  color: white;
+  outline: 0; /* Added for removing the outline border */
+}
+button.secondary, .button.secondary {
+  background-color: #e7e7e7;
+  border-color: #dadada;
+  color: #333333;
+}
+button.secondary:hover, button.secondary:focus, .button.secondary:hover, .button.secondary:focus {
+  background-color: #dadada;
+}
+button.secondary:hover, button.secondary:focus, .button.secondary:hover, .button.secondary:focus {
+  color: #333333;
+}
+button.success, .button.success {
+  background-color: #43ac6a;
+  border-color: #3c9a5f;
+  color: white;
+}
+button.success:hover, button.success:focus, .button.success:hover, .button.success:focus {
+  background-color: #3c9a5f;
+}
+button.success:hover, button.success:focus, .button.success:hover, .button.success:focus {
+  color: white;
+}
+button.alert, .button.alert {
+  background-color: #f04124;
+  border-color: #ea2f10;
+  color: white;
+}
+button.alert:hover, button.alert:focus, .button.alert:hover, .button.alert:focus {
+  background-color: #ea2f10;
+}
+button.alert:hover, button.alert:focus, .button.alert:hover, .button.alert:focus {
+  color: white;
+}
+button.warning, .button.warning {
+  background-color: #F08A24;
+  border-color: #ea7d10;
+  color: white;
+}
+
+/* New Color for Warning Botton */
+button.warning:hover, button.warning:focus, .button.warning:hover, .button.alert:focus {
+  background-color: #DB7E21;
+}
+button.warning:hover, button.warning:focus, .button.warning:hover, .button.alert:focus {
+  color: white;
+}
+button.large, .button.large {
+  padding-top: 0.7rem;
+  padding-right: 1.25rem;
+  padding-bottom: 0.7rem;
+  padding-left: 1.25rem;
+  font-size: 1rem;
+  /*     @else                            { font-size: $padding - rem-calc(2); } */
+}
+button.small, .button.small {
+  padding-top: 0.5rem;
+  padding-right: 0.95rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.95rem;
+  font-size: 0.7125rem;
+  /*     @else                            { font-size: $padding - rem-calc(2); } */
+}
+button.tiny, .button.tiny {
+  padding-top: 0.375rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.3375rem;
+  padding-left: 0.75rem;
+  font-size: 0.7125rem;
+  /*     @else                            { font-size: $padding - rem-calc(2); } */
+}
+
+/* The CSS for Icons Label */
+.btn-labeled{
+  padding-top:0;
+  padding-bottom:1px
+}
+.btn-label{
+  position:relative;
+  left:-15px;
+  display:inline-block;
+  padding-top: 0.58rem;
+  padding-right: 0.8rem;
+  padding-bottom: 0.62rem;
+  padding-left: 0.8rem;
+  background:rgba(0,0,0,0.15);
+  border-radius:3px 0 0 3px
+}
+.btn-label.btn-label-right{
+  right:-15px;
+  left:auto;
+  border-radius:0 3px 3px 0
+}
+.xsm {
+  font-size: 0.7125rem;
+  padding-right: 0.45rem;
+  padding-left: 0.45rem;
+}
+.xsm .btn-label{
+  left:-7px;
+  border-radius:2px 0 0 2px;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3375rem;
+  padding-right: 0.45rem;
+  padding-left: 0.45rem;
+}
+.xsm .btn-label.btn-label-right{
+  right:-7px;
+  left:auto;
+  border-radius:0 2px 2px 0;
+}
+.sm {
+  font-size: 0.8325rem;
+  padding-right: 0.65rem;
+  padding-left: 0.65rem;
+}
+.sm .btn-label{
+  left:-10px;
+  border-radius:2px 0 0 2px;
+  padding-top: 0.39rem;
+  padding-right: 0.45rem;
+  padding-bottom: 0.41rem;
+  padding-left: 0.45rem;
+}
+.sm .btn-label.btn-label-right {
+  right:-10px;
+  left:auto;
+  border-radius:0 2px 2px 0;
+}
+.lg {
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
+  font-size: 1rem;
+}
+.lg .btn-label {
+  left: -19px;
+  padding-top: 0.65rem;
+  padding-right: 1rem;
+  padding-bottom: 0.67rem;
+  padding-left: 1rem;
+}
+.lg .btn-label.btn-label-right {
+  right:-19px;
+  left:auto;
+  border-radius:0 2px 2px 0;
+}
+
+/* Same as in foundation */
+button.radius, .button.radius {
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.button.red {
+  background-color: $primary-color;
+}
+.button.red:hover, .button.red:focus {
+  background-color: scale-color($primary-color, $lightness: 15%);
+}
