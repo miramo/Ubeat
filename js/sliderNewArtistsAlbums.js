@@ -4,7 +4,7 @@
 
 function slickSetCanvasBackgroundSrc(event, slick, direction)
 {
-    blur.init({ path : this.getElementsByClassName('slick-center')[0].getElementsByTagName('img')[0].src });
+    blur.init({ el : document.querySelector('main'), path : this.getElementsByClassName('slick-center')[0].getElementsByTagName('img')[0].src });
 }
 
 $(document).ready(function(){
