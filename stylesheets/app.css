@@ -14140,21 +14140,11 @@ input[type="text"].dream-search:focus {
 .artist-header {
   background: #333;
   position: relative;
-  margin-bottom: 1%;
+  margin-bottom: 0.9375rem;
   overflow: hidden;
 }
-/* line 40, ../scss/_artist.scss */
-.artist-header__background {
-  position: absolute;
-  top: 0;
-  top: -50%;
-  left: 0;
-  width: 100%;
-  height: 500%;
-  z-index: 1;
-}
 
-/* line 52, ../scss/_artist.scss */
+/* line 41, ../scss/_artist.scss */
 .artist-infos {
   width: 100%;
   margin-left: auto;
@@ -14176,7 +14166,7 @@ input[type="text"].dream-search:focus {
   clear: both;
 }
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 52, ../scss/_artist.scss */
+  /* line 41, ../scss/_artist.scss */
   .artist-infos {
     padding: 1em 0;
     padding-left: 0.9375rem;
@@ -14186,7 +14176,7 @@ input[type="text"].dream-search:focus {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 52, ../scss/_artist.scss */
+  /* line 41, ../scss/_artist.scss */
   .artist-infos {
     padding: 1em 0;
     text-align: center;
@@ -14197,7 +14187,7 @@ input[type="text"].dream-search:focus {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 52, ../scss/_artist.scss */
+  /* line 41, ../scss/_artist.scss */
   .artist-infos {
     padding: 2em 0;
     padding-left: 0.9375rem;
@@ -14207,7 +14197,7 @@ input[type="text"].dream-search:focus {
   }
 }
 
-/* line 75, ../scss/_artist.scss */
+/* line 64, ../scss/_artist.scss */
 .artist-picture {
   width: 100%;
   margin-left: auto;
@@ -14229,7 +14219,7 @@ input[type="text"].dream-search:focus {
   clear: both;
 }
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 75, ../scss/_artist.scss */
+  /* line 64, ../scss/_artist.scss */
   .artist-picture {
     padding: 1em 0;
     padding-left: 0.9375rem;
@@ -14239,13 +14229,13 @@ input[type="text"].dream-search:focus {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 75, ../scss/_artist.scss */
+  /* line 64, ../scss/_artist.scss */
   .artist-picture {
     padding: 1em 0;
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 75, ../scss/_artist.scss */
+  /* line 64, ../scss/_artist.scss */
   .artist-picture {
     padding: 2em 0;
     padding-left: 0.9375rem;
@@ -14256,7 +14246,7 @@ input[type="text"].dream-search:focus {
 }
 
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 97, ../scss/_artist.scss */
+  /* line 87, ../scss/_artist.scss */
   .artist-picture {
     margin: 0 auto;
     width: 75%;
@@ -14264,7 +14254,7 @@ input[type="text"].dream-search:focus {
 }
 
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 106, ../scss/_artist.scss */
+  /* line 96, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -14302,7 +14292,7 @@ input[type="text"].dream-search:focus {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 106, ../scss/_artist.scss */
+  /* line 96, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -14340,7 +14330,7 @@ input[type="text"].dream-search:focus {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 106, ../scss/_artist.scss */
+  /* line 96, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -14378,7 +14368,7 @@ input[type="text"].dream-search:focus {
   }
 }
 
-/* line 120, ../scss/_artist.scss */
+/* line 110, ../scss/_artist.scss */
 .artist-panel img {
   width: 100%;
   height: auto;
