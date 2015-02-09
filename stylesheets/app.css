@@ -14421,18 +14421,6 @@ input[type="text"].dream-search:focus {
   text-overflow: ellipsis;
 }
 
-/* line 48, ../scss/_index.scss */
-.new-artists-blur {
-  position: relative;
-  overflow: hidden;
-}
-/* line 53, ../scss/_index.scss */
-.new-artists-blur__background {
-  position: absolute;
-  left: 0;
-  z-index: 0;
-}
-
 /* line 1, ../scss/_albums.scss */
 .album-title h1 {
   color: white;

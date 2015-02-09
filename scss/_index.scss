@@ -44,16 +44,3 @@
   display       : block;
   text-overflow : ellipsis;
 }
-
-.new-artists-blur
-{
-  position : relative;
-  overflow : hidden;
-
-  &__background
-  {
-    position : absolute;
-    left     : 0;
-    z-index  : 0;
-  }
-}
