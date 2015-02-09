@@ -16,16 +16,16 @@ CDN hosted slick is a great way to get set up quick:
 In your ```<head>``` add:
 
 ````
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.4.0/slick.css"/>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.css"/>
 
 // Add the slick-theme.css if you want default styling
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.4.0/slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick-theme.css"/>
 ````
 
 Then, before your closing ```<body>``` tag add:
 
 ```
-<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.4.0/slick.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.min.js"></script>
 ```
 
 #### Package Managers
@@ -105,7 +105,7 @@ waitForAnimate | boolean | true | Ignores requests to advance the slide while an
 
 ### Events
 
-In slick 1.4, callback methods have been deprecated and replaced with events. Use them as shown below:
+In slick 1.4, callback methods have been deprecated and replaced with events. Use them before the initialization of slick as shown below:
 
 ```javascript
 // On swipe event
