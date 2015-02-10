@@ -14109,9 +14109,9 @@ button.radius, .button.radius {
 }
 
 /* line 13, ../scss/_style.scss */
-.img-artist-album {
-  width: 100%;
-  height: 100%;
+.img-circular {
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 /* line 1, ../scss/_navbar.scss */
@@ -14125,12 +14125,6 @@ button.radius, .button.radius {
 }
 
 /* line 10, ../scss/_navbar.scss */
-.img-circular {
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-/* line 15, ../scss/_navbar.scss */
 #profile-picture.img-circular {
   width: 2rem;
   height: 2rem;
@@ -14141,34 +14135,34 @@ button.radius, .button.radius {
   background-size: cover;
 }
 
-/* line 25, ../scss/_navbar.scss */
+/* line 20, ../scss/_navbar.scss */
 #profile-name {
   padding-left: 0.3125rem;
 }
 
-/* line 29, ../scss/_navbar.scss */
+/* line 24, ../scss/_navbar.scss */
 #profile-topbar {
   display: inline-block;
 }
 
-/* line 33, ../scss/_navbar.scss */
+/* line 28, ../scss/_navbar.scss */
 input[type="text"].dream-search {
   opacity: .5;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 33, ../scss/_navbar.scss */
+  /* line 28, ../scss/_navbar.scss */
   input[type="text"].dream-search {
     width: 75%;
     margin-left: 25%;
   }
 }
 
-/* line 42, ../scss/_navbar.scss */
+/* line 37, ../scss/_navbar.scss */
 input[type="text"].dream-search:focus {
   opacity: 1;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 42, ../scss/_navbar.scss */
+  /* line 37, ../scss/_navbar.scss */
   input[type="text"].dream-search:focus {
     width: 100%;
     margin-left: 0%;
@@ -14177,7 +14171,7 @@ input[type="text"].dream-search:focus {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 53, ../scss/_navbar.scss */
+  /* line 48, ../scss/_navbar.scss */
   .top-bar-section .has-dropdown > a:after {
     content: "";
     display: block;
@@ -14211,18 +14205,6 @@ input[type="text"].dream-search:focus {
 }
 
 /* line 9, ../scss/_artist.scss */
-.artist-title h2 {
-  color: white;
-  text-shadow: 1px 1px 1px black;
-}
-
-/* line 15, ../scss/_artist.scss */
-.artist-description h3 small {
-  color: white;
-  text-shadow: 1px 1px 1px black;
-}
-
-/* line 21, ../scss/_artist.scss */
 .year-label {
   width: 100%;
   font-weight: normal;
@@ -14241,7 +14223,7 @@ input[type="text"].dream-search:focus {
   padding-top: 0.5rem;
 }
 
-/* line 33, ../scss/_artist.scss */
+/* line 21, ../scss/_artist.scss */
 .artist-header {
   background: #333;
   position: relative;
@@ -14249,117 +14231,18 @@ input[type="text"].dream-search:focus {
   overflow: hidden;
 }
 
-/* line 41, ../scss/_artist.scss */
-.artist-infos {
+/* line 29, ../scss/_artist.scss */
+#img-artist.img-circular {
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0;
-  margin-bottom: 0;
-  max-width: 62.5rem;
-  position: relative;
-  border: 0px;
-  z-index: 2;
-}
-/* line 172, ../bower_components/foundation/scss/foundation/components/_global.scss */
-.artist-infos:before, .artist-infos:after {
-  content: " ";
-  display: table;
-}
-/* line 173, ../bower_components/foundation/scss/foundation/components/_global.scss */
-.artist-infos:after {
-  clear: both;
-}
-@media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 41, ../scss/_artist.scss */
-  .artist-infos {
-    padding: 1em 0;
-    padding-left: 0.9375rem;
-    padding-right: 0.9375rem;
-    width: 66.66667%;
-    float: left;
-  }
-}
-@media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 41, ../scss/_artist.scss */
-  .artist-infos {
-    padding: 1em 0;
-    text-align: center;
-    padding-left: 0.9375rem;
-    padding-right: 0.9375rem;
-    width: 100%;
-    float: left;
-  }
-}
-@media only screen and (min-width: 40.063em) {
-  /* line 41, ../scss/_artist.scss */
-  .artist-infos {
-    padding: 2em 0;
-    padding-left: 0.9375rem;
-    padding-right: 0.9375rem;
-    width: 66.66667%;
-    float: left;
-  }
-}
-
-/* line 64, ../scss/_artist.scss */
-.artist-picture {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0;
-  margin-bottom: 0;
-  max-width: 62.5rem;
-  position: relative;
-  z-index: 2;
-  border: 0;
-}
-/* line 172, ../bower_components/foundation/scss/foundation/components/_global.scss */
-.artist-picture:before, .artist-picture:after {
-  content: " ";
-  display: table;
-}
-/* line 173, ../bower_components/foundation/scss/foundation/components/_global.scss */
-.artist-picture:after {
-  clear: both;
-}
-@media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 64, ../scss/_artist.scss */
-  .artist-picture {
-    padding: 1em 0;
-    padding-left: 0.9375rem;
-    padding-right: 0.9375rem;
-    width: 33.33333%;
-    float: left;
-  }
-}
-@media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 64, ../scss/_artist.scss */
-  .artist-picture {
-    padding: 1em 0;
-  }
-}
-@media only screen and (min-width: 40.063em) {
-  /* line 64, ../scss/_artist.scss */
-  .artist-picture {
-    padding: 2em 0;
-    padding-left: 0.9375rem;
-    padding-right: 0.9375rem;
-    width: 33.33333%;
-    float: left;
-  }
-}
-
-@media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 87, ../scss/_artist.scss */
-  .artist-picture {
-    margin: 0 auto;
-    width: 75%;
-  }
+  padding-bottom: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  background: url(../img/stupeflip-artist.jpg) no-repeat center center;
+  background-size: cover;
 }
 
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 96, ../scss/_artist.scss */
+  /* line 39, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -14397,7 +14280,7 @@ input[type="text"].dream-search:focus {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 96, ../scss/_artist.scss */
+  /* line 39, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -14435,7 +14318,7 @@ input[type="text"].dream-search:focus {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 96, ../scss/_artist.scss */
+  /* line 39, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -14473,57 +14356,10 @@ input[type="text"].dream-search:focus {
   }
 }
 
-/* line 110, ../scss/_artist.scss */
+/* line 53, ../scss/_artist.scss */
 .artist-panel img {
   width: 100%;
   height: auto;
-}
-
-/* line 1, ../scss/_index.scss */
-.new-artists {
-  margin-top: 1.25rem;
-  z-index: -1;
-}
-
-/* line 7, ../scss/_index.scss */
-.slider-index {
-  margin: 1.25rem 1.875rem;
-}
-
-/* line 12, ../scss/_index.scss */
-.slider-index-element {
-  margin: 0 0.5rem;
-  opacity: 0.8;
-}
-
-/* line 18, ../scss/_index.scss */
-.slider-index-element img {
-  width: 100%;
-  margin: 0 auto;
-}
-
-/* line 24, ../scss/_index.scss */
-.year-label-index {
-  background: #c60000;
-  color: #FFFFFF;
-  width: 100%;
-  text-align: center;
-  font-size: 0.75rem;
-  margin: 0 auto;
-}
-
-/* line 34, ../scss/_index.scss */
-.slider-index-element.slick-center {
-  opacity: 1;
-  transform: scale(1.08);
-}
-
-/* line 40, ../scss/_index.scss */
-.latest-item-element h5 {
-  overflow: hidden;
-  white-space: nowrap;
-  display: block;
-  text-overflow: ellipsis;
 }
 
 /* line 1, ../scss/_albums.scss */
@@ -14625,7 +14461,13 @@ a {
   }
 }
 
-/* line 62, ../scss/_albums.scss */
+/* line 63, ../scss/_albums.scss */
+.img-album {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 69, ../scss/_albums.scss */
 .type-label {
   font-weight: normal;
   font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
@@ -14642,7 +14484,7 @@ a {
   color: #FFFFFF;
 }
 
-/* line 70, ../scss/_albums.scss */
+/* line 77, ../scss/_albums.scss */
 #tool-bar .button, button {
   overflow: hidden;
   white-space: nowrap;
@@ -14653,18 +14495,165 @@ a {
   margin-bottom: 0.1875rem;
 }
 
-/* line 81, ../scss/_albums.scss */
+/* line 88, ../scss/_albums.scss */
 #tool-bar input {
   margin-top: 0.1875rem;
   margin-bottom: 0.1875rem;
   height: 1.75rem;
 }
 
-/* line 88, ../scss/_albums.scss */
+/* line 95, ../scss/_albums.scss */
 .tool-bar-panel {
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
   margin-bottom: 0;
   margin-left: 0.9375rem;
   margin-right: 0.9375rem;
+}
+
+/* line 1, ../scss/_album-artist.scss */
+.album-artist-picture {
+  position: relative;
+  z-index: 2;
+  border: 0;
+}
+@media only screen and (max-width: 40em) and (orientation: landscape) {
+  /* line 1, ../scss/_album-artist.scss */
+  .album-artist-picture {
+    padding: 1em 0;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    width: 33.33333%;
+    float: left;
+  }
+}
+@media only screen and (max-width: 40em) and (orientation: portrait) {
+  /* line 1, ../scss/_album-artist.scss */
+  .album-artist-picture {
+    padding: 1em 0;
+    margin: 0 auto;
+    width: 75%;
+  }
+}
+@media only screen and (min-width: 40.063em) {
+  /* line 1, ../scss/_album-artist.scss */
+  .album-artist-picture {
+    padding: 2em 0;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    width: 33.33333%;
+    float: left;
+  }
+}
+
+/* line 25, ../scss/_album-artist.scss */
+.album-artist-infos {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 62.5rem;
+  position: relative;
+  border: 0px;
+  z-index: 2;
+}
+/* line 172, ../bower_components/foundation/scss/foundation/components/_global.scss */
+.album-artist-infos:before, .album-artist-infos:after {
+  content: " ";
+  display: table;
+}
+/* line 173, ../bower_components/foundation/scss/foundation/components/_global.scss */
+.album-artist-infos:after {
+  clear: both;
+}
+@media only screen and (max-width: 40em) and (orientation: landscape) {
+  /* line 25, ../scss/_album-artist.scss */
+  .album-artist-infos {
+    padding: 1em 0;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    width: 66.66667%;
+    float: left;
+  }
+}
+@media only screen and (max-width: 40em) and (orientation: portrait) {
+  /* line 25, ../scss/_album-artist.scss */
+  .album-artist-infos {
+    padding: 1em 0;
+    text-align: center;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    width: 100%;
+    float: left;
+  }
+}
+@media only screen and (min-width: 40.063em) {
+  /* line 25, ../scss/_album-artist.scss */
+  .album-artist-infos {
+    padding: 2em 0;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    width: 66.66667%;
+    float: left;
+  }
+}
+
+/* line 48, ../scss/_album-artist.scss */
+.artist-title h2 {
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+/* line 54, ../scss/_album-artist.scss */
+.album-artist-description h3 small {
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+/* line 1, ../scss/_index.scss */
+.new-artists {
+  margin-top: 1.25rem;
+  z-index: -1;
+}
+
+/* line 7, ../scss/_index.scss */
+.slider-index {
+  margin: 1.25rem 1.875rem;
+}
+
+/* line 12, ../scss/_index.scss */
+.slider-index-element {
+  margin: 0 0.5rem;
+  opacity: 0.8;
+}
+
+/* line 18, ../scss/_index.scss */
+.slider-index-element img {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* line 24, ../scss/_index.scss */
+.year-label-index {
+  background: #c60000;
+  color: #FFFFFF;
+  width: 100%;
+  text-align: center;
+  font-size: 0.75rem;
+  margin: 0 auto;
+}
+
+/* line 34, ../scss/_index.scss */
+.slider-index-element.slick-center {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+/* line 40, ../scss/_index.scss */
+.latest-item-element h5 {
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  text-overflow: ellipsis;
 }
