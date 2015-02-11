@@ -14116,7 +14116,7 @@ button.radius, .button.radius {
 
 /* line 1, ../scss/_navbar.scss */
 .top-bar .name h1 a:before {
-  background: url("../img/logo/logo-topbar.png") no-repeat center center;
+  background: url(../img/logo/logo-topbar.png) no-repeat center center;
   content: "";
   display: inline-block;
   height: 40px;
@@ -14125,7 +14125,7 @@ button.radius, .button.radius {
 }
 
 /* line 10, ../scss/_navbar.scss */
-#profile-picture.img-circular {
+#profile-picture {
   width: 2rem;
   height: 2rem;
   border: 0.125rem solid #c60000;
@@ -14232,7 +14232,7 @@ input[type="text"].dream-search:focus {
 }
 
 /* line 29, ../scss/_artist.scss */
-#img-artist.img-circular {
+#img-artist {
   width: 100%;
   padding-bottom: 100%;
   display: inline-block;
@@ -14515,7 +14515,6 @@ a {
 .album-artist-picture {
   position: relative;
   z-index: 2;
-  border: 0;
 }
 @media only screen and (max-width: 40em) and (orientation: landscape) {
   /* line 1, ../scss/_album-artist.scss */
@@ -14546,7 +14545,7 @@ a {
   }
 }
 
-/* line 25, ../scss/_album-artist.scss */
+/* line 24, ../scss/_album-artist.scss */
 .album-artist-infos {
   width: 100%;
   margin-left: auto;
@@ -14555,7 +14554,6 @@ a {
   margin-bottom: 0;
   max-width: 62.5rem;
   position: relative;
-  border: 0px;
   z-index: 2;
 }
 /* line 172, ../bower_components/foundation/scss/foundation/components/_global.scss */
@@ -14568,7 +14566,7 @@ a {
   clear: both;
 }
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 25, ../scss/_album-artist.scss */
+  /* line 24, ../scss/_album-artist.scss */
   .album-artist-infos {
     padding: 1em 0;
     padding-left: 0.9375rem;
@@ -14578,7 +14576,7 @@ a {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 25, ../scss/_album-artist.scss */
+  /* line 24, ../scss/_album-artist.scss */
   .album-artist-infos {
     padding: 1em 0;
     text-align: center;
@@ -14589,7 +14587,7 @@ a {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 25, ../scss/_album-artist.scss */
+  /* line 24, ../scss/_album-artist.scss */
   .album-artist-infos {
     padding: 2em 0;
     padding-left: 0.9375rem;
@@ -14599,13 +14597,13 @@ a {
   }
 }
 
-/* line 48, ../scss/_album-artist.scss */
+/* line 46, ../scss/_album-artist.scss */
 .artist-title h2 {
   color: white;
   text-shadow: 1px 1px 1px black;
 }
 
-/* line 54, ../scss/_album-artist.scss */
+/* line 52, ../scss/_album-artist.scss */
 .album-artist-description h3 small {
   color: white;
   text-shadow: 1px 1px 1px black;

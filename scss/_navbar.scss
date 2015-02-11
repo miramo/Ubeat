@@ -1,5 +1,5 @@
 .top-bar .name h1 a:before {
-  background: url('../img/logo/logo-topbar.png') no-repeat center center;
+  background: url(../img/logo/logo-topbar.png) no-repeat center center;
   content: "";
   display: inline-block;
   height: 40px;
@@ -7,7 +7,7 @@
   width: 100px;
 }
 
-#profile-picture.img-circular {
+#profile-picture {
   width: rem-calc(32);
   height: rem-calc(32);
   border: rem-calc(2) solid $primary-color;
