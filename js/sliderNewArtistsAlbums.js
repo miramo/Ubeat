@@ -11,13 +11,49 @@ $(document).ready(function(){
     $('.slider-index').on('afterChange', slickSetCanvasBackgroundSrc);
     $('.slider-index').on('init', slickSetCanvasBackgroundSrc);
 
-    $('.slider-index').slick({
+    $('#slider-index-artists').slick({
         speed: 300,
         centerMode: true,
         focusOnSelect: true,
         dots: true,
         slidesToShow: 7,
         slidesToScroll: 1,
+        swipeToSlide: true,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    autoplay: false,
+                    slidesToShow: 5
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    autoplay: false,
+                    slidesToShow: 3
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    autoplay: false,
+                    dots: false,
+                    slidesToShow: 1
+                }
+            }
+        ]
+    });
+    $('#slider-index-albums').slick({
+        speed: 300,
+        centerMode: true,
+        focusOnSelect: true,
+        dots: true,
+        slidesToShow: 7,
+        slidesToScroll: 1,
+        swipeToSlide: true,
         responsive: [
             {
                 breakpoint: 1024,
