@@ -14114,6 +14114,11 @@ button.radius, .button.radius {
   overflow: hidden;
 }
 
+/* line 19, ../scss/_style.scss */
+.box-shadow {
+  box-shadow: 0px 0px 15px #737373;
+}
+
 /* line 1, ../scss/_navbar.scss */
 .top-bar .name h1 a:before {
   background: url(../img/logo/logo-topbar.png) no-repeat center center;
