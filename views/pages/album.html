@@ -1,209 +1,220 @@
-
-    <div class="artist-header">
-        <div class="row">
-            <div class="album-artist-picture">
-                <img src="img/hypnoflip.png" class="img-album">
+<div class="artist-header">
+    <div class="row">
+        <div class="album-artist-picture">
+            <img src="img/hypnoflip.png" class="img-album">
+        </div>
+        <div class="album-artist-infos">
+            <div class="album-title">
+                <h1>The Hypnoflip Invasion</h1>
             </div>
-            <div class="album-artist-infos">
-                <div class="album-title">
-                    <h1>The Hypnoflip Invasion</h1>
+            <div class="artist-title">
+                <h2><a href="#/artist" class="album-artist-link">Stupeflip</a></h2>
+            </div>
+            <span class="type-label">Alternative</span>
+
+            <div class="album-artist-description">
+                <h3>
+                    <small>20 Chansons</small>
+                </h3>
+                <h3>
+                    <small>Année de Parution : 2011</small>
+                </h3>
+            </div>
+            <div data-interchange="[interchange/itunes/album/default.html, (default)], [interchange/itunes/album/medium-large.html, (landscape)], [interchange/itunes/album/medium-large.html, (medium)], [interchange/itunes/album/medium-large.html, (large)]"></div>
+        </div>
+    </div>
+</div>
+
+<div id="tool-bar" class="row">
+    <div class="small-12">
+        <div class="panel tool-bar-panel radius">
+            <div class="row collapse">
+                <div class="small-6 large-5 columns left">
+                    <div class="small-12 medium-7 large-6 columns left">
+                        <a href="#" class="button red split expand radius tiny"><i class="fa fa-play fa-lg"></i> Lire
+                            tout <span data-dropdown="dropPlay"></span></a>
+                        <ul id="dropPlay" class="f-dropdown" data-dropdown-content>
+                            <li><a href="#">Écouter</a></li>
+                            <li><a href="#">Lire à la suite</a></li>
+                            <li><a href="#">Lire en dernier</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Remplacer la file d'attente</a></li>
+                        </ul>
+                    </div>
+                    <div class="small-12 medium-5 columns left">
+                        <a href="#" class="button red expand radius tiny"><i class="fa fa-plus fa-lg"></i> Tout ajouter
+                        </a>
+                    </div>
                 </div>
-                <div class="artist-title">
-                    <h2><a href="#/artist" class="album-artist-link">Stupeflip</a></h2>
+                <div class="small-6 large-5 columns right">
+                    <div class="small-12 medium-7 columns right">
+                        <input class="radius" type="text" placeholder="Filtre">
+                    </div>
+                    <div class="small-12 medium-5 columns right">
+                        <button href="#" data-dropdown="dropSort" aria-controls="dropSort" aria-expanded="false"
+                                class="button red dropdown expand radius tiny"><i class="fa fa-sort fa-lg"></i> Numéro
+                            de piste
+                        </button>
+                        <ul id="dropSort" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
+                            <li><a href="#">Numéro de piste</a></li>
+                            <li><a href="#">Chanson</a></li>
+                            <li><a href="#">Artiste</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <span class="type-label">Alternative</span>
-                <div class="album-artist-description">
-                    <h3>
-                        <small>20 Chansons</small>
-                    </h3>
-                    <h3>
-                        <small>Année de Parution : 2011</small>
-                    </h3>
-                </div>
-                <div data-interchange="[interchange/itunes/album/default.html, (default)], [interchange/itunes/album/medium-large.html, (landscape)], [interchange/itunes/album/medium-large.html, (medium)], [interchange/itunes/album/medium-large.html, (large)]"></div>
             </div>
         </div>
     </div>
+</div>
 
-    <div id="tool-bar" class="row">
-        <div class="small-12">
-            <div class="panel tool-bar-panel radius">
-                <div class="row collapse">
-                    <div class="small-6 large-5 columns left">
-                        <div class="small-12 medium-7 large-6 columns left">
-                            <a href="#" class="button red split expand radius tiny"><i class="fa fa-play fa-lg"></i> Lire tout <span data-dropdown="dropPlay"></span></a>
-                            <ul id="dropPlay" class="f-dropdown" data-dropdown-content>
-                                <li><a href="#">Écouter</a></li>
-                                <li><a href="#">Lire à la suite</a></li>
-                                <li><a href="#">Lire en dernier</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Remplacer la file d'attente</a></li>
-                            </ul>
-                        </div>
-                        <div class="small-12 medium-5 columns left">
-                            <a href="#" class="button red expand radius tiny"><i class="fa fa-plus fa-lg"></i> Tout ajouter </a>
-                        </div>
-                    </div>
-                    <div class="small-6 large-5 columns right">
-                        <div class="small-12 medium-7 columns right">
-                            <input class="radius" type="text" placeholder="Filtre">
-                        </div>
-                        <div class="small-12 medium-5 columns right">
-                            <button href="#" data-dropdown="dropSort" aria-controls="dropSort" aria-expanded="false" class="button red dropdown expand radius tiny"><i class="fa fa-sort fa-lg"></i> Numéro de piste</button>
-                            <ul id="dropSort" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
-                                <li><a href="#">Numéro de piste</a></li>
-                                <li><a href="#">Chanson</a></li>
-                                <li><a href="#">Artiste</a></li>
-                            </ul>
-                        </div>
-                    </div>
+<div class="row-infos-list">
+    <table>
+        <thead>
+        <tr>
+            <th width="50"></th>
+            <th width="30"></th>
+            <th width="600">Titre de la musique</th>
+            <th width="300">Nom de l'artiste</th>
+            <th width="50">Durée</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="music-row">
+            <td class="text-center">
+                <div class="hide-play-button">
+                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
+                            class="fa fa-play fa-lg"></i></span>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row-infos-list">
-        <table>
-            <thead>
-            <tr>
-                <th width="50"></th>
-                <th width="30"></th>
-                <th width="600">Titre de la musique</th>
-                <th width="300">Nom de l'artiste</th>
-                <th width="50">Durée</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="music-row">
-                <td class="text-center">
-                    <div class="hide-play-button">
-                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i class="fa fa-play fa-lg"></i></span>
-                    </div>
-                </td>
-                <td class="text-center">1</td>
-                <td>Invasion</td>
-                <td><a href="#/artist">Stupeflip</a></td>
-                <td class="text-center">1:45</td>
-            </tr>
-            <tr class="music-row">
-                <td class="text-center">
-                    <div class="hide-play-button">
-                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i class="fa fa-play fa-lg"></i></span>
-                    </div>
-                </td>
-                <td class="text-center">2</td>
-                <td>Stupeflip Vite !!!</td>
-                <td><a href="#/artist">Stupeflip</a></td>
-                <td class="text-center">4:38</td>
-            </tr>
-            <tr class="music-row">
-                <td class="text-center">
-                    <div class="hide-play-button">
-                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i class="fa fa-play fa-lg"></i></span>
-                    </div>
-                </td>
-                <td class="text-center">3</td>
-                <td>La Menuiserie</td>
-                <td><a href="#/artist">Stupeflip</a></td>
-                <td class="text-center">4:54</td>
-            </tr>
-            <tr class="music-row">
-                <td class="text-center">
-                    <div class="hide-play-button">
-                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i class="fa fa-play fa-lg"></i></span>
-                    </div>
-                </td>
-                <td class="text-center">4</td>
-                <td>Gaëlle</td>
-                <td><a href="#/artist">Stupeflip</a></td>
-                <td class="text-center">4:05</td>
-            </tr>
-            <tr class="music-row">
-                <td class="text-center">
-                    <div class="hide-play-button">
-                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i class="fa fa-play fa-lg"></i></span>
-                    </div>
-                </td>
-                <td class="text-center">5</td>
-                <td>Check Da Crou</td>
-                <td><a href="#/artist">Stupeflip</a></td>
-                <td class="text-center">3:50</td>
-            </tr>
-            <tr class="music-row">
-                <td class="text-center">
-                    <div class="hide-play-button">
-                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i class="fa fa-play fa-lg"></i></span>
-                    </div>
-                </td>
-                <td class="text-center">6</td>
-                <td>Le Spleen des petits</td>
-                <td><a href="#/artist">Stupeflip</a></td>
-                <td class="text-center">3:08</td>
-            </tr>
-            <tr class="music-row">
-                <td class="text-center">
-                    <div class="hide-play-button">
-                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i class="fa fa-play fa-lg"></i></span>
-                    </div>
-                </td>
-                <td class="text-center">7</td>
-                <td>Dangereux !!</td>
-                <td><a href="#/artist">Stupeflip</a></td>
-                <td class="text-center">0:31</td>
-            </tr>
-            <tr class="music-row">
-                <td class="text-center">
-                    <div class="hide-play-button">
-                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i class="fa fa-play fa-lg"></i></span>
-                    </div>
-                </td>
-                <td class="text-center">8</td>
-                <td>Hater's Killah</td>
-                <td><a href="#/artist">Stupeflip</a></td>
-                <td class="text-center">3:42</td>
-            </tr>
-            <tr class="music-row">
-                <td class="text-center">
-                    <div class="hide-play-button">
-                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i class="fa fa-play fa-lg"></i></span>
-                    </div>
-                </td>
-                <td class="text-center">9</td>
-                <td>Strange Pain</td>
-                <td><a href="#/artist">Stupeflip</a></td>
-                <td class="text-center">0:43</td>
-            </tr>
-            <tr class="music-row">
-                <td class="text-center">
-                    <div class="hide-play-button">
-                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i class="fa fa-play fa-lg"></i></span>
-                    </div>
-                </td>
-                <td class="text-center">10</td>
-                <td>Gem Lé Moch'</td>
-                <td><a href="#/artist">Stupeflip</a></td>
-                <td class="text-center">3:17</td>
-            </tr>
-            <tr class="music-row">
-                <td class="text-center">
-                    <div class="hide-play-button">
-                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i class="fa fa-play fa-lg"></i></span>
-                    </div>
-                </td>
-                <td class="text-center">11</td>
-                <td>Sinode Piboui</td>
-                <td><a href="#/artist">Stupeflip</a></td>
-                <td class="text-center">4:12</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-<script>
-    displayPlayButton();
-    $(document).foundation('interchange', 'reflow');
-    blur.init({ el : document.querySelector('.artist-header'), path : 'img/hypnoflip.png' });
-    $.stellar({
-        responsive: true,
-        positionProperty: 'transform'
-    });
-</script>
+            </td>
+            <td class="text-center">1</td>
+            <td>Invasion</td>
+            <td><a href="#/artist">Stupeflip</a></td>
+            <td class="text-center">1:45</td>
+        </tr>
+        <tr class="music-row">
+            <td class="text-center">
+                <div class="hide-play-button">
+                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
+                            class="fa fa-play fa-lg"></i></span>
+                </div>
+            </td>
+            <td class="text-center">2</td>
+            <td>Stupeflip Vite !!!</td>
+            <td><a href="#/artist">Stupeflip</a></td>
+            <td class="text-center">4:38</td>
+        </tr>
+        <tr class="music-row">
+            <td class="text-center">
+                <div class="hide-play-button">
+                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
+                            class="fa fa-play fa-lg"></i></span>
+                </div>
+            </td>
+            <td class="text-center">3</td>
+            <td>La Menuiserie</td>
+            <td><a href="#/artist">Stupeflip</a></td>
+            <td class="text-center">4:54</td>
+        </tr>
+        <tr class="music-row">
+            <td class="text-center">
+                <div class="hide-play-button">
+                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
+                            class="fa fa-play fa-lg"></i></span>
+                </div>
+            </td>
+            <td class="text-center">4</td>
+            <td>Gaëlle</td>
+            <td><a href="#/artist">Stupeflip</a></td>
+            <td class="text-center">4:05</td>
+        </tr>
+        <tr class="music-row">
+            <td class="text-center">
+                <div class="hide-play-button">
+                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
+                            class="fa fa-play fa-lg"></i></span>
+                </div>
+            </td>
+            <td class="text-center">5</td>
+            <td>Check Da Crou</td>
+            <td><a href="#/artist">Stupeflip</a></td>
+            <td class="text-center">3:50</td>
+        </tr>
+        <tr class="music-row">
+            <td class="text-center">
+                <div class="hide-play-button">
+                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
+                            class="fa fa-play fa-lg"></i></span>
+                </div>
+            </td>
+            <td class="text-center">6</td>
+            <td>Le Spleen des petits</td>
+            <td><a href="#/artist">Stupeflip</a></td>
+            <td class="text-center">3:08</td>
+        </tr>
+        <tr class="music-row">
+            <td class="text-center">
+                <div class="hide-play-button">
+                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
+                            class="fa fa-play fa-lg"></i></span>
+                </div>
+            </td>
+            <td class="text-center">7</td>
+            <td>Dangereux !!</td>
+            <td><a href="#/artist">Stupeflip</a></td>
+            <td class="text-center">0:31</td>
+        </tr>
+        <tr class="music-row">
+            <td class="text-center">
+                <div class="hide-play-button">
+                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
+                            class="fa fa-play fa-lg"></i></span>
+                </div>
+            </td>
+            <td class="text-center">8</td>
+            <td>Hater's Killah</td>
+            <td><a href="#/artist">Stupeflip</a></td>
+            <td class="text-center">3:42</td>
+        </tr>
+        <tr class="music-row">
+            <td class="text-center">
+                <div class="hide-play-button">
+                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
+                            class="fa fa-play fa-lg"></i></span>
+                </div>
+            </td>
+            <td class="text-center">9</td>
+            <td>Strange Pain</td>
+            <td><a href="#/artist">Stupeflip</a></td>
+            <td class="text-center">0:43</td>
+        </tr>
+        <tr class="music-row">
+            <td class="text-center">
+                <div class="hide-play-button">
+                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
+                            class="fa fa-play fa-lg"></i></span>
+                </div>
+            </td>
+            <td class="text-center">10</td>
+            <td>Gem Lé Moch'</td>
+            <td><a href="#/artist">Stupeflip</a></td>
+            <td class="text-center">3:17</td>
+        </tr>
+        <tr class="music-row">
+            <td class="text-center">
+                <div class="hide-play-button">
+                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
+                            class="fa fa-play fa-lg"></i></span>
+                </div>
+            </td>
+            <td class="text-center">11</td>
+            <td>Sinode Piboui</td>
+            <td><a href="#/artist">Stupeflip</a></td>
+            <td class="text-center">4:12</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript" src="js/libs/stackblur.min.js"></script>
+<script type="text/javascript" src="js/blur.js"></script>
+<script type="text/javascript" src="js/sliderNewArtistsAlbums.js"></script>
+<script type="text/javascript" src="js/displayPlayButton.js"></script>
