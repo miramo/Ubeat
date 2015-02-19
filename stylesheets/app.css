@@ -14119,6 +14119,18 @@ button.radius, .button.radius {
   box-shadow: 0px 0px 15px #737373;
 }
 
+/* line 25, ../scss/_style.scss */
+::selection {
+  background: #f50000;
+  color: #FFFFFF;
+}
+
+/* line 30, ../scss/_style.scss */
+::-moz-selection {
+  background: #f50000;
+  color: #FFFFFF;
+}
+
 /* line 1, ../scss/_navbar.scss */
 .top-bar .name h1 a:before {
   background: url(../img/logo/logo-topbar.png) no-repeat center center;

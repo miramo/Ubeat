@@ -20,3 +20,15 @@
 {
   box-shadow: 0px 0px 15px #737373;
 }
+
+//Text Selection Color
+::selection
+{
+  background: scale-color($primary-color, $lightness: 15%);
+  color: $white;
+}
+::-moz-selection
+{
+  background: scale-color($primary-color, $lightness: 15%);
+  color: $white;
+}
