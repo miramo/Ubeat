@@ -29,28 +29,36 @@
     controllers.controller('AlbumController', function ($scope, $routeParams, albumFactory, artistFactory, albumTracksFactory)
     {
         albumFactory.get({id: $routeParams.id}).$promise.then(function (data)
+        {
+            $scope.album = data.results[0];
+            $scope.album.artworkUrl300 = itunesLinkImageSizeTo($scope.album.artworkUrl100, 300);
+            $scope.album.releaseDateObj = new Date($scope.album.releaseDate);
+           // console.log("ReleaseDate: " + $scope.album.releaseDate);
+
+            blur.init({el: document.querySelector('.artist-header'), path: $scope.album.artworkUrl300});
+
+            artistFactory.get({id: $scope.album.artistId}).$promise.then(function (data)
             {
-                $scope.album = data.results[0];
+                $scope.artist = data.results[0];
+            }, function (err)
+            {
+            });
 
-                console.log($scope.album.artworkUrl100);
-                blur.init({el: document.querySelector('.artist-header'), path: $scope.album.artworkUrl100});
 
-                artistFactory.get({id: $scope.album.artistId}).$promise.then(function (data)
+            albumTracksFactory.get({id: $routeParams.id}).$promise.then(function (data)
+            {
+                $scope.tracks = data.results;
+
+                for (var i = 0; i < $scope.tracks.length; ++i)
                 {
-                    $scope.artist = data.results[0];
-                }, function (err) {});
-
-
-                albumTracksFactory.get({id: $routeParams.id}).$promise.then(function (data)
-                {
-                    $scope.tracks = data.results;
-
-                    for (var i = 0; i < $scope.tracks.length; ++i)
-                    {
-                        $scope.tracks[i].time = millisToTime($scope.tracks[i].trackTimeMillis);
-                    }
-                }, function (err) {});
-            }, function (err) {});
+                    $scope.tracks[i].time = millisToTime($scope.tracks[i].trackTimeMillis);
+                }
+            }, function (err)
+            {
+            });
+        }, function (err)
+        {
+        });
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
@@ -74,6 +82,12 @@
         artistAlbumsFactory.get({id: 19333119}).$promise.then(function (data)
             {
                 $scope.albums = data.results;
+
+                for (var i = 0; i < $scope.albums.length; ++i)
+                {
+                    $scope.albums[i].releaseDateObj = new Date($scope.albums[i].releaseDate);
+                    $scope.albums[i].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[i].artworkUrl100, 300);
+                }
             },
             function (err)
             {

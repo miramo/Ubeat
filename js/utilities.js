@@ -21,3 +21,11 @@ function millisToTime(s)
     seconds = addZ(seconds);
     return {"Hours": hours, "Minutes": minutes, "Seconds": seconds};
 }
+
+function itunesLinkImageSizeTo(url, size)
+{
+    var str1 = url.substring(0, url.lastIndexOf('x') - 3);
+    var str2 = url.substring(url.lastIndexOf('x') + 3, url.length);
+
+    return str1 + size + "x" + size + str2;
+}

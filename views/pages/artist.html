@@ -29,8 +29,8 @@
                 <ul class="artist-albums-list" data-equalizer-watch>
                     <li class="artist-panel" ng-repeat="album in albums">
                         <div class="box-shadow">
-                            <a href="#/album/{{album.collectionId}}"><img src={{album.artworkUrl100}} class="img-artist-album"></a>
-                            <span class="year-label">2003</span>
+                            <a href="#/album/{{album.collectionId}}"><img src={{album.artworkUrl300}} class="img-artist-album"></a>
+                            <span class="year-label">{{album.releaseDateObj.getFullYear()}}</span>
                         </div>
                         <a href="#/album/{{album.collectionId}}"><h5 class="text-center"><strong>{{album.collectionName}}</strong></h5></a>
                     </li>

@@ -2,7 +2,7 @@
     <div class="artist-header">
         <div class="row">
             <div class="album-artist-picture">
-                <img src={{album.artworkUrl100}} class="img-album">
+                <img src={{album.artworkUrl300}} class="img-album">
             </div>
             <div class="album-artist-infos">
                 <div class="album-title">
@@ -18,7 +18,7 @@
                         <small>{{album.trackCount}} Chansons</small>
                     </h3>
                     <h3>
-                        <small>Année de Parution : 2011</small>
+                        <small>Année de Parution : {{album.releaseDateObj.getFullYear()}}</small>
                     </h3>
                 </div>
                 <div data-interchange="[interchange/itunes/album/default.html, (default)], [interchange/itunes/album/medium-large.html, (landscape)], [interchange/itunes/album/medium-large.html, (medium)], [interchange/itunes/album/medium-large.html, (large)]"></div>
