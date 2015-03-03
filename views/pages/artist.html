@@ -1,65 +1,68 @@
-<div class="artist-header">
-    <div class="row">
-        <div class="album-artist-picture">
-            <div class="img-circular" id="img-artist"></div>
-        </div>
-        <div class="album-artist-infos">
-            <div class="artist-title">
-                <h2>Stupeflip</h2>
+<div ng-controller="ArtistController as artistCtrl">
+    <div class="artist-header">
+        <div class="row">
+            <div class="album-artist-picture">
+                <div class="img-circular" id="img-artist"></div>
             </div>
-            <span class="type-label">Alternative</span>
+            <div class="album-artist-infos">
+                <div class="artist-title">
+                    <h2>{{artist.artistName}}</h2>
+                </div>
+                <span class="type-label">{{artist.primaryGenreName}}</span>
 
-            <div class="album-artist-description">
-                <h3>
-                    <small>Stupeflip est un groupe français, formé en 2000, qui mélange entre autres les styles
-                        musicaux
-                        hip-hop, rap, variété composé de Julien Barthélémy, Stéphane Bellenger et Jean-Paul Michel.
-                    </small>
-                </h3>
+                <div class="album-artist-description">
+                    <h3>
+                        <small>Stupeflip est un groupe français, formé en 2000, qui mélange entre autres les styles
+                            musicaux
+                            hip-hop, rap, variété composé de Julien Barthélémy, Stéphane Bellenger et Jean-Paul Michel.
+                        </small>
+                    </h3>
+                </div>
+                <div data-interchange="[interchange/itunes/artist/default.html, (default)], [interchange/itunes/artist/medium-large.html, (landscape)], [interchange/itunes/artist/medium-large.html, (medium)], [interchange/itunes/artist/medium-large.html, (large)]"></div>
             </div>
-            <div data-interchange="[interchange/itunes/artist/default.html, (default)], [interchange/itunes/artist/medium-large.html, (landscape)], [interchange/itunes/artist/medium-large.html, (medium)], [interchange/itunes/artist/medium-large.html, (large)]"></div>
         </div>
     </div>
-</div>
-<div class="row" data-equalizer>
-    <div class="small-12 columns">
-        <div class="panel radius">
-            <h2>Albums</h2>
-            <ul class="artist-albums-list" data-equalizer-watch>
-                <li class="artist-panel">
-                    <div class="box-shadow">
-                        <a href="#/album"><img src="img/stupeflip.png" class="img-artist-album"></a>
-                        <span class="year-label">2003</span>
-                    </div>
-                    <a href="album.html"><h5 class="text-center"><strong>Stupeflip</strong></h5></a>
-                </li>
-                <li class="artist-panel">
-                    <div class="box-shadow">
-                        <a href="#/album"><img src="img/relig.png" class="img-artist-album"></a>
-                        <span class="year-label">2005</span>
-                    </div>
-                    <a href="album.html"><h5 class="text-center"><strong>Stup Religion</strong></h5></a>
-                </li>
-                <li class="artist-panel">
-                    <div class="box-shadow">
-                        <a href="#/album"><img src="img/hypnoflip.png" class="img-artist-album"></a>
-                        <span class="year-label">2011</span>
-                    </div>
-                    <a href="album.html"><h5 class="text-center"><strong>The hypnoflip invasion</strong></h5></a>
-                </li>
-                <li class="artist-panel">
-                    <div class="box-shadow">
-                        <a href="#/album"><img src="img/Terrora.png" class="img-artist-album"></a>
-                        <span class="year-label">2012</span>
-                    </div>
-                    <a href="album.html"><h5 class="text-center"><strong>Terrora !!</strong></h5></a>
-                </li>
-            </ul>
+    <div class="row" data-equalizer>
+        <div class="small-12 columns">
+            <div class="panel radius">
+                <h2>Albums</h2>
+                <ul class="artist-albums-list" data-equalizer-watch>
+                    <li class="artist-panel" ng-repeat="album in albums">
+                        <div class="box-shadow">
+                            <a href="#/album/{{album.collectionId}}"><img src={{album.artworkUrl100}} class="img-artist-album"></a>
+                            <span class="year-label">2003</span>
+                        </div>
+                        <a href="#/album/{{album.collectionId}}"><h5 class="text-center"><strong>{{album.collectionName}}</strong></h5></a>
+                    </li>
+                    <!--    <li class="artist-panel">
+                            <div class="box-shadow">
+                                <a href="#/album"><img src="img/relig.png" class="img-artist-album"></a>
+                                <span class="year-label">2005</span>
+                            </div>
+                            <a href="album.html"><h5 class="text-center"><strong>Stup Religion</strong></h5></a>
+                        </li>
+                        <li class="artist-panel">
+                            <div class="box-shadow">
+                                <a href="#/album"><img src="img/hypnoflip.png" class="img-artist-album"></a>
+                                <span class="year-label">2011</span>
+                            </div>
+                            <a href="album.html"><h5 class="text-center"><strong>The hypnoflip invasion</strong></h5></a>
+                        </li>
+                        <li class="artist-panel">
+                            <div class="box-shadow">
+                                <a href="#/album"><img src="img/Terrora.png" class="img-artist-album"></a>
+                                <span class="year-label">2012</span>
+                            </div>
+                            <a href="album.html"><h5 class="text-center"><strong>Terrora !!</strong></h5></a>
+                        </li> -->
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 <script type="text/javascript" src="js/libs/class.js"></script>
 <script type="text/javascript" src="js/libs/stackblur.min.js"></script>
-<script type="text/javascript" src="js/blur.js"></script><script src="js/blur.js"></script>
+<script type="text/javascript" src="js/blur.js"></script>
+<script src="js/blur.js"></script>
 <script>
 </script>
