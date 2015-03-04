@@ -12,17 +12,13 @@
                         <h2>{{artist.artistName}}</h2>
                     </div>
                     <span class="type-label">{{artist.primaryGenreName}}</span>
-
                     <div class="album-artist-description">
                         <h3>
-                            <small>{{artist.description}}
-                            </small>
+                            <small>{{artist.description}}</small>
                         </h3>
                     </div>
-
                     <div data-ar-desktop>
-                        <a href={{artist.artistLinkUrl}} target="itunes_store"
-                           style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_itunes-lrg.png) no-repeat;width:110px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_itunes-lrg.svg);}"></a>
+                        <a href={{artist.artistLinkUrl}} target="itunes_store" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_itunes-lrg.png) no-repeat;width:110px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_itunes-lrg.svg);}"></a>
                     </div>
                     <div data-ar-mobile>
                         <a href={{artist.artistLinkUrl}} target="itunes_store" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets//images/web/linkmaker/badge_itunes-sm.png) no-repeat;width:45px;height:15px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets//images/web/linkmaker/badge_itunes-sm.svg);}"></a>
@@ -37,14 +33,19 @@
                 <h2>Albums</h2>
                 <ul class="artist-albums-list" ng-switch on="albumsLoaded">
                     <li class="artist-panel" ng-repeat="album in albums" ng-switch-when="true">
-                        <div class="box-shadow">
-                            <a href="#/album/{{album.collectionId}}"><img src="{{album.artworkUrl300}}"
-                                                                          class="img-artist-album"></a>
-
-                            <div class="year-label-index">{{album.releaseDateObj.getFullYear()}}</div>
+                        <div class="row bump">
+                            <div class="row">
+                                <div class="card">
+                                    <a href="#/album/{{album.collectionId}}">
+                                        <img src="{{album.artworkUrl300}}">
+                                    </a>
+                                    <div class="row collapse">
+                                        <div class="text-center album-title"><p>{{album.collectionName}}</p></div>
+                                        <div class="year-label-index">{{album.releaseDateObj.getFullYear()}}</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <a href="#/album/{{album.collectionId}}"><h5 class="text-center"><strong>{{album.collectionName}}</strong>
-                        </h5></a>
                     </li>
                 </ul>
             </div>

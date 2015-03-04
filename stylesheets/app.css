@@ -14131,6 +14131,31 @@ button.radius, .button.radius {
   color: #FFFFFF;
 }
 
+/* line 36, ../scss/_style.scss */
+.bump {
+  margin-top: 3.125rem;
+  padding-right: 1.875rem;
+  padding-left: 1.875rem;
+}
+
+/* line 41, ../scss/_style.scss */
+.card {
+  padding-bottom: 0;
+  border-radius: 0.3125rem;
+  background: #b20000;
+  background: #c60000;
+  overflow: hidden;
+  box-shadow: 0 0.5rem 1.0625rem 0 rgba(0, 0, 0, 0.2);
+}
+
+/* line 49, ../scss/_style.scss */
+.card p {
+  font-size: 1rem;
+  padding: 0 0.3125rem;
+  margin-bottom: 0;
+  color: #FFFFFF;
+}
+
 /* line 1, ../scss/_navbar.scss */
 .top-bar .name h1 a:before {
   background: url(../img/logo/logo-topbar.png) no-repeat center center;
