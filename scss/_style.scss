@@ -52,3 +52,11 @@
   margin-bottom: 0;
   color: $white;
 }
+
+.ellipsis
+{
+  overflow      : hidden;
+  white-space   : nowrap;
+  display       : block;
+  text-overflow : ellipsis;
+}

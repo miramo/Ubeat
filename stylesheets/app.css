@@ -14142,7 +14142,6 @@ button.radius, .button.radius {
 .card {
   padding-bottom: 0;
   border-radius: 0.3125rem;
-  background: #b20000;
   background: #c60000;
   overflow: hidden;
   box-shadow: 0 0.5rem 1.0625rem 0 rgba(0, 0, 0, 0.2);
@@ -14154,6 +14153,14 @@ button.radius, .button.radius {
   padding: 0 0.3125rem;
   margin-bottom: 0;
   color: #FFFFFF;
+}
+
+/* line 56, ../scss/_style.scss */
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  text-overflow: ellipsis;
 }
 
 /* line 1, ../scss/_navbar.scss */

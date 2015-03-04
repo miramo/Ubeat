@@ -36,11 +36,11 @@
                         <div class="row bump">
                             <div class="row">
                                 <div class="card">
-                                    <a href="#/album/{{album.collectionId}}">
-                                        <img src="{{album.artworkUrl300}}">
-                                    </a>
+                                    <img src="{{album.artworkUrl300}}">
                                     <div class="row collapse">
-                                        <div class="text-center album-title"><p>{{album.collectionName}}</p></div>
+                                        <a href="#/album/{{album.collectionId}}">
+                                            <div class="text-center"><p class="ellipsis">{{album.collectionName}}</p></div>
+                                        </a>
                                         <div class="year-label-index">{{album.releaseDateObj.getFullYear()}}</div>
                                     </div>
                                 </div>
@@ -55,6 +55,5 @@
 <script type="text/javascript" src="js/libs/class.js"></script>
 <script type="text/javascript" src="js/libs/stackblur.js"></script>
 <script type="text/javascript" src="js/blur.js"></script>
-<script src="js/blur.js"></script>
 <script>
 </script>
