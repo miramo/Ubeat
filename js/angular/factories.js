@@ -6,24 +6,26 @@
 {
     var factories = angular.module('factories', ['ngResource']);
 
+    factories.ubeatBaseUnsecureUrl = 'http://ubeat.herokuapp.com/unsecure/';
+
     factories.factory('albumFactory', function ($resource)
     {
-        return $resource('http://ubeat.herokuapp.com/unsecure/albums/:id');
+        return $resource(factories.ubeatBaseUnsecureUrl + 'albums/:id');
     });
 
     factories.factory('albumTracksFactory', function ($resource)
     {
-        return $resource('http://ubeat.herokuapp.com/unsecure/albums/:id/tracks');
+        return $resource(factories.ubeatBaseUnsecureUrl + 'albums/:id/tracks');
     });
 
     factories.factory('artistFactory', function ($resource)
     {
-        return $resource('http://ubeat.herokuapp.com/unsecure/artists/:id');
+        return $resource(factories.ubeatBaseUnsecureUrl + 'artists/:id');
     });
 
     factories.factory('artistAlbumsFactory', function ($resource)
     {
-        return $resource('http://ubeat.herokuapp.com/unsecure/artists/:id/albums');
+        return $resource(factories.ubeatBaseUnsecureUrl + 'artists/:id/albums');
     });
 
     factories.factory('artistBiographiesFactory', function ($resource)

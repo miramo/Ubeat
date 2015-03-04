@@ -75,7 +75,6 @@
         <table>
             <thead>
             <tr>
-                <th width="50"></th>
                 <th width="30"></th>
                 <th width="600">Titre de la musique</th>
                 <th width="300">Nom de l'artiste</th>
@@ -83,17 +82,18 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="music-row" ng-repeat="track in tracks">
-                <div ng-mouseover="">
+            <tr class="music-row" ng-repeat="track in tracks" ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
                     <td class="text-center">
+                        <div ng-show="track.displayPlayButton">
                         <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
-                                class="fa fa-play fa-lg"></i></span>
+                                class="fa fa-play fa-lg"></i></span></div>
+                        <div ng-hide="track.displayPlayButton">
+                        {{track.trackNumber}}
+                        </div>
                     </td>
-                    <td class="text-center">{{track.trackNumber}}</td>
                     <td>{{track.trackName}}</td>
                     <td><a href="#/artist">{{track.artistName}}</a></td>
                     <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
-                </div>
             </tr>
             </tbody>
         </table>

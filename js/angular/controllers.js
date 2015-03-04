@@ -62,12 +62,17 @@
                     $scope.tracks[i].time = millisToTime($scope.tracks[i].trackTimeMillis);
                     $scope.tracks[i].displayPlayButton = false;
                 }
-
-                $scope.displayPlayButton = function(id)
-                {
-
-                }
             });
+
+            $scope.displayPlayButton = function(track)
+            {
+                track.displayPlayButton = true;
+            }
+
+            $scope.hidePlayButton = function(track)
+            {
+                track.displayPlayButton = false;
+            }
 
             $scope.isResolved = true;
         });
@@ -81,6 +86,7 @@
     controllers.controller('ArtistController', function ($scope, artistFactory, artistAlbumsFactory, artistBiographiesFactory, spotifyArtistFactory)
     {
         $scope.artistPictureLoaded = false;
+        $scope.artistInfosLoaded = false;
         $scope.albumsLoaded = false;
 
         artistFactory.get({id: 19333119}).$promise.then(function (data)
@@ -90,6 +96,7 @@
                 artistBiographiesFactory.get({artist: ":artist:", id: "7qiRNP9z0FhN63YcLmb8Ai"}).$promise.then(function (data)
                     {
                         $scope.artist.description = getSentencesNb(data.response.biographies[0].text, 3);
+                        $scope.artistInfosLoaded = true;
 
                     }, function (err) {});
                 spotifyArtistFactory.get({id: "7qiRNP9z0FhN63YcLmb8Ai"}).$promise.then(function (data)

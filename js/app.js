@@ -5,7 +5,7 @@
 {
     $(document).foundation();
 
-    var ubeatApp = angular.module('ubeat', ['ngRoute', 'controllers']);
+    var ubeatApp = angular.module('ubeat', ['ngRoute', 'controllers', 'angular-responsive']);
     //var foundationModule =  angular.module('foundation', ['mm.foundation']);
 
     ubeatApp.config(['$routeProvider',
