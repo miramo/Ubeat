@@ -1,8 +1,10 @@
 <div ng-controller="ArtistController as artistCtrl">
     <div class="artist-header">
         <div class="row">
-            <div class="album-artist-picture">
-                <div class="img-circular" id="img-artist"></div>
+            <div class="album-artist-picture" ng-switch on="artistPictureLoaded">
+                <div ng-switch-when="true">
+                    <div class="img-circular" id="img-artist" backimg={{artist.image.url}}></div>
+                </div>
             </div>
             <div class="album-artist-infos">
                 <div class="artist-title">
@@ -12,9 +14,7 @@
 
                 <div class="album-artist-description">
                     <h3>
-                        <small>Stupeflip est un groupe français, formé en 2000, qui mélange entre autres les styles
-                            musicaux
-                            hip-hop, rap, variété composé de Julien Barthélémy, Stéphane Bellenger et Jean-Paul Michel.
+                        <small>{{artist.description}}
                         </small>
                     </h3>
                 </div>
@@ -26,42 +26,23 @@
         <div class="small-12 columns">
             <div class="panel radius">
                 <h2>Albums</h2>
-                <ul class="artist-albums-list" data-equalizer-watch>
-                    <li class="artist-panel" ng-repeat="album in albums">
+                <ul class="artist-albums-list" ng-switch on="albumsLoaded">
+                    <li class="artist-panel" ng-repeat="album in albums" ng-switch-when="true">
                         <div class="box-shadow">
-                            <a href="#/album/{{album.collectionId}}"><img src={{album.artworkUrl300}} class="img-artist-album"></a>
+                            <a href="#/album/{{album.collectionId}}"><img src="{{album.artworkUrl300}}"
+                                                                          class="img-artist-album"></a>
                             <span class="year-label">{{album.releaseDateObj.getFullYear()}}</span>
                         </div>
-                        <a href="#/album/{{album.collectionId}}"><h5 class="text-center"><strong>{{album.collectionName}}</strong></h5></a>
+                        <a href="#/album/{{album.collectionId}}"><h5 class="text-center"><strong>{{album.collectionName}}</strong>
+                        </h5></a>
                     </li>
-                    <!--    <li class="artist-panel">
-                            <div class="box-shadow">
-                                <a href="#/album"><img src="img/relig.png" class="img-artist-album"></a>
-                                <span class="year-label">2005</span>
-                            </div>
-                            <a href="album.html"><h5 class="text-center"><strong>Stup Religion</strong></h5></a>
-                        </li>
-                        <li class="artist-panel">
-                            <div class="box-shadow">
-                                <a href="#/album"><img src="img/hypnoflip.png" class="img-artist-album"></a>
-                                <span class="year-label">2011</span>
-                            </div>
-                            <a href="album.html"><h5 class="text-center"><strong>The hypnoflip invasion</strong></h5></a>
-                        </li>
-                        <li class="artist-panel">
-                            <div class="box-shadow">
-                                <a href="#/album"><img src="img/Terrora.png" class="img-artist-album"></a>
-                                <span class="year-label">2012</span>
-                            </div>
-                            <a href="album.html"><h5 class="text-center"><strong>Terrora !!</strong></h5></a>
-                        </li> -->
                 </ul>
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript" src="js/libs/class.js"></script>
-<script type="text/javascript" src="js/libs/stackblur.min.js"></script>
+<script type="text/javascript" src="js/libs/stackblur.js"></script>
 <script type="text/javascript" src="js/blur.js"></script>
 <script src="js/blur.js"></script>
 <script>

@@ -1,4 +1,4 @@
-<div ng-controller="AlbumController as albumCtrl">
+<div ng-controller="AlbumController as albumCtrl" ng-show="isResolved">
     <div class="artist-header">
         <div class="row">
             <div class="album-artist-picture">
@@ -84,16 +84,16 @@
             </thead>
             <tbody>
             <tr class="music-row" ng-repeat="track in tracks">
-                <td class="text-center">
-                    <div class="hide-play-button">
-                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
-                            class="fa fa-play fa-lg"></i></span>
-                    </div>
-                </td>
-                <td class="text-center">{{track.trackNumber}}</td>
-                <td>{{track.trackName}}</td>
-                <td><a href="#/artist">{{track.artistName}}</a></td>
-                <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}} </td>
+                <div ng-mouseover="">
+                    <td class="text-center">
+                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
+                                class="fa fa-play fa-lg"></i></span>
+                    </td>
+                    <td class="text-center">{{track.trackNumber}}</td>
+                    <td>{{track.trackName}}</td>
+                    <td><a href="#/artist">{{track.artistName}}</a></td>
+                    <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
+                </div>
             </tr>
             </tbody>
         </table>
@@ -102,4 +102,3 @@
 <script type="text/javascript" src="js/libs/stackblur.js"></script>
 <script type="text/javascript" src="js/blur.js"></script>
 <script type="text/javascript" src="js/sliderNewArtistsAlbums.js"></script>
-<script type="text/javascript" src="js/displayPlayButton.js"></script>
