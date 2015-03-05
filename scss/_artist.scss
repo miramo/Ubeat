@@ -71,6 +71,7 @@
 }
 .artist-albums-img:after
 {
+  border-radius: rem-calc(5);
   content:'\A';
   position:absolute;
   width:100%; height:100%;

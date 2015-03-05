@@ -11,7 +11,7 @@
                     <h1>{{album.collectionName}}</h1>
                 </div>
                 <div class="artist-title">
-                    <h2><a href="#/artist" class="album-artist-link">{{artist.artistName}}</a></h2>
+                    <h2><a href="#/artist/{{artist.artistId}}" class="album-artist-link">{{artist.artistName}}</a></h2>
                 </div>
                 <span class="type-label">{{album.primaryGenreName}}</span>
 
@@ -100,7 +100,7 @@
                     </div>
                 </td>
                 <td>{{track.trackName}}</td>
-                <td><a href="#/artist">{{track.artistName}}</a></td>
+                <td><a href="#/artist/{{artist.artistId}}">{{track.artistName}}</a></td>
                 <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
             </tr>
             </tbody>
