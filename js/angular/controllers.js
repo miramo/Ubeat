@@ -37,49 +37,49 @@
         $scope.artistsTab = [];
         $scope.albums = [];
 
-      for (var i = 0; i < $scope.artistIds.length; ++i)
-      {
-          artistFactory.get({id: $scope.artistIds[i]}).$promise.then(function (data)
-              {
-                  $scope.artistsTab[i] = data.results[0];
-                  //sharedProperties.setTitle($scope.artists[i].artistName);
+        for (var i = 0; i < $scope.artistIds.length; ++i)
+        {
+            artistFactory.get({id: $scope.artistIds[i]}).$promise.then(function (data)
+                {
+                    $scope.artistsTab[i] = data.results[0];
+                    //sharedProperties.setTitle($scope.artists[i].artistName);
 
-                  spotifySearchFactory.get({
-                      name: $scope.artistsTab[i].artistName,
-                      type: 'artist'
-                  }).$promise.then(function (data)
-                  {
-                      spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
-                      {
-                          $scope.artistsTab[i].image = data.images[0];
-                          $scope.artistsTab[i].artistPictureLoaded = true;
+                    spotifySearchFactory.get({
+                        name: $scope.artistsTab[i].artistName,
+                        type: 'artist'
+                    }).$promise.then(function (data)
+                        {
+                            spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
+                            {
+                                $scope.artistsTab[i].image = data.images[0];
+                                $scope.artistsTab[i].artistPictureLoaded = true;
 
-                          //   blur.init({el: document.querySelector('.artist-header'), path: $scope.artistsTab[i].image.url});
+                                //   blur.init({el: document.querySelector('.artist-header'), path: $scope.artistsTab[i].image.url});
 
-                      }, function (err)
-                      {
-                      });
+                            }, function (err)
+                            {
+                            });
 
-                  }, function (err)
-                  {
-                  });
-                  //artistAlbumsFactory.get({id: $routeParams.id}).$promise.then(function (data)
-                  //    {
-                  //        $scope.albums = data.results;
-                  //
-                  //        for (var i = 0; i < $scope.albums.length; ++i)
-                  //        {
-                  //            $scope.albums[i].releaseDateObj = new Date($scope.albums[i].releaseDate);
-                  //            $scope.albums[i].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[i].artworkUrl100, 300);
-                  //        }
-                  //        $scope.true = false;
-                  //    },
-                  //    function (err) {});
-              },
-              function (err)
-              {
-              });
-      }
+                        }, function (err)
+                        {
+                        });
+                    //artistAlbumsFactory.get({id: $routeParams.id}).$promise.then(function (data)
+                    //    {
+                    //        $scope.albums = data.results;
+                    //
+                    //        for (var i = 0; i < $scope.albums.length; ++i)
+                    //        {
+                    //            $scope.albums[i].releaseDateObj = new Date($scope.albums[i].releaseDate);
+                    //            $scope.albums[i].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[i].artworkUrl100, 300);
+                    //        }
+                    //        $scope.true = false;
+                    //    },
+                    //    function (err) {});
+                },
+                function (err)
+                {
+                });
+        }
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {

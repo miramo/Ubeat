@@ -5,17 +5,17 @@
 
             <div class="row">
                 <slick dots="true" infinite="true" speed="300" slides-to-show="3" slides-to-scroll="1" init-onload=true data="artistsTab">
-                <div ng-repeat="homeArtist in artistsTab track by $index">
-                   <!--{{homeArtist}}-->
-                    <a href="#/artist/{{homeArtist.artistId}}">
-                        <img ng-src={{homeArtist.image.url}} alt=""/>
+                <!--<div ng-repeat="homeArtist in artistsTab track by $index">-->
+                   <!--&lt;!&ndash;{{homeArtist}}&ndash;&gt;-->
+                    <!--<a href="#/artist/{{homeArtist.artistId}}">-->
+                        <!--<img ng-src={{homeArtist.image.url}} alt=""/>-->
 
-                        <h5 class="text-center">
-                            <strong><span data-tooltip aria-haspopup="true" class="has-tip"
-                                          title="{{homeArtist.artistName}}">{{homeArtist.artistName}}</span></strong>
-                        </h5>
-                    </a>
-                </div>
+                        <!--<h5 class="text-center">-->
+                            <!--<strong><span data-tooltip aria-haspopup="true" class="has-tip"-->
+                                          <!--title="{{homeArtist.artistName}}">{{homeArtist.artistName}}</span></strong>-->
+                        <!--</h5>-->
+                    <!--</a>-->
+                <!--</div>-->
                 </slick>
             </div>
         </div>
