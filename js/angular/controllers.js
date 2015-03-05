@@ -43,6 +43,7 @@
     {
         $scope.isResolved = false;
 
+
         albumFactory.get({id: $routeParams.id}, function (data)
         {
             $scope.album = data.results[0];
@@ -93,8 +94,7 @@
                                                          artistFactory, artistAlbumsFactory, artistBiographiesFactory, spotifyArtistFactory)
     {
         $scope.artistPictureLoaded = false;
-        $scope.artistInfosLoaded = false;
-        $scope.albumsLoaded = false;
+        $scope.isTabletOrDesktop = true;
 
         artistFactory.get({id: 19333119}).$promise.then(function (data)
             {
@@ -104,7 +104,6 @@
                 artistBiographiesFactory.get({artist: ":artist:", id: "7qiRNP9z0FhN63YcLmb8Ai"}).$promise.then(function (data)
                     {
                         $scope.artist.description = getSentencesNb(data.response.biographies[0].text, 3);
-                        $scope.artistInfosLoaded = true;
 
                     }, function (err) {});
                 spotifyArtistFactory.get({id: "7qiRNP9z0FhN63YcLmb8Ai"}).$promise.then(function (data)
@@ -118,15 +117,14 @@
 
                 artistAlbumsFactory.get({id: 19333119}).$promise.then(function (data)
                     {
-                        $scope.albumsLoaded = true;
                         $scope.albums = data.results;
 
                         for (var i = 0; i < $scope.albums.length; ++i)
                         {
                             $scope.albums[i].releaseDateObj = new Date($scope.albums[i].releaseDate);
                             $scope.albums[i].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[i].artworkUrl100, 300);
-                            $scope.albums[i].isLoaded = true;
                         }
+                        $scope.true = false;
                     },
                     function (err)
                     {

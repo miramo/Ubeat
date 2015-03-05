@@ -2,7 +2,8 @@
 {
   @include label
   (
-    $text-size: em-calc(12)
+    $text-size: em-calc(12),
+    $radius: 2px
   );
 }
 

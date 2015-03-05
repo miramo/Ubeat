@@ -21,7 +21,8 @@
                         <small>Année de Parution : {{album.releaseDateObj.getFullYear()}}</small>
                     </h3>
                 </div>
-                <div data-interchange="[interchange/itunes/album/default.html, (default)], [interchange/itunes/album/medium-large.html, (landscape)], [interchange/itunes/album/medium-large.html, (medium)], [interchange/itunes/album/medium-large.html, (large)]"></div>
+                <ng-include-resp src="'interchange/itunes/album/default.html'" is-default mq="(max-width:899px)"></ng-include-resp>
+                <ng-include-resp src="'interchange/itunes/album/medium-large.html'" is-default mq="(min-width:899px)"></ng-include-resp>
             </div>
         </div>
     </div>
@@ -82,18 +83,19 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="music-row" ng-repeat="track in tracks" ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
-                    <td class="text-center">
-                        <div ng-show="track.displayPlayButton">
+            <tr class="music-row" ng-repeat="track in tracks" ng-mouseover="displayPlayButton(track)"
+                ng-mouseleave="hidePlayButton(track)">
+                <td class="text-center">
+                    <div ng-show="track.displayPlayButton">
                         <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
                                 class="fa fa-play fa-lg"></i></span></div>
-                        <div ng-hide="track.displayPlayButton">
+                    <div ng-hide="track.displayPlayButton">
                         {{track.trackNumber}}
-                        </div>
-                    </td>
-                    <td>{{track.trackName}}</td>
-                    <td><a href="#/artist">{{track.artistName}}</a></td>
-                    <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
+                    </div>
+                </td>
+                <td>{{track.trackName}}</td>
+                <td><a href="#/artist">{{track.artistName}}</a></td>
+                <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
             </tr>
             </tbody>
         </table>
