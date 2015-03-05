@@ -14138,7 +14138,7 @@ button.radius, .button.radius {
   padding-left: 1.875rem;
 }
 
-/* line 41, ../scss/_style.scss */
+/* line 42, ../scss/_style.scss */
 .card {
   padding-bottom: 0;
   border-radius: 0.3125rem;
@@ -14147,7 +14147,7 @@ button.radius, .button.radius {
   box-shadow: 0 0.5rem 1.0625rem 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 49, ../scss/_style.scss */
+/* line 51, ../scss/_style.scss */
 .card p {
   font-size: 1rem;
   padding: 0 0.3125rem;
@@ -14155,12 +14155,46 @@ button.radius, .button.radius {
   color: #FFFFFF;
 }
 
-/* line 56, ../scss/_style.scss */
+/* line 59, ../scss/_style.scss */
 .ellipsis {
   overflow: hidden;
   white-space: nowrap;
   display: block;
   text-overflow: ellipsis;
+}
+
+/* line 67, ../scss/_style.scss */
+.album-img {
+  position: relative;
+  cursor: pointer;
+}
+
+/* line 72, ../scss/_style.scss */
+.album-img img {
+  width: 100%;
+  vertical-align: top;
+}
+
+/* line 77, ../scss/_style.scss */
+.album-img:after {
+  content: '\A';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: url(../img/play_white.svg) no-repeat center center;
+  background-size: 60% 60%;
+  vertical-align: middle;
+  background-color: black;
+  opacity: 0;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+
+/* line 91, ../scss/_style.scss */
+.album-img:hover:after {
+  opacity: 0.5;
 }
 
 /* line 1, ../scss/_navbar.scss */

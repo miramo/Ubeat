@@ -36,7 +36,9 @@
                         <div class="row bump">
                             <div class="row">
                                 <div class="card">
-                                    <img src="{{album.artworkUrl300}}">
+                                    <div class="album-img">
+                                        <img src="{{album.artworkUrl300}}" alt="{{album.collectionName}}" />
+                                    </div>
                                     <div class="row collapse">
                                         <a href="#/album/{{album.collectionId}}">
                                             <div class="text-center"><p class="ellipsis">{{album.collectionName}}</p></div>
