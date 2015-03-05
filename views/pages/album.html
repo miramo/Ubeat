@@ -1,8 +1,10 @@
 <div ng-controller="AlbumController as albumCtrl" ng-show="isResolved">
     <div class="artist-header">
         <div class="row">
-            <div class="album-artist-picture">
-                <img src={{album.artworkUrl300}} class="img-album">
+            <div class="show-for-medium-up">
+                <div class="album-artist-picture">
+                    <img ng-src={{album.artworkUrl300}} class="img-album">
+                </div>
             </div>
             <div class="album-artist-infos">
                 <div class="album-title">
@@ -21,8 +23,12 @@
                         <small>Année de Parution : {{album.releaseDateObj.getFullYear()}}</small>
                     </h3>
                 </div>
-                <ng-include-resp src="'interchange/itunes/album/default.html'" is-default mq="(max-width:899px)"></ng-include-resp>
-                <ng-include-resp src="'interchange/itunes/album/medium-large.html'" is-default mq="(min-width:899px)"></ng-include-resp>
+                <div class="show-for-small-only"><a href={{album.collectionViewUrl}} target="itunes_store"
+                                                    style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets//images/web/linkmaker/badge_itunes-sm.png) no-repeat;width:45px;height:15px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets//images/web/linkmaker/badge_itunes-sm.svg);}"></a>
+                </div>
+                <div class="show-for-medium-up"><a href={{album.collectionViewUrl}} target="itunes_store"
+                                                   style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_itunes-lrg.png) no-repeat;width:110px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_itunes-lrg.svg);}"></a>
+                </div>
             </div>
         </div>
     </div>
