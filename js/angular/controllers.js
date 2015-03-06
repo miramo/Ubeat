@@ -298,7 +298,13 @@
 
     controllers.controller('PlaylistsController', function ($scope, $routeParams, sharedProperties)
     {
+        $scope.errorOccured = false;
+        $scope.sharedProperties = sharedProperties;
 
+        $scope.addTrack = function(name)
+        {
+
+        }
     });
 
 })();

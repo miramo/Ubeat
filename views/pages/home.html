@@ -3,8 +3,8 @@
         <div class="panel new-artists radius">
             <h2>Derniers artistes</h2>
 
-            <div class="row slider-index" ng-switch on="artistsLoadComplete">
-                <slick ng-switch-when="true"
+            <div class="row" ng-switch on="artistsLoadComplete">
+                <slick class="slider-index" ng-switch-when="true"
                        speed="300" center-mode="true" infinite="true" focus-on-select="true" dots="true"
                        slides-to-show="5" slides-to-scroll="1" swipe-to-slide="true" autoplay="true"
                        autoplay-speed="10000"
@@ -31,7 +31,7 @@
             <h2>Derniers albums</h2>
 
             <div class="row slider-index" ng-switch on="albumsLoadComplete">
-                <slick ng-switch-when="true"
+                <slick class="slider-index" ng-switch-when="true"
                        speed="300" center-mode="true" infinite="true" focus-on-select="true" dots="true"
                        slides-to-show="5" slides-to-scroll="1" swipe-to-slide="true" autoplay="true"
                        autoplay-speed="10000"
