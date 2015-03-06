@@ -1,7 +1,8 @@
 <div ng-controller="PlaylistsController as playlistsCtrl">
+    <h1>Playlists</h1>
     <div ng-repeat="playlist in sharedProperties.getPlaylists()">
-        {{playlist.name}}
-        <a ng-click="sharedProperties.removePlaylist($index)" class="button">Delete</a>
+        <p>[{{$index}}] {{playlist.name}}
+        <a ng-click="sharedProperties.removePlaylist($index)" class="button">Delete</a></p>
     </div>
     <input ng-model="playlistToAdd" type="text" placeholder="Name"/>
     <a ng-click="createPlaylist(playlistToAdd)" class="button">Add</a>

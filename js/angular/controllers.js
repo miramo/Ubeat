@@ -299,11 +299,12 @@
         });
     });
 
-    controllers.controller('PlaylistsController', function ($scope, $routeParams, sharedProperties)
+    controllers.controller('PlaylistsController', function ($scope, $routeParams, sharedProperties, localStorageService)
     {
         $scope.errorOccured = false;
         $scope.sharedProperties = sharedProperties;
         $scope.playlistToAdd = "";
+        $scope.playlists = sharedProperties.playlists;
 
         $scope.createPlaylist = function(name)
         {
