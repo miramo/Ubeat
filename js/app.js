@@ -29,7 +29,7 @@
                 })
                 .when('/playlist',
                 {
-                    templateUrl: 'views/pages/playlist.html',
+                    templateUrl: 'views/pages/playlists.html',
                     controller : 'PlaylistsController'
                 });
         }]);
