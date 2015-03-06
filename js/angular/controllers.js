@@ -28,10 +28,10 @@
     });
 
     controllers.controller('HomeController', function ($scope, sharedProperties,
-                                                       artistFactory, artistAlbumsFactory, spotifyArtistFactory, spotifySearchFactory)
+                                                       artistFactory, albumFactory, spotifyArtistFactory, spotifySearchFactory)
     {
         $scope.artistIds = [285976572, 185933496, 111051, 371362363, 994656, 405129701, 115429828, 263132120];
-        $scope.albumsIds = [285976572, 285976572, 285976572, 285976572, 285976572, 285976572, 285976572, 285976572];
+        $scope.albumsIds = [289081371, 260725492, 731756766, 422478077, 266075192, 669445575, 598997036, 305792965];
         sharedProperties.setTitle('Accueil');
 
         $scope.artistsLoadedCount = 0;
@@ -42,6 +42,11 @@
         $scope.albumsTab = [];
         $scope.sharedProperties = sharedProperties;
 
+        $scope.albumLoad = function(id)
+        {
+            //console.log("AlbumLoad[" + id + "]");
+        }
+
         $scope.$watch('artistsLoadedCount', function (newVal, oldVal)
         {
             if (newVal >= $scope.artistIds.length)
@@ -49,9 +54,28 @@
                 $scope.artistsLoadComplete = true;
                 sharedProperties.setHomeArtists($scope.artistsTab);
                 $scope.sharedProperties.homeArtists = sharedProperties.getHomeArtists();
+
+                //var blur = new Blur({
+                //    el        : document.querySelector('body'),
+                //    path      : '',
+                //    radius    : 50,
+                //    fullscreen: true
+                //});
+
+                    //$scope.$evalAsync(function()
+                    //{
+                    //
+                    //    console.log(document.getElementsByClassName('slick-center')[0]);
+                    //});
+
+               //angular.element.find('.slider-index').on('swipe', function(event, slick, direction)
+               //{
+               //
+               //    console.log("ZIZI");
+               //});
                 //blur.init({
                 //    el  : document.querySelector('body'),
-                //    path: document.getElementsByClassName('slick-center')[0].getElementsByTagName('img')[0].src
+                //    path: $('.slick-center')[0].src
                 //});
             }
         });
@@ -84,7 +108,6 @@
                                 $scope.artistsTab[key].image = data.images[0];
                                 $scope.artistsTab[key].artistPictureLoaded = true;
 
-
                                 ++$scope.artistsLoadedCount;
                             }, function (err)
                             {
@@ -101,10 +124,9 @@
 
         angular.forEach($scope.albumsIds, function (value, key)
         {
-            artistAlbumsFactory.get({id: value}).$promise.then(function (data)
+            albumFactory.get({id: value}).$promise.then(function (data)
                 {
                     $scope.albumsTab[key] = data.results[0];
-                    $scope.albumsTab[key].releaseDateObj = new Date($scope.albumsTab[key].releaseDate);
                     $scope.albumsTab[key].artworkUrl300 = itunesLinkImageSizeTo($scope.albumsTab[key].artworkUrl100, 300);
                     ++$scope.albumsLoadedCount;
                 },
@@ -117,6 +139,22 @@
         {
             console.log('HomeController ChangeSuccess');
             $(document).foundation();
+
+
+            $('.slider-index').on('click', function(event, slick, direction)
+            {
+                console.log("CLICK");
+            });
+
+            $('.slider-index').on('afterChange', function(event, slick, direction)
+            {
+                console.log("After Change");
+            });
+            $('.slider-index').on('init', function(event, slick, direction)
+            {
+                console.log("Init");
+            });
+
         });
     });
 
@@ -154,6 +192,13 @@
                     {
                         $scope.artist.image = data.images[0];
                         $scope.artistPictureLoaded = true;
+
+                        var blur = new Blur({
+                            el        : document.querySelector('body'),
+                            path      : '',
+                            radius    : 50,
+                            fullscreen: true
+                        });
 
                         blur.init({el: document.querySelector('.artist-header'), path: $scope.artist.image.url});
 
@@ -204,6 +249,13 @@
             sharedProperties.setTitle($scope.album.collectionName);
             $scope.album.artworkUrl300 = itunesLinkImageSizeTo($scope.album.artworkUrl100, 300);
             $scope.album.releaseDateObj = new Date($scope.album.releaseDate);
+
+            var blur = new Blur({
+                el        : document.querySelector('body'),
+                path      : '',
+                radius    : 50,
+                fullscreen: true
+            });
 
             blur.init({el: document.querySelector('.artist-header'), path: $scope.album.artworkUrl300});
 

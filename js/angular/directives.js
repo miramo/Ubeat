@@ -5,6 +5,7 @@
 (function ()
 {
     var ubeatApp = angular.module('directives', []);
+
     ubeatApp.directive('backimg', function ($http)
     {
         function link(scope, element, attrs)
@@ -18,6 +19,18 @@
                         'background-image': 'url(' + result + ')'
                     });
             });
+        }
+
+        return {
+            restrict: 'A',
+            link    : link
+        };
+    });
+
+    ubeatApp.directive('loadProgress', function ()
+    {
+        function link(scope, element, attrs)
+        {
         }
 
         return {
