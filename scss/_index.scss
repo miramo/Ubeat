@@ -17,10 +17,10 @@
 
 .slider-index-element img
 {
-  max-width: 100%;
-  max-height: 100%;
-  display: inline-block;
-  margin : 0 auto;
+  max-width  : 100%;
+  max-height : 100%;
+  display    : inline-block;
+  margin     : 0 auto;
 }
 
 .year-label-index
@@ -30,6 +30,17 @@
   text-align : center;
   font-size  : rem-calc(12);
   margin     : 0 auto;
+}
+
+.album-artist-label
+{
+  background : $primary-color;
+  color: #ffffff;
+  width      : 100%;
+  text-align : center;
+  font-size  : rem-calc(12);
+  margin     : 0;
+  padding    : 0;
 }
 
 .slider-index-element.slick-center

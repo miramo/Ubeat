@@ -63,13 +63,12 @@
                         <div class="small-12 medium-5 columns right">
                             <button href="" data-dropdown="dropSort" aria-controls="dropSort" aria-expanded="false"
                                     class="button red dropdown expand radius tiny"><i class="fa fa-sort fa-lg"></i>
-                                Numéro
-                                de piste
+                                {{currentFilterName}}
                             </button>
                             <ul id="dropSort" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
-                                <li><a href="">Numéro de piste</a></li>
-                                <li><a href="">Chanson</a></li>
-                                <li><a href="">Artiste</a></li>
+                                <li><a href="" ng-click="filter = filtersValues[0]; currentFilterName = filtersNames[0]">{{filtersNames[0]}}</a></li>
+                                <li><a href="" ng-click="filter = filtersValues[1]; currentFilterName = filtersNames[1]">{{filtersNames[1]}}</a></li>
+                                <li><a href="" ng-click="filter = filtersValues[2]; currentFilterName = filtersNames[2]">{{filtersNames[2]}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -83,13 +82,14 @@
             <thead>
             <tr>
                 <th width="30"></th>
+                <th width="30"></th>
                 <th width="600">Titre de la musique</th>
                 <th width="300">Nom de l'artiste</th>
                 <th width="50">Durée</th>
             </tr>
             </thead>
             <tbody>
-            <tr class="music-row" ng-repeat="track in tracks" ng-mouseover="displayPlayButton(track)"
+            <tr class="music-row" ng-repeat="track in tracks | orderBy:filter" ng-mouseover="displayPlayButton(track)"
                 ng-mouseleave="hidePlayButton(track)">
                 <td class="text-center">
                     <div ng-show="track.displayPlayButton">
@@ -98,6 +98,11 @@
                     <div ng-hide="track.displayPlayButton">
                         {{track.trackNumber}}
                     </div>
+                </td>
+                <td class="text-center">
+                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
+                        <i class="fa fa-plus"></i>
+                    </span>
                 </td>
                 <td>{{track.trackName}}</td>
                 <td><a href="#/artist/{{artist.artistId}}">{{track.artistName}}</a></td>
@@ -108,5 +113,3 @@
     </div>
 </div>
 <script type="text/javascript" src="js/libs/stackblur.js"></script>
-<script type="text/javascript" src="js/blur.js"></script>
-<script type="text/javascript" src="js/sliderNewArtistsAlbums.js"></script>

@@ -1,33 +1,56 @@
-main
-{
+main {
   margin-bottom: rem-calc(60);
+}
+body
+{
+  &::-webkit-scrollbar
+  {
+    width: rem-calc(10);
+    background-color: $iron;
+  }
+  &::-webkit-scrollbar-thumb
+  {
+    background-color: scale-color($primary-color, $lightness: -5%);
+    border-radius: rem-calc(10);
+    &:hover
+    {
+      background-color: $primary-color;
+    }
+    &:active
+    {
+      background-color: scale-color($primary-color, $lightness: 5%);
+    }
+  }
+  &::-webkit-scrollbar-track
+  {
+    border-radius: rem-calc(10);
+    box-shadow: 0 0 6px gray inset;
+  }
 }
 
 .slick-prev:before, .slick-next:before
 {
-  color   : $primary-color !important;
-  width   : 200% !important;
-  height  : 200% !important;
+  color: $primary-color !important;
+  width: 200% !important;
+  height: 200% !important;
 }
 
-.slick-dots li button:before
+.slick-dots
 {
-  color   : $primary-color !important;
+  li button:before
+  {
+    color: $primary-color !important;
+  }
 }
 
 .img-circular
 {
-  border-radius   : 50%;
-  overflow        : hidden;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 //Text Selection Color
 ::selection
-{
-  background: scale-color($primary-color, $lightness: 15%);
-  color: $white;
-}
-::-moz-selection
 {
   background: scale-color($primary-color, $lightness: 15%);
   color: $white;
@@ -38,31 +61,28 @@ main
   margin-top: rem-calc(50);
   padding-right: rem-calc(30);
   padding-left: rem-calc(30);
-}
-.card
-{
-  padding-bottom: rem-calc(0);
-  border-radius: rem-calc(5);
-//  background: scale-color($primary-color, $lightness: -10%);
-  //background: $primary-color;
-  overflow: hidden;
-  box-shadow: rem-calc(0) rem-calc(8) rem-calc(17) rem-calc(0) rgba(0, 0, 0, 0.2);
-
-  p
+  .card
   {
-    font-size: rem-calc(16);
-    padding: rem-calc(0) rem-calc(5);
-    margin-bottom: 0;
-    color: $white;
+    padding-bottom: rem-calc(0);
+    border-radius: rem-calc(5);
+    //background: scale-color($primary-color, $lightness: -10%);
+    //background: $primary-color;
+    overflow: hidden;
+    box-shadow: rem-calc(0) rem-calc(8) rem-calc(17) rem-calc(0) rgba(0, 0, 0, 0.2);
+    p
+    {
+      font-size: rem-calc(16);
+      padding: rem-calc(0) rem-calc(5);
+      margin-bottom: 0;
+      color: $white;
+    }
   }
 }
 
 .ellipsis
 {
-  overflow      : hidden;
-  white-space   : nowrap;
-  display       : block;
-  text-overflow : ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  text-overflow: ellipsis;
 }
-
-

@@ -17901,58 +17901,75 @@ main {
 }
 
 /* line 6, ../scss/_style.scss */
+body::-webkit-scrollbar {
+  width: 0.625rem;
+  background-color: #CCCCCC;
+}
+/* line 11, ../scss/_style.scss */
+body::-webkit-scrollbar-thumb {
+  background-color: #bc0000;
+  border-radius: 0.625rem;
+}
+/* line 15, ../scss/_style.scss */
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #c60000;
+}
+/* line 19, ../scss/_style.scss */
+body::-webkit-scrollbar-thumb:active {
+  background-color: #d60000;
+}
+/* line 24, ../scss/_style.scss */
+body::-webkit-scrollbar-track {
+  border-radius: 0.625rem;
+  box-shadow: 0 0 6px gray inset;
+}
+
+/* line 31, ../scss/_style.scss */
 .slick-prev:before, .slick-next:before {
   color: #c60000 !important;
   width: 200% !important;
   height: 200% !important;
 }
 
-/* line 13, ../scss/_style.scss */
+/* line 40, ../scss/_style.scss */
 .slick-dots li button:before {
   color: #c60000 !important;
 }
 
-/* line 18, ../scss/_style.scss */
+/* line 46, ../scss/_style.scss */
 .img-circular {
   border-radius: 50%;
   overflow: hidden;
 }
 
-/* line 25, ../scss/_style.scss */
+/* line 53, ../scss/_style.scss */
 ::selection {
   background: #f50000;
   color: #FFFFFF;
 }
 
-/* line 30, ../scss/_style.scss */
-::-moz-selection {
-  background: #f50000;
-  color: #FFFFFF;
-}
-
-/* line 36, ../scss/_style.scss */
+/* line 59, ../scss/_style.scss */
 .bump {
   margin-top: 3.125rem;
   padding-right: 1.875rem;
   padding-left: 1.875rem;
 }
-
-/* line 42, ../scss/_style.scss */
-.card {
+/* line 64, ../scss/_style.scss */
+.bump .card {
   padding-bottom: 0;
   border-radius: 0.3125rem;
   overflow: hidden;
   box-shadow: 0 0.5rem 1.0625rem 0 rgba(0, 0, 0, 0.2);
 }
-/* line 51, ../scss/_style.scss */
-.card p {
+/* line 72, ../scss/_style.scss */
+.bump .card p {
   font-size: 1rem;
   padding: 0 0.3125rem;
   margin-bottom: 0;
   color: #FFFFFF;
 }
 
-/* line 60, ../scss/_style.scss */
+/* line 82, ../scss/_style.scss */
 .ellipsis {
   overflow: hidden;
   white-space: nowrap;
@@ -18552,12 +18569,23 @@ a {
 }
 
 /* line 35, ../scss/_index.scss */
+.album-artist-label {
+  background: #c60000;
+  color: #ffffff;
+  width: 100%;
+  text-align: center;
+  font-size: 0.75rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 46, ../scss/_index.scss */
 .slider-index-element.slick-center {
   opacity: 1;
   transform: scale(1.08);
 }
 
-/* line 41, ../scss/_index.scss */
+/* line 52, ../scss/_index.scss */
 .latest-item-element h5 {
   overflow: hidden;
   white-space: nowrap;
@@ -18565,7 +18593,7 @@ a {
   text-overflow: ellipsis;
 }
 
-/* line 49, ../scss/_index.scss */
+/* line 60, ../scss/_index.scss */
 footer-bar {
   position: fixed;
   bottom: 0;
@@ -18657,13 +18685,13 @@ footer-bar {
   visibility: visible;
 }
 
-/* line 76, ../scss/_playbar.scss */
+/* line 72, ../scss/_playbar.scss */
 .bottom-music-list {
   line-height: 0px;
   margin-top: 15px;
 }
 
-/* line 82, ../scss/_playbar.scss */
+/* line 78, ../scss/_playbar.scss */
 #seek-volume {
   vertical-align: middle;
   -webkit-appearance: none;
@@ -18674,7 +18702,7 @@ footer-bar {
   margin-bottom: 15px;
 }
 
-/* line 92, ../scss/_playbar.scss */
+/* line 88, ../scss/_playbar.scss */
 #seek-volume::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 0.75rem;
@@ -18683,7 +18711,7 @@ footer-bar {
   background: #c60000;
 }
 
-/* line 101, ../scss/_playbar.scss */
+/* line 97, ../scss/_playbar.scss */
 #seek-music {
   -webkit-appearance: none;
   border-radius: 0.3125rem;
@@ -18696,7 +18724,7 @@ footer-bar {
   background: #9b9ea1;
 }
 
-/* line 116, ../scss/_playbar.scss */
+/* line 112, ../scss/_playbar.scss */
 #seek-music::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 0.75rem;
@@ -18706,7 +18734,7 @@ footer-bar {
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 126, ../scss/_playbar.scss */
+  /* line 122, ../scss/_playbar.scss */
   .ul-volume {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
