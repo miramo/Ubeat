@@ -42,7 +42,7 @@
         $scope.albumsTab = [];
         $scope.sharedProperties = sharedProperties;
 
-        $scope.albumLoad = function(id)
+        $scope.albumLoad = function (id)
         {
             //console.log("AlbumLoad[" + id + "]");
         }
@@ -62,17 +62,17 @@
                 //    fullscreen: true
                 //});
 
-                    //$scope.$evalAsync(function()
-                    //{
-                    //
-                    //    console.log(document.getElementsByClassName('slick-center')[0]);
-                    //});
+                //$scope.$evalAsync(function()
+                //{
+                //
+                //    console.log(document.getElementsByClassName('slick-center')[0]);
+                //});
 
-               //angular.element.find('.slider-index').on('swipe', function(event, slick, direction)
-               //{
-               //
-               //    console.log("ZIZI");
-               //});
+                //angular.element.find('.slider-index').on('swipe', function(event, slick, direction)
+                //{
+                //
+                //    console.log("ZIZI");
+                //});
                 //blur.init({
                 //    el  : document.querySelector('body'),
                 //    path: $('.slick-center')[0].src
@@ -305,6 +305,17 @@
         $scope.sharedProperties = sharedProperties;
         $scope.playlistToAdd = "";
         $scope.playlists = sharedProperties.playlists;
+        
+        $scope.setEdit = function (playlist, isEdit)
+        {
+            playlist.isEdit = isEdit;
+        }
+
+        $scope.confirmRename = function (playlist, newName)
+        {
+            sharedProperties.renamePlaylist(playlist.id, newName);
+            playlist.isEdit = false;
+        }
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
