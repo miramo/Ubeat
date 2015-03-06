@@ -304,9 +304,9 @@
         $scope.errorOccured = false;
         $scope.sharedProperties = sharedProperties;
 
-        $scope.addTrack = function(name)
+        $scope.createPlaylist = function(name)
         {
-
+            sharedProperties.createPlaylist(name);
         }
 
         $scope.$on('$routeChangeSuccess', function (next, current)

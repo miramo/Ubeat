@@ -71,6 +71,35 @@
                 playlists = [];
                 angular.copy(playlists, value)
             },
+            getPlaylist : function(id)
+            {
+                for (var i = 0; i < playlists.length; ++i)
+                {
+                    if (playlists[i].id == id)
+                    {
+                        return playlists[i];
+                    }
+                }
+                return null;
+            },
+            getTrackFromPlaylist : function(trackId, playlistId)
+            {
+                for (var i = 0; i < playlists.length; ++i)
+                {
+                    if (playlists[i].id == id)
+                    {
+                        var playlist = playlists[i];
+                        for (var j = 0; j < playlist.tracks.length; ++j)
+                        {
+                            if (playlist.tracks[j].idInPlaylist == trackId)
+                            {
+                                return playlist.tracks[j];
+                            }
+                        }
+                    }
+                }
+                return null;
+            },
             addTrackToPlaylist     : function (track, playlistId)
             {
                 for (var i = 0; i < playlists.length; ++i)
@@ -81,7 +110,7 @@
                         var tracksLength = playlist.tracks.length;
                         for (var j = 0; j < tracksLength; ++j)
                         {
-                            if (playlist.tracks[j].id == track.id)
+                            if (playlist.tracks[j].idInPlaylist == track.id)
                             {
                                 return false;
                             }
@@ -111,7 +140,16 @@
                 }
                 return false;
             },
-            addPlaylist            : function (playlist)
+            createPlaylist            : function (name)
+            {
+                var playlistLength = playlists.length;
+                var newPlaylist = new Playlist();
+
+                newPlaylist.name = name;
+                newPlaylist.id = playlistLength;
+                playlists[playlistLength] = playlist;
+            },
+            addExistingPlaylist            : function (playlist)
             {
                 var playlistLength = playlists.length;
                 playlists[playlistLength] = playlist;
