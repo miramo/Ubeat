@@ -1,0 +1,39 @@
+
+
+<div ng-controller="PlaybarController as playbarCtrl">
+    <div class="contain-to-grid sticky">
+        <div class="top-bar bottom-bar row" role="toolbar" data-options="sticky_on: large">
+           <input class="form-control" id="seek-music" type=range min=0 max=1 step=0.00001 ng-model='audio.progress'/>
+
+            <ul class="right">
+                <li class="volume">
+                    <i class="fa fa-volume-off fa-2x"></i>
+                </li>
+                <li class="volume">
+                    <input class='form-control' type=range min=0 max=1 step=0.01 ng-model='audio.volume'>
+                </li>
+                <li class="playlist">
+
+                </li>
+            </ul>
+            <ul class="play-area small-4 small-centered columns">
+                <li class="play-button">
+                    <i class="fa fa-repeat fa-lg"></i>
+                </li>
+                <li class="play-button">
+                    <i class="fa fa-backward fa-2x"></i>
+                </li>
+                <li class="play-button">
+                    <i ng-click='audio.paused ? audio.play() : audio.pause()' class="fa fa-play fa-2x"></i>
+                </li>
+                <li class="play-button">
+                    <i class="fa fa-forward fa-2x"></i>
+                </li>
+                <li class="play-button">
+                    <i class="fa fa-random fa-lg"></i>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>

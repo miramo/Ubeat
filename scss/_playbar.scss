@@ -1,0 +1,59 @@
+.bottom-bar {
+  height: 60px;
+}
+
+.play-area {
+}
+
+.play-button {
+  color: #FFFFFF;
+  padding-right: 5px;
+  padding-left: 5px;
+  list-style-type: none;
+  display: inline-block;
+}
+
+.volume {
+  color: #FFFFFF;
+  padding-right: 5px;
+  padding-left: 5px;
+  list-style-type: none;
+  display: inline-block;
+}
+
+#seek-music {
+  -webkit-appearance: none;
+//  -webkit-border-radius: 20px;
+//  -moz-border-radius: 20px;
+//  -webkit-box-shadow: inset 0px 4px 4px rgba(0,0,0,.6);
+//  -moz-box-shadow: inset 0px 4px 4px rgba(0,0,0,.6);
+  border-radius: rem-calc(5);
+//  box-shadow: inset 0px 4px 4px rgba(0,0,0,.6);
+
+  border-top: 0;
+  margin-top: 0;
+
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  height: rem-calc(8);
+  background: #9b9ea1;
+}
+
+#seek-music::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: rem-calc(12);
+  height: rem-calc(12);
+//  border:1px solid black;
+
+//  -webkit-border-radius: 10px;
+  border-radius: rem-calc(10);
+
+  background: $primary-color; /* Old browsers */
+//  background: -webkit-linear-gradient(top, #c45955 0%, #c44542 13%, #c43735 33%, #bb1c1b 47%, #9d0006 80%, #378f8b 100%);
+//
+//  background: -moz-linear-gradient(top, #c45955 0%, #c44542 13%, #c43735 33%, #bb1c1b 47%, #9d0006 80%, #378f8b 100%);
+//  background: -o-linear-gradient(top, #c45955 0%, #c44542 13%, #c43735 33%, #bb1c1b 47%, #9d0006 80%, #378f8b 100%);
+//  background: linear-gradient(top, #c45955 0%, #c44542 13%, #c43735 33%, #bb1c1b 47%, #9d0006 80%, #378f8b 100%); /* W3C */
+}
