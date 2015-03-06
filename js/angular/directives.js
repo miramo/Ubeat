@@ -29,14 +29,7 @@
     ubeatApp.directive('footerBar', function (){
         return {
             restrict: 'E',
-            templateUrl: './views/partials/playbar.html',
-            controller:function ()
-            {
-                $(document).ready(function() {
-                    $("footer-bar").stickyFooter();
-                });
-            },
-            controllerAs: 'footerPanel'
+            templateUrl: './views/partials/playbar.html'
         };
     });
 })();

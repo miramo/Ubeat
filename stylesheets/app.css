@@ -17896,50 +17896,55 @@ button.radius, .button.radius {
 }
 
 /* line 1, ../scss/_style.scss */
+main {
+  margin-bottom: 3.75rem;
+}
+
+/* line 6, ../scss/_style.scss */
 .slick-prev:before, .slick-next:before {
   color: #c60000 !important;
   width: 200% !important;
   height: 200% !important;
 }
 
-/* line 8, ../scss/_style.scss */
+/* line 13, ../scss/_style.scss */
 .slick-dots li button:before {
   color: #c60000 !important;
 }
 
-/* line 13, ../scss/_style.scss */
+/* line 18, ../scss/_style.scss */
 .img-circular {
   border-radius: 50%;
   overflow: hidden;
 }
 
-/* line 20, ../scss/_style.scss */
+/* line 25, ../scss/_style.scss */
 ::selection {
   background: #f50000;
   color: #FFFFFF;
 }
 
-/* line 25, ../scss/_style.scss */
+/* line 30, ../scss/_style.scss */
 ::-moz-selection {
   background: #f50000;
   color: #FFFFFF;
 }
 
-/* line 31, ../scss/_style.scss */
+/* line 36, ../scss/_style.scss */
 .bump {
   margin-top: 3.125rem;
   padding-right: 1.875rem;
   padding-left: 1.875rem;
 }
 
-/* line 37, ../scss/_style.scss */
+/* line 42, ../scss/_style.scss */
 .card {
   padding-bottom: 0;
   border-radius: 0.3125rem;
   overflow: hidden;
   box-shadow: 0 0.5rem 1.0625rem 0 rgba(0, 0, 0, 0.2);
 }
-/* line 46, ../scss/_style.scss */
+/* line 51, ../scss/_style.scss */
 .card p {
   font-size: 1rem;
   padding: 0 0.3125rem;
@@ -17947,7 +17952,7 @@ button.radius, .button.radius {
   color: #FFFFFF;
 }
 
-/* line 55, ../scss/_style.scss */
+/* line 60, ../scss/_style.scss */
 .ellipsis {
   overflow: hidden;
   white-space: nowrap;
@@ -18560,21 +18565,53 @@ a {
   text-overflow: ellipsis;
 }
 
-/* line 1, ../scss/_playbar.scss */
-.bottom-bar {
-  height: 60px;
+/* line 49, ../scss/_index.scss */
+footer-bar {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
-/* line 8, ../scss/_playbar.scss */
+/* line 1, ../scss/_playbar.scss */
+.bottom-bar {
+  height: 3.75rem;
+}
+
+/* line 6, ../scss/_playbar.scss */
+.bottom-bar i:hover {
+  color: #c60000;
+}
+
+/* line 10, ../scss/_playbar.scss */
+.play-area {
+  text-align: center;
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
+  width: 50%;
+  float: left;
+}
+@media only screen and (max-width: 40em) {
+  /* line 10, ../scss/_playbar.scss */
+  .play-area {
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    width: 100%;
+    float: left;
+  }
+}
+
+/* line 18, ../scss/_playbar.scss */
 .play-button {
   color: #FFFFFF;
   padding-right: 5px;
   padding-left: 5px;
+  padding-top: 15px;
   list-style-type: none;
   display: inline-block;
 }
 
-/* line 16, ../scss/_playbar.scss */
+/* line 27, ../scss/_playbar.scss */
 .volume {
   color: #FFFFFF;
   padding-right: 5px;
@@ -18583,7 +18620,70 @@ a {
   display: inline-block;
 }
 
-/* line 24, ../scss/_playbar.scss */
+/* line 37, ../scss/_playbar.scss */
+.bottom-right {
+  color: #FFFFFF;
+  padding-right: 5px;
+  padding-left: 5px;
+  list-style-type: none;
+  display: inline-block;
+  margin-right: 1.1rem;
+}
+
+/* line 49, ../scss/_playbar.scss */
+.test i {
+  width: 35px;
+  padding-top: 15px;
+}
+
+/* line 54, ../scss/_playbar.scss */
+.test {
+  overflow: hidden;
+  width: 35px;
+  height: 50px;
+  margin-bottom: 0px;
+  -webkit-transition: width 1s;
+  transition: width 1s;
+}
+
+/* line 63, ../scss/_playbar.scss */
+.test li {
+  white-space: nowrap;
+}
+
+/* line 67, ../scss/_playbar.scss */
+.test:hover {
+  width: 150px;
+  visibility: visible;
+}
+
+/* line 76, ../scss/_playbar.scss */
+.bottom-music-list {
+  line-height: 0px;
+  margin-top: 15px;
+}
+
+/* line 82, ../scss/_playbar.scss */
+#seek-volume {
+  vertical-align: middle;
+  -webkit-appearance: none;
+  border-radius: 0.625rem;
+  background: #9b9ea1;
+  width: 100px;
+  height: 10px;
+  margin-bottom: 15px;
+}
+
+/* line 92, ../scss/_playbar.scss */
+#seek-volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 0.625rem;
+  background: #c60000;
+}
+
+/* line 101, ../scss/_playbar.scss */
 #seek-music {
   -webkit-appearance: none;
   border-radius: 0.3125rem;
@@ -18596,12 +18696,21 @@ a {
   background: #9b9ea1;
 }
 
-/* line 44, ../scss/_playbar.scss */
+/* line 116, ../scss/_playbar.scss */
 #seek-music::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 0.75rem;
   height: 0.75rem;
   border-radius: 0.625rem;
   background: #c60000;
-  /* Old browsers */
+}
+
+@media only screen and (min-width: 40.063em) {
+  /* line 126, ../scss/_playbar.scss */
+  .ul-volume {
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    width: 66.66667%;
+    float: left;
+  }
 }
