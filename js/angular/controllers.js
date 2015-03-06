@@ -244,8 +244,7 @@
                                                         albumFactory, artistFactory, albumTracksFactory)
     {
         $scope.isResolved = false;
-
-
+        zz
         albumFactory.get({id: $routeParams.id}, function (data)
         {
             $scope.album = data.results[0];
@@ -301,11 +300,16 @@
 
     controllers.controller('PlaylistsController', function ($scope, $routeParams, sharedProperties, localStorageService)
     {
-        $scope.errorOccured = false;
         $scope.sharedProperties = sharedProperties;
         $scope.playlistToAdd = "";
         $scope.playlists = sharedProperties.playlists;
-        
+        $scope.alertMessages = ["Test"];
+
+        $scope.removeAlert = function(id)
+        {
+            $scope.alertMessages.splice(id, 1);
+        }
+
         $scope.setEdit = function (playlist, isEdit)
         {
             playlist.isEdit = isEdit;

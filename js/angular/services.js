@@ -39,6 +39,7 @@
             var id = 0;
             var name = '';
             var tracks = [];
+            var isEdit = false;
         }
 
         return {
