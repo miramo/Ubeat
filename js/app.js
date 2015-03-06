@@ -27,7 +27,7 @@
                     templateUrl: 'views/pages/artist.html',
                     controller : 'ArtistController'
                 })
-                .when('/playlist',
+                .when('/playlists/',
                 {
                     templateUrl: 'views/pages/playlists.html',
                     controller : 'PlaylistsController'

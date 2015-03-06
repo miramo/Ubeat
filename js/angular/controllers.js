@@ -298,7 +298,11 @@
 
     controllers.controller('PlaylistsController', function ($scope, $routeParams, sharedProperties)
     {
-
+        $scope.$on('$routeChangeSuccess', function (next, current)
+        {
+            console.log("PlaylistsController ChangeSuccess");
+            $(document).foundation();
+        });
     });
 
 })();
