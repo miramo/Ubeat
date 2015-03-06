@@ -306,15 +306,6 @@
         $scope.playlistToAdd = "";
         $scope.playlists = sharedProperties.playlists;
 
-        $scope.createPlaylist = function(name)
-        {
-            sharedProperties.createPlaylist(name);
-        }
-
-        //$scope.createPlaylist("zizi");
-
-        console.log(sharedProperties.getPlaylists().length);
-
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
             console.log("PlaylistsController ChangeSuccess");

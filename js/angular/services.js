@@ -154,7 +154,6 @@
                 var playlistLength = playlists.length;
                 var newPlaylist = new Playlist();
 
-                console.log(playlistLength);
                 newPlaylist.name = name;
                 newPlaylist.id = playlistLength;
                 playlists[playlistLength] = newPlaylist;
@@ -168,7 +167,6 @@
             },
             removePlaylist         : function (id)
             {
-                console.log("IdToDelete: " + id);
                 playlists.splice(id, 1);
                 localStorageService.set('playlists', playlists);
             },
@@ -180,7 +178,7 @@
                     {
                         var playlist = playlists[id];
                         playlist.name = newName;
-                        localStorageService.set('playlists', playlists);    
+                        localStorageService.set('playlists', playlists);
                         return true;
                     }
                 }
