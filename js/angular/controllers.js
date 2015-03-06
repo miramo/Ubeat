@@ -305,6 +305,12 @@
         {
 
         }
+
+        $scope.$on('$routeChangeSuccess', function (next, current)
+        {
+            console.log("PlaylistsController ChangeSuccess");
+            $(document).foundation();
+        });
     });
 
 })();
