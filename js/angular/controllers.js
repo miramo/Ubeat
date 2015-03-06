@@ -295,4 +295,10 @@
             $(document).foundation('tooltip', 'reflow');
         });
     });
+
+    controllers.controller('PlaylistsController', function ($scope, $routeParams, sharedProperties)
+    {
+
+    });
+
 })();

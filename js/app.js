@@ -26,6 +26,11 @@
                 {
                     templateUrl: 'views/pages/artist.html',
                     controller : 'ArtistController'
+                })
+                .when('/playlist',
+                {
+                    templateUrl: 'views/pages/playlist.html',
+                    controller : 'PlaylistsController'
                 });
         }]);
 
