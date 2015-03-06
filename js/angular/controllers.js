@@ -381,6 +381,7 @@
         $scope.playlistToAdd = "";
         $scope.playlists = sharedProperties.playlists;
         $scope.alertMessages = [];
+        $scope.active = sharedProperties.getPlaylist(0);
 
         $scope.removeAlert = function (id)
         {
@@ -396,6 +397,12 @@
         {
             sharedProperties.renamePlaylist(playlist.id, newName);
             playlist.isEdit = false;
+        }
+
+        $scope.setPlaylistActive = function (id)
+        {
+            //console.log("setPlaylistActive: " + id);
+            $scope.active = sharedProperties.getPlaylist(id);
         }
 
         $scope.$on('$routeChangeSuccess', function (next, current)

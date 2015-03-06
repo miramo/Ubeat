@@ -96,7 +96,9 @@
 
 #seek-music {
   -webkit-appearance: none;
-  border-radius: rem-calc(5);
+//  border-radius: rem-calc(5);
+  border-bottom-right-radius: rem-calc(5);
+  border-bottom-left-radius: rem-calc(5);
 
   border-top: 0;
   margin-top: 0;

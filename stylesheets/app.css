@@ -18714,7 +18714,8 @@ footer-bar {
 /* line 97, ../scss/_playbar.scss */
 #seek-music {
   -webkit-appearance: none;
-  border-radius: 0.3125rem;
+  border-bottom-right-radius: 0.3125rem;
+  border-bottom-left-radius: 0.3125rem;
   border-top: 0;
   margin-top: 0;
   position: absolute;
@@ -18724,7 +18725,7 @@ footer-bar {
   background: #9b9ea1;
 }
 
-/* line 112, ../scss/_playbar.scss */
+/* line 114, ../scss/_playbar.scss */
 #seek-music::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 0.75rem;
@@ -18734,7 +18735,7 @@ footer-bar {
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 122, ../scss/_playbar.scss */
+  /* line 124, ../scss/_playbar.scss */
   .ul-volume {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
