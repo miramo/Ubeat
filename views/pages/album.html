@@ -1,15 +1,17 @@
 <div ng-controller="AlbumController as albumCtrl" ng-show="isResolved">
     <div class="artist-header">
         <div class="row">
-            <div class="album-artist-picture">
-                <img src={{album.artworkUrl300}} class="img-album">
+            <div class="show-for-medium-up">
+                <div class="album-artist-picture">
+                    <img ng-src={{album.artworkUrl300}} class="img-album">
+                </div>
             </div>
             <div class="album-artist-infos">
                 <div class="album-title">
                     <h1>{{album.collectionName}}</h1>
                 </div>
                 <div class="artist-title">
-                    <h2><a href="#/artist" class="album-artist-link">{{artist.artistName}}</a></h2>
+                    <h2><a href="#/artist/{{artist.artistId}}" class="album-artist-link">{{artist.artistName}}</a></h2>
                 </div>
                 <span class="type-label">{{album.primaryGenreName}}</span>
 
@@ -21,7 +23,12 @@
                         <small>Année de Parution : {{album.releaseDateObj.getFullYear()}}</small>
                     </h3>
                 </div>
-                <div data-interchange="[interchange/itunes/album/default.html, (default)], [interchange/itunes/album/medium-large.html, (landscape)], [interchange/itunes/album/medium-large.html, (medium)], [interchange/itunes/album/medium-large.html, (large)]"></div>
+                <div class="show-for-small-only"><a href={{album.collectionViewUrl}} target="itunes_store"
+                                                    style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets//images/web/linkmaker/badge_itunes-sm.png) no-repeat;width:45px;height:15px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets//images/web/linkmaker/badge_itunes-sm.svg);}"></a>
+                </div>
+                <div class="show-for-medium-up"><a href={{album.collectionViewUrl}} target="itunes_store"
+                                                   style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_itunes-lrg.png) no-repeat;width:110px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_itunes-lrg.svg);}"></a>
+                </div>
             </div>
         </div>
     </div>
@@ -32,19 +39,19 @@
                 <div class="row collapse">
                     <div class="small-6 large-5 columns left">
                         <div class="small-12 medium-7 large-6 columns left">
-                            <a href="#" class="button red split expand radius tiny"><i class="fa fa-play fa-lg"></i>
+                            <a href="" class="button red split expand radius tiny"><i class="fa fa-play fa-lg"></i>
                                 Lire
                                 tout <span data-dropdown="dropPlay"></span></a>
                             <ul id="dropPlay" class="f-dropdown" data-dropdown-content>
-                                <li><a href="#">Écouter</a></li>
-                                <li><a href="#">Lire à la suite</a></li>
-                                <li><a href="#">Lire en dernier</a></li>
+                                <li><a href="">Écouter</a></li>
+                                <li><a href="">Lire à la suite</a></li>
+                                <li><a href="">Lire en dernier</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">Remplacer la file d'attente</a></li>
+                                <li><a href="">Remplacer la file d'attente</a></li>
                             </ul>
                         </div>
                         <div class="small-12 medium-5 columns left">
-                            <a href="#" class="button red expand radius tiny"><i class="fa fa-plus fa-lg"></i> Tout
+                            <a href="" class="button red expand radius tiny"><i class="fa fa-plus fa-lg"></i> Tout
                                 ajouter
                             </a>
                         </div>
@@ -54,15 +61,15 @@
                             <input class="radius" type="text" placeholder="Filtre">
                         </div>
                         <div class="small-12 medium-5 columns right">
-                            <button href="#" data-dropdown="dropSort" aria-controls="dropSort" aria-expanded="false"
+                            <button href="" data-dropdown="dropSort" aria-controls="dropSort" aria-expanded="false"
                                     class="button red dropdown expand radius tiny"><i class="fa fa-sort fa-lg"></i>
                                 Numéro
                                 de piste
                             </button>
                             <ul id="dropSort" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
-                                <li><a href="#">Numéro de piste</a></li>
-                                <li><a href="#">Chanson</a></li>
-                                <li><a href="#">Artiste</a></li>
+                                <li><a href="">Numéro de piste</a></li>
+                                <li><a href="">Chanson</a></li>
+                                <li><a href="">Artiste</a></li>
                             </ul>
                         </div>
                     </div>
@@ -82,18 +89,19 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="music-row" ng-repeat="track in tracks" ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
-                    <td class="text-center">
-                        <div ng-show="track.displayPlayButton">
+            <tr class="music-row" ng-repeat="track in tracks" ng-mouseover="displayPlayButton(track)"
+                ng-mouseleave="hidePlayButton(track)">
+                <td class="text-center">
+                    <div ng-show="track.displayPlayButton">
                         <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
                                 class="fa fa-play fa-lg"></i></span></div>
-                        <div ng-hide="track.displayPlayButton">
+                    <div ng-hide="track.displayPlayButton">
                         {{track.trackNumber}}
-                        </div>
-                    </td>
-                    <td>{{track.trackName}}</td>
-                    <td><a href="#/artist">{{track.artistName}}</a></td>
-                    <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
+                    </div>
+                </td>
+                <td>{{track.trackName}}</td>
+                <td><a href="#/artist/{{artist.artistId}}">{{track.artistName}}</a></td>
+                <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
             </tr>
             </tbody>
         </table>

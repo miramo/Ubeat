@@ -16,11 +16,6 @@
   overflow        : hidden;
 }
 
-.box-shadow
-{
-  box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.18);
-}
-
 //Text Selection Color
 ::selection
 {
@@ -33,24 +28,28 @@
   color: $white;
 }
 
-.bump {
+.bump
+{
   margin-top: rem-calc(50);
   padding-right: rem-calc(30);
   padding-left: rem-calc(30);
 }
-.card {
+.card
+{
   padding-bottom: rem-calc(0);
   border-radius: rem-calc(5);
 //  background: scale-color($primary-color, $lightness: -10%);
-  background: $primary-color;
+  //background: $primary-color;
   overflow: hidden;
   box-shadow: rem-calc(0) rem-calc(8) rem-calc(17) rem-calc(0) rgba(0, 0, 0, 0.2);
-}
-.card p {
-  font-size: rem-calc(16);
-  padding: rem-calc(0) rem-calc(5);
-  margin-bottom: 0;
-  color: $white;
+
+  p
+  {
+    font-size: rem-calc(16);
+    padding: rem-calc(0) rem-calc(5);
+    margin-bottom: 0;
+    color: $white;
+  }
 }
 
 .ellipsis

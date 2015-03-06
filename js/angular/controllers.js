@@ -26,7 +26,6 @@
             // call your functions here
         });
     });
-
     controllers.controller('PlaybarController', function ($scope, ngAudio)
     {
         $scope.audio = ngAudio.load('http://a1815.phobos.apple.com/us/r1000/101/Music/70/f0/fd/mzm.hhpjhkpl.aac.p.m4a');
@@ -39,14 +38,168 @@
         });
     });
 
-    controllers.controller('HomeController', function ($scope, sharedProperties)
+    controllers.controller('HomeController', function ($scope, sharedProperties,
+                                                       artistFactory, artistAlbumsFactory, spotifyArtistFactory, spotifySearchFactory)
     {
+        $scope.artistIds = [285976572, 185933496, 111051, 371362363, 994656, 405129701, 115429828, 263132120];
+        $scope.albumsIds = [285976572, 285976572, 285976572, 285976572, 285976572, 285976572, 285976572, 285976572];
         sharedProperties.setTitle('Accueil');
+
+        $scope.artistsLoadedCount = 0;
+        $scope.artistsLoadComplete = false;
+        $scope.albumsLoadedCount = 0;
+        $scope.albumsLoadComplete = false;
+        $scope.artistsTab = [];
+        $scope.albumsTab = [];
+        $scope.sharedProperties = sharedProperties;
+
+        $scope.$watch('artistsLoadedCount', function (newVal, oldVal)
+        {
+            if (newVal >= $scope.artistIds.length)
+            {
+                $scope.artistsLoadComplete = true;
+                sharedProperties.setHomeArtists($scope.artistsTab);
+                $scope.sharedProperties.homeArtists = sharedProperties.getHomeArtists();
+                //blur.init({
+                //    el  : document.querySelector('body'),
+                //    path: document.getElementsByClassName('slick-center')[0].getElementsByTagName('img')[0].src
+                //});
+            }
+        });
+
+        $scope.$watch('albumsLoadedCount', function (newVal, oldVal)
+        {
+            if (newVal >= $scope.albumsIds.length)
+            {
+                $scope.albumsLoadComplete = true;
+                sharedProperties.setHomeAlbums($scope.albumsTab);
+                $scope.sharedProperties.homeAlbums = sharedProperties.getHomeAlbums();
+            }
+        });
+
+
+        angular.forEach($scope.artistIds, function (value, key)
+        {
+            artistFactory.get({id: value}).$promise.then(function (data)
+                {
+                    $scope.artistsTab[key] = data.results[0];
+                    //sharedProperties.setTitle($scope.artists[i].artistName);
+
+                    spotifySearchFactory.get({
+                        name: $scope.artistsTab[key].artistName,
+                        type: 'artist'
+                    }).$promise.then(function (data)
+                        {
+                            spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
+                            {
+                                $scope.artistsTab[key].image = data.images[0];
+                                $scope.artistsTab[key].artistPictureLoaded = true;
+
+
+                                ++$scope.artistsLoadedCount;
+                            }, function (err)
+                            {
+                            });
+
+                        }, function (err)
+                        {
+                        });
+                },
+                function (err)
+                {
+                });
+        });
+
+        angular.forEach($scope.albumsIds, function (value, key)
+        {
+            artistAlbumsFactory.get({id: value}).$promise.then(function (data)
+                {
+                    $scope.albumsTab[key] = data.results[0];
+                    $scope.albumsTab[key].releaseDateObj = new Date($scope.albumsTab[key].releaseDate);
+                    $scope.albumsTab[key].artworkUrl300 = itunesLinkImageSizeTo($scope.albumsTab[key].artworkUrl100, 300);
+                    ++$scope.albumsLoadedCount;
+                },
+                function (err)
+                {
+                });
+        });
+
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
-            initSlider();
             console.log('HomeController ChangeSuccess');
-            // call your functions here
+            $(document).foundation();
+        });
+    });
+
+    controllers.controller('ArtistController', function ($scope, $routeParams, sharedProperties,
+                                                         artistFactory, artistAlbumsFactory, artistBiographiesFactory, spotifyArtistFactory, spotifySearchFactory)
+    {
+        $scope.artistPictureLoaded = false;
+        $scope.isTabletOrDesktop = true;
+
+        artistFactory.get({id: $routeParams.id}).$promise.then(function (data)
+            {
+                $scope.artist = data.results[0];
+                sharedProperties.setTitle($scope.artist.artistName);
+
+                spotifySearchFactory.get({name: $scope.artist.artistName, type: 'artist'}).$promise.then(function (data)
+                {
+                    artistBiographiesFactory.get({
+                        artist: ":artist:",
+                        id    : data.artists.items[0].id
+                    }).$promise.then(function (data)
+                        {
+                            if (data.response.biographies.length > 0)
+                            {
+                                $scope.artist.description = getSentencesNb(data.response.biographies[0].text, 3);
+                            }
+                            else
+                            {
+                                $scope.artist.description = "Aucune description disponible.";
+                            }
+
+                        }, function (err)
+                        {
+                        });
+                    spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
+                    {
+                        $scope.artist.image = data.images[0];
+                        $scope.artistPictureLoaded = true;
+
+                        blur.init({el: document.querySelector('.artist-header'), path: $scope.artist.image.url});
+
+                    }, function (err)
+                    {
+                    });
+
+                }, function (err)
+                {
+                });
+                artistAlbumsFactory.get({id: $routeParams.id}).$promise.then(function (data)
+                    {
+                        $scope.albums = data.results;
+
+                        for (var i = 0; i < $scope.albums.length; ++i)
+                        {
+                            $scope.albums[i].releaseDateObj = new Date($scope.albums[i].releaseDate);
+                            $scope.albums[i].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[i].artworkUrl100, 300);
+                        }
+                        $scope.true = false;
+                    },
+                    function (err)
+                    {
+                    });
+            },
+            function (err)
+            {
+            });
+
+
+        $scope.$on('$routeChangeSuccess', function (next, current)
+        {
+            console.log('ArtistController ChangeSuccess');
+
+            $(document).foundation('interchange', 'reflow');
         });
     });
 
@@ -54,6 +207,7 @@
                                                         albumFactory, artistFactory, albumTracksFactory)
     {
         $scope.isResolved = false;
+
 
         albumFactory.get({id: $routeParams.id}, function (data)
         {
@@ -80,12 +234,12 @@
                 }
             });
 
-            $scope.displayPlayButton = function(track)
+            $scope.displayPlayButton = function (track)
             {
                 track.displayPlayButton = true;
             }
 
-            $scope.hidePlayButton = function(track)
+            $scope.hidePlayButton = function (track)
             {
                 track.displayPlayButton = false;
             }
@@ -98,62 +252,6 @@
             $(document).foundation();
             $(document).foundation('interchange', 'reflow');
             $(document).foundation('tooltip', 'reflow');
-        });
-    });
-
-    controllers.controller('ArtistController', function ($scope, sharedProperties,
-                                                         artistFactory, artistAlbumsFactory, artistBiographiesFactory, spotifyArtistFactory)
-    {
-        $scope.artistPictureLoaded = false;
-        $scope.artistInfosLoaded = false;
-        $scope.albumsLoaded = false;
-
-        artistFactory.get({id: 19333119}).$promise.then(function (data)
-            {
-                $scope.artist = data.results[0];
-                sharedProperties.setTitle($scope.artist.artistName);
-
-                artistBiographiesFactory.get({artist: ":artist:", id: "7qiRNP9z0FhN63YcLmb8Ai"}).$promise.then(function (data)
-                    {
-                        $scope.artist.description = getSentencesNb(data.response.biographies[0].text, 3);
-                        $scope.artistInfosLoaded = true;
-
-                    }, function (err) {});
-                spotifyArtistFactory.get({id: "7qiRNP9z0FhN63YcLmb8Ai"}).$promise.then(function (data)
-                {
-                    $scope.artist.image = data.images[0];
-                    $scope.artistPictureLoaded = true;
-
-                    blur.init({el: document.querySelector('.artist-header'), path: $scope.artist.image.url});
-
-                }, function (err) {});
-
-                artistAlbumsFactory.get({id: 19333119}).$promise.then(function (data)
-                    {
-                        $scope.albumsLoaded = true;
-                        $scope.albums = data.results;
-
-                        for (var i = 0; i < $scope.albums.length; ++i)
-                        {
-                            $scope.albums[i].releaseDateObj = new Date($scope.albums[i].releaseDate);
-                            $scope.albums[i].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[i].artworkUrl100, 300);
-                            $scope.albums[i].isLoaded = true;
-                        }
-                    },
-                    function (err)
-                    {
-                    });
-            },
-            function (err)
-            {
-            });
-
-
-        $scope.$on('$routeChangeSuccess', function (next, current)
-        {
-            console.log('ArtistController ChangeSuccess');
-
-            $(document).foundation('interchange', 'reflow');
         });
     });
 })();

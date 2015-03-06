@@ -7,6 +7,7 @@
     var factories = angular.module('factories', ['ngResource']);
 
     factories.ubeatBaseUnsecureUrl = 'http://ubeat.herokuapp.com/unsecure/';
+    factories.spotifyUrl = 'https://api.spotify.com/v1/';
 
     factories.factory('albumFactory', function ($resource)
     {
@@ -35,6 +36,11 @@
 
     factories.factory('spotifyArtistFactory', function ($resource)
     {
-        return $resource('https://api.spotify.com/v1/artists/:id');
+        return $resource(factories.spotifyUrl + 'artists/:id');
+    });
+
+    factories.factory('spotifySearchFactory', function ($resource)
+    {
+        return $resource(factories.spotifyUrl + 'search?query=:name&type=:type');
     });
 })();

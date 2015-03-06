@@ -9,15 +9,35 @@
     services.service('sharedProperties', function ()
     {
         var title = 'Ubeat';
+        var homeArtists = [];
+        var homeAlbums = [];
 
         return {
-            getTitle: function ()
+            getTitle      : function ()
             {
                 return title;
             },
-            setTitle: function (value)
+            setTitle      : function (value)
             {
                 title = value;
+            },
+            getHomeArtists: function ()
+            {
+                return homeArtists;
+            },
+            setHomeArtists: function (artists)
+            {
+                homeArtists = [];
+                angular.copy(artists, homeArtists);
+            },
+            getHomeAlbums : function ()
+            {
+                return homeAlbums;
+            },
+            setHomeAlbums : function (albums)
+            {
+                homeAlbums = [];
+                angular.copy(albums, homeAlbums);
             }
         };
     });

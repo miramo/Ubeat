@@ -1,4 +1,5 @@
-.top-bar .name h1 a:before {
+.top-bar .name h1 a:before
+{
   background: url(../img/logo/logo-topbar.png) no-repeat center center;
   content: "";
   display: inline-block;
@@ -7,7 +8,8 @@
   width: 100px;
 }
 
-#profile-picture {
+#profile-picture
+{
   width: rem-calc(32);
   height: rem-calc(32);
   border: rem-calc(2) solid $primary-color;
@@ -17,24 +19,36 @@
   background-size: cover;
 }
 
-#profile-name {
+#profile-name
+{
   padding-left: rem-calc(5);
 }
 
-#profile-topbar {
+#profile-topbar
+{
   display: inline-block;
 }
 
-input[type="text"].dream-search {
+.button-search
+{
+  border-top-right-radius: rem-calc(5);
+  border-bottom-right-radius: rem-calc(5);
+}
+
+input[type="text"].dream-search
+{
   @media #{$medium-up}
   {
     width: 75%;
     margin-left: 25%;
   }
   opacity: .5;
+  border-top-left-radius: rem-calc(5);
+  border-bottom-left-radius: rem-calc(5);
 }
 
-input[type="text"].dream-search:focus {
+input[type="text"].dream-search:focus
+{
   @media #{$medium-up}
   {
     width: 100%;
@@ -44,8 +58,10 @@ input[type="text"].dream-search:focus {
   opacity: 1;
 }
 
-@media only screen and (max-width: 40em) {
-  .top-bar-section .has-dropdown > a:after {
+@media only screen and (max-width: 40em)
+{
+  .top-bar-section .has-dropdown > a:after
+  {
     content: "";
     display: block;
     width: 0;
@@ -58,5 +74,9 @@ input[type="text"].dream-search:focus {
     position: absolute;
     top: 50%;
     right: 0;
+  }
+  .button-search
+  {
+    margin-top: rem-calc(1);
   }
 }
