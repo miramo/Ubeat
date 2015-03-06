@@ -17967,7 +17967,7 @@ button.radius, .button.radius {
   width: 100px;
 }
 
-/* line 10, ../scss/_navbar.scss */
+/* line 11, ../scss/_navbar.scss */
 #profile-picture {
   width: 2rem;
   height: 2rem;
@@ -17978,34 +17978,42 @@ button.radius, .button.radius {
   background-size: cover;
 }
 
-/* line 20, ../scss/_navbar.scss */
+/* line 22, ../scss/_navbar.scss */
 #profile-name {
   padding-left: 0.3125rem;
 }
 
-/* line 24, ../scss/_navbar.scss */
+/* line 27, ../scss/_navbar.scss */
 #profile-topbar {
   display: inline-block;
 }
 
-/* line 28, ../scss/_navbar.scss */
+/* line 32, ../scss/_navbar.scss */
+.button-search {
+  border-top-right-radius: 0.3125rem;
+  border-bottom-right-radius: 0.3125rem;
+}
+
+/* line 38, ../scss/_navbar.scss */
 input[type="text"].dream-search {
   opacity: .5;
+  border-top-left-radius: 0.3125rem;
+  border-bottom-left-radius: 0.3125rem;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 28, ../scss/_navbar.scss */
+  /* line 38, ../scss/_navbar.scss */
   input[type="text"].dream-search {
     width: 75%;
     margin-left: 25%;
   }
 }
 
-/* line 37, ../scss/_navbar.scss */
+/* line 50, ../scss/_navbar.scss */
 input[type="text"].dream-search:focus {
   opacity: 1;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 37, ../scss/_navbar.scss */
+  /* line 50, ../scss/_navbar.scss */
   input[type="text"].dream-search:focus {
     width: 100%;
     margin-left: 0%;
@@ -18014,7 +18022,7 @@ input[type="text"].dream-search:focus {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 48, ../scss/_navbar.scss */
+  /* line 63, ../scss/_navbar.scss */
   .top-bar-section .has-dropdown > a:after {
     content: "";
     display: block;
@@ -18028,6 +18036,11 @@ input[type="text"].dream-search:focus {
     position: absolute;
     top: 50%;
     right: 0;
+  }
+
+  /* line 78, ../scss/_navbar.scss */
+  .button-search {
+    margin-top: 0.0625rem;
   }
 }
 /* line 1, ../scss/_artist.scss */
