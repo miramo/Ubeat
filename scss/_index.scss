@@ -56,3 +56,10 @@
   display       : block;
   text-overflow : ellipsis;
 }
+
+footer-bar {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}

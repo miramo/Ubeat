@@ -1,0 +1,81 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\ProgramData\\chocolatey\\lib\\nodejs.commandline.0.10.33\\tools\\node.exe',
+1 verbose cli   'C:\\ProgramData\\chocolatey\\lib\\npm.1.4.9\\tools\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'jquery.eqHeight' ]
+2 info using npm@1.4.9
+3 info using node@v0.10.33
+4 verbose cache add [ 'jquery.eqHeight', null ]
+5 verbose cache add name=undefined spec="jquery.eqHeight" args=["jquery.eqHeight",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'jquery.eqHeight',
+6 verbose parsed url   path: 'jquery.eqHeight',
+6 verbose parsed url   href: 'jquery.eqHeight' }
+7 silly lockFile 0c8d22fc-jquery-eqHeight jquery.eqHeight
+8 verbose lock jquery.eqHeight C:\Users\Cyrille\AppData\Roaming\npm-cache\0c8d22fc-jquery-eqHeight.lock
+9 silly lockFile 0c8d22fc-jquery-eqHeight jquery.eqHeight
+10 silly lockFile 0c8d22fc-jquery-eqHeight jquery.eqHeight
+11 verbose addNamed [ 'jquery.eqHeight', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile 48aadce2-jquery-eqHeight jquery.eqHeight@
+14 verbose lock jquery.eqHeight@ C:\Users\Cyrille\AppData\Roaming\npm-cache\48aadce2-jquery-eqHeight.lock
+15 silly addNameRange { name: 'jquery.eqHeight', range: '*', hasData: false }
+16 verbose url raw jquery.eqHeight
+17 verbose url resolving [ 'https://registry.npmjs.org/', './jquery.eqHeight' ]
+18 verbose url resolved https://registry.npmjs.org/jquery.eqHeight
+19 info trying registry request attempt 1 at 17:41:50
+20 http GET https://registry.npmjs.org/jquery.eqHeight
+21 http 404 https://registry.npmjs.org/jquery.eqHeight
+22 verbose headers { date: 'Thu, 05 Mar 2015 22:41:57 GMT',
+22 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+22 verbose headers   'content-type': 'application/json',
+22 verbose headers   'cache-control': 'max-age=0',
+22 verbose headers   'content-length': '52',
+22 verbose headers   'accept-ranges': 'bytes',
+22 verbose headers   via: '1.1 varnish',
+22 verbose headers   age: '0',
+22 verbose headers   'x-served-by': 'cache-iad2133-IAD',
+22 verbose headers   'x-cache': 'MISS',
+22 verbose headers   'x-cache-hits': '0',
+22 verbose headers   'x-timer': 'S1425595317.745259,VS0,VE15',
+22 verbose headers   'keep-alive': 'timeout=10, max=50',
+22 verbose headers   connection: 'Keep-Alive' }
+23 silly registry.get cb [ 404,
+23 silly registry.get   { date: 'Thu, 05 Mar 2015 22:41:57 GMT',
+23 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+23 silly registry.get     'content-type': 'application/json',
+23 silly registry.get     'cache-control': 'max-age=0',
+23 silly registry.get     'content-length': '52',
+23 silly registry.get     'accept-ranges': 'bytes',
+23 silly registry.get     via: '1.1 varnish',
+23 silly registry.get     age: '0',
+23 silly registry.get     'x-served-by': 'cache-iad2133-IAD',
+23 silly registry.get     'x-cache': 'MISS',
+23 silly registry.get     'x-cache-hits': '0',
+23 silly registry.get     'x-timer': 'S1425595317.745259,VS0,VE15',
+23 silly registry.get     'keep-alive': 'timeout=10, max=50',
+23 silly registry.get     connection: 'Keep-Alive' } ]
+24 silly lockFile 48aadce2-jquery-eqHeight jquery.eqHeight@
+25 silly lockFile 48aadce2-jquery-eqHeight jquery.eqHeight@
+26 error 404 404 Not Found: jquery.eqHeight
+26 error 404
+26 error 404 'jquery.eqHeight' is not in the npm registry.
+26 error 404 You should bug the author to publish it
+26 error 404
+26 error 404 Note that you can also install from a
+26 error 404 tarball, folder, or http url, or git url.
+27 error System Windows_NT 6.2.9200
+28 error command "C:\\ProgramData\\chocolatey\\lib\\nodejs.commandline.0.10.33\\tools\\node.exe" "C:\\ProgramData\\chocolatey\\lib\\npm.1.4.9\\tools\\node_modules\\npm\\bin\\npm-cli.js" "install" "jquery.eqHeight"
+29 error cwd E:\workspace\uBeat
+30 error node -v v0.10.33
+31 error npm -v 1.4.9
+32 error code E404
+33 verbose exit [ 1, true ]

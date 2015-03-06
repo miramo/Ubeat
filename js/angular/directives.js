@@ -27,15 +27,10 @@
         };
     });
 
-    ubeatApp.directive('loadProgress', function ()
-    {
-        function link(scope, element, attrs)
-        {
-        }
-
+    ubeatApp.directive('footerBar', function (){
         return {
-            restrict: 'A',
-            link    : link
+            restrict: 'E',
+            templateUrl: './views/partials/playbar.html'
         };
     });
 })();

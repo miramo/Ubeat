@@ -4,7 +4,7 @@
 
 (function ()
 {
-    var controllers = angular.module('controllers', ['factories', 'directives', 'services']);
+    var controllers = angular.module('controllers', ['factories', 'directives', 'services', 'ngAudio']);
 
     controllers.controller('MainController', function ($scope, sharedProperties)
     {
@@ -22,6 +22,33 @@
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
             console.log('NavbarController ChangeSuccess');
+            $(document).foundation();
+            // call your functions here
+        });
+    });
+    controllers.controller('PlaybarController', function ($scope, ngAudio)
+    {
+        $scope.audio = ngAudio.load('http://a1815.phobos.apple.com/us/r1000/101/Music/70/f0/fd/mzm.hhpjhkpl.aac.p.m4a');
+
+        $scope.switchMute = function()
+        {
+            if ($scope.audio.muting == false)
+                $scope.audio.muting = true;
+            else
+                $scope.audio.muting = false;
+        }
+
+        $scope.getVolume = function()
+        {
+            if ($scope.audio.muting == false)
+                return 0;
+            return $scope.audio.volume * 100;
+        }
+
+
+        $scope.$on('$routeChangeSuccess', function (next, current)
+        {
+            console.log('PlaybarController ChangeSuccess');
             $(document).foundation();
             // call your functions here
         });
