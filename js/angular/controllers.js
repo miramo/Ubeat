@@ -5,6 +5,7 @@
 (function ()
 {
     var controllers = angular.module('controllers', ['factories', 'directives', 'services', 'ngAudio']);
+    var playStates = {play: 'play', pause: 'pause', idle: 'idle'};
 
     controllers.controller('MainController', function ($scope, sharedProperties)
     {
@@ -37,13 +38,23 @@
         $scope.$watch('sharedProperties.getCurrentTrack()', function (newVal, oldVal)
         {
             if (oldVal)
-                oldVal.isPlaying = false;
+                oldVal.playState = playStates.idle;
             if ($scope.audio && newVal)
             {
                 $scope.audio.pause();
                 $scope.audio = ngAudio.load(newVal.previewUrl);
                 $scope.audio.play();
-                newVal.isPlaying = true;
+                newVal.playState = playStates.play;
+            }
+        });
+
+        $scope.$watch('audio.paused', function (newVal, oldVal)
+        {
+            var track = sharedProperties.getCurrentTrack();
+
+            if (track)
+            {
+                track.playState = (newVal == true ? playStates.pause : playStates.play);
             }
         });
 
@@ -297,6 +308,7 @@
     {
         $scope.isResolved = false;
         $scope.sharedProperties = sharedProperties;
+        $scope.playStates = playStates;
 
         albumFactory.get({id: $routeParams.id}, function (data)
         {
@@ -335,7 +347,7 @@
 
                 for (var i = 0; i < $scope.tracks.length; ++i)
                 {
-                    $scope.tracks[i].isPlaying = false;
+                    $scope.tracks[i].playState = playStates.idle;
                     $scope.tracks[i].filter = $scope.filter;
                     $scope.tracks[i].time = millisToTime($scope.tracks[i].trackTimeMillis);
                     $scope.tracks[i].displayPlayButton = false;

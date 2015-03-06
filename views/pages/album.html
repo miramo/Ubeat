@@ -92,20 +92,32 @@
             <tr class="music-row" ng-repeat="track in tracks | orderBy:filter" ng-mouseover="displayPlayButton(track)"
                 ng-mouseleave="hidePlayButton(track)">
                 <td class="text-center">
-                    <div ng-show="track.displayPlayButton && track.isPlaying == false">
+                    <div ng-show="track.displayPlayButton && track.playState == playStates.idle">
                         <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
-                                ng-click="sharedProperties.setCurrentTrack(track)" class="fa fa-play fa-lg"></i></span></div>
-                    <div ng-hide="track.displayPlayButton || track.isPlaying == true">
+                                ng-click="sharedProperties.setCurrentTrack(track)" class="fa fa-play fa-lg"></i></span>
+                    </div>
+                    <div ng-hide="track.displayPlayButton || track.playState != playStates.idle">
                         {{track.trackNumber}}
                     </div>
-                    <div ng-show="track.isPlaying">
-                        <!--<i class="fa fa-circle-o-notch fa-spin"></i>-->
+                    <div ng-show="track.playState == playStates.play">
+                        <i class="fa fa-circle-o-notch fa-spin"></i>
+                    </div>
+                    <div ng-show="track.playState == playStates.pause">
+                        <i class="fa fa-pause"></i>
                     </div>
                 </td>
                 <td class="text-center">
+                    <a data-dropdown="drop1" aria-controls="drop1" aria-expanded="false">
                     <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
                         <i class="fa fa-plus"></i>
                     </span>
+                    </a>
+                    <ul id="drop1" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
+                        <li ng-show="sharedProperties.getPlaylists().length <= 0"><a href="">Pas de playlist disponible</a></li>
+                        <li ng-repeat="playlist in sharedProperties.getPlaylists()">
+                            <a href="" ng-click="sharedProperties.addTrackToPlaylist(track, playlist.id)">{{playlist.name}}</a>
+                        </li>
+                    </ul>
                 </td>
                 <td>{{track.trackName}}</td>
                 <td><a href="#/artist/{{artist.artistId}}">{{track.artistName}}</a></td>
