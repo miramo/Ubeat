@@ -63,13 +63,12 @@
                         <div class="small-12 medium-5 columns right">
                             <button href="" data-dropdown="dropSort" aria-controls="dropSort" aria-expanded="false"
                                     class="button red dropdown expand radius tiny"><i class="fa fa-sort fa-lg"></i>
-                                Numéro
-                                de piste
+                                {{currentFilterName}}
                             </button>
                             <ul id="dropSort" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
-                                <li><a href="">Numéro de piste</a></li>
-                                <li><a href="">Chanson</a></li>
-                                <li><a href="">Artiste</a></li>
+                                <li><a href="" ng-click="filter = 'trackNumber'; currentFilterName = filtersNames[0]">{{filtersNames[0]}}</a></li>
+                                <li><a href="" ng-click="filter = 'trackName'; currentFilterName = filtersNames[1]">{{filtersNames[1]}}</a></li>
+                                <li><a href="" ng-click="filter = 'trackNumber'; currentFilterName = filtersNames[2]">{{filtersNames[2]}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -90,7 +89,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="music-row" ng-repeat="track in tracks" ng-mouseover="displayPlayButton(track)"
+            <tr class="music-row" ng-repeat="track in tracks | orderBy:filter" ng-mouseover="displayPlayButton(track)"
                 ng-mouseleave="hidePlayButton(track)">
                 <td class="text-center">
                     <div ng-show="track.displayPlayButton">

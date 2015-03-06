@@ -251,6 +251,9 @@
             sharedProperties.setTitle($scope.album.collectionName);
             $scope.album.artworkUrl300 = itunesLinkImageSizeTo($scope.album.artworkUrl100, 300);
             $scope.album.releaseDateObj = new Date($scope.album.releaseDate);
+            $scope.filter = "trackNumber";
+            $scope.filtersNames = ['Numéro de piste', 'Chanson', 'Artiste'];
+            $scope.currentFilterName = $scope.filtersNames[0];
 
             var blur = new Blur({
                 el        : document.querySelector('body'),
@@ -272,6 +275,7 @@
 
                 for (var i = 0; i < $scope.tracks.length; ++i)
                 {
+                    $scope.tracks[i].filter = $scope.filter;
                     $scope.tracks[i].time = millisToTime($scope.tracks[i].trackTimeMillis);
                     $scope.tracks[i].displayPlayButton = false;
                 }
