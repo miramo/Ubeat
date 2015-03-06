@@ -98,24 +98,27 @@
                     $scope.artistsTab[key] = data.results[0];
                     //sharedProperties.setTitle($scope.artists[i].artistName);
 
-                    spotifySearchFactory.get({
-                        name: $scope.artistsTab[key].artistName,
-                        type: 'artist'
-                    }).$promise.then(function (data)
-                        {
-                            spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
+                    if ($scope.artistsTab[key] != null)
+                    {
+                        spotifySearchFactory.get({
+                            name: $scope.artistsTab[key].artistName,
+                            type: 'artist'
+                        }).$promise.then(function (data)
                             {
-                                $scope.artistsTab[key].image = data.images[0];
-                                $scope.artistsTab[key].artistPictureLoaded = true;
+                                spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
+                                {
+                                    $scope.artistsTab[key].image = data.images[0];
+                                    $scope.artistsTab[key].artistPictureLoaded = true;
 
-                                ++$scope.artistsLoadedCount;
+                                    ++$scope.artistsLoadedCount;
+                                }, function (err)
+                                {
+                                });
+
                             }, function (err)
                             {
                             });
-
-                        }, function (err)
-                        {
-                        });
+                    }
                 },
                 function (err)
                 {
@@ -141,19 +144,19 @@
             $(document).foundation();
 
 
-            $('.slider-index').on('click', function(event, slick, direction)
-            {
-                console.log("CLICK");
-            });
-
-            $('.slider-index').on('afterChange', function(event, slick, direction)
-            {
-                console.log("After Change");
-            });
-            $('.slider-index').on('init', function(event, slick, direction)
-            {
-                console.log("Init");
-            });
+            //$('.slider-index').on('click', function(event, slick, direction)
+            //{
+            //    console.log("CLICK");
+            //});
+            //
+            //$('.slider-index').on('afterChange', function(event, slick, direction)
+            //{
+            //    console.log("After Change");
+            //});
+            //$('.slider-index').on('init', function(event, slick, direction)
+            //{
+            //    console.log("Init");
+            //});
 
         });
     });
