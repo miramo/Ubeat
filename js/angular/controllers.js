@@ -244,7 +244,7 @@
                                                         albumFactory, artistFactory, albumTracksFactory)
     {
         $scope.isResolved = false;
-        zz
+
         albumFactory.get({id: $routeParams.id}, function (data)
         {
             $scope.album = data.results[0];
@@ -303,7 +303,7 @@
         $scope.sharedProperties = sharedProperties;
         $scope.playlistToAdd = "";
         $scope.playlists = sharedProperties.playlists;
-        $scope.alertMessages = ["Test"];
+        $scope.alertMessages = [];
 
         $scope.removeAlert = function(id)
         {

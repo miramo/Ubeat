@@ -83,6 +83,7 @@
             <thead>
             <tr>
                 <th width="30"></th>
+                <th width="30"></th>
                 <th width="600">Titre de la musique</th>
                 <th width="300">Nom de l'artiste</th>
                 <th width="50">Durée</th>
@@ -98,6 +99,11 @@
                     <div ng-hide="track.displayPlayButton">
                         {{track.trackNumber}}
                     </div>
+                </td>
+                <td class="text-center">
+                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
+                        <i class="fa fa-plus"></i>
+                    </span>
                 </td>
                 <td>{{track.trackName}}</td>
                 <td><a href="#/artist/{{artist.artistId}}">{{track.artistName}}</a></td>
