@@ -1,50 +1,48 @@
 .type-label
 {
-  @include label
-  (
-    $text-size: em-calc(12),
-    $radius: 2px
+  @include label(
+  $text-size : em-calc(12),
+  $radius : 2px
   );
 }
 
 .year-label
 {
-  width: 100%;
-  @include label
-  (
-    $text-size: em-calc(12),
-    $bg: $primary-color
+  width       : 100%;
+  @include label(
+  $text-size : em-calc(12),
+  $bg : $primary-color
   );
 
-  padding-top: rem-calc(8);
+  padding-top : rem-calc(8);
 }
 
 .artist-header
 {
-  background: #333;
-  position: relative;
-  margin-bottom: rem-calc(15);
-  overflow: hidden;
+  background    : #333;
+  position      : relative;
+  margin-bottom : rem-calc(15);
+  overflow      : hidden;
 }
 
 #img-artist
 {
-  width: 100%;
-  padding-bottom: 100%;
-  display: inline-block;
-  vertical-align: middle;
-  background-image: none;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  width               : 100%;
+  padding-bottom      : 100%;
+  display             : inline-block;
+  vertical-align      : middle;
+  background-image    : none;
+  background-repeat   : no-repeat;
+  background-position : center center;
+  background-size     : cover;
 }
 
 .artist-albums-list
 {
-  @media #{$small-only} and (orientation: landscape) {
+  @media #{$small-only} and (orientation : landscape) {
     @include block-grid(2);
   }
-  @media #{$small-only} and (orientation: portrait) {
+  @media #{$small-only} and (orientation : portrait) {
     @include block-grid(1);
   }
   @media #{$medium-up}
@@ -55,36 +53,61 @@
 
 .artist-panel img
 {
-  width: 100%;
-  height: auto;
+  width  : 100%;
+  height : auto;
 }
 
 .artist-albums-img
 {
-  position:relative;
-  cursor: pointer;
+  position : relative;
+  cursor   : pointer;
 }
+
 .artist-albums-img img
 {
-  width:100%;
-  vertical-align:top;
+  width          : 100%;
+  vertical-align : top;
 }
+
 .artist-albums-img:after
 {
-  border-radius: rem-calc(5);
-  content:'\A';
-  position:absolute;
-  width:100%; height:100%;
-  top:0; left:0;
-  background: url(../img/play_white.svg) no-repeat center center;
-  background-size: 60% 60%;
-  vertical-align: middle;
-  background-color: black;
-  opacity:0;
-  transition: all 0.5s;
-  -webkit-transition: all 0.5s;
+  border-top-left-radius  : rem-calc(5);
+  border-top-right-radius : rem-calc(5);
+  content                 : '\A';
+  position                : absolute;
+  width                   : 100%;
+  height                  : 100%;
+  top                     : 0;
+  left                    : 0;
+  background              : url(../img/play_white.svg) no-repeat center center;
+  background-size         : 60% 60%;
+  vertical-align          : middle;
+  background-color        : black;
+  opacity                 : 0;
+  transition              : all 0.5s;
+  -webkit-transition      : all 0.5s;
 }
+
+$transition-time: 0.7s;
+
+.artist-album-title
+{
+  background         : $primary-color;
+
+  -o-transition      : $transition-time;
+  -ms-transition     : $transition-time;
+  -moz-transition    : $transition-time;
+  -webkit-transition : $transition-time;
+  /* ...and now for the proper property */
+  transition         : $transition-time;
+
+  &:hover
+  {
+    background : scale-color($primary-color, $lightness : -20%);
+  }
+}
+
 .artist-albums-img:hover:after
 {
-  opacity:0.5;
+  opacity : 0.5;
 }

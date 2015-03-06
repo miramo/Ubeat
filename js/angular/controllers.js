@@ -30,32 +30,62 @@
     controllers.controller('HomeController', function ($scope, sharedProperties,
                                                        artistFactory, artistAlbumsFactory, spotifyArtistFactory, spotifySearchFactory)
     {
-        $scope.artistIds = [285976572, 185933496, 111051, 371362363, 111051, 371362363, 111051, 371362363];
-        var albumsIds = [285976572, 285976572, 285976572, 285976572, 285976572, 285976572, 285976572, 285976572];
+        $scope.artistIds = [285976572, 185933496, 111051, 371362363, 994656, 405129701, 115429828, 263132120];
+        $scope.albumsIds = [285976572, 285976572, 285976572, 285976572, 285976572, 285976572, 285976572, 285976572];
         sharedProperties.setTitle('Accueil');
 
+        $scope.artistsLoadedCount = 0;
+        $scope.artistsLoadComplete = false;
+        $scope.albumsLoadedCount = 0;
+        $scope.albumsLoadComplete = false;
         $scope.artistsTab = [];
-        $scope.albums = [];
+        $scope.albumsTab = [];
+        $scope.sharedProperties = sharedProperties;
 
-        for (var i = 0; i < $scope.artistIds.length; ++i)
+        $scope.$watch('artistsLoadedCount', function (newVal, oldVal)
         {
-            artistFactory.get({id: $scope.artistIds[i]}).$promise.then(function (data)
+            if (newVal >= $scope.artistIds.length)
+            {
+                $scope.artistsLoadComplete = true;
+                sharedProperties.setHomeArtists($scope.artistsTab);
+                $scope.sharedProperties.homeArtists = sharedProperties.getHomeArtists();
+                //blur.init({
+                //    el  : document.querySelector('body'),
+                //    path: document.getElementsByClassName('slick-center')[0].getElementsByTagName('img')[0].src
+                //});
+            }
+        });
+
+        $scope.$watch('albumsLoadedCount', function (newVal, oldVal)
+        {
+            if (newVal >= $scope.albumsIds.length)
+            {
+                $scope.albumsLoadComplete = true;
+                sharedProperties.setHomeAlbums($scope.albumsTab);
+                $scope.sharedProperties.homeAlbums = sharedProperties.getHomeAlbums();
+            }
+        });
+
+
+        angular.forEach($scope.artistIds, function (value, key)
+        {
+            artistFactory.get({id: value}).$promise.then(function (data)
                 {
-                    $scope.artistsTab[i] = data.results[0];
+                    $scope.artistsTab[key] = data.results[0];
                     //sharedProperties.setTitle($scope.artists[i].artistName);
 
                     spotifySearchFactory.get({
-                        name: $scope.artistsTab[i].artistName,
+                        name: $scope.artistsTab[key].artistName,
                         type: 'artist'
                     }).$promise.then(function (data)
                         {
                             spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
                             {
-                                $scope.artistsTab[i].image = data.images[0];
-                                $scope.artistsTab[i].artistPictureLoaded = true;
+                                $scope.artistsTab[key].image = data.images[0];
+                                $scope.artistsTab[key].artistPictureLoaded = true;
 
-                                //   blur.init({el: document.querySelector('.artist-header'), path: $scope.artistsTab[i].image.url});
 
+                                ++$scope.artistsLoadedCount;
                             }, function (err)
                             {
                             });
@@ -63,30 +93,30 @@
                         }, function (err)
                         {
                         });
-                    //artistAlbumsFactory.get({id: $routeParams.id}).$promise.then(function (data)
-                    //    {
-                    //        $scope.albums = data.results;
-                    //
-                    //        for (var i = 0; i < $scope.albums.length; ++i)
-                    //        {
-                    //            $scope.albums[i].releaseDateObj = new Date($scope.albums[i].releaseDate);
-                    //            $scope.albums[i].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[i].artworkUrl100, 300);
-                    //        }
-                    //        $scope.true = false;
-                    //    },
-                    //    function (err) {});
                 },
                 function (err)
                 {
                 });
-        }
+        });
+
+        angular.forEach($scope.albumsIds, function (value, key)
+        {
+            artistAlbumsFactory.get({id: value}).$promise.then(function (data)
+                {
+                    $scope.albumsTab[key] = data.results[0];
+                    $scope.albumsTab[key].releaseDateObj = new Date($scope.albumsTab[key].releaseDate);
+                    $scope.albumsTab[key].artworkUrl300 = itunesLinkImageSizeTo($scope.albumsTab[key].artworkUrl100, 300);
+                    ++$scope.albumsLoadedCount;
+                },
+                function (err)
+                {
+                });
+        });
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
-           // initSlider();
             console.log('HomeController ChangeSuccess');
             $(document).foundation();
-            // call your functions here
         });
     });
 
@@ -103,11 +133,23 @@
 
                 spotifySearchFactory.get({name: $scope.artist.artistName, type: 'artist'}).$promise.then(function (data)
                 {
-                    artistBiographiesFactory.get({artist: ":artist:", id: data.artists.items[0].id}).$promise.then(function (data)
-                    {
-                        $scope.artist.description = getSentencesNb(data.response.biographies[0].text, 3);
+                    artistBiographiesFactory.get({
+                        artist: ":artist:",
+                        id    : data.artists.items[0].id
+                    }).$promise.then(function (data)
+                        {
+                            if (data.response.biographies.length > 0)
+                            {
+                                $scope.artist.description = getSentencesNb(data.response.biographies[0].text, 3);
+                            }
+                            else
+                            {
+                                $scope.artist.description = "Aucune description disponible.";
+                            }
 
-                    }, function (err) {});
+                        }, function (err)
+                        {
+                        });
                     spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
                     {
                         $scope.artist.image = data.images[0];
@@ -115,9 +157,13 @@
 
                         blur.init({el: document.querySelector('.artist-header'), path: $scope.artist.image.url});
 
-                    }, function (err) {});
+                    }, function (err)
+                    {
+                    });
 
-                }, function (err) {});
+                }, function (err)
+                {
+                });
                 artistAlbumsFactory.get({id: $routeParams.id}).$promise.then(function (data)
                     {
                         $scope.albums = data.results;
@@ -177,12 +223,12 @@
                 }
             });
 
-            $scope.displayPlayButton = function(track)
+            $scope.displayPlayButton = function (track)
             {
                 track.displayPlayButton = true;
             }
 
-            $scope.hidePlayButton = function(track)
+            $scope.hidePlayButton = function (track)
             {
                 track.displayPlayButton = false;
             }

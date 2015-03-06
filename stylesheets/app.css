@@ -17936,11 +17936,9 @@ button.radius, .button.radius {
 .card {
   padding-bottom: 0;
   border-radius: 0.3125rem;
-  background: #c60000;
   overflow: hidden;
   box-shadow: 0 0.5rem 1.0625rem 0 rgba(0, 0, 0, 0.2);
 }
-
 /* line 46, ../scss/_style.scss */
 .card p {
   font-size: 1rem;
@@ -17949,7 +17947,7 @@ button.radius, .button.radius {
   color: #FFFFFF;
 }
 
-/* line 54, ../scss/_style.scss */
+/* line 55, ../scss/_style.scss */
 .ellipsis {
   overflow: hidden;
   white-space: nowrap;
@@ -18061,7 +18059,7 @@ input[type="text"].dream-search:focus {
   border-radius: 2px;
 }
 
-/* line 10, ../scss/_artist.scss */
+/* line 9, ../scss/_artist.scss */
 .year-label {
   width: 100%;
   font-weight: normal;
@@ -18080,7 +18078,7 @@ input[type="text"].dream-search:focus {
   padding-top: 0.5rem;
 }
 
-/* line 22, ../scss/_artist.scss */
+/* line 20, ../scss/_artist.scss */
 .artist-header {
   background: #333;
   position: relative;
@@ -18088,7 +18086,7 @@ input[type="text"].dream-search:focus {
   overflow: hidden;
 }
 
-/* line 30, ../scss/_artist.scss */
+/* line 28, ../scss/_artist.scss */
 #img-artist {
   width: 100%;
   padding-bottom: 100%;
@@ -18101,7 +18099,7 @@ input[type="text"].dream-search:focus {
 }
 
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 42, ../scss/_artist.scss */
+  /* line 40, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -18139,7 +18137,7 @@ input[type="text"].dream-search:focus {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 42, ../scss/_artist.scss */
+  /* line 40, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -18177,7 +18175,7 @@ input[type="text"].dream-search:focus {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 42, ../scss/_artist.scss */
+  /* line 40, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -18215,19 +18213,19 @@ input[type="text"].dream-search:focus {
   }
 }
 
-/* line 56, ../scss/_artist.scss */
+/* line 54, ../scss/_artist.scss */
 .artist-panel img {
   width: 100%;
   height: auto;
 }
 
-/* line 62, ../scss/_artist.scss */
+/* line 60, ../scss/_artist.scss */
 .artist-albums-img {
   position: relative;
   cursor: pointer;
 }
 
-/* line 67, ../scss/_artist.scss */
+/* line 66, ../scss/_artist.scss */
 .artist-albums-img img {
   width: 100%;
   vertical-align: top;
@@ -18235,7 +18233,8 @@ input[type="text"].dream-search:focus {
 
 /* line 72, ../scss/_artist.scss */
 .artist-albums-img:after {
-  border-radius: 0.3125rem;
+  border-top-left-radius: 0.3125rem;
+  border-top-right-radius: 0.3125rem;
   content: '\A';
   position: absolute;
   width: 100%;
@@ -18251,7 +18250,22 @@ input[type="text"].dream-search:focus {
   -webkit-transition: all 0.5s;
 }
 
-/* line 87, ../scss/_artist.scss */
+/* line 93, ../scss/_artist.scss */
+.artist-album-title {
+  background: #c60000;
+  -o-transition: 0.7s;
+  -ms-transition: 0.7s;
+  -moz-transition: 0.7s;
+  -webkit-transition: 0.7s;
+  /* ...and now for the proper property */
+  transition: 0.7s;
+}
+/* line 104, ../scss/_artist.scss */
+.artist-album-title:hover {
+  background: #9e0000;
+}
+
+/* line 110, ../scss/_artist.scss */
 .artist-albums-img:hover:after {
   opacity: 0.5;
 }
@@ -18517,13 +18531,14 @@ a {
 
 /* line 18, ../scss/_index.scss */
 .slider-index-element img {
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  display: inline-block;
   margin: 0 auto;
 }
 
-/* line 24, ../scss/_index.scss */
+/* line 26, ../scss/_index.scss */
 .year-label-index {
-  background: #c60000;
   color: #FFFFFF;
   width: 100%;
   text-align: center;
@@ -18531,13 +18546,13 @@ a {
   margin: 0 auto;
 }
 
-/* line 34, ../scss/_index.scss */
+/* line 35, ../scss/_index.scss */
 .slider-index-element.slick-center {
   opacity: 1;
   transform: scale(1.08);
 }
 
-/* line 40, ../scss/_index.scss */
+/* line 41, ../scss/_index.scss */
 .latest-item-element h5 {
   overflow: hidden;
   white-space: nowrap;
