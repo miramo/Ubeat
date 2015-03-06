@@ -26,18 +26,24 @@
             // call your functions here
         });
     });
+
     controllers.controller('PlaybarController', function ($scope, ngAudio, sharedProperties)
     {
         $scope.sharedProperties = sharedProperties;
         $scope.audio = ngAudio.load('');
+        $scope.audio.progress = 0;
+        $scope.audio.currentTime = 0;
 
         $scope.$watch('sharedProperties.getCurrentTrack()', function (newVal, oldVal)
         {
+            if (oldVal)
+                oldVal.isPlaying = false;
             if ($scope.audio && newVal)
             {
                 $scope.audio.pause();
                 $scope.audio = ngAudio.load(newVal.previewUrl);
                 $scope.audio.play();
+                newVal.isPlaying = true;
             }
         });
 
@@ -329,6 +335,7 @@
 
                 for (var i = 0; i < $scope.tracks.length; ++i)
                 {
+                    $scope.tracks[i].isPlaying = false;
                     $scope.tracks[i].filter = $scope.filter;
                     $scope.tracks[i].time = millisToTime($scope.tracks[i].trackTimeMillis);
                     $scope.tracks[i].displayPlayButton = false;

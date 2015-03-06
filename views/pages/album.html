@@ -92,11 +92,14 @@
             <tr class="music-row" ng-repeat="track in tracks | orderBy:filter" ng-mouseover="displayPlayButton(track)"
                 ng-mouseleave="hidePlayButton(track)">
                 <td class="text-center">
-                    <div ng-show="track.displayPlayButton">
+                    <div ng-show="track.displayPlayButton && track.isPlaying == false">
                         <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
                                 ng-click="sharedProperties.setCurrentTrack(track)" class="fa fa-play fa-lg"></i></span></div>
-                    <div ng-hide="track.displayPlayButton">
+                    <div ng-hide="track.displayPlayButton || track.isPlaying == true">
                         {{track.trackNumber}}
+                    </div>
+                    <div ng-show="track.isPlaying">
+                        <!--<i class="fa fa-circle-o-notch fa-spin"></i>-->
                     </div>
                 </td>
                 <td class="text-center">
