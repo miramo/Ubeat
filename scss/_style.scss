@@ -91,3 +91,15 @@ body
   display: block;
   text-overflow: ellipsis;
 }
+
+.post-radius
+{
+  border-top-right-radius: rem-calc($button-radius);
+  border-bottom-right-radius: rem-calc($button-radius);
+}
+
+input[type="text"].pre-radius
+{
+  border-top-left-radius: rem-calc($button-radius);
+  border-bottom-left-radius: rem-calc($button-radius);
+}

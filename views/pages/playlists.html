@@ -13,14 +13,23 @@
                         <li>
                             <!--<input ng-model="playlistToAdd" type="text" placeholder="" value="Nouvelle playlist"/>-->
                             <!--<a ng-click="sharedProperties.createPlaylist(playlistToAdd)" class="button radius">Créer</a>-->
+
+                            <!--<div class="row collapse">-->
+                                <!--<div class="small-10 columns">-->
+                                    <!--<input type="text" class="dream-search" placeholder="Rechercher">-->
+                                <!--</div>-->
+                                <!--<div class="small-2 columns">-->
+                                    <!--<a href="" class="button-search button expand red"><i class="fi-magnifying-glass"></i></a>-->
+                                <!--</div>-->
+                            <!--</div>-->
                             <div class="row">
-                                <div class="large-6 columns">
-                                    <div class="row collapse postfix-round">
-                                        <div class="small-9 columns">
-                                            <input type="text" placeholder="Value">
+                                <div class="large-12 columns">
+                                    <div class="row collapse">
+                                        <div class="small-10 columns">
+                                            <input type="text" class="pre-radius" placeholder="" value="Nouvelle playlist" onClick="this.select();">
                                         </div>
-                                        <div class="small-3 columns">
-                                            <a href="#" class="button postfix">Go</a>
+                                        <div class="small-2 columns">
+                                            <a href="" class="button expand red post-radius">Créer</a>
                                         </div>
                                     </div>
                                 </div>
@@ -40,7 +49,6 @@
                             <thead>
                                 <tr>
                                     <th width="30">#</th>
-                                    <th width="30"></th>
                                     <th width="600">Titre de la musique</th>
                                     <th width="300">Nom de l'artiste</th>
                                     <th width="50" class="text-center"><i class="fa fa-clock-o fa-lg"></i></th>
@@ -55,11 +63,6 @@
                                             </span>
                                         </div>
                                         <div ng-hide="track.displayPlayButton">{{track.trackNumber}}</div>
-                                    </td>
-                                    <td class="text-center">
-                                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
-                                            <i class="fa fa-plus"></i>
-                                        </span>
                                     </td>
                                     <td>{{track.trackName}}</td>
                                     <td><a href="#/artist/{{artist.artistId}}">{{track.artistName}}</a></td>
