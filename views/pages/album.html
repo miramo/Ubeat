@@ -94,7 +94,7 @@
                 <td class="text-center">
                     <div ng-show="track.displayPlayButton">
                         <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
-                                class="fa fa-play fa-lg"></i></span></div>
+                                ng-click="sharedProperties.setCurrentTrack(track)" class="fa fa-play fa-lg"></i></span></div>
                     <div ng-hide="track.displayPlayButton">
                         {{track.trackNumber}}
                     </div>

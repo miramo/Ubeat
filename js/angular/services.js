@@ -6,12 +6,13 @@
 {
     var services = angular.module('services', []);
 
-    services.service('sharedProperties', function (localStorageService)
+    services.service('sharedProperties', function (ngAudio, localStorageService)
     {
         var title = 'Ubeat';
         var homeArtists = [];
         var homeAlbums = [];
         var playlists = localStorageService.get('playlists');
+        var currentTrack = null;
 
         if (playlists == null)
         {
@@ -184,6 +185,14 @@
                     }
                 }
                 return false;
+            },
+            getCurrentTrack : function()
+            {
+                return currentTrack;
+            },
+            setCurrentTrack : function(track)
+            {
+                currentTrack = track;
             }
         };
     });

@@ -26,23 +26,42 @@
             // call your functions here
         });
     });
-    controllers.controller('PlaybarController', function ($scope, ngAudio)
+    controllers.controller('PlaybarController', function ($scope, ngAudio, sharedProperties)
     {
-        $scope.audio = ngAudio.load('http://a1815.phobos.apple.com/us/r1000/101/Music/70/f0/fd/mzm.hhpjhkpl.aac.p.m4a');
+        $scope.sharedProperties = sharedProperties;
+        $scope.audio = ngAudio.load('');
 
-        $scope.switchMute = function()
+        $scope.$watch('sharedProperties.getCurrentTrack()', function (newVal, oldVal)
         {
-            if ($scope.audio.muting == false)
-                $scope.audio.muting = true;
-            else
-                $scope.audio.muting = false;
+            if ($scope.audio && newVal)
+            {
+                $scope.audio.pause();
+                $scope.audio = ngAudio.load(newVal.previewUrl);
+                $scope.audio.play();
+            }
+        });
+
+        $scope.switchMute = function ()
+        {
+            if ($scope.audio)
+            {
+                $scope.audio.muting = $scope.audio.muting;
+                if ($scope.audio.muting)
+                {
+
+                }
+            }
         }
 
-        $scope.getVolume = function()
+        $scope.getVolume = function ()
         {
-            if ($scope.audio.muting == false)
-                return 0;
-            return $scope.audio.volume * 100;
+            if ($scope.audio)
+            {
+                if ($scope.audio.muting == false)
+                    return 0;
+                return $scope.audio.volume * 100;
+            }
+            return 0;
         }
 
 
@@ -271,6 +290,7 @@
                                                         albumFactory, artistFactory, albumTracksFactory)
     {
         $scope.isResolved = false;
+        $scope.sharedProperties = sharedProperties;
 
         albumFactory.get({id: $routeParams.id}, function (data)
         {
