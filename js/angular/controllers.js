@@ -278,10 +278,16 @@
             sharedProperties.setTitle($scope.album.collectionName);
             $scope.album.artworkUrl300 = itunesLinkImageSizeTo($scope.album.artworkUrl100, 300);
             $scope.album.releaseDateObj = new Date($scope.album.releaseDate);
-            $scope.filtersValues = ['trackNumber', 'trackName', 'trackNumber'];
-            $scope.filtersNames = ['Numéro de piste', 'Chanson', 'Artiste'];
+            $scope.filtersValues = ['trackNumber', 'trackName', 'artistName', '-time.Minutes', 'time.Minutes'];
+            $scope.filtersNames = ['Numéro de piste', 'Chanson', 'Artiste', 'Durée'];
             $scope.currentFilterName = $scope.filtersNames[0];
             $scope.filter = $scope.filtersValues[0];
+
+            $scope.modifyFilter = function (id)
+            {
+                $scope.filter = $scope.filtersValues[id];
+                $scope.currentFilterName = $scope.filtersNames[id]
+            }
 
             var blur = new Blur({
                 el        : document.querySelector('body'),
@@ -337,7 +343,7 @@
         $scope.playlists = sharedProperties.playlists;
         $scope.alertMessages = [];
 
-        $scope.removeAlert = function(id)
+        $scope.removeAlert = function (id)
         {
             $scope.alertMessages.splice(id, 1);
         }

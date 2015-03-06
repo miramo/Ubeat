@@ -7,9 +7,9 @@
             <a ng-click="sharedProperties.createPlaylist(playlistToAdd)" class="button">Add</a>
             <a ng-click="alertMessages[alertMessages.length] = 'ALERT'" class="button">Throw Alert</a>
             <div ng-repeat="alert in alertMessages track by $index">
-                <div data-alert class="alert-box alert round">
+                <div id="mainAlert1" data-alert class="alert-box alert round" tabindex="$index" aria-live="assertive" role="dialogalert">
                     {{alert}}
-                    <a href="" class="close" ng-click="removeAlert($index)">&times;</a>
+                    <button href="#" ng-click="removeAlert($index)" tabindex="$index" class="close" aria-label="Close Alert">&times;</button>
                 </div>
             </div>
             <div ng-repeat="playlist in sharedProperties.getPlaylists()">
