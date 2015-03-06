@@ -114,7 +114,7 @@
                     </a>
                     <ul id="drop1" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
                         <li class="bottom-border">
-                            <a href="" data-reveal-id="myModal">Créer une playlist</a>
+                            <a href="" data-reveal-id="myModal" ng-click="addTrackToAdd(track)">Nouvelle playlist</a>
                         </li>
                         <li ng-repeat="playlist in sharedProperties.getPlaylists()">
                             <a href="" ng-click="sharedProperties.addTrackToPlaylist(track, playlist.id)">{{playlist.name}}</a>
@@ -130,9 +130,9 @@
     </div>
 
     <div id="myModal" class="reveal-modal" data-reveal>
-        <h2>Ajouter une playlist</h2>
+        <h2>Ajouter à une nouvelle playlist</h2>
         <input ng-model="playlistToAdd" type="text" placeholder="Name"/>
-        <a ng-click="sharedProperties.createPlaylist(playlistToAdd); closeModal('#myModal')" class="button">Confirmer</a>
+        <a ng-click="createPlaylistByTrack(playlistToAdd, '#myModal')" class="button">Confirmer</a>
         <a class="close-reveal-modal">&#215;</a>
     </div>
 </div>

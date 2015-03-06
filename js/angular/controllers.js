@@ -309,6 +309,7 @@
         $scope.isResolved = false;
         $scope.sharedProperties = sharedProperties;
         $scope.playStates = playStates;
+        $scope.trackToAddToNewPlaylist = null;
 
         albumFactory.get({id: $routeParams.id}, function (data)
         {
@@ -327,9 +328,23 @@
                 $scope.currentFilterName = $scope.filtersNames[id]
             }
 
-            $scope.closeModal = function(id)
+            $scope.closeModal = function (id)
             {
                 $(id).foundation('reveal', 'close');
+            }
+
+            $scope.addTrackToAdd = function (track)
+            {
+                console.log("AddTrackToAdd: " + track)
+                $scope.trackToAddToNewPlaylist = track;
+            }
+
+            $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
+            {
+                console.log("PlaylistTrackToAdd: " + $scope.trackToAddToNewPlaylist);
+                var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
+                sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, newPlaylist.id);
+                $scope.closeModal(modalId);
             }
 
             var blur = new Blur({

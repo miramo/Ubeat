@@ -161,6 +161,8 @@
                 newPlaylist.tracks = [];
                 playlists[playlistLength] = newPlaylist;
                 localStorageService.set('playlists', playlists);
+
+                return newPlaylist;
             },
             addExistingPlaylist            : function (playlist)
             {
