@@ -17937,31 +17937,36 @@ body::-webkit-scrollbar-track {
 }
 
 /* line 46, ../scss/_style.scss */
+.bottom-border {
+  border-bottom: 0.0625rem solid #bdbdbd;
+}
+
+/* line 51, ../scss/_style.scss */
 .img-circular {
   border-radius: 50%;
   overflow: hidden;
 }
 
-/* line 53, ../scss/_style.scss */
+/* line 58, ../scss/_style.scss */
 ::selection {
   background: #f50000;
   color: #FFFFFF;
 }
 
-/* line 59, ../scss/_style.scss */
+/* line 64, ../scss/_style.scss */
 .bump {
   margin-top: 3.125rem;
   padding-right: 1.875rem;
   padding-left: 1.875rem;
 }
-/* line 64, ../scss/_style.scss */
+/* line 69, ../scss/_style.scss */
 .bump .card {
   padding-bottom: 0;
   border-radius: 0.3125rem;
   overflow: hidden;
   box-shadow: 0 0.5rem 1.0625rem 0 rgba(0, 0, 0, 0.2);
 }
-/* line 72, ../scss/_style.scss */
+/* line 77, ../scss/_style.scss */
 .bump .card p {
   font-size: 1rem;
   padding: 0 0.3125rem;
@@ -17969,7 +17974,7 @@ body::-webkit-scrollbar-track {
   color: #FFFFFF;
 }
 
-/* line 82, ../scss/_style.scss */
+/* line 87, ../scss/_style.scss */
 .ellipsis {
   overflow: hidden;
   white-space: nowrap;

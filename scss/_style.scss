@@ -43,6 +43,11 @@ body
   }
 }
 
+.bottom-border
+{
+  border-bottom: rem_calc(1) solid #bdbdbd;
+}
+
 .img-circular
 {
   border-radius: 50%;

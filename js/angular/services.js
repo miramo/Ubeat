@@ -158,6 +158,7 @@
 
                 newPlaylist.name = name;
                 newPlaylist.id = playlistLength;
+                newPlaylist.tracks = [];
                 playlists[playlistLength] = newPlaylist;
                 localStorageService.set('playlists', playlists);
             },

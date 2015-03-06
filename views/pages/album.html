@@ -113,7 +113,7 @@
                     </span>
                     </a>
                     <ul id="drop1" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
-                        <li ng-show="sharedProperties.getPlaylists().length <= 0"><a href="">Pas de playlist disponible</a></li>
+                        <li class="bottom-border"><a href="#/playlists/">Créer une playlist</a></li>
                         <li ng-repeat="playlist in sharedProperties.getPlaylists()">
                             <a href="" ng-click="sharedProperties.addTrackToPlaylist(track, playlist.id)">{{playlist.name}}</a>
                         </li>
