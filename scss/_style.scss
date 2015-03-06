@@ -48,6 +48,12 @@ body
   border-bottom: rem_calc(1) solid #bdbdbd;
 }
 
+.custom-reveal-class {
+  @include reveal-close(
+  $color:$reveal-close-color
+  );
+}
+
 .img-circular
 {
   border-radius: 50%;

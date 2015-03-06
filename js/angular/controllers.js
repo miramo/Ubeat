@@ -327,6 +327,11 @@
                 $scope.currentFilterName = $scope.filtersNames[id]
             }
 
+            $scope.closeModal = function(id)
+            {
+                $(id).foundation('reveal', 'close');
+            }
+
             var blur = new Blur({
                 el        : document.querySelector('body'),
                 path      : '',
@@ -372,6 +377,7 @@
             $(document).foundation();
             $(document).foundation('interchange', 'reflow');
             $(document).foundation('tooltip', 'reflow');
+            $(document).foundation('reveal', 'reflow');
         });
     });
 
