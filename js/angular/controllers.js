@@ -384,7 +384,7 @@
     controllers.controller('PlaylistsController', function ($scope, $routeParams, sharedProperties, localStorageService)
     {
         $scope.sharedProperties = sharedProperties;
-        $scope.playlistToAdd = "";
+        $scope.playlistToAdd = "Nouvelle playlist";
         $scope.playlists = sharedProperties.playlists;
         $scope.alertMessages = [];
         $scope.active = sharedProperties.getPlaylist(0);

@@ -11,32 +11,21 @@
                     <ul class="playlists-name no-bullet">
                         <li><i class="fa fa-plus"></i> Nouvelle playlist</li>
                         <li>
-                            <!--<input ng-model="playlistToAdd" type="text" placeholder="" value="Nouvelle playlist"/>-->
-                            <!--<a ng-click="sharedProperties.createPlaylist(playlistToAdd)" class="button radius">Créer</a>-->
-
-                            <!--<div class="row collapse">-->
-                                <!--<div class="small-10 columns">-->
-                                    <!--<input type="text" class="dream-search" placeholder="Rechercher">-->
-                                <!--</div>-->
-                                <!--<div class="small-2 columns">-->
-                                    <!--<a href="" class="button-search button expand red"><i class="fi-magnifying-glass"></i></a>-->
-                                <!--</div>-->
-                            <!--</div>-->
                             <div class="row">
                                 <div class="large-12 columns">
                                     <div class="row collapse">
                                         <div class="small-10 columns">
-                                            <input type="text" class="pre-radius" placeholder="" value="Nouvelle playlist" onClick="this.select();">
+                                            <input ng-model="playlistToAdd" type="text" class="pre-radius" placeholder="" onClick="this.select();">
                                         </div>
                                         <div class="small-2 columns">
-                                            <a href="" class="button expand red post-radius">Créer</a>
+                                            <a ng-click="sharedProperties.createPlaylist(playlistToAdd)" class="button expand red post-radius">Créer</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </li>
                         <li ng-repeat="playlist in sharedProperties.getPlaylists()" ng-click="setPlaylistActive(playlist.id)">
-                            <i class="fa fa-music"></i> {{playlist.name}}
+                            <i class="fa fa-music fa-lg"></i> {{playlist.name}} <i class="md-delete md-lg right"></i>
                         </li>
                     </ul>
                 </div>
