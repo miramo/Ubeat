@@ -303,11 +303,16 @@
     {
         $scope.errorOccured = false;
         $scope.sharedProperties = sharedProperties;
+        $scope.playlistToAdd = "";
 
         $scope.createPlaylist = function(name)
         {
             sharedProperties.createPlaylist(name);
         }
+
+        //$scope.createPlaylist("zizi");
+
+        console.log(sharedProperties.getPlaylists().length);
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {

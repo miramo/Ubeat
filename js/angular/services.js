@@ -130,9 +130,9 @@
                         var playlist = playlists[playlistId];
                         for (var j = 0; j < playlist.tracks.length; ++j)
                         {
-                            if (playlist.tracks[j].trackIdInPlaylist == trackIdInPlaylist)
+                            if (playlist.tracks[j].idInPlaylist == trackIdInPlaylist)
                             {
-                                playlist.tracks.splice($.inArray(j, playlist.tracks), 1);
+                                playlist.tracks.splice(j, 1);
                                 return true;
                             }
                         }
@@ -145,9 +145,10 @@
                 var playlistLength = playlists.length;
                 var newPlaylist = new Playlist();
 
+                console.log(playlistLength);
                 newPlaylist.name = name;
                 newPlaylist.id = playlistLength;
-                playlists[playlistLength] = playlist;
+                playlists[playlistLength] = newPlaylist;
             },
             addExistingPlaylist            : function (playlist)
             {
@@ -156,7 +157,8 @@
             },
             removePlaylist         : function (id)
             {
-                playlists.splice($.inArray(id, playlist), 1);
+                console.log("IdToDelete: " + id);
+                playlists.splice(id, 1);
             },
             renamePlaylist : function(id, newName)
             {
