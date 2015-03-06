@@ -1,107 +1,107 @@
 <div ng-controller="PlaylistsController as playlistsCtrl">
-    <div class="row">
-        <div class="small-12 columns">
-            <h1>Playlists</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="small-12">
-            <div class="small-4 columns">
-                <div class="panel radius">
-                    <ul class="playlists-name no-bullet">
-                        <li><i class="fa fa-plus"></i> Nouvelle playlist</li>
-                        <li>
-                            <!--<input ng-model="playlistToAdd" type="text" placeholder="" value="Nouvelle playlist"/>-->
-                            <!--<a ng-click="sharedProperties.createPlaylist(playlistToAdd)" class="button radius">Créer</a>-->
-                            <div class="row">
-                                <div class="large-6 columns">
-                                    <div class="row collapse postfix-round">
-                                        <div class="small-9 columns">
-                                            <input type="text" placeholder="Value">
-                                        </div>
-                                        <div class="small-3 columns">
-                                            <a href="#" class="button postfix">Go</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li ng-repeat="playlist in sharedProperties.getPlaylists()" ng-click="setPlaylistActive(playlist.id)">
-                            <i class="fa fa-music"></i> {{playlist.name}}
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="small-8 columns">
-                <div class="panel radius">
-                    <h1>{{active.name}}</h1>
-                    <div class="row-infos-list">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th width="30">#</th>
-                                    <th width="30"></th>
-                                    <th width="600">Titre de la musique</th>
-                                    <th width="300">Nom de l'artiste</th>
-                                    <th width="50" class="text-center"><i class="fa fa-clock-o fa-lg"></i></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="music-row" ng-repeat="track in active.tracks" ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
-                                    <td class="text-center">
-                                        <div ng-show="track.displayPlayButton">
-                                            <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter">
-                                                <i class="fa fa-play fa-lg"></i>
-                                            </span>
-                                        </div>
-                                        <div ng-hide="track.displayPlayButton">{{track.trackNumber}}</div>
-                                    </td>
-                                    <td class="text-center">
-                                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
-                                            <i class="fa fa-plus"></i>
-                                        </span>
-                                    </td>
-                                    <td>{{track.trackName}}</td>
-                                    <td><a href="#/artist/{{artist.artistId}}">{{track.artistName}}</a></td>
-                                    <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!--<div class="row">-->
         <!--<div class="small-12 columns">-->
             <!--<h1>Playlists</h1>-->
-
-            <!--<input ng-model="playlistToAdd" type="text" placeholder="Name"/>-->
-            <!--<a ng-click="sharedProperties.createPlaylist(playlistToAdd)" class="button">Add</a>-->
-            <!--<a ng-click="alertMessages[alertMessages.length] = 'ALERT'" class="button">Throw Alert</a>-->
-            <!--<div ng-repeat="alert in alertMessages track by $index">-->
-                <!--<div id="mainAlert1" data-alert class="alert-box alert round" tabindex="$index" aria-live="assertive" role="dialogalert">-->
-                    <!--{{alert}}-->
-                    <!--<button href="#" ng-click="removeAlert($index)" tabindex="$index" class="close" aria-label="Close Alert">&times;</button>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row">-->
+        <!--<div class="small-12">-->
+            <!--<div class="small-4 columns">-->
+                <!--<div class="panel radius">-->
+                    <!--<ul class="playlists-name no-bullet">-->
+                        <!--<li><i class="fa fa-plus"></i> Nouvelle playlist</li>-->
+                        <!--<li>-->
+                            <!--&lt;!&ndash;<input ng-model="playlistToAdd" type="text" placeholder="" value="Nouvelle playlist"/>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<a ng-click="sharedProperties.createPlaylist(playlistToAdd)" class="button radius">Créer</a>&ndash;&gt;-->
+                            <!--<div class="row">-->
+                                <!--<div class="large-6 columns">-->
+                                    <!--<div class="row collapse postfix-round">-->
+                                        <!--<div class="small-9 columns">-->
+                                            <!--<input type="text" placeholder="Value">-->
+                                        <!--</div>-->
+                                        <!--<div class="small-3 columns">-->
+                                            <!--<a href="#" class="button postfix">Go</a>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                        <!--<li ng-repeat="playlist in sharedProperties.getPlaylists()" ng-click="setPlaylistActive(playlist.id)">-->
+                            <!--<i class="fa fa-music"></i> {{playlist.name}}-->
+                        <!--</li>-->
+                    <!--</ul>-->
                 <!--</div>-->
             <!--</div>-->
-            <!--<div ng-repeat="playlist in sharedProperties.getPlaylists()">-->
-                <!--<div class="panel">-->
-                    <!--<p>[{{$index}}] {{playlist.name}}-->
-                    <!--</p>-->
-
-                    <!--<div ng-show="playlist.isEdit">-->
-                        <!--<input ng-model="playlistName" type="text" placeholder="Name"/>-->
-                        <!--<a ng-click="confirmRename(playlist, playlistName)" class="button">Confirm</a>-->
-                        <!--<a ng-click="setEdit(playlist, false)" class="button">Cancel</a>-->
-                    <!--</div>-->
-                    <!--<div ng-hide="playlist.isEdit">-->
-                        <!--<a ng-click="setEdit(playlist, true)" class="button">Edit</a>-->
-                        <!--<a ng-click="sharedProperties.removePlaylist($index)" class="button">Delete</a>-->
+            <!--<div class="small-8 columns">-->
+                <!--<div class="panel radius">-->
+                    <!--<h1>{{active.name}}</h1>-->
+                    <!--<div class="row-infos-list">-->
+                        <!--<table>-->
+                            <!--<thead>-->
+                                <!--<tr>-->
+                                    <!--<th width="30">#</th>-->
+                                    <!--<th width="30"></th>-->
+                                    <!--<th width="600">Titre de la musique</th>-->
+                                    <!--<th width="300">Nom de l'artiste</th>-->
+                                    <!--<th width="50" class="text-center"><i class="fa fa-clock-o fa-lg"></i></th>-->
+                                <!--</tr>-->
+                            <!--</thead>-->
+                            <!--<tbody>-->
+                                <!--<tr class="music-row" ng-repeat="track in active.tracks" ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">-->
+                                    <!--<td class="text-center">-->
+                                        <!--<div ng-show="track.displayPlayButton">-->
+                                            <!--<span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter">-->
+                                                <!--<i class="fa fa-play fa-lg"></i>-->
+                                            <!--</span>-->
+                                        <!--</div>-->
+                                        <!--<div ng-hide="track.displayPlayButton">{{track.trackNumber}}</div>-->
+                                    <!--</td>-->
+                                    <!--<td class="text-center">-->
+                                        <!--<span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">-->
+                                            <!--<i class="fa fa-plus"></i>-->
+                                        <!--</span>-->
+                                    <!--</td>-->
+                                    <!--<td>{{track.trackName}}</td>-->
+                                    <!--<td><a href="#/artist/{{artist.artistId}}">{{track.artistName}}</a></td>-->
+                                    <!--<td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>-->
+                                <!--</tr>-->
+                            <!--</tbody>-->
+                        <!--</table>-->
                     <!--</div>-->
                 <!--</div>-->
             <!--</div>-->
         <!--</div>-->
     <!--</div>-->
+
+    <div class="row">
+        <div class="small-12 columns">
+            <h1>Playlists</h1>
+
+            <input ng-model="playlistToAdd" type="text" placeholder="Name"/>
+            <a ng-click="sharedProperties.createPlaylist(playlistToAdd)" class="button">Add</a>
+            <a ng-click="alertMessages[alertMessages.length] = 'ALERT'" class="button">Throw Alert</a>
+            <div ng-repeat="alert in alertMessages track by $index">
+                <div id="mainAlert1" data-alert class="alert-box alert round" tabindex="$index" aria-live="assertive" role="dialogalert">
+                    {{alert}}
+                    <button href="#" ng-click="removeAlert($index)" tabindex="$index" class="close" aria-label="Close Alert">&times;</button>
+                </div>
+            </div>
+            <div ng-repeat="playlist in sharedProperties.getPlaylists()">
+                <div class="panel">
+                    <p>[{{$index}}] {{playlist.name}}
+                    </p>
+
+                    <div ng-show="playlist.isEdit">
+                        <input ng-model="playlistName" type="text" placeholder="Name"/>
+                        <a ng-click="confirmRename(playlist, playlistName)" class="button">Confirm</a>
+                        <a ng-click="setEdit(playlist, false)" class="button">Cancel</a>
+                    </div>
+                    <div ng-hide="playlist.isEdit">
+                        <a ng-click="setEdit(playlist, true)" class="button">Edit</a>
+                        <a ng-click="sharedProperties.removePlaylist($index)" class="button">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
