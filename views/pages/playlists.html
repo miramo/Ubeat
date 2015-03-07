@@ -9,8 +9,8 @@
             <div class="small-4 columns">
                 <div class="panel radius">
                     <ul class="playlists-name no-bullet">
-                        <li><i class="fa fa-plus"></i> Nouvelle playlist</li>
-                        <li>
+                        <li ng-click="switchNewPlaylistHover()"><i class="fa fa-plus fa-lg"></i> Nouvelle playlist</li>
+                        <li ng-show="isNewPlaylistHover">
                             <div class="row">
                                 <div class="large-12 columns">
                                     <div class="row collapse">
@@ -24,11 +24,13 @@
                                 </div>
                             </div>
                         </li>
-                        <li ng-repeat="playlist in sharedProperties.getPlaylists() track by $index" ng-click="setPlaylistActive($index)">
+                        <li ng-repeat="playlist in sharedProperties.getPlaylists() track by $index" ng-click="setPlaylistActive($index)" ng-mouseover="setEdit(playlist, true)"
+                                ng-mouseleave="setEdit(playlist, false)">
                             <i ng-click="" class="fa fa-music fa-lg"></i>
                                 {{playlist.name}}
-                            <i class="md-delete md-lg right" ng-click="sharedProperties.removePlaylist($index)"></i>
-                            <i class="md-edit md-lg right" ng-click="setEdit(playlist, true)"></i>
+
+                                <i class="md-delete md-lg right" ng-show="playlist.isEdit" ng-click="sharedProperties.removePlaylist($index)"></i>
+                                <i class="md-edit md-lg right" ng-show="playlist.isEdit" ng-click="setEdit(playlist, true)"></i>
                         </li>
                     </ul>
                 </div>

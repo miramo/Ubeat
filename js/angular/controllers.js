@@ -401,6 +401,12 @@
         $scope.playlists = sharedProperties.playlists;
         $scope.alertMessages = [];
         $scope.active = sharedProperties.getPlaylist(0);
+        $scope.isNewPlaylistHover = false;
+
+        $scope.switchNewPlaylistHover = function()
+        {
+            $scope.isNewPlaylistHover = !$scope.isNewPlaylistHover;
+        }
 
         $scope.removeAlert = function (id)
         {
