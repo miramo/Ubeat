@@ -340,9 +340,15 @@
 
             $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
             {
-                var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
-                sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, newPlaylist.id);
-                $scope.closeModal(modalId);
+                if (playlistToAdd)
+                {
+                    var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
+
+                    sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, newPlaylist.id);
+                    $scope.closeModal(modalId);
+                    return true;
+                }
+                return false;
             }
 
             var blur = new Blur({
@@ -401,11 +407,12 @@
         $scope.playlists = sharedProperties.playlists;
         $scope.alertMessages = [];
         $scope.active = sharedProperties.getPlaylist(0);
-        $scope.isNewPlaylistHover = false;
+        $scope.isNewPlaylistClicked = false;
+        $scope.playlistCurrentRename = '';
 
-        $scope.switchNewPlaylistHover = function()
+        $scope.switchNewPlaylistClicked = function ()
         {
-            $scope.isNewPlaylistHover = !$scope.isNewPlaylistHover;
+            $scope.isNewPlaylistClicked = !$scope.isNewPlaylistClicked;
         }
 
         $scope.removeAlert = function (id)
@@ -418,10 +425,21 @@
             playlist.isEdit = isEdit;
         }
 
+        $scope.setHover = function (playlist, isHover)
+        {
+            playlist.isHover = isHover;
+        }
+
+        $scope.setPlaylistCurrentRename = function (value)
+        {
+            $scope.playlistCurrentRename = value;
+        }
+
         $scope.confirmRename = function (playlist, newName)
         {
             sharedProperties.renamePlaylist(playlist.id, newName);
             playlist.isEdit = false;
+            playlist.isHover = false;
         }
 
         $scope.setPlaylistActive = function (id)
@@ -434,7 +452,7 @@
         {
             console.log("PlaylistsController ChangeSuccess");
             $(document).foundation();
+            $(document).foundation('dropdown', 'reflow');
         });
     });
-
 })();
