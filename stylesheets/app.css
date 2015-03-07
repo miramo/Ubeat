@@ -18976,15 +18976,40 @@ footer-bar {
     transform: translateX(0) scale(1);
   }
 }
-/* line 4, ../scss/_playlists.scss */
+/* line 3, ../scss/_playlists.scss */
 .playlists-name .playlist-item {
-  margin: 0.625rem 0;
+  margin: 0.3125rem 0;
+  height: 3.75rem;
+  padding: 0.3125rem;
+  background-color: #e6e6e6;
+  cursor: pointer;
 }
-/* line 7, ../scss/_playlists.scss */
+/* line 10, ../scss/_playlists.scss */
+.playlists-name .playlist-item:hover {
+  background-color: #cecece;
+}
+/* line 14, ../scss/_playlists.scss */
+.playlists-name .playlist-item.new-playlist {
+  vertical-align: middle;
+}
+/* line 17, ../scss/_playlists.scss */
+.playlists-name .playlist-item.new-playlist i {
+  padding-left: 1rem;
+  padding-top: 1.25rem;
+  width: 3.125rem;
+  height: 3.125rem;
+  background-color: #dadada;
+}
+/* line 26, ../scss/_playlists.scss */
+.playlists-name .playlist-item.add-playlist input, .playlists-name .playlist-item a {
+  margin-top: 0.4375rem;
+}
+/* line 30, ../scss/_playlists.scss */
 .playlists-name .playlist-item .icon-playlist-item {
+  vertical-align: middle;
   padding-top: 0.9375rem;
 }
-/* line 13, ../scss/_playlists.scss */
+/* line 35, ../scss/_playlists.scss */
 .playlists-name .playlist-item img {
   width: 3.125rem;
   height: 3.125rem;
