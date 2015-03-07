@@ -6,7 +6,7 @@
     </div>
     <div class="row">
         <div class="small-12">
-            <div class="small-4 columns">
+            <div class="small-12 large-4 columns">
                 <div class="panel radius">
                     <ul class="playlists-name no-bullet">
                         <li ng-click="switchNewPlaylistClicked()" class="playlist-item">
@@ -42,7 +42,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="small-8 columns">
+            <div class="small-12 large-8 columns">
                 <div class="panel radius">
                     <div class="row">
                         <div class="small-9 columns">
@@ -83,8 +83,8 @@
                                             <i class="fa fa-pause"></i>
                                         </div>
                                     </td>
-                                    <td>{{track.trackName}}</td>
-                                    <td><a href="#/album/{{track.collectionId}}">{{track.collectionName}}</a></td>
+                                    <td>{{track.trackName | characters:20}}</td>
+                                    <td><a href="#/album/{{track.collectionId}}">{{track.collectionName | characters:20}}</a></td>
                                     <td><a href="#/artist/{{track.artistId}}">{{track.artistName}}</a></td>
                                     <td class="text-center"><i class="md-delete md-lg on-hover" ng-click="sharedProperties.removeTrackFromPlaylist($index, active.id)"></i></td>
                                     <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>

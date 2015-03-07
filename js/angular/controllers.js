@@ -4,7 +4,7 @@
 
 (function ()
 {
-    var controllers = angular.module('controllers', ['factories', 'directives', 'services', 'ngAudio']);
+    var controllers = angular.module('controllers', ['factories', 'directives', 'services', 'ngAudio', 'truncate']);
 
     controllers.controller('MainController', function ($scope, sharedProperties)
     {
