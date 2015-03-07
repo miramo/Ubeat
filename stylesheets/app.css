@@ -18628,6 +18628,7 @@ footer-bar {
   bottom: 0;
   right: 0;
   left: 0;
+  height: 3.75rem;
 }
 
 /* line 1, ../scss/_playbar.scss */
@@ -18635,9 +18636,10 @@ footer-bar {
   height: 3.75rem;
 }
 
-/* line 6, ../scss/_playbar.scss */
+/* line 5, ../scss/_playbar.scss */
 .bottom-bar i:hover {
   color: #c60000;
+  cursor: pointer;
 }
 
 /* line 10, ../scss/_playbar.scss */
@@ -18671,8 +18673,8 @@ footer-bar {
 /* line 27, ../scss/_playbar.scss */
 .volume {
   color: #FFFFFF;
-  padding-right: 5px;
-  padding-left: 5px;
+  padding-right: 0px;
+  padding-left: 0px;
   list-style-type: none;
   display: inline-block;
 }
@@ -18682,45 +18684,49 @@ footer-bar {
   color: #FFFFFF;
   padding-right: 5px;
   padding-left: 5px;
+  padding: 0px;
   list-style-type: none;
   display: inline-block;
-  margin-right: 1.1rem;
+  margin-right: 5px;
 }
 
-/* line 49, ../scss/_playbar.scss */
+/* line 50, ../scss/_playbar.scss */
 .test i {
   width: 35px;
   padding-top: 15px;
 }
 
-/* line 54, ../scss/_playbar.scss */
+/* line 55, ../scss/_playbar.scss */
 .test {
   overflow: hidden;
   width: 35px;
   height: 50px;
   margin-bottom: 0px;
+  margin-left: 5px;
+  padding: 0px;
   -webkit-transition: width 0.5s;
   transition: width 0.5s;
 }
 
-/* line 63, ../scss/_playbar.scss */
+/* line 67, ../scss/_playbar.scss */
 .test li {
   white-space: nowrap;
 }
 
-/* line 67, ../scss/_playbar.scss */
+/* line 71, ../scss/_playbar.scss */
 .test:hover {
   width: 150px;
+  height: 50px;
   visibility: visible;
 }
 
-/* line 72, ../scss/_playbar.scss */
+/* line 77, ../scss/_playbar.scss */
 .bottom-music-list {
   line-height: 0px;
   margin-top: 15px;
 }
 
-/* line 78, ../scss/_playbar.scss */
+/* line 83, ../scss/_playbar.scss */
 #seek-volume {
   vertical-align: middle;
   -webkit-appearance: none;
@@ -18728,10 +18734,11 @@ footer-bar {
   background: #9b9ea1;
   width: 100px;
   height: 10px;
+  margin: 0px;
   margin-bottom: 15px;
 }
 
-/* line 88, ../scss/_playbar.scss */
+/* line 94, ../scss/_playbar.scss */
 #seek-volume::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 0.75rem;
@@ -18740,7 +18747,7 @@ footer-bar {
   background: #c60000;
 }
 
-/* line 97, ../scss/_playbar.scss */
+/* line 103, ../scss/_playbar.scss */
 #seek-music {
   -webkit-appearance: none;
   border-bottom-right-radius: 0.3125rem;
@@ -18754,17 +18761,17 @@ footer-bar {
   background: #9b9ea1;
 }
 
-/* line 114, ../scss/_playbar.scss */
+/* line 120, ../scss/_playbar.scss */
 #seek-music::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 0.75rem;
-  height: 0.75rem;
+  width: 1.125rem;
+  height: 1.125rem;
   border-radius: 0.625rem;
   background: #c60000;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 124, ../scss/_playbar.scss */
+  /* line 130, ../scss/_playbar.scss */
   .ul-volume {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;

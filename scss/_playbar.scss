@@ -1,10 +1,10 @@
 .bottom-bar {
   height: rem-calc(60);
-
 }
 
 .bottom-bar i:hover {
   color: $primary-color;
+  cursor: pointer;
 }
 
 .play-area {
@@ -26,8 +26,8 @@
 
 .volume {
   color: #FFFFFF;
-  padding-right: 5px;
-  padding-left: 5px;
+  padding-right: 0px;
+  padding-left: 0px;
 
   list-style-type: none;
 
@@ -39,11 +39,12 @@
   padding-right: 5px;
   padding-left: 5px;
 
+  padding: 0px;
   list-style-type: none;
 
   display: inline-block;
 
-  margin-right: 1.1rem;
+  margin-right: 5px;
 }
 
 .test i {
@@ -56,8 +57,11 @@
   width: 35px;
   height: 50px;
   margin-bottom: 0px;
+  margin-left: 5px;
+  padding: 0px;
   -webkit-transition:width 0.5s;
   transition:width 0.5s;
+
 }
 
 .test li {
@@ -66,6 +70,7 @@
 
 .test:hover {
   width: 150px;
+  height: 50px;
   visibility: visible;
 }
 
@@ -82,6 +87,7 @@
   background: #9b9ea1;
   width: 100px;
   height:10px;
+  margin: 0px;
   margin-bottom: 15px;
 }
 
@@ -113,8 +119,8 @@
 
 #seek-music::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: rem-calc(12);
-  height: rem-calc(12);
+  width: rem-calc(18);
+  height: rem-calc(18);
   border-radius: rem-calc(10);
 
   background: $primary-color;
