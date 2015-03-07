@@ -1,5 +1,13 @@
-.button-search
+.playlists-name
 {
-  border-top-right-radius: rem-calc(5);
-  border-bottom-right-radius: rem-calc(5);
+
+  .playlist-item
+  {
+    margin: rem-calc(10) 0;
+    img
+    {
+      width: rem-calc(50);
+      height: rem-calc(50);
+    }
+  }
 }
