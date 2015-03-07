@@ -18877,3 +18877,13 @@ footer-bar {
   left: 37px;
   animation-duration: 442ms;
 }
+
+/* line 4, ../scss/_playlists.scss */
+.playlists-name .playlist-item {
+  margin: 0.625rem 0;
+}
+/* line 7, ../scss/_playlists.scss */
+.playlists-name .playlist-item img {
+  width: 3.125rem;
+  height: 3.125rem;
+}

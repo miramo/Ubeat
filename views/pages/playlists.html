@@ -29,7 +29,8 @@
                         <li ng-repeat="playlist in sharedProperties.getPlaylists() track by $index"
                             ng-click="setPlaylistActive($index)" ng-mouseover="setHover(playlist, true)"
                             ng-mouseleave="setHover(playlist, false)" class="playlist-item">
-                            <span><img ng-src={{playlist.image.url}} alt=""/></span>
+                            <!--<span><img ng-src={{playlist.image.url}} width="100" height="100" alt=""/></span>-->
+                            <span><img src="http://tinyurl.com/nasnw9p" width="50" height="50" alt=""/></span>
                             <span ng-hide="playlist.isEdit"> {{playlist.name}}</span>
                             <span ng-show="playlist.isEdit">
                                 <input ng-model="playlistCurrentRename.name" type="text" class="pre-radius" onClick="this.select();">
@@ -83,9 +84,9 @@
                                             <i class="fa fa-pause"></i>
                                         </div>
                                     </td>
-                                    <td>{{track.trackName | characters:20}}</td>
-                                    <td><a href="#/album/{{track.collectionId}}">{{track.collectionName | characters:20}}</a></td>
-                                    <td><a href="#/artist/{{track.artistId}}">{{track.artistName}}</a></td>
+                                    <td>{{track.trackName | characters:30:false}}</td>
+                                    <td><a href="#/album/{{track.collectionId}}">{{track.collectionName | characters:20:false}}</a></td>
+                                    <td><a href="#/artist/{{track.artistId}}">{{track.artistName | characters:20:false}}</a></td>
                                     <td class="text-center"><i class="md-delete md-lg on-hover" ng-click="sharedProperties.removeTrackFromPlaylist($index, active.id)"></i></td>
                                     <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
                                 </tr>
