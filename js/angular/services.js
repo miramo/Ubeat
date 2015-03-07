@@ -22,25 +22,26 @@
 
         function Track()
         {
-            var idInPlaylist = 0;
-            var trackId = 0;
-            var albumId = 0;
-            var artistId = 0;
-            var name = '';
-            var artistName = '';
-            var albumName = '';
-            var previewUrl = '';
-            var trackTimeMillis = 0;
-            var artworkUrl100 = '';
-            var number = 0;
+            this.idInPlaylist = 0;
+            this.trackId = 0;
+            this.albumId = 0;
+            this.artistId = 0;
+            this.name = '';
+            this.artistName = '';
+            this.albumName = '';
+            this.previewUrl = '';
+            this.trackTimeMillis = 0;
+            this.artworkUrl100 = '';
+            this.number = 0;
         }
 
         function Playlist()
         {
-            var id = 0;
-            var name = '';
-            var tracks = [];
-            var isEdit = false;
+            this.id = 0;
+            this.name = '';
+            this.tracks = [];
+            this.isEdit = false;
+            this.isHover = false;
         }
 
         return {
@@ -80,7 +81,7 @@
                 angular.copy(playlists, value);
                 localStorageService.set('playlists', playlists);
             },
-            getPlaylist : function(id)
+            getPlaylist            : function (id)
             {
                 for (var i = 0; i < playlists.length; ++i)
                 {
@@ -92,7 +93,7 @@
                 }
                 return null;
             },
-            getTrackFromPlaylist : function(trackId, playlistId)
+            getTrackFromPlaylist   : function (trackId, playlistId)
             {
                 for (var i = 0; i < playlists.length; ++i)
                 {
@@ -153,20 +154,24 @@
                 }
                 return false;
             },
-            createPlaylist            : function (name)
+            createPlaylist         : function (name)
             {
-                var playlistLength = playlists.length;
-                var newPlaylist = new Playlist();
+                if (name)
+                {
+                    var playlistLength = playlists.length;
+                    var newPlaylist = new Playlist();
 
-                newPlaylist.name = name;
-                newPlaylist.id = playlistLength;
-                newPlaylist.tracks = [];
-                playlists[playlistLength] = newPlaylist;
-                localStorageService.set('playlists', playlists);
+                    newPlaylist.name = name;
+                    newPlaylist.id = playlistLength;
+                    newPlaylist.tracks = [];
+                    playlists[playlistLength] = newPlaylist;
+                    localStorageService.set('playlists', playlists);
 
-                return newPlaylist;
+                    return newPlaylist;
+                }
+                return null;
             },
-            addExistingPlaylist            : function (playlist)
+            addExistingPlaylist    : function (playlist)
             {
                 var playlistLength = playlists.length;
                 playlists[playlistLength] = playlist;
@@ -177,25 +182,28 @@
                 playlists.splice(id, 1);
                 localStorageService.set('playlists', playlists);
             },
-            renamePlaylist : function(id, newName)
+            renamePlaylist         : function (id, newName)
             {
-                for (var i = 0; i < playlists.length; ++i)
+                if (newName)
                 {
-                    if (playlists[i].id == id)
+                    for (var i = 0; i < playlists.length; ++i)
                     {
-                        var playlist = playlists[id];
-                        playlist.name = newName;
-                        localStorageService.set('playlists', playlists);
-                        return true;
+                        if (playlists[i].id == id)
+                        {
+                            var playlist = playlists[id];
+                            playlist.name = newName;
+                            localStorageService.set('playlists', playlists);
+                            return true;
+                        }
                     }
                 }
                 return false;
             },
-            getCurrentTrack : function()
+            getCurrentTrack        : function ()
             {
                 return currentTrack;
             },
-            setCurrentTrack : function(track)
+            setCurrentTrack        : function (track)
             {
                 currentTrack = track;
             }

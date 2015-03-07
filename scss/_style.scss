@@ -54,6 +54,11 @@ body
   );
 }
 
+.on-hover:hover
+{
+  color: $primary-color;
+}
+
 .img-circular
 {
   border-radius: 50%;
