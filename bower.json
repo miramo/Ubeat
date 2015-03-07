@@ -17,6 +17,7 @@
     "angular-slick": "~0.1.18",
     "material-design-iconic-font": "~1.1.1",
     "angular-busy": "~4.1.2",
-    "angular-local-storage": "~0.1.5"
+    "angular-local-storage": "~0.1.5",
+    "angular-ui-utils": "bower"
   }
 }

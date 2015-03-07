@@ -27,9 +27,10 @@
         };
     });
 
-    ubeatApp.directive('footerBar', function (){
+    ubeatApp.directive('footerBar', function ()
+    {
         return {
-            restrict: 'E',
+            restrict   : 'E',
             templateUrl: './views/partials/playbar.html'
         };
     });

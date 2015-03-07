@@ -93,7 +93,7 @@
                                 <td>{{track.trackName}}</td>
                                 <td><a href="#/album/{{track.collectionId}}">{{track.collectionName}}</a></td>
                                 <td><a href="#/artist/{{track.artistId}}">{{track.artistName}}</a></td>
-                                <td><a href="" ng-click="sharedProperties.removeTrackFromPlaylist($index, active.id)"><i class="fa fa-minus"></i></a></td>
+                                <td><i class="fa fa-minus on-hover" ng-click="sharedProperties.removeTrackFromPlaylist($index, active.id)"></i></td>
                                 <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
                             </tr>
                             </tbody>

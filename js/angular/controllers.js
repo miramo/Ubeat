@@ -369,7 +369,6 @@
 
         $scope.addTrackArrayToAdd = function (tracks)
         {
-            console.log("Tracks: " + tracks.length);
             $scope.trackArrayToAddToNewPlaylist = tracks;
         }
 
@@ -397,6 +396,11 @@
                 return true;
             }
             return false;
+        }
+
+        $scope.trackArrayToAddIsValid = function ()
+        {
+            return ($scope.trackArrayToAddToNewPlaylist && $scope.trackArrayToAddToNewPlaylist.length > 0);
         }
 
         $scope.createPlaylistByAlbum = function (playlistToAdd, modalId)

@@ -173,9 +173,7 @@
                         if (i == playlistId)
                         {
                             var playlist = playlists[i];
-                            console.log("Length Before: " +  playlist.tracks.length + " | tracksLength: " + tracks.length);
                             playlist.tracks = playlist.tracks.concat(tracks);
-                            console.log("Length After: " +  playlist.tracks.length);
                             localStorageService.set('playlists', playlists);
                             return true;
                         }
