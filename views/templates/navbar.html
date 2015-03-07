@@ -1,0 +1,47 @@
+<div ng-controller="NavbarController as navbarCtrl">
+    <div class="contain-to-grid sticky">
+        <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
+            <ul class="title-area">
+                <li class="name">
+                    <h1><a href="#/"></a></h1>
+                </li>
+                <li class="toggle-topbar menu-icon"><a href=""><span>Menu</span></a></li>
+            </ul>
+            <section class="top-bar-section">
+                <!-- Right Nav Section -->
+                <ul class="right">
+                    <li class="has-form">
+                        <div class="row collapse">
+                            <div class="large-10 small-10 columns">
+                                <input type="text" class="dream-search pre-radius" placeholder="Rechercher">
+                            </div>
+                            <div class="small-2 columns">
+                                <a href="" class="button-search button expand red post-radius"><i class="fi-magnifying-glass"></i></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="has-dropdown not-click">
+                        <a href="">
+                            <div id="profile-topbar">
+                                <div class="img-circular" id="profile-picture"></div>
+                                <div class="hide-for-medium-only">
+                                    <div id="profile-name">John Doe</div>
+                                </div>
+                            </div>
+                        </a>
+                        <ul class="dropdown">
+                            <li><a href="#/playlists/"><i class="md md-my-library-music md-lg"></i> Listes de lectures</a></li>
+                            <li><a href=""><i class="fa fa-cog fa-lg"></i> Paramètres</a></li>
+                            <li class="divider"></li>
+                            <li><a href=""><i class="fa fa-sign-out fa-lg"></i> Se déconnecter</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Left Nav Section -->
+                <ul class="left">
+                </ul>
+            </section>
+        </nav>
+    </div>
+</div>

@@ -321,6 +321,7 @@
         $scope.trackArrayToAddToNewPlaylist = [];
         $scope.tracks = [];
         $scope.album = null;
+        $scope.isPageFailedLoad = false;
 
         var updateTracks = function ()
         {
@@ -423,58 +424,85 @@
             fullscreen: true
         });
 
-        albumFactory.get({id: $routeParams.id}, function (data)
+        var isAlbumIdValid = /^\d+$/.test($routeParams.id);
+
+        var pageFailedLoad = function()
         {
-            $scope.album = data.results[0];
-            sharedProperties.setTitle($scope.album.collectionName);
-            $scope.album.artworkUrl300 = itunesLinkImageSizeTo($scope.album.artworkUrl100, 300);
-            $scope.album.releaseDateObj = new Date($scope.album.releaseDate);
-            $scope.filtersValues = ['trackNumber', 'trackName', 'artistName', '-time.Minutes', 'time.Minutes'];
-            $scope.filtersNames = ['Numéro de piste', 'Chanson', 'Artiste', 'Durée'];
-            $scope.currentFilterName = $scope.filtersNames[0];
-            $scope.filter = $scope.filtersValues[0];
+            $scope.isPageFailedLoad = true;
+        }
 
-            blur.init({el: document.querySelector('.artist-header'), path: $scope.album.artworkUrl300});
-
-            artistFactory.get({id: $scope.album.artistId}, function (data)
+        if (isAlbumIdValid)
+        {
+            albumFactory.get({id: $routeParams.id}, function (data)
             {
-                $scope.artist = data.results[0];
-            });
-
-            albumTracksFactory.get({id: $routeParams.id}, function (data)
-            {
-                $scope.tracks = data.results;
-
-                for (var i = 0; i < $scope.tracks.length; ++i)
+                if (data && data.results.length > 0)
                 {
-                    var currentTrack = sharedProperties.getCurrentTrack();
+                    $scope.album = data.results[0];
+                    sharedProperties.setTitle($scope.album.collectionName);
+                    $scope.album.artworkUrl300 = itunesLinkImageSizeTo($scope.album.artworkUrl100, 300);
+                    $scope.album.releaseDateObj = new Date($scope.album.releaseDate);
+                    $scope.filtersValues = ['trackNumber', 'trackName', 'artistName', '-time.Minutes', 'time.Minutes'];
+                    $scope.filtersNames = ['Numéro de piste', 'Chanson', 'Artiste', 'Durée'];
+                    $scope.currentFilterName = $scope.filtersNames[0];
+                    $scope.filter = $scope.filtersValues[0];
 
-                    if (currentTrack && currentTrack.trackId == $scope.tracks[i].trackId)
+                    blur.init({el: document.querySelector('.artist-header'), path: $scope.album.artworkUrl300});
+
+                    artistFactory.get({id: $scope.album.artistId}, function (data)
                     {
-                        $scope.tracks[i].playState = currentTrack.playState;
-                    }
-                    else
+                        $scope.artist = data.results[0];
+                    });
+
+                    albumTracksFactory.get({id: $routeParams.id}, function (data)
                     {
-                        $scope.tracks[i].playState = sharedProperties.getPlayStates().idle;
+                        $scope.tracks = data.results;
+
+                        for (var i = 0; i < $scope.tracks.length; ++i)
+                        {
+                            var currentTrack = sharedProperties.getCurrentTrack();
+
+                            if (currentTrack && currentTrack.trackId == $scope.tracks[i].trackId)
+                            {
+                                $scope.tracks[i].playState = currentTrack.playState;
+                            }
+                            else
+                            {
+                                $scope.tracks[i].playState = sharedProperties.getPlayStates().idle;
+                            }
+                            $scope.tracks[i].filter = $scope.filter;
+                            $scope.tracks[i].time = millisToTime($scope.tracks[i].trackTimeMillis);
+                            $scope.tracks[i].displayPlayButton = false;
+                        }
+                    });
+
+                    $scope.displayPlayButton = function (track)
+                    {
+                        track.displayPlayButton = true;
                     }
-                    $scope.tracks[i].filter = $scope.filter;
-                    $scope.tracks[i].time = millisToTime($scope.tracks[i].trackTimeMillis);
-                    $scope.tracks[i].displayPlayButton = false;
+
+                    $scope.hidePlayButton = function (track)
+                    {
+                        track.displayPlayButton = false;
+                    }
+
+                    $scope.isResolved = true;
                 }
+                else
+                {
+                    pageFailedLoad();
+                }
+
             });
+        }
+        else
+        {
+            pageFailedLoad();
+        }
 
-            $scope.displayPlayButton = function (track)
-            {
-                track.displayPlayButton = true;
-            }
-
-            $scope.hidePlayButton = function (track)
-            {
-                track.displayPlayButton = false;
-            }
-
-            $scope.isResolved = true;
-        });
+        $scope.check = function()
+        {
+            console.log("FAIL");
+        }
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {

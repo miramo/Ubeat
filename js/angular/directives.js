@@ -31,7 +31,7 @@
     {
         return {
             restrict   : 'E',
-            templateUrl: './views/partials/playbar.html'
+            templateUrl: './views/templates/playbar.html'
         };
     });
 })();
