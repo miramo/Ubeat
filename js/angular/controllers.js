@@ -5,7 +5,6 @@
 (function ()
 {
     var controllers = angular.module('controllers', ['factories', 'directives', 'services', 'ngAudio']);
-    var playStates = {play: 'play', pause: 'pause', idle: 'idle'};
 
     controllers.controller('MainController', function ($scope, sharedProperties)
     {
@@ -38,13 +37,13 @@
         $scope.$watch('sharedProperties.getCurrentTrack()', function (newVal, oldVal)
         {
             if (oldVal)
-                oldVal.playState = playStates.idle;
+                oldVal.playState = sharedProperties.getPlayStates().idle;
             if ($scope.audio && newVal)
             {
                 $scope.audio.pause();
                 $scope.audio = ngAudio.load(newVal.previewUrl);
                 $scope.audio.play();
-                newVal.playState = playStates.play;
+                newVal.playState = sharedProperties.getPlayStates().play;
             }
         });
 
@@ -54,12 +53,19 @@
 
             if (track)
             {
-                track.playState = (newVal == true ? playStates.pause : playStates.play);
+                track.playState = (newVal == true ? sharedProperties.getPlayStates().pause : sharedProperties.getPlayStates().play);
             }
         });
 
-        $scope.canPlay = function () {
-            if ($scope.audio) {
+        $scope.$watch('sharedProperties.getCurrentTrack().playState', function(newVal, oldVal)
+        {
+            sharedProperties.updateTrackStates();
+        });
+
+        $scope.canPlay = function ()
+        {
+            if ($scope.audio)
+            {
                 return $scope.audio.canPlay;
             }
             return false;
@@ -315,8 +321,70 @@
     {
         $scope.isResolved = false;
         $scope.sharedProperties = sharedProperties;
-        $scope.playStates = playStates;
+        $scope.playStates = sharedProperties.getPlayStates();
         $scope.trackToAddToNewPlaylist = null;
+        $scope.tracks = [];
+
+        var updateTracks = function ()
+        {
+            var currentTrack = sharedProperties.getCurrentTrack();
+
+            if (currentTrack)
+            {
+                for (var i = 0; i < $scope.tracks.length; ++i)
+                {
+                    if (currentTrack.trackId == $scope.tracks[i].trackId)
+                    {
+                        $scope.tracks[i].playState = currentTrack.playState;
+                    }
+                    else
+                    {
+                        $scope.tracks[i].playState = $scope.playStates.idle;
+                    }
+                }
+            }
+        }
+
+        $scope.$watch('sharedProperties.getCurrentTrack().playState', function (newVal, oldVal)
+        {
+            updateTracks();
+        });
+
+        $scope.modifyFilter = function (id)
+        {
+            $scope.filter = $scope.filtersValues[id];
+            $scope.currentFilterName = $scope.filtersNames[id]
+        }
+
+        $scope.closeModal = function (id)
+        {
+            $(id).foundation('reveal', 'close');
+        }
+
+        $scope.addTrackToAdd = function (track)
+        {
+            $scope.trackToAddToNewPlaylist = track;
+        }
+
+        $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
+        {
+            if (playlistToAdd)
+            {
+                var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
+
+                sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, newPlaylist.id);
+                $scope.closeModal(modalId);
+                return true;
+            }
+            return false;
+        }
+
+        var blur = new Blur({
+            el        : document.querySelector('body'),
+            path      : '',
+            radius    : 50,
+            fullscreen: true
+        });
 
         albumFactory.get({id: $routeParams.id}, function (data)
         {
@@ -328,42 +396,6 @@
             $scope.filtersNames = ['Numéro de piste', 'Chanson', 'Artiste', 'Durée'];
             $scope.currentFilterName = $scope.filtersNames[0];
             $scope.filter = $scope.filtersValues[0];
-
-            $scope.modifyFilter = function (id)
-            {
-                $scope.filter = $scope.filtersValues[id];
-                $scope.currentFilterName = $scope.filtersNames[id]
-            }
-
-            $scope.closeModal = function (id)
-            {
-                $(id).foundation('reveal', 'close');
-            }
-
-            $scope.addTrackToAdd = function (track)
-            {
-                $scope.trackToAddToNewPlaylist = track;
-            }
-
-            $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
-            {
-                if (playlistToAdd)
-                {
-                    var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
-
-                    sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, newPlaylist.id);
-                    $scope.closeModal(modalId);
-                    return true;
-                }
-                return false;
-            }
-
-            var blur = new Blur({
-                el        : document.querySelector('body'),
-                path      : '',
-                radius    : 50,
-                fullscreen: true
-            });
 
             blur.init({el: document.querySelector('.artist-header'), path: $scope.album.artworkUrl300});
 
@@ -378,7 +410,16 @@
 
                 for (var i = 0; i < $scope.tracks.length; ++i)
                 {
-                    $scope.tracks[i].playState = playStates.idle;
+                    var currentTrack = sharedProperties.getCurrentTrack();
+
+                    if (currentTrack && currentTrack.trackId == $scope.tracks[i].trackId)
+                    {
+                        $scope.tracks[i].playState = currentTrack.playState;
+                    }
+                    else
+                    {
+                        $scope.tracks[i].playState = sharedProperties.getPlayStates().idle;
+                    }
                     $scope.tracks[i].filter = $scope.filter;
                     $scope.tracks[i].time = millisToTime($scope.tracks[i].trackTimeMillis);
                     $scope.tracks[i].displayPlayButton = false;
@@ -419,6 +460,7 @@
         $scope.isNewPlaylistClicked = false;
         $scope.playlistCurrentRename = {};
         $scope.playlistCurrentRename.name = '';
+        $scope.playStates = sharedProperties.getPlayStates();
 
         $scope.switchNewPlaylistClicked = function ()
         {
@@ -454,6 +496,16 @@
             $scope.playlistCurrentRename.name = value;
         }
 
+        $scope.displayPlayButton = function (track)
+        {
+            track.displayPlayButton = true;
+        }
+
+        $scope.hidePlayButton = function (track)
+        {
+            track.displayPlayButton = false;
+        }
+
         $scope.confirmRename = function (id, playlist, newName)
         {
             var val = sharedProperties.renamePlaylist(id, newName);
@@ -463,9 +515,9 @@
             $scope.active = playlist;
         }
 
-        $scope.createPlaylist = function(value)
+        $scope.createPlaylist = function (value)
         {
-            $scope.active =  sharedProperties.createPlaylist(value);
+            $scope.active = sharedProperties.createPlaylist(value);
             $scope.playlistToAdd.name = $scope.playlistToAdd.defaultName;
         }
 

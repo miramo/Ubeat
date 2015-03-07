@@ -13,6 +13,30 @@
         var homeAlbums = [];
         var playlists = localStorageService.get('playlists');
         var currentTrack = null;
+        var playStates = {play: 'play', pause: 'pause', idle: 'idle'};
+
+
+        var updateTrackStates = function()
+        {
+            if (currentTrack)
+            {
+                for (var i = 0; i < playlists.length; ++i)
+                {
+                    var currentPlaylist = playlists[i];
+                    for (var j = 0; j < currentPlaylist.tracks.length; ++j)
+                    {
+                        if (currentTrack.trackId == currentPlaylist.tracks[j].trackId)
+                        {
+                            currentPlaylist.tracks[j].playState = currentTrack.playState;
+                        }
+                        else
+                        {
+                            currentPlaylist.tracks[j].playState = playStates.idle;
+                        }
+                    }
+                }
+            }
+        }
 
         if (playlists == null)
         {
@@ -28,6 +52,7 @@
             this.artistId = 0;
             this.name = '';
             this.artistName = '';
+            this.playState = playStates.idle;
             this.albumName = '';
             this.previewUrl = '';
             this.trackTimeMillis = 0;
@@ -203,10 +228,20 @@
             getCurrentTrack        : function ()
             {
                 return currentTrack;
+                updateTrackStates();
             },
             setCurrentTrack        : function (track)
             {
                 currentTrack = track;
+                updateTrackStates();
+            },
+            getPlayStates          : function ()
+            {
+                return playStates
+            },
+            updateTrackStates : function()
+            {
+                updateTrackStates();
             }
         };
     });
