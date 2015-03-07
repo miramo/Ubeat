@@ -18736,9 +18736,10 @@ footer-bar {
   height: 0.625rem;
   margin: 0;
   margin-bottom: 0.9375rem;
+  outline: 0;
 }
 
-/* line 108, ../scss/_playbar.scss */
+/* line 109, ../scss/_playbar.scss */
 #seek-volume::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 0.75rem;
@@ -18747,7 +18748,7 @@ footer-bar {
   background: #c60000;
 }
 
-/* line 118, ../scss/_playbar.scss */
+/* line 119, ../scss/_playbar.scss */
 #seek-music {
   -webkit-appearance: none;
   border-bottom-right-radius: 0.3125rem;
@@ -18760,9 +18761,10 @@ footer-bar {
   z-index: 99;
   height: 0.5rem;
   background: #9b9ea1;
+  outline: 0;
 }
 
-/* line 138, ../scss/_playbar.scss */
+/* line 140, ../scss/_playbar.scss */
 #seek-music::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 1.125rem;
@@ -18772,7 +18774,7 @@ footer-bar {
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 149, ../scss/_playbar.scss */
+  /* line 151, ../scss/_playbar.scss */
   .ul-volume {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;

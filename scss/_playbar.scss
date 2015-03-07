@@ -103,6 +103,7 @@
   height: rem-calc(10);
   margin: rem-calc(0);
   margin-bottom: rem-calc(15);
+  outline: 0;
 }
 
 #seek-volume::-webkit-slider-thumb
@@ -133,6 +134,7 @@
 
   height: rem-calc(8);
   background: #9b9ea1;
+  outline: 0;
 }
 
 #seek-music::-webkit-slider-thumb
