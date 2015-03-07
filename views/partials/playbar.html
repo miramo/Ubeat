@@ -1,41 +1,42 @@
 <div ng-controller="PlaybarController as playbarCtrl">
-    <div class="contain-to-grid">
+    <div class="contain-to-grid disable-select">
         <div class="bottom-bar row collapse">
-            <div class="small-12 columns">
+            <div class="first small-12 columns">
                  <input class="form-control" id="seek-music" type=range min=0 max=1 step=0.00001 ng-model='audio.progress'/>
             </div>
-            <ul class="small-3 columns left hide-for-small-only test" >
-                    <li class="volume small-2 columns left">
-                        <i ng-click="switchMute()" class="fa fa-volume-off fa-2x" ng-show="getVolume() == 0"></i>
-                        <i ng-click="switchMute()" class="fa fa-volume-down fa-2x" ng-show="getVolume() < 50 && getVolume() > 0"></i>
-                        <i ng-click="switchMute()" class="fa fa-volume-up fa-2x" ng-show="getVolume() > 50"></i>
-                        <input id="seek-volume" class='form-control' type=range min=0 max=1 step=0.01 ng-model='audio.volume' >
+            <div class="second small-12 columns">
+                <ul class="small-3 columns left hide-for-small-only test" >
+                        <li class="volume small-2 columns left">
+                            <i ng-click="switchMute()" class="fa fa-volume-off fa-2x" ng-show="getVolume() == 0"></i>
+                            <i ng-click="switchMute()" class="fa fa-volume-down fa-2x" ng-show="getVolume() < 50 && getVolume() > 0"></i>
+                            <i ng-click="switchMute()" class="fa fa-volume-up fa-2x" ng-show="getVolume() > 50"></i>
+                            <input id="seek-volume" class='form-control' type=range min=0 max=1 step=0.01 ng-model='audio.volume' >
+                        </li>
+                </ul>
+                <ul class="small-3 columns right hide-for-small-only" >
+                    <li class="bottom-right small-2 columns right">
+                        <a href=""><i class="md md-queue-music md-2x bottom-music-list"></i></a>
                     </li>
-            </ul>
-            <ul class="small-3 columns right hide-for-small-only" >
-                <li class="bottom-right small-2 columns right">
-                    <a href=""><i class="md md-queue-music md-2x bottom-music-list"></i></a>
-                </li>
-            </ul>
-            <ul class="play-area small-centered columns">
-                <li class="play-button small-1 columns left">
-                    <i  class="fa fa-repeat fa-lg"></i>
-                </li>
-                <li class="play-button small-3 small-centered columns">
-                    <i class="fa fa-fast-backward fa-2x"></i>
-                </li>
-                <li class="play-button small-3 small-centered columns">
-                    <i ng-click='audio.paused ? audio.play() : audio.pause()' class="fa fa-play fa-2x" ng-show="audio.paused"></i>
-                    <i ng-click='audio.paused ? audio.play() : audio.pause()' class="fa fa-pause fa-2x" ng-hide="audio.paused"></i>
-                </li>
-                <li class="play-button small-3 small-centered columns">
-                    <i class="fa fa-fast-forward fa-2x"></i>
-                </li>
-                <li class="play-button small-1 columns right">
-                    <i class="fa fa-random fa-lg"></i>
-                </li>
-            </ul>
-
+                </ul>
+                <ul class="play-area small-centered columns">
+                    <li class="play-button small-1 columns left">
+                        <i  class="fa fa-repeat fa-lg"></i>
+                    </li>
+                    <li class="play-button small-3 small-centered columns">
+                        <i class="fa fa-fast-backward fa-2x"></i>
+                    </li>
+                    <li class="play-button small-3 small-centered columns">
+                        <i ng-click='audio.paused && canPlay() ? audio.play() : audio.pause()' class="fa fa-play fa-2x" ng-show="audio.paused"></i>
+                        <i ng-click='audio.paused ? audio.play() : audio.pause()' class="fa fa-pause fa-2x" ng-hide="audio.paused"></i>
+                    </li>
+                    <li class="play-button small-3 small-centered columns">
+                        <i class="fa fa-fast-forward fa-2x"></i>
+                    </li>
+                    <li class="play-button small-1 columns right">
+                        <i class="fa fa-random fa-lg"></i>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

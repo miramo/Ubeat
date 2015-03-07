@@ -58,6 +58,13 @@
             }
         });
 
+        $scope.canPlay = function () {
+            if ($scope.audio) {
+                return $scope.audio.canPlay;
+            }
+            return false;
+        }
+
         $scope.switchMute = function ()
         {
             if ($scope.audio)

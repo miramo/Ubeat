@@ -114,3 +114,11 @@ input[type="text"].pre-radius
   border-top-left-radius: rem-calc($button-radius);
   border-bottom-left-radius: rem-calc($button-radius);
 }
+
+.disable-select
+{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
