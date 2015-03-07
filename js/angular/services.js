@@ -84,7 +84,8 @@
             {
                 for (var i = 0; i < playlists.length; ++i)
                 {
-                    if (playlists[i].id == id)
+                    playlists[i].id = i;
+                    if (i == id)
                     {
                         return playlists[i];
                     }
@@ -124,6 +125,7 @@
                                 return false;
                             }
                         }
+                        track.idInPlaylist = tracksLength;
                         playlist.tracks[tracksLength] = track;
                         localStorageService.set('playlists', playlists);
                         return true;
@@ -140,7 +142,7 @@
                         var playlist = playlists[playlistId];
                         for (var j = 0; j < playlist.tracks.length; ++j)
                         {
-                            if (playlist.tracks[j].idInPlaylist == trackIdInPlaylist)
+                            if (j == trackIdInPlaylist)
                             {
                                 playlist.tracks.splice(j, 1);
                                 localStorageService.set('playlists', playlists);

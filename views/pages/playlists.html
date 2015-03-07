@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li ng-repeat="playlist in sharedProperties.getPlaylists()" ng-click="setPlaylistActive(playlist.id)">
+                        <li ng-repeat="playlist in sharedProperties.getPlaylists() track by $index" ng-click="setPlaylistActive($index)">
                             <i ng-click="" class="fa fa-music fa-lg"></i>
                                 {{playlist.name}}
                             <i class="md-delete md-lg right" ng-click="sharedProperties.removePlaylist($index)"></i>

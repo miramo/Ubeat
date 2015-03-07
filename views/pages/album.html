@@ -107,17 +107,17 @@
                     </div>
                 </td>
                 <td class="text-center">
-                    <a data-dropdown="drop1" aria-controls="drop1" aria-expanded="false">
+                    <a data-dropdown="drop1" ng-click="addTrackToAdd(track)" aria-controls="drop1" aria-expanded="false">
                     <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
                         <i class="fa fa-plus"></i>
                     </span>
                     </a>
-                    <ul id="drop1" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
+                    <ul id="drop1" class="f-dropdown" data-dropdown-content>
                         <li class="bottom-border">
-                            <a href="" data-reveal-id="myModal" ng-click="addTrackToAdd(track)">Nouvelle playlist</a>
+                            <a href="" data-reveal-id="myModal" ng-click="addTrackToAdd(trackToAddToNewPlaylist)">Nouvelle playlist</a>
                         </li>
                         <li ng-repeat="playlist in sharedProperties.getPlaylists()">
-                            <a href="" ng-click="sharedProperties.addTrackToPlaylist(track, playlist.id)">{{playlist.name}}</a>
+                            <a href="" ng-click="sharedProperties.addTrackToPlaylist(trackToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
                         </li>
                     </ul>
                 </td>

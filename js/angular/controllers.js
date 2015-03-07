@@ -335,13 +335,11 @@
 
             $scope.addTrackToAdd = function (track)
             {
-                console.log("AddTrackToAdd: " + track)
                 $scope.trackToAddToNewPlaylist = track;
             }
 
             $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
             {
-                console.log("PlaylistTrackToAdd: " + $scope.trackToAddToNewPlaylist);
                 var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
                 sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, newPlaylist.id);
                 $scope.closeModal(modalId);
