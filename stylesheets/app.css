@@ -18636,13 +18636,13 @@ footer-bar {
   height: 3.75rem;
 }
 
-/* line 5, ../scss/_playbar.scss */
+/* line 6, ../scss/_playbar.scss */
 .bottom-bar i:hover {
   color: #c60000;
   cursor: pointer;
 }
 
-/* line 10, ../scss/_playbar.scss */
+/* line 12, ../scss/_playbar.scss */
 .play-area {
   text-align: center;
   padding-left: 0.9375rem;
@@ -18651,7 +18651,7 @@ footer-bar {
   float: left;
 }
 @media only screen and (max-width: 40em) {
-  /* line 10, ../scss/_playbar.scss */
+  /* line 12, ../scss/_playbar.scss */
   .play-area {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -18660,85 +18660,85 @@ footer-bar {
   }
 }
 
-/* line 18, ../scss/_playbar.scss */
+/* line 21, ../scss/_playbar.scss */
 .play-button {
   color: #FFFFFF;
-  padding-right: 5px;
-  padding-left: 5px;
-  padding-top: 15px;
+  padding-right: 0.3125rem;
+  padding-left: 0.3125rem;
+  padding-top: 0.9375rem;
   list-style-type: none;
   display: inline-block;
 }
 
-/* line 27, ../scss/_playbar.scss */
+/* line 31, ../scss/_playbar.scss */
 .volume {
   color: #FFFFFF;
-  padding-right: 0px;
-  padding-left: 0px;
+  padding-right: 0;
+  padding-left: 0;
   list-style-type: none;
   display: inline-block;
 }
 
-/* line 37, ../scss/_playbar.scss */
+/* line 42, ../scss/_playbar.scss */
 .bottom-right {
   color: #FFFFFF;
-  padding-right: 5px;
-  padding-left: 5px;
-  padding: 0px;
+  padding-right: 0.3125rem;
+  padding-left: 0.3125rem;
+  padding: 0;
   list-style-type: none;
   display: inline-block;
-  margin-right: 5px;
+  margin-right: 0.3125rem;
 }
 
-/* line 50, ../scss/_playbar.scss */
-.test i {
-  width: 35px;
-  padding-top: 15px;
-}
-
-/* line 55, ../scss/_playbar.scss */
+/* line 58, ../scss/_playbar.scss */
 .test {
   overflow: hidden;
-  width: 35px;
-  height: 50px;
-  margin-bottom: 0px;
-  margin-left: 5px;
-  padding: 0px;
+  width: 2.1875rem;
+  height: 3.125rem;
+  margin-bottom: 0;
+  margin-left: 0.3125rem;
+  padding: 0;
   -webkit-transition: width 0.5s;
   transition: width 0.5s;
 }
 
-/* line 67, ../scss/_playbar.scss */
+/* line 71, ../scss/_playbar.scss */
+.test i {
+  width: 2.1875rem;
+  padding-top: 0.9375rem;
+}
+
+/* line 77, ../scss/_playbar.scss */
 .test li {
   white-space: nowrap;
 }
 
-/* line 71, ../scss/_playbar.scss */
+/* line 82, ../scss/_playbar.scss */
 .test:hover {
-  width: 150px;
-  height: 50px;
+  width: 9.375rem;
+  height: 3.125rem;
   visibility: visible;
 }
 
-/* line 77, ../scss/_playbar.scss */
+/* line 89, ../scss/_playbar.scss */
 .bottom-music-list {
-  line-height: 0px;
-  margin-top: 15px;
+  line-height: 0;
+  margin-top: 0.9375rem;
 }
 
-/* line 83, ../scss/_playbar.scss */
+/* line 96, ../scss/_playbar.scss */
 #seek-volume {
   vertical-align: middle;
   -webkit-appearance: none;
   border-radius: 0.625rem;
   background: #9b9ea1;
-  width: 100px;
-  height: 10px;
-  margin: 0px;
-  margin-bottom: 15px;
+  width: 6.25rem;
+  height: 0.625rem;
+  margin: 0;
+  margin-bottom: 0.9375rem;
 }
 
-/* line 94, ../scss/_playbar.scss */
+/* line 108, ../scss/_playbar.scss */
 #seek-volume::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 0.75rem;
@@ -18747,7 +18747,7 @@ footer-bar {
   background: #c60000;
 }
 
-/* line 103, ../scss/_playbar.scss */
+/* line 118, ../scss/_playbar.scss */
 #seek-music {
   -webkit-appearance: none;
   border-bottom-right-radius: 0.3125rem;
@@ -18757,11 +18757,12 @@ footer-bar {
   position: absolute;
   top: 0;
   width: 100%;
+  z-index: 99;
   height: 0.5rem;
   background: #9b9ea1;
 }
 
-/* line 120, ../scss/_playbar.scss */
+/* line 138, ../scss/_playbar.scss */
 #seek-music::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 1.125rem;
@@ -18771,7 +18772,7 @@ footer-bar {
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 130, ../scss/_playbar.scss */
+  /* line 149, ../scss/_playbar.scss */
   .ul-volume {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
