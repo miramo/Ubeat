@@ -16,11 +16,11 @@
                                 <div class="large-12 columns">
                                     <div class="row collapse">
                                         <div class="small-10 columns">
-                                            <input ng-model="playlistToAdd" type="text" class="pre-radius"
+                                            <input ng-model="playlistToAdd.name" type="text" class="pre-radius"
                                                    placeholder="" onClick="this.select();">
                                         </div>
                                         <div class="small-2 columns">
-                                            <a ng-click="sharedProperties.createPlaylist(playlistToAdd)"
+                                            <a ng-click="createPlaylist(playlistToAdd.name); switchNewPlaylistClicked()"
                                                class="button expand red post-radius">Créer</a>
                                         </div>
                                     </div>
@@ -28,22 +28,22 @@
                             </div>
                         </li>
                         <li ng-repeat="playlist in sharedProperties.getPlaylists() track by $index"
-                            ng-click="setPlaylistActive($index); setPlaylistCurrentRename(playlist.name)" ng-mouseover="setHover(playlist, true)"
+                            ng-click="setPlaylistActive($index)" ng-mouseover="setHover(playlist, true)"
                             ng-mouseleave="setHover(playlist, false)">
                            <span><i class="fa fa-music fa-lg left"></i>
 
                             <span ng-hide="playlist.isEdit"> {{playlist.name}}</span>
                             <span ng-show="playlist.isEdit">
-                                <input ng-model="playlistCurrentRename" type="text" class="pre-radius" onClick="this.select();">
+                                <input ng-model="playlistCurrentRename.name" type="text" class="pre-radius" onClick="this.select();">
                             </span>
                             <i class="md-delete md-lg right on-hover" ng-show="playlist.isHover && !playlist.isEdit"
                                ng-click="sharedProperties.removePlaylist($index)"></i>
                             <i class="md-edit md-lg right on-hover" ng-show="playlist.isHover  && !playlist.isEdit"
-                               ng-click="setEdit(playlist, true)"></i>
+                               ng-click="setEdit($index, playlist, true); setPlaylistCurrentRename(playlist.name)"></i>
                             <i class="md-cancel md-lg right on-hover" ng-show="playlist.isEdit"
-                               ng-click="setEdit(playlist, false)"></i>
+                               ng-click="setEdit($index,playlist, false); setPlaylistCurrentRename(playlist.name)"></i>
                             <i class="md-done md-lg right on-hover" ng-show="playlist.isEdit"
-                               ng-click="setEdit(playlist, false); sharedProperties.renamePlaylist($index, playlistCurrentRename)"></i>
+                               ng-click="setEdit($index, playlist, false); confirmRename($index, playlist, playlistCurrentRename.name);"></i>
                                </span>
                         </li>
                     </ul>

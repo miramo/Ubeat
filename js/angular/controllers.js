@@ -410,12 +410,15 @@
     controllers.controller('PlaylistsController', function ($scope, $routeParams, sharedProperties, localStorageService)
     {
         $scope.sharedProperties = sharedProperties;
-        $scope.playlistToAdd = "Nouvelle playlist";
+        $scope.playlistToAdd = {};
+        $scope.playlistToAdd.defaultName = "Nouvelle playlist";
+        $scope.playlistToAdd.name = $scope.playlistToAdd.defaultName;
         $scope.playlists = sharedProperties.playlists;
         $scope.alertMessages = [];
         $scope.active = sharedProperties.getPlaylist(0);
         $scope.isNewPlaylistClicked = false;
-        $scope.playlistCurrentRename = '';
+        $scope.playlistCurrentRename = {};
+        $scope.playlistCurrentRename.name = '';
 
         $scope.switchNewPlaylistClicked = function ()
         {
@@ -427,9 +430,18 @@
             $scope.alertMessages.splice(id, 1);
         }
 
-        $scope.setEdit = function (playlist, isEdit)
+        $scope.setEdit = function (id, playlist, isEdit)
         {
             playlist.isEdit = isEdit;
+            var playlists = sharedProperties.getPlaylists();
+
+            for (var i = 0; i < playlists.length; ++i)
+            {
+                if (i != id)
+                {
+                    playlists[i].isEdit = false;
+                }
+            }
         }
 
         $scope.setHover = function (playlist, isHover)
@@ -439,14 +451,22 @@
 
         $scope.setPlaylistCurrentRename = function (value)
         {
-            $scope.playlistCurrentRename = value;
+            $scope.playlistCurrentRename.name = value;
         }
 
-        $scope.confirmRename = function (playlist, newName)
+        $scope.confirmRename = function (id, playlist, newName)
         {
-            sharedProperties.renamePlaylist(playlist.id, newName);
+            var val = sharedProperties.renamePlaylist(id, newName);
             playlist.isEdit = false;
             playlist.isHover = false;
+            $scope.setPlaylistCurrentRename(newName);
+            $scope.active = playlist;
+        }
+
+        $scope.createPlaylist = function(value)
+        {
+            $scope.active =  sharedProperties.createPlaylist(value);
+            $scope.playlistToAdd.name = $scope.playlistToAdd.defaultName;
         }
 
         $scope.setPlaylistActive = function (id)

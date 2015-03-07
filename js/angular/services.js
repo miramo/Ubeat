@@ -188,10 +188,11 @@
                 {
                     for (var i = 0; i < playlists.length; ++i)
                     {
-                        if (playlists[i].id == id)
+                        if (i == id)
                         {
                             var playlist = playlists[id];
                             playlist.name = newName;
+                            console.log("Rename: " + playlist.name);
                             localStorageService.set('playlists', playlists);
                             return true;
                         }
