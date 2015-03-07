@@ -17994,16 +17994,24 @@ body::-webkit-scrollbar-track {
   text-overflow: ellipsis;
 }
 
-/* line 95, ../scss/_style.scss */
+/* line 101, ../scss/_style.scss */
 .post-radius {
   border-top-right-radius: 0.1875rem;
   border-bottom-right-radius: 0.1875rem;
 }
 
-/* line 101, ../scss/_style.scss */
+/* line 107, ../scss/_style.scss */
 input[type="text"].pre-radius {
   border-top-left-radius: 0.1875rem;
   border-bottom-left-radius: 0.1875rem;
+}
+
+/* line 113, ../scss/_style.scss */
+.disable-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* line 1, ../scss/_navbar.scss */
