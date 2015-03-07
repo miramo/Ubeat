@@ -500,6 +500,8 @@
 
         $scope.$watch('sharedProperties.getPlaylists()', function (newVal, oldVal)
         {
+            $scope.playlists = sharedProperties.getPlaylists();
+
             if (newVal)
             {
                 for (var i = 0; i < newVal.length; ++i)
@@ -510,6 +512,10 @@
             if (!$scope.playlists || $scope.playlists.length <= 0)
             {
                 $scope.active = $scope.defaultPlaylist;
+            }
+            else if ($scope.playlists && $scope.playlists.length > 0)
+            {
+                $scope.active = $scope.playlists[0];
             }
         });
 

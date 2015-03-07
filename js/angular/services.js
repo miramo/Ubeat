@@ -17,16 +17,22 @@
 
         var updateTrackStates = function()
         {
-            if (currentTrack)
-            {
+
                 for (var i = 0; i < playlists.length; ++i)
                 {
                     var currentPlaylist = playlists[i];
                     for (var j = 0; j < currentPlaylist.tracks.length; ++j)
                     {
-                        if (currentTrack.trackId == currentPlaylist.tracks[j].trackId)
+                        if (currentTrack)
                         {
-                            currentPlaylist.tracks[j].playState = currentTrack.playState;
+                            if (currentTrack.trackId == currentPlaylist.tracks[j].trackId)
+                            {
+                                currentPlaylist.tracks[j].playState = currentTrack.playState;
+                            }
+                            else
+                            {
+                                currentPlaylist.tracks[j].playState = playStates.idle;
+                            }
                         }
                         else
                         {
@@ -34,7 +40,6 @@
                         }
                     }
                 }
-            }
         }
 
         if (playlists == null)
