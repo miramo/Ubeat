@@ -4,6 +4,10 @@
   .playlist-item
   {
     margin: rem-calc(10) 0;
+    .icon-playlist-item
+    {
+      padding-top: rem-calc(15);
+    }
     img
     {
       width: rem-calc(50);

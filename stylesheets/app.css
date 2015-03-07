@@ -18981,6 +18981,10 @@ footer-bar {
   margin: 0.625rem 0;
 }
 /* line 7, ../scss/_playlists.scss */
+.playlists-name .playlist-item .icon-playlist-item {
+  padding-top: 0.9375rem;
+}
+/* line 13, ../scss/_playlists.scss */
 .playlists-name .playlist-item img {
   width: 3.125rem;
   height: 3.125rem;
