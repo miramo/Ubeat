@@ -1,11 +1,9 @@
+<div ng-show="sharedPagesStatus.getIsPageLoaded()">
 <div class="row">
     <div class="small-12 columns">
         <div class="panel new-artists radius">
             <h2 class="text-center"><i class="md-recent-actors md-lg left"></i> Derniers artistes</h2>
-            <div class="text-center" ng-hide="artistsLoadComplete">
-                <i class="fa fa-spinner fa-pulse fa-2x"></i>
-            </div>
-            <div class="row" ng-switch on="artistsLoadComplete">
+            <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                 <slick class="slider-index" ng-switch-when="true"
                        speed="300" center-mode="true" infinite="true" focus-on-select="true" dots="true"
                        slides-to-show="5" slides-to-scroll="1" swipe-to-slide="true" autoplay="true"
@@ -26,15 +24,11 @@
         </div>
     </div>
 </div>
-
 <div class="row">
     <div class="small-12 columns">
         <div class="panel new-albums radius">
             <h2 class="text-center"><i class="md-album md-lg left"></i> Derniers albums</h2>
-            <div class="text-center" ng-hide="albumsLoadComplete">
-                <i class="fa fa-spinner fa-pulse fa-2x"></i>
-            </div>
-            <div class="row slider-index" ng-switch on="albumsLoadComplete">
+            <div class="row slider-index" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                 <slick class="slider-index" ng-switch-when="true"
                        speed="300" center-mode="true" infinite="true" focus-on-select="true" dots="true"
                        slides-to-show="5" slides-to-scroll="1" swipe-to-slide="true" autoplay="false"
@@ -58,4 +52,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

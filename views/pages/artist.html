@@ -1,4 +1,4 @@
-<div ng-controller="ArtistController as artistCtrl">
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && !sharedPagesStatus.getIsPageError()">
     <div class="artist-header">
         <div class="row">
             <div class="album-artist-picture" ng-switch on="artistPictureLoaded">

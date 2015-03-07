@@ -15,18 +15,14 @@
     z-index    : 1;
   }
 
-  .splash-ubeat img
+  .splash-ubeat
   {
     width      : rem_calc(250);
     height     : rem_calc(100);
-    position   : absolute;
+    position   : relative;
     opacity    : 1.0;
-    top        : 0;
-    bottom     : 0;
-    left       : 0;
-    right      : 0;
     z-index    : 2;
-    margin     : auto;
+    margin     : rem_calc(-100) 0 0 rem_calc(-125);
     text-align : center;
   }
 
@@ -36,11 +32,11 @@
     height     : 50px;
     position   : absolute;
     color      : #ffffff;
-    top        : 0;
-    bottom     : 0;
-    right      : 0;
-    left       : 0;
-    margin     : auto;
+    top        : 50%;
+    bottom     : 50%;
+    right      : 50%;
+    left       : 50%;
+    margin     : rem_calc(10) 0 0 0;
     text-align : center;
     z-index    : 2;
   }
