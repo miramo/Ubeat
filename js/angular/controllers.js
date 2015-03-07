@@ -11,7 +11,6 @@
         $scope.sharedProperties = sharedProperties;
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
-            console.log('MainController ChangeSuccess');
             $("body").css("background-image", "none");
             // call your functions here
         });
@@ -21,7 +20,6 @@
     {
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
-            console.log('NavbarController ChangeSuccess');
             $(document).foundation();
             // call your functions here
         });
@@ -57,7 +55,7 @@
             }
         });
 
-        $scope.$watch('sharedProperties.getCurrentTrack().playState', function(newVal, oldVal)
+        $scope.$watch('sharedProperties.getCurrentTrack().playState', function (newVal, oldVal)
         {
             sharedProperties.updateTrackStates();
         });
@@ -97,7 +95,7 @@
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
-            console.log('PlaybarController ChangeSuccess');
+            ;
             $(document).foundation();
             // call your functions here
         });
@@ -216,7 +214,6 @@
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
-            console.log('HomeController ChangeSuccess');
             $(document).foundation();
 
 
@@ -310,8 +307,6 @@
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
-            console.log('ArtistController ChangeSuccess');
-
             $(document).foundation('interchange', 'reflow');
         });
     });
@@ -323,7 +318,9 @@
         $scope.sharedProperties = sharedProperties;
         $scope.playStates = sharedProperties.getPlayStates();
         $scope.trackToAddToNewPlaylist = null;
+        $scope.trackArrayToAddToNewPlaylist = [];
         $scope.tracks = [];
+        $scope.album = null;
 
         var updateTracks = function ()
         {
@@ -345,6 +342,10 @@
             }
         }
 
+        $scope.$watch('sharedProperties.getCurrentTrack()', function (newVal, oldVal)
+        {
+            updateTracks();
+        });
         $scope.$watch('sharedProperties.getCurrentTrack().playState', function (newVal, oldVal)
         {
             updateTracks();
@@ -366,6 +367,12 @@
             $scope.trackToAddToNewPlaylist = track;
         }
 
+        $scope.addTrackArrayToAdd = function (tracks)
+        {
+            console.log("Tracks: " + tracks.length);
+            $scope.trackArrayToAddToNewPlaylist = tracks;
+        }
+
         $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
         {
             if (playlistToAdd)
@@ -373,6 +380,32 @@
                 var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
 
                 sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, newPlaylist.id);
+                $scope.closeModal(modalId);
+                return true;
+            }
+            return false;
+        }
+
+        $scope.createPlaylistByTrackArray = function (playlistToAdd, modalId)
+        {
+            if (playlistToAdd)
+            {
+                var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
+
+                sharedProperties.addTrackArrayToPlaylist($scope.trackArrayToAddToNewPlaylist, newPlaylist.id);
+                $scope.closeModal(modalId);
+                return true;
+            }
+            return false;
+        }
+
+        $scope.createPlaylistByAlbum = function (playlistToAdd, modalId)
+        {
+            if (playlistToAdd)
+            {
+                var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
+
+                sharedProperties.addTrackArrayToPlaylist($scope.trackArrayToAddToNewPlaylist, newPlaylist.id);
                 $scope.closeModal(modalId);
                 return true;
             }
@@ -461,6 +494,39 @@
         $scope.playlistCurrentRename = {};
         $scope.playlistCurrentRename.name = '';
         $scope.playStates = sharedProperties.getPlayStates();
+        $scope.defaultPlaylist = {};
+
+        $scope.defaultPlaylist.name = "Pas de playlist";
+
+        $scope.$watch('sharedProperties.getPlaylists()', function (newVal, oldVal)
+        {
+            if (newVal)
+            {
+                for (var i = 0; i < newVal.length; ++i)
+                {
+                    newVal[i].id = i;
+                }
+            }
+            if (!$scope.playlists || $scope.playlists.length <= 0)
+            {
+                $scope.active = $scope.defaultPlaylist;
+            }
+        });
+
+        $scope.removePlaylist = function (id)
+        {
+            sharedProperties.removePlaylist(id);
+            $scope.playlists = sharedProperties.getPlaylists();
+
+            if ($scope.playlists.length > 0)
+            {
+                $scope.active = $scope.playlists[0];
+            }
+            else
+            {
+                $scope.active = $scope.defaultPlaylist;
+            }
+        }
 
         $scope.switchNewPlaylistClicked = function ()
         {
@@ -529,7 +595,6 @@
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
-            console.log("PlaylistsController ChangeSuccess");
             $(document).foundation();
             $(document).foundation('dropdown', 'reflow');
         });

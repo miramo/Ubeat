@@ -38,7 +38,7 @@
                                        onClick="this.select();">
                             </span>
                             <i class="md-delete md-lg right on-hover" ng-show="playlist.isHover && !playlist.isEdit"
-                               ng-click="sharedProperties.removePlaylist($index)"></i>
+                               ng-click="removePlaylist($index)"></i>
                             <i class="md-edit md-lg right on-hover" ng-show="playlist.isHover  && !playlist.isEdit"
                                ng-click="setEdit($index, playlist, true); setPlaylistCurrentRename(playlist.name)"></i>
                             <i class="md-cancel md-lg right on-hover" ng-show="playlist.isEdit"
@@ -65,6 +65,7 @@
                             <thead>
                             <tr>
                                 <th width="30">#</th>
+                                <th width="30"></th>
                                 <th width="600">Titre de la musique</th>
                                 <th width="300">Album</th>
                                 <th width="300">Nom de l'artiste</th>
@@ -72,14 +73,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="music-row" ng-repeat="track in active.tracks"
+                            <tr class="music-row" ng-repeat="track in active.tracks track by $index"
                                 ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
                                 <td class="text-center">
                                     <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
                                 <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
                                         ng-click="sharedProperties.setCurrentTrack(track)" class="fa fa-play fa-lg"></i></span>
                                     </div>
-                                    {{track.playState}}
                                     <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
                                         {{track.trackNumber}}
                                     </div>
@@ -90,6 +90,7 @@
                                         <i class="fa fa-pause"></i>
                                     </div>
                                 </td>
+                                <td><a href="" ng-click="sharedProperties.removeTrackFromPlaylist($index, active.id)"><i class="fa fa-minus"></i></a></td>
                                 <td>{{track.trackName}}</td>
                                 <td><a href="#/album/{{track.collectionId}}">{{track.collectionName}}</a></td>
                                 <td><a href="#/artist/{{track.artistId}}">{{track.artistName}}</a></td>

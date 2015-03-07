@@ -15,7 +15,6 @@
         var currentTrack = null;
         var playStates = {play: 'play', pause: 'pause', idle: 'idle'};
 
-
         var updateTrackStates = function()
         {
             if (currentTrack)
@@ -58,6 +57,7 @@
             this.trackTimeMillis = 0;
             this.artworkUrl100 = '';
             this.number = 0;
+            this.playlist = {};
         }
 
         function Playlist()
@@ -140,17 +140,17 @@
             {
                 for (var i = 0; i < playlists.length; ++i)
                 {
-                    if (playlists[i].id == playlistId)
+                    if (i == playlistId)
                     {
                         var playlist = playlists[i];
                         var tracksLength = playlist.tracks.length;
-                        for (var j = 0; j < tracksLength; ++j)
-                        {
-                            if (playlist.tracks[j].idInPlaylist == track.id)
-                            {
-                                return false;
-                            }
-                        }
+                        //for (var j = 0; j < tracksLength; ++j)
+                        //{
+                        //    if (playlist.tracks[j].idInPlaylist == track.id)
+                        //    {
+                        //        return false;
+                        //    }
+                        //}
                         track.idInPlaylist = tracksLength;
                         playlist.tracks[tracksLength] = track;
                         localStorageService.set('playlists', playlists);
@@ -159,11 +159,30 @@
                 }
                 return false;
             },
+            addTrackArrayToPlaylist     : function (tracks, playlistId)
+            {
+                if (tracks)
+                {
+                    for (var i = 0; i < playlists.length; ++i)
+                    {
+                        if (i == playlistId)
+                        {
+                            var playlist = playlists[i];
+                            console.log("Length Before: " +  playlist.tracks.length + " | tracksLength: " + tracks.length);
+                            playlist.tracks = playlist.tracks.concat(tracks);
+                            console.log("Length After: " +  playlist.tracks.length);
+                            localStorageService.set('playlists', playlists);
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            },
             removeTrackFromPlaylist: function (trackIdInPlaylist, playlistId)
             {
                 for (var i = 0; i < playlists.length; ++i)
                 {
-                    if (playlists[i].id == playlistId)
+                    if (i == playlistId)
                     {
                         var playlist = playlists[playlistId];
                         for (var j = 0; j < playlist.tracks.length; ++j)
@@ -230,9 +249,13 @@
                 return currentTrack;
                 updateTrackStates();
             },
-            setCurrentTrack        : function (track)
+            setCurrentTrack        : function (track, state)
             {
                 currentTrack = track;
+                if (state)
+                {
+                    currentTrack.playState = state;
+                }
                 updateTrackStates();
             },
             getPlayStates          : function ()
