@@ -33,8 +33,6 @@
                                 <div class="small-12 columns">
                                     <div class="row collapse">
                                         <div class="small-9 columns">
-                                            <!--<span><img ng-src={{playlist.image.url}} width="50" height="50" alt=""/></span>-->
-                                            <!--<img ng-src="http://tinyurl.com/nasnw9p" width="50" height="50" alt=""/>-->
                                             <img ng-show="!playlist.isEdit" ng-src="{{getPlaylistImg(playlist, 50)}}" width="50" height="50" alt=""/>
                                             <span ng-hide="playlist.isEdit">
                                                 {{playlist.name | characters:20:false}}
@@ -110,6 +108,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <h4 class="text-center" ng-hide="active.tracks.length">Cette playlist ne contient aucun titre.</h4>
                     </div>
                 </div>
             </div>
