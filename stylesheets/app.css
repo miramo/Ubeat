@@ -18895,34 +18895,30 @@ footer-bar {
   z-index: 1;
 }
 /* line 18, ../scss/_splash.scss */
-.splash-load .splash-ubeat img {
+.splash-load .splash-ubeat {
   width: 15.625rem;
   height: 6.25rem;
-  position: absolute;
+  position: relative;
   opacity: 1.0;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   z-index: 2;
-  margin: auto;
+  margin: -6.25rem 0 0 -7.8125rem;
   text-align: center;
 }
-/* line 33, ../scss/_splash.scss */
+/* line 29, ../scss/_splash.scss */
 .splash-load .ubeat-spinner {
   width: 100px;
   height: 50px;
   position: absolute;
   color: #ffffff;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
+  top: 50%;
+  bottom: 50%;
+  right: 50%;
+  left: 50%;
+  margin: 0.625rem 0 0 0;
   text-align: center;
   z-index: 2;
 }
-/* line 48, ../scss/_splash.scss */
+/* line 44, ../scss/_splash.scss */
 .splash-load .ubeat-spinner .ubeat-ball {
   width: 20px;
   height: 20px;

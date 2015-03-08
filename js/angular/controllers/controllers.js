@@ -573,6 +573,20 @@
             }
         });
 
+        $scope.getPlaylistImg = function (playlist, size)
+        {
+            if (playlist && playlist.tracks.length > 0)
+            {
+                var firstTrack = playlist.tracks[0];
+                var artwork = firstTrack.artworkUrl100;
+                if (size && size != 100)
+                {
+                    artwork = itunesLinkImageSizeTo(firstTrack.artworkUrl100, size);
+                }
+                return artwork;
+            }
+        }
+
         $scope.removePlaylist = function (id)
         {
             sharedProperties.removePlaylist(id);
