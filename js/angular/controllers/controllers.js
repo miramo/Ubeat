@@ -565,6 +565,15 @@
 
         refreshPlaylists();
 
+        $scope.isActivePlaylist = function(playlist)
+        {
+            if (playlist && $scope.active)
+            {
+                return playlist.id == $scope.active.id;
+            }
+            return false;
+        }
+
         $scope.$watch('sharedProperties.getPlaylists()', function (newVal, oldVal)
         {
             $scope.playlists = sharedProperties.getPlaylists();
@@ -583,7 +592,7 @@
             }
             else if ($scope.playlists && $scope.playlists.length > 0)
             {
-                $scope.active = $scope.playlists[0];
+                $scope.active = $scope.playlists[$scope.playlists.length - 1];
             }
         });
 
