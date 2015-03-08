@@ -19026,6 +19026,11 @@ footer-bar {
   display: inline-block;
 }
 
+/* line 61, ../scss/_playlists.scss */
+.delete-track {
+  cursor: pointer;
+}
+
 /* line 1, ../scss/_errors.scss */
 .notfound {
   position: absolute;

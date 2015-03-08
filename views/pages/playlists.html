@@ -33,8 +33,6 @@
                                 <div class="small-12 columns">
                                     <div class="row collapse">
                                         <div class="small-9 columns">
-                                            <!--<span><img ng-src={{playlist.image.url}} width="50" height="50" alt=""/></span>-->
-                                            <!--<img ng-src="http://tinyurl.com/nasnw9p" width="50" height="50" alt=""/>-->
                                             <img ng-show="!playlist.isEdit" ng-src="{{getPlaylistImg(playlist, 50)}}" width="50" height="50" alt=""/>
                                             <span ng-hide="playlist.isEdit">
                                                 {{playlist.name | characters:20:false}}
@@ -104,12 +102,13 @@
                                     <td><a href="#/album/{{track.collectionId}}">{{track.collectionName | characters:20:false}}</a></td>
                                     <td class="hide-for-small-only"><a href="#/artist/{{track.artistId}}">{{track.artistName | characters:20:false}}</a></td>
                                     <td class="text-center hide-for-small-only">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
-                                    <td class="text-center">
+                                    <td class="text-center delete-track">
                                         <i class="md-delete md-lg on-hover" ng-click="sharedProperties.removeTrackFromPlaylist($index, active.id)"></i>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+                        <h4 class="text-center" ng-hide="active.tracks.length">Cette playlist ne contient aucun titre.</h4>
                     </div>
                 </div>
             </div>
