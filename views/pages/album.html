@@ -153,9 +153,9 @@
         <h2>
             <small>{{trackToAddToNewPlaylist.trackName}}</small>
         </h2>
-        <input ng-keydown="$event.which == 13 && createPlaylistByTrack(playlistToAdd, '#myModal')"
+        <input class="radius" ng-keydown="$event.which == 13 && createPlaylistByTrack(playlistToAdd, '#myModal')"
                ng-model="playlistToAdd" type="text" placeholder="Nom de la playlist"/>
-        <a ng-click="createPlaylistByTrack(playlistToAdd, '#myModal')" class="button">Confirmer</a>
+        <a ng-click="createPlaylistByTrack(playlistToAdd, '#myModal')" class="button red radius">Confirmer</a>
         <a class="close-reveal-modal">&#215;</a>
     </div>
     <div id="myModal2" class="reveal-modal" data-reveal>
@@ -164,11 +164,14 @@
         <h2>
             <small>{{trackArrayToAddIsValid() && trackArrayToAddToNewPlaylist[0].collectionName}}</small>
         </h2>
-        <input ng-model="playlistToAdd"
+        <input class="radius"  ng-model="playlistToAdd"
                ng-keydown="$event.which == 13 && createPlaylistByTrackArray(playlistToAdd, '#myModal2')" type="text"
                placeholder="Nom de la playlist"/>
-        <a ng-click="createPlaylistByTrackArray(playlistToAdd, '#myModal2')" class="button">Confirmer</a>
+        <a ng-click="createPlaylistByTrackArray(playlistToAdd, '#myModal2')" class="button red radius">Confirmer</a>
         <a class="close-reveal-modal">&#215;</a>
     </div>
+</div>
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsPageError()">
+    <notfound></notfound>
 </div>
 <script type="text/javascript" src="js/libs/stackblur.js"></script>

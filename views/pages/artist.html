@@ -55,4 +55,7 @@
         </div>
     </div>
 </div>
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsPageError()">
+    <notfound></notfound>
+</div>
 <script type="text/javascript" src="js/libs/stackblur.js"></script>

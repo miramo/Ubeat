@@ -110,6 +110,5 @@
     controllers.controller('ErrorPageController', function ($scope, sharedPagesStatus)
     {
         sharedPagesStatus.setIsPageLoaded(true);
-        $scope.notfoundErrorImg = 'http://i.imgur.com/OpAsFCC.png';
     });
 })();

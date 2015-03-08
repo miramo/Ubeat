@@ -51,11 +51,11 @@
         };
     })
 
-    ubeatApp.directive('error', function ()
+    ubeatApp.directive('notfound', function ()
     {
         return {
             restrict   : 'E',
-            templateUrl: './views/templates/error.html'
+            templateUrl: './views/templates/notfound.html'
         };
     });
 })();

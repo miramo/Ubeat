@@ -257,70 +257,92 @@
         $scope.artistPictureLoaded = false;
         $scope.isTabletOrDesktop = true;
 
-        artistFactory.get({id: $routeParams.id}).$promise.then(function (data)
-            {
-                $scope.artist = data.results[0];
-                sharedPagesStatus.setTitle($scope.artist.artistName);
+        var isValidArtist = /^\d+$/.test($routeParams.id);
 
-                spotifySearchFactory.get({name: $scope.artist.artistName, type: 'artist'}).$promise.then(function (data)
+        if (isValidArtist)
+        {
+            artistFactory.get({id: $routeParams.id}).$promise.then(function (data)
                 {
-                    artistBiographiesFactory.get({
-                        artist: ":artist:",
-                        id    : data.artists.items[0].id
-                    }).$promise.then(function (data)
-                        {
-                            if (data.response.biographies.length > 0)
-                            {
-                                $scope.artist.description = getSentencesNb(data.response.biographies[0].text, 3);
-                            }
-                            else
-                            {
-                                $scope.artist.description = "Aucune description disponible.";
-                            }
-
-                        }, function (err)
-                        {
-                        });
-                    spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
+                    $scope.artist = data.results[0];
+                    if (data && data.results.length > 0)
                     {
-                        $scope.artist.image = data.images[0];
-                        $scope.artistPictureLoaded = true;
+                        sharedPagesStatus.setTitle($scope.artist.artistName);
 
-                        var blur = new Blur({
-                            el        : document.querySelector('body'),
-                            path      : '',
-                            radius    : 50,
-                            fullscreen: true
-                        });
+                        spotifySearchFactory.get({
+                            name: $scope.artist.artistName,
+                            type: 'artist'
+                        }).$promise.then(function (data)
+                            {
+                                artistBiographiesFactory.get({
+                                    artist: ":artist:",
+                                    id    : data.artists.items[0].id
+                                }).$promise.then(function (data)
+                                    {
+                                        if (data.response.biographies.length > 0)
+                                        {
+                                            $scope.artist.description = getSentencesNb(data.response.biographies[0].text, 3);
+                                        }
+                                        else
+                                        {
+                                            $scope.artist.description = "Aucune description disponible.";
+                                        }
 
-                        blur.init({el: document.querySelector('.artist-header'), path: $scope.artist.image.url});
+                                    }, function (err)
+                                    {
+                                    });
+                                spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
+                                {
+                                    $scope.artist.image = data.images[0];
+                                    $scope.artistPictureLoaded = true;
 
-                    }, function (err)
+                                    var blur = new Blur({
+                                        el        : document.querySelector('body'),
+                                        path      : '',
+                                        radius    : 50,
+                                        fullscreen: true
+                                    });
+
+                                    blur.init({
+                                        el  : document.querySelector('.artist-header'),
+                                        path: $scope.artist.image.url
+                                    });
+
+                                }, function (err)
+                                {
+                                });
+
+                            }, function (err)
+                            {
+                            });
+                        artistAlbumsFactory.get({id: $routeParams.id}).$promise.then(function (data)
+                            {
+                                $scope.albums = data.results;
+
+                                for (var i = 0; i < $scope.albums.length; ++i)
+                                {
+                                    $scope.albums[i].releaseDateObj = new Date($scope.albums[i].releaseDate);
+                                    $scope.albums[i].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[i].artworkUrl100, 300);
+                                }
+                                sharedPagesStatus.setIsPageLoaded(true);
+                                $scope.true = false;
+                            },
+                            function (err)
+                            {
+                            });
+                    }
+                    else
                     {
-                    });
-
-                }, function (err)
+                        sharedPagesStatus.pageFailedLoad();
+                    }
+                },
+                function (err)
                 {
                 });
-                artistAlbumsFactory.get({id: $routeParams.id}).$promise.then(function (data)
-                    {
-                        $scope.albums = data.results;
-
-                        for (var i = 0; i < $scope.albums.length; ++i)
-                        {
-                            $scope.albums[i].releaseDateObj = new Date($scope.albums[i].releaseDate);
-                            $scope.albums[i].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[i].artworkUrl100, 300);
-                        }
-                        sharedPagesStatus.setIsPageLoaded(true);
-                        $scope.true = false;
-                    },
-                    function (err)
-                    {
-                    });
-            },
-            function (err)
-            {
-            });
+        }
+        else
+        {
+            sharedPagesStatus.pageFailedLoad();
+        }
 
 
         $scope.$on('$routeChangeSuccess', function (next, current)
@@ -445,12 +467,6 @@
 
         var isAlbumIdValid = /^\d+$/.test($routeParams.id);
 
-        var pageFailedLoad = function ()
-        {
-            sharedPagesStatus.setIsPageError(true);
-            sharedPagesStatus.setIsPageLoaded(true);
-        }
-
         if (isAlbumIdValid)
         {
             albumFactory.get({id: $routeParams.id}, function (data)
@@ -509,14 +525,14 @@
                 }
                 else
                 {
-                    pageFailedLoad();
+                    sharedPagesStatus.pageFailedLoad();
                 }
 
             });
         }
         else
         {
-            pageFailedLoad();
+            sharedPagesStatus.pageFailedLoad();
         }
 
         $scope.check = function ()

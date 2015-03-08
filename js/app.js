@@ -30,9 +30,14 @@
                 {
                     templateUrl: 'views/pages/playlists.html',
                     controller : 'PlaylistsController'
-                }).
-                otherwise({
-                    templateUrl: 'views/templates/notfound.html',
+                })
+                .when('/error/',
+                {
+                    templateUrl: 'views/pages/error.html',
+                    controller : 'ErrorPageController'
+                })
+                .otherwise({
+                    redirectTo: '/error/',
                     controller: 'ErrorPageController'
                 });
         }]);

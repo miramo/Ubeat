@@ -279,12 +279,13 @@
         };
     });
 
-    services.service('sharedPagesStatus', function ()
+    services.service('sharedPagesStatus', function ($location)
     {
         var pageTitle = 'Ubeat';
         var isPageError = false;
         var isPageLoaded = false;
         var errorMessage = '';
+        var pageErrorUrl = '/notfound/';
 
         this.getTitle = function ()
         {
@@ -330,6 +331,12 @@
         {
             isPageError = false;
             isPageLoaded = false;
+        }
+
+        this.pageFailedLoad = function()
+        {
+            this.setIsPageError(true);
+            this.setIsPageLoaded(true);
         }
     });
 })();
