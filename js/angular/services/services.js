@@ -107,6 +107,8 @@
                 {
                     for (var i = 0; i < playlists.length; ++i)
                     {
+                        playlists[i].isEdit = false;
+                        playlists[i].isHover = false;
                         playlists[i].id = i;
                     }
                 }
