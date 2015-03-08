@@ -21,6 +21,7 @@
         width: rem-calc(50);
         height: rem-calc(50);
         background-color: scale-color($panel-bg, $lightness: -10%);
+        color: $primary-color;
       }
     }
     &.add-playlist input, a

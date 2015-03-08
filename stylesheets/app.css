@@ -18995,17 +18995,18 @@ footer-bar {
   width: 3.125rem;
   height: 3.125rem;
   background-color: #dadada;
+  color: #c60000;
 }
-/* line 26, ../scss/_playlists.scss */
+/* line 27, ../scss/_playlists.scss */
 .playlists-name .playlist-item.add-playlist input, .playlists-name .playlist-item a {
   margin-top: 0.4375rem;
 }
-/* line 30, ../scss/_playlists.scss */
+/* line 31, ../scss/_playlists.scss */
 .playlists-name .playlist-item .icon-playlist-item {
   vertical-align: middle;
   padding-top: 0.9375rem;
 }
-/* line 35, ../scss/_playlists.scss */
+/* line 36, ../scss/_playlists.scss */
 .playlists-name .playlist-item img {
   width: 3.125rem;
   height: 3.125rem;
