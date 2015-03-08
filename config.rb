@@ -3,6 +3,7 @@ add_import_path "bower_components/foundation/scss"
 add_import_path "bower_components/foundation-icon-fonts"
 add_import_path "bower_components/slick.js/slick"
 add_import_path "bower_components/fontawesome/scss"
+add_import_path "bower_components/material-design-iconic-font/scss"
 
 # Set this to the root of your project when deployed:
 http_path = "/"

@@ -1,0 +1,56 @@
+.album-artist-picture
+{
+  @media #{$small-only} and (orientation: landscape)
+  {
+    padding: 1em 0;
+    @include grid-column(4);
+  }
+  @media #{$small-only} and (orientation: portrait)
+  {
+    padding: 1em 0;
+    margin: 0 auto;
+    width: 75%;
+  }
+  @media #{$medium-up}
+  {
+    padding: 2em 0;
+    @include grid-column(4);
+  }
+
+  position: relative;
+  z-index: 2;
+}
+
+.album-artist-infos
+{
+  @include grid-row();
+  @media #{$small-only} and (orientation: landscape) {
+    padding: 1em 0;
+    @include grid-column(8);
+  }
+  @media #{$small-only} and (orientation: portrait) {
+    padding: 1em 0;
+    text-align: center;
+    @include grid-column(12);
+  }
+  @media #{$medium-up}
+  {
+    padding: 2em 0;
+    @include grid-column(8);
+  }
+
+  position: relative;
+  z-index: 2;
+}
+
+.artist-title, .artist-title h1, .artist-title h2
+{
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+}
+
+.album-artist-description h3 small
+{
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+}

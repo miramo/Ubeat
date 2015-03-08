@@ -17,18 +17,30 @@
 
 .slider-index-element img
 {
-  width  : 100%;
-  margin : 0 auto;
+  max-width  : 100%;
+  max-height : 100%;
+  display    : inline-block;
+  margin     : 0 auto;
 }
 
 .year-label-index
 {
-  background : $primary-color;
   color      : $white;
   width      : 100%;
   text-align : center;
   font-size  : rem-calc(12);
   margin     : 0 auto;
+}
+
+.album-artist-label
+{
+  background : $primary-color;
+  color: #ffffff;
+  width      : 100%;
+  text-align : center;
+  font-size  : rem-calc(12);
+  margin     : 0;
+  padding    : 0;
 }
 
 .slider-index-element.slick-center
@@ -45,15 +57,10 @@
   text-overflow : ellipsis;
 }
 
-.new-artists-blur
-{
-  position : relative;
-  overflow : hidden;
-
-  &__background
-  {
-    position : absolute;
-    left     : 0;
-    z-index  : 0;
-  }
+footer-bar {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: rem-calc(60);
 }

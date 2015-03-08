@@ -1,115 +1,48 @@
 .type-label
 {
-  @include label
-  (
-    $text-size: em-calc(12)
+  @include label(
+  $text-size : em-calc(12),
+  $radius : 2px
   );
-}
-
-.artist-title h2
-{
-  color: white;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
-}
-
-.artist-description h3 small
-{
-  color: white;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 }
 
 .year-label
 {
-  width: 100%;
-  @include label
-  (
-    $text-size: em-calc(12),
-    $bg: $primary-color
+  width       : 100%;
+  @include label(
+  $text-size : em-calc(12),
+  $bg : $primary-color
   );
 
-  padding-top: rem-calc(8);
+  padding-top : rem-calc(8);
 }
 
 .artist-header
 {
-  background: #333;
-  position: relative;
-  margin-bottom: 1%;
-  overflow: hidden;
-
-  &__background
-  {
-    position: absolute;
-    top: 0;
-    top: -50%;
-    left: 0;
-    width: 100%;
-    height: 500%;
-    z-index: 1;
-  }
+  background    : #333;
+  position      : relative;
+  margin-bottom : rem-calc(15);
+  overflow      : hidden;
 }
 
-.artist-infos
+#img-artist
 {
-  @include grid-row();
-  @media #{$small-only} and (orientation: landscape) {
-    padding: 1em 0;
-    @include grid-column(8);
-  }
-  @media #{$small-only} and (orientation: portrait) {
-    padding: 1em 0;
-    text-align: center;
-    @include grid-column(12);
-  }
-  @media #{$medium-up}
-  {
-    padding: 2em 0;
-    @include grid-column(8);
-  }
-
-  position: relative;
-  border: 0px;
-  z-index: 2;
-}
-
-.artist-picture
-{
-  @include grid-row();
-  @media #{$small-only} and (orientation: landscape)
-  {
-    padding: 1em 0;
-    @include grid-column(4);
-  }
-  @media #{$small-only} and (orientation: portrait)
-  {
-    padding: 1em 0;
-  }
-  @media #{$medium-up}
-  {
-    padding: 2em 0;
-    @include grid-column(4);
-  }
-
-  position: relative;
-  z-index: 2;
-  border: rem-calc(0);
-}
-
-.artist-picture
-{
-  @media #{$small-only} and (orientation: portrait)
-  {
-    margin: 0 auto;
-    width: 75%;
-  }
+  width               : 100%;
+  padding-bottom      : 100%;
+  display             : inline-block;
+  vertical-align      : middle;
+  background-image    : none;
+  background-repeat   : no-repeat;
+  background-position : center center;
+  background-size     : cover;
 }
 
 .artist-albums-list
 {
-  @media #{$small-only} and (orientation: landscape) {
+  @media #{$small-only} and (orientation : landscape) {
     @include block-grid(2);
   }
-  @media #{$small-only} and (orientation: portrait) {
+  @media #{$small-only} and (orientation : portrait) {
     @include block-grid(1);
   }
   @media #{$medium-up}
@@ -120,6 +53,61 @@
 
 .artist-panel img
 {
-  width: 100%;
-  height: auto;
+  width  : 100%;
+  height : auto;
+}
+
+.artist-albums-img
+{
+  position : relative;
+  cursor   : pointer;
+}
+
+.artist-albums-img img
+{
+  width          : 100%;
+  vertical-align : top;
+}
+
+.artist-albums-img:after
+{
+  border-top-left-radius  : rem-calc(5);
+  border-top-right-radius : rem-calc(5);
+  content                 : '\A';
+  position                : absolute;
+  width                   : 100%;
+  height                  : 100%;
+  top                     : 0;
+  left                    : 0;
+  background              : url(../img/play_white.svg) no-repeat center center;
+  background-size         : 60% 60%;
+  vertical-align          : middle;
+  background-color        : black;
+  opacity                 : 0;
+  transition              : all 0.5s;
+  -webkit-transition      : all 0.5s;
+}
+
+$transition-time: 0.7s;
+
+.artist-album-title
+{
+  background         : $primary-color;
+
+  -o-transition      : $transition-time;
+  -ms-transition     : $transition-time;
+  -moz-transition    : $transition-time;
+  -webkit-transition : $transition-time;
+  /* ...and now for the proper property */
+  transition         : $transition-time;
+
+  &:hover
+  {
+    background : scale-color($primary-color, $lightness : -20%);
+  }
+}
+
+.artist-albums-img:hover:after
+{
+  opacity : 0.5;
 }

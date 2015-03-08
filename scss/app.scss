@@ -2,13 +2,21 @@
 @import "foundation";
 @import "foundation-icons";
 @import "size";
+//@import "slick-theme";
 @import "font-awesome";
+@import "material-design-iconic-font";
 @import "flat-button";
 @import "style";
 @import "navbar";
 @import "artist";
-@import "index";
 @import "albums";
+@import "album-artist";
+@import "index";
+@import "playbar";
+@import "soundbar";
+@import "splash";
+@import "playlists";
+@import "errors";
 
 // Or selectively include components
 // @import

@@ -1,0 +1,61 @@
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && !sharedPagesStatus.getIsPageError()">
+    <div class="artist-header">
+        <div class="row">
+            <div class="album-artist-picture" ng-switch on="artistPictureLoaded">
+                <div ng-switch-when="true" class="show-for-medium-up">
+                    <div class="img-circular" id="img-artist" backimg={{artist.image.url}}></div>
+                </div>
+            </div>
+            <div class="album-artist-infos">
+                <div class="artist-title">
+                    <h1>{{artist.artistName}}</h1>
+                </div>
+                <span class="type-label">{{artist.primaryGenreName}}</span>
+
+                <div class="album-artist-description">
+                    <h3>
+                        <small>{{artist.description}}</small>
+                    </h3>
+                </div>
+                <div class="show-for-small-only"><a href={{artist.artistLinkUrl}} target="itunes_store"
+                                                    style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets//images/web/linkmaker/badge_itunes-sm.png) no-repeat;width:45px;height:15px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets//images/web/linkmaker/badge_itunes-sm.svg);}"></a>
+                </div>
+                <div class="show-for-medium-up"><a href={{artist.artistLinkUrl}} target="itunes_store"
+                                                   style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_itunes-lrg.png) no-repeat;width:110px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_itunes-lrg.svg);}"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" data-equalizer>
+        <div class="small-12 columns">
+            <div class="panel radius">
+                <h2>Albums</h2>
+                <ul class="artist-albums-list">
+                    <li class="artist-panel" ng-repeat="album in albums | orderBy:'-releaseDateObj'">
+                        <div class="row bump">
+                            <div class="row">
+                                <div class="card">
+                                    <div class="artist-albums-img">
+                                        <img ng-src="{{album.artworkUrl300}}" alt="{{album.collectionName}}"/>
+                                    </div>
+                                    <div class="row collapse artist-album-title">
+                                        <a href="#/album/{{album.collectionId}}">
+                                            <div class="text-center">
+                                                <p class="ellipsis">{{album.collectionName}}</p>
+                                            </div>
+                                            <div class="year-label-index">{{album.releaseDateObj | date:'yyyy'}}</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsPageError()">
+    <notfound></notfound>
+</div>
+<script type="text/javascript" src="js/libs/stackblur.js"></script>
