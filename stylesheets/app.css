@@ -19011,3 +19011,21 @@ footer-bar {
   width: 3.125rem;
   height: 3.125rem;
 }
+
+/* line 1, ../scss/_errors.scss */
+.notfound {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50rem;
+  height: 20rem;
+  margin-top: -15.625rem;
+  /* Half the height */
+  margin-left: -25rem;
+  /* Half the width */
+}
+
+/* line 12, ../scss/_errors.scss */
+.notfound-text {
+  text-align: center;
+}

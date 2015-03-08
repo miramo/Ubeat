@@ -536,6 +536,7 @@
     controllers.controller('PlaylistsController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties, localStorageService)
     {
         sharedPagesStatus.resetPageStatus();
+        $scope.missingImgPlaylist = 'http://i.imgur.com/mqE4SPZ.png';
         $scope.sharedProperties = sharedProperties;
         $scope.playlistToAdd = {};
         $scope.playlistToAdd.defaultName = "Nouvelle playlist";
@@ -575,7 +576,7 @@
 
         $scope.getPlaylistImg = function (playlist, size)
         {
-            if (playlist && playlist.tracks.length > 0)
+            if (playlist && playlist.tracks && playlist.tracks.length > 0)
             {
                 var firstTrack = playlist.tracks[0];
                 var artwork = firstTrack.artworkUrl100;
@@ -584,6 +585,10 @@
                     artwork = itunesLinkImageSizeTo(firstTrack.artworkUrl100, size);
                 }
                 return artwork;
+            }
+            else
+            {
+                return $scope.missingImgPlaylist;
             }
         }
 

@@ -1,0 +1,15 @@
+.notfound
+{
+  position    : absolute;
+  top         : 50%;
+  left        : 50%;
+  width       : rem_calc(800);
+  height      : rem_calc(320);
+  margin-top  : rem_calc(-250); /* Half the height */
+  margin-left : rem_calc(-400); /* Half the width */
+}
+
+.notfound-text
+{
+  text-align: center;
+}

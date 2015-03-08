@@ -10,7 +10,7 @@
     {
         sharedPagesStatus.resetPageStatus();
         $scope.sharedProperties = sharedProperties;
-       // $scope.isPageLoaded = sharedPagesStatus.getIsPageLoaded();
+        // $scope.isPageLoaded = sharedPagesStatus.getIsPageLoaded();
         $scope.pageLoaded = true;
 
         $scope.$on('$routeChangeSuccess', function (next, current)
@@ -105,5 +105,11 @@
             $(document).foundation();
             // call your functions here
         });
+    });
+
+    controllers.controller('ErrorPageController', function ($scope, sharedPagesStatus)
+    {
+        sharedPagesStatus.setIsPageLoaded(true);
+        $scope.notfoundErrorImg = 'http://i.imgur.com/OpAsFCC.png';
     });
 })();

@@ -6,7 +6,6 @@
     $(document).foundation();
 
     var ubeatApp = angular.module('ubeat', ['ngRoute', 'mainControllers', 'pagesControllers', 'ngIncludeResp', 'slick', 'LocalStorageModule']);
-    //var foundationModule =  angular.module('foundation', ['mm.foundation']);
 
     ubeatApp.config(['$routeProvider',
         function ($routeProvider)
@@ -33,7 +32,8 @@
                     controller : 'PlaylistsController'
                 }).
                 otherwise({
-                    redirectTo: '/'
+                    templateUrl: 'views/templates/notfound.html',
+                    controller: 'ErrorPageController'
                 });
         }]);
 
