@@ -7,8 +7,8 @@
             <div class="second small-12 columns">
                 <ul class="small-3 columns left hide-for-small-only test" >
                         <li class="volume small-2 columns left">
-                            <i ng-click="switchMute()" class="fa fa-volume-off fa-2x" ng-show="getVolume() == 0"></i>
-                            <i ng-click="switchMute()" class="fa fa-volume-down fa-2x" ng-show="getVolume() < 50 && getVolume() > 0"></i>
+                            <i ng-click="switchMute()" class="fa fa-volume-off fa-2x" ng-show="getVolume() <= 0"></i>
+                            <i ng-click="switchMute()" class="fa fa-volume-down fa-2x" ng-show="getVolume() <= 50 && getVolume() > 0"></i>
                             <i ng-click="switchMute()" class="fa fa-volume-up fa-2x" ng-show="getVolume() > 50"></i>
                             <input id="seek-volume" class='form-control' type=range min=0 max=1 step=0.01 ng-model='audio.volume' >
                         </li>
