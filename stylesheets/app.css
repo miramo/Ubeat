@@ -19012,6 +19012,21 @@ footer-bar {
   height: 3.125rem;
 }
 
+/* line 44, ../scss/_playlists.scss */
+.header-playlist-table {
+  margin: 1.25rem;
+  height: 7.5rem;
+}
+/* line 50, ../scss/_playlists.scss */
+.header-playlist-table .header-playlist-table-img-name img {
+  height: 6.25rem;
+  width: 6.25rem;
+}
+/* line 55, ../scss/_playlists.scss */
+.header-playlist-table .header-playlist-table-img-name h1 {
+  display: inline-block;
+}
+
 /* line 1, ../scss/_errors.scss */
 .notfound {
   position: absolute;

@@ -40,3 +40,20 @@
     }
   }
 }
+
+.header-playlist-table
+{
+  height: rem-calc(120);
+  .header-playlist-table-img-name
+  {
+    img
+    {
+      height: rem-calc(100);
+      width: rem-calc(100);
+    }
+    h1
+    {
+      display: inline-block;
+    }
+  }
+}
