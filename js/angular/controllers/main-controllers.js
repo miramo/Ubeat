@@ -109,6 +109,17 @@
 
     controllers.controller('ErrorPageController', function ($scope, sharedPagesStatus)
     {
+        $scope.sharedPagesStatus = sharedPagesStatus;
+        sharedPagesStatus.setTitle('404');
+
+        $scope.$watch('sharedPagesStatus.getIsPageLoaded()', function (oldVal, newVal)
+        {
+            if (!oldVal || !newVal)
+            {
+                sharedPagesStatus.setIsPageLoaded(true);
+            }
+        });
+
         sharedPagesStatus.setIsPageLoaded(true);
     });
 })();

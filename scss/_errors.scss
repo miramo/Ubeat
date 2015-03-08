@@ -1,15 +1,16 @@
 .notfound
 {
-  position    : absolute;
-  top         : 50%;
-  left        : 50%;
-  width       : rem_calc(800);
-  height      : rem_calc(320);
-  margin-top  : rem_calc(-250); /* Half the height */
-  margin-left : rem_calc(-400); /* Half the width */
-}
-
-.notfound-text
-{
-  text-align: center;
+  width      : rem-calc(800);
+  height     : rem-calc(320);
+  max-width  : 100%;
+  max-height : 100%;
+  position   : fixed;
+  color      : #ffffff;
+  top        : 50%;
+  bottom     : 50%;
+  right      : 50%;
+  left       : 50%;
+  margin     : rem_calc(-200) 0 0 rem-calc(-400);
+  text-align : center;
+  z-index    : -20;
 }
