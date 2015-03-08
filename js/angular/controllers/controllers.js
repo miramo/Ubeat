@@ -549,6 +549,7 @@
         $scope.playlistCurrentRename.name = '';
         $scope.playStates = sharedProperties.getPlayStates();
         $scope.defaultPlaylist = {};
+        $scope.defaultPlaylist.name = "Pas de playlist";
 
         var refreshPlaylits = function()
         {
