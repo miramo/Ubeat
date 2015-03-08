@@ -24,6 +24,10 @@
         color: $primary-color;
       }
     }
+    &.active
+    {
+      background-color: scale-color($panel-bg, $lightness: -15%);
+    }
     input, a
     {
       margin-top: rem-calc(7);

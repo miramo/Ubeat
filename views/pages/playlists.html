@@ -28,14 +28,14 @@
                         </li>
                         <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index"
                             ng-click="setPlaylistActive(playlist.id)" ng-mouseover="setHover(playlist, true)"
-                            ng-mouseleave="setHover(playlist, false)" class="playlist-item">
+                            ng-mouseleave="setHover(playlist, false)" class="playlist-item" ng-class="{active: isActivePlaylist(playlist)}">
                             <div class="row">
                                 <div class="small-12 columns">
                                     <div class="row collapse">
                                         <div class="small-9 columns">
                                             <img ng-show="!playlist.isEdit" ng-src="{{getPlaylistImg(playlist, 50)}}" width="50" height="50" alt=""/>
                                             <span ng-hide="playlist.isEdit">
-                                                {{playlist.name | characters:20:false}}
+                                                {{playlist.name | characters:19:false}}
                                             </span>
                                             <span ng-show="playlist.isEdit">
                                                 <input ng-model="playlistCurrentRename.name" type="text" class="radius" onClick="this.select();" ng-keydown="$event.which == 13 && rename(playlist, playlistCurrentRename)">
@@ -61,7 +61,7 @@
                     <div class="row collapse header-playlist-table">
                         <div class="small-9 columns left header-playlist-table-img-name">
                             <img ng-src="{{getPlaylistImg(active, 100)}}" width="100" height="100" alt=""/>
-                            <h1>{{active.name | characters:20:false}}</h1>
+                            <h1>{{active.name | characters:19:false}}</h1>
                         </div>
                         <div class="small-3 columns">
                             <a ng-click="" class="button red radius right disabled"><i class="fa fa-play fa-lg"></i> Lire</a>
