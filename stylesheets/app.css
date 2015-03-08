@@ -18906,8 +18906,8 @@ footer-bar {
 }
 /* line 29, ../scss/_splash.scss */
 .splash-load .ubeat-spinner {
-  width: 100px;
-  height: 50px;
+  width: 6.25rem;
+  height: 3.125rem;
   position: absolute;
   color: #ffffff;
   top: 50%;
@@ -18920,8 +18920,8 @@ footer-bar {
 }
 /* line 44, ../scss/_splash.scss */
 .splash-load .ubeat-spinner .ubeat-ball {
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
   background-color: #fff;
   border-radius: 50%;
   -webkit-animation: ubeat-motion 3s cubic-bezier(0.77, 0, 0.175, 1) infinite;
@@ -19037,18 +19037,17 @@ footer-bar {
 
 /* line 1, ../scss/_errors.scss */
 .notfound {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   width: 50rem;
   height: 20rem;
-  margin-top: -15.625rem;
-  /* Half the height */
-  margin-left: -25rem;
-  /* Half the width */
-}
-
-/* line 12, ../scss/_errors.scss */
-.notfound-text {
+  max-width: 100%;
+  max-height: 100%;
+  position: fixed;
+  color: #ffffff;
+  top: 50%;
+  bottom: 50%;
+  right: 50%;
+  left: 50%;
+  margin: -12.5rem 0 0 -25rem;
   text-align: center;
+  z-index: -20;
 }
