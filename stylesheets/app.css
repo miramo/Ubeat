@@ -18998,7 +18998,7 @@ footer-bar {
   color: #c60000;
 }
 /* line 27, ../scss/_playlists.scss */
-.playlists-name .playlist-item.add-playlist input, .playlists-name .playlist-item a {
+.playlists-name .playlist-item input, .playlists-name .playlist-item a {
   margin-top: 0.4375rem;
 }
 /* line 31, ../scss/_playlists.scss */
