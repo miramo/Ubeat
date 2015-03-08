@@ -630,6 +630,12 @@
             $scope.alertMessages.splice(id, 1);
         }
 
+        $scope.rename = function(playlist, playlistCurrentRename)
+        {
+            $scope.setEdit(playlist.id, playlist, false);
+            $scope.confirmRename(playlist.id, playlist, playlistCurrentRename.name)
+        }
+
         $scope.setEdit = function (id, playlist, isEdit)
         {
             playlist.isEdit = isEdit;
@@ -677,6 +683,12 @@
         {
             $scope.active = sharedProperties.createPlaylist(value);
             $scope.playlistToAdd.name = $scope.playlistToAdd.defaultName;
+        }
+
+        $scope.createPlaylistUI = function (value)
+        {
+            $scope.createPlaylist(value);
+            $scope.switchNewPlaylistClicked();
         }
 
         $scope.setPlaylistActive = function (id)

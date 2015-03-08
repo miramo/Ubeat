@@ -17,10 +17,10 @@
                                 <div class="large-12 columns">
                                     <div class="row collapse">
                                         <div class="small-10 columns">
-                                            <input ng-model="playlistToAdd.name" type="text" class="pre-radius" placeholder="" onClick="this.select();">
+                                            <input ng-model="playlistToAdd.name" type="text" class="pre-radius" placeholder="" onClick="this.select();" ng-keydown="$event.which == 13 && createPlaylistUI(playlistToAdd.name)">
                                         </div>
                                         <div class="small-2 columns">
-                                            <a ng-click="createPlaylist(playlistToAdd.name); switchNewPlaylistClicked()" class="button expand red post-radius">Créer</a>
+                                            <a ng-click="createPlaylistUI(playlistToAdd.name)" class="button expand red post-radius">Créer</a>
                                         </div>
                                     </div>
                                 </div>
@@ -40,7 +40,7 @@
                                                 {{playlist.name | characters:20:false}}
                                             </span>
                                             <span ng-show="playlist.isEdit">
-                                                <input ng-model="playlistCurrentRename.name" type="text" class="radius" onClick="this.select();">
+                                                <input ng-model="playlistCurrentRename.name" type="text" class="radius" onClick="this.select();" ng-keydown="$event.which == 13 && rename(playlist, playlistCurrentRename)">
                                             </span>
                                         </div>
                                         <div class="small-3 columns">
@@ -49,7 +49,7 @@
                                             <i class="show-for-large-up icon-playlist-item md-delete md-lg right on-hover" ng-show="playlist.isHover && !playlist.isEdit" ng-click="removePlaylist(playlist.id)"></i>
                                             <i class="show-for-large-up icon-playlist-item md-edit md-lg right on-hover" ng-show="playlist.isHover  && !playlist.isEdit" ng-click="setEdit(playlist.id, playlist, true); setPlaylistCurrentRename(playlist.name)"></i>
                                             <i class="icon-playlist-item md-cancel md-lg right on-hover" ng-show="playlist.isEdit" ng-click="setEdit(playlist.id,playlist, false); setPlaylistCurrentRename(playlist.name)"></i>
-                                            <i class="icon-playlist-item md-done md-lg right on-hover" ng-show="playlist.isEdit" ng-click="setEdit(playlist.id, playlist, false); confirmRename(playlist.id, playlist, playlistCurrentRename.name);"></i>
+                                            <i class="icon-playlist-item md-done md-lg right on-hover" ng-show="playlist.isEdit" ng-click="rename(playlist, playlistCurrentRename)"></i>
                                         </div>
                                     </div>
                                 </div>
