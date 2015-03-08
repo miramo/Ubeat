@@ -541,7 +541,7 @@
         $scope.playlistToAdd = {};
         $scope.playlistToAdd.defaultName = "Nouvelle playlist";
         $scope.playlistToAdd.name = $scope.playlistToAdd.defaultName;
-        $scope.playlists = sharedProperties.playlists;
+        $scope.playlists = sharedProperties.getPlaylists();
         $scope.alertMessages = [];
         $scope.active = sharedProperties.getPlaylist(0);
         $scope.isNewPlaylistClicked = false;
@@ -551,7 +551,7 @@
         $scope.defaultPlaylist = {};
         $scope.defaultPlaylist.name = "Pas de playlist";
 
-        var refreshPlaylits = function()
+        var refreshPlaylists = function()
         {
             if ($scope.playlists)
             {
@@ -563,7 +563,7 @@
             }
         }
 
-        console.log("PlaylistsController");
+        refreshPlaylists();
 
         $scope.$watch('sharedProperties.getPlaylists()', function (newVal, oldVal)
         {
