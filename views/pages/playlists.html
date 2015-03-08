@@ -79,8 +79,8 @@
                                     <th width="600">Titre de la musique</th>
                                     <th width="300">Album</th>
                                     <th width="300" class="hide-for-small-only">Nom de l'artiste</th>
-                                    <th width="30"><i class="md-delete md-lg"></i></th>
                                     <th width="50" class="text-center hide-for-small-only"><i class="fa fa-clock-o fa-lg"></i></th>
+                                    <th width="30"><i class="md-delete md-lg"></i></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -105,10 +105,10 @@
                                     <td>{{track.trackName | characters:30:false}}</td>
                                     <td><a href="#/album/{{track.collectionId}}">{{track.collectionName | characters:20:false}}</a></td>
                                     <td class="hide-for-small-only"><a href="#/artist/{{track.artistId}}">{{track.artistName | characters:20:false}}</a></td>
+                                    <td class="text-center hide-for-small-only">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
                                     <td class="text-center">
                                         <i class="md-delete md-lg on-hover" ng-click="sharedProperties.removeTrackFromPlaylist($index, active.id)"></i>
                                     </td>
-                                    <td class="text-center hide-for-small-only">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
                                 </tr>
                             </tbody>
                         </table>
