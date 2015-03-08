@@ -550,7 +550,19 @@
         $scope.playStates = sharedProperties.getPlayStates();
         $scope.defaultPlaylist = {};
 
-        $scope.defaultPlaylist.name = "Pas de playlist";
+        var refreshPlaylits = function()
+        {
+            if ($scope.playlists)
+            {
+                for (var i = 0; i < $scope.playlists.length; ++i)
+                {
+                    $scope.playlists[i].isEdit = false;
+                    $scope.playlists[i].isHover = false;
+                }
+            }
+        }
+
+        console.log("PlaylistsController");
 
         $scope.$watch('sharedProperties.getPlaylists()', function (newVal, oldVal)
         {
