@@ -103,6 +103,13 @@
             },
             getPlaylists           : function ()
             {
+                if (playlists)
+                {
+                    for (var i = 0; i < playlists.length; ++i)
+                    {
+                        playlists[i].id = i;
+                    }
+                }
                 return playlists;
             },
             setPlaylists           : function (value)
