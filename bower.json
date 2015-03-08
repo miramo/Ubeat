@@ -13,10 +13,11 @@
     "angular-responsive": "*",
     "angular-audio": "~1.4.1",
     "angular": "~1.3.14",
-    "jquery.stickyFooter": "~1.2.0",
     "angular-slick": "~0.1.18",
     "material-design-iconic-font": "~1.1.1",
     "angular-busy": "~4.1.2",
-    "angular-local-storage": "~0.1.5"
+    "angular-local-storage": "~0.1.5",
+    "angular-ui-utils": "bower",
+    "angular-truncate": "*"
   }
 }

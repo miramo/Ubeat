@@ -29,12 +29,6 @@
   display: inline-block;
 }
 
-.button-search
-{
-  border-top-right-radius: rem-calc(5);
-  border-bottom-right-radius: rem-calc(5);
-}
-
 input[type="text"].dream-search
 {
   @media #{$medium-up}
@@ -43,8 +37,6 @@ input[type="text"].dream-search
     margin-left: 25%;
   }
   opacity: .5;
-  border-top-left-radius: rem-calc(5);
-  border-bottom-left-radius: rem-calc(5);
 }
 
 input[type="text"].dream-search:focus

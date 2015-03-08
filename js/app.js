@@ -5,8 +5,7 @@
 {
     $(document).foundation();
 
-    var ubeatApp = angular.module('ubeat', ['ngRoute', 'controllers', 'ngIncludeResp', 'slick', 'LocalStorageModule']);
-    //var foundationModule =  angular.module('foundation', ['mm.foundation']);
+    var ubeatApp = angular.module('ubeat', ['ngRoute', 'mainControllers', 'pagesControllers', 'ngIncludeResp', 'slick', 'LocalStorageModule']);
 
     ubeatApp.config(['$routeProvider',
         function ($routeProvider)
@@ -31,6 +30,15 @@
                 {
                     templateUrl: 'views/pages/playlists.html',
                     controller : 'PlaylistsController'
+                })
+                .when('/error/',
+                {
+                    templateUrl: 'views/pages/error.html',
+                    controller : 'ErrorPageController'
+                })
+                .otherwise({
+                    redirectTo: '/error/',
+                    controller: 'ErrorPageController'
                 });
         }]);
 

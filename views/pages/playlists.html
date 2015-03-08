@@ -1,30 +1,114 @@
-<div ng-controller="PlaylistsController as playlistsCtrl">
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && !sharedPagesStatus.getIsPageError()">
     <div class="row">
         <div class="small-12 columns">
-            <h1>Playlists</h1>
-
-            <input ng-model="playlistToAdd" type="text" placeholder="Name"/>
-            <a ng-click="sharedProperties.createPlaylist(playlistToAdd)" class="button">Add</a>
-            <a ng-click="alertMessages[alertMessages.length] = 'ALERT'" class="button">Throw Alert</a>
-            <div ng-repeat="alert in alertMessages track by $index">
-                <div data-alert class="alert-box alert round">
-                    {{alert}}
-                    <a href="" class="close" ng-click="removeAlert($index)">&times;</a>
+            <h1><i class="md md-my-library-music"></i> Playlists</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12">
+            <div class="small-12 large-4 columns">
+                <div class="panel radius">
+                    <ul class="playlists-name no-bullet disable-select">
+                        <li ng-click="switchNewPlaylistClicked()" class="playlist-item new-playlist">
+                            <i class="fa fa-plus fa-lg"></i> Nouvelle playlist
+                        </li>
+                        <li ng-show="isNewPlaylistClicked" class="playlist-item add-playlist">
+                            <div class="row">
+                                <div class="large-12 columns">
+                                    <div class="row collapse">
+                                        <div class="small-10 columns">
+                                            <input ng-model="playlistToAdd.name" type="text" class="pre-radius" placeholder="" onClick="this.select();" ng-keydown="$event.which == 13 && createPlaylistUI(playlistToAdd.name)">
+                                        </div>
+                                        <div class="small-2 columns">
+                                            <a ng-click="createPlaylistUI(playlistToAdd.name)" class="button expand red post-radius">Créer</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index"
+                            ng-click="setPlaylistActive(playlist.id)" ng-mouseover="setHover(playlist, true)"
+                            ng-mouseleave="setHover(playlist, false)" class="playlist-item" ng-class="{active: isActivePlaylist(playlist)}">
+                            <div class="row">
+                                <div class="small-12 columns">
+                                    <div class="row collapse">
+                                        <div class="small-9 columns">
+                                            <img ng-show="!playlist.isEdit" ng-src="{{getPlaylistImg(playlist, 50)}}" width="50" height="50" alt=""/>
+                                            <span ng-hide="playlist.isEdit">
+                                                {{playlist.name | characters:19:false}}
+                                            </span>
+                                            <span ng-show="playlist.isEdit">
+                                                <input ng-model="playlistCurrentRename.name" type="text" class="radius" onClick="this.select();" ng-keydown="$event.which == 13 && rename(playlist, playlistCurrentRename)">
+                                            </span>
+                                        </div>
+                                        <div class="small-3 columns">
+                                            <i class="hide-for-large-up icon-playlist-item md-delete md-lg right on-hover" ng-show="!playlist.isEdit" ng-click="removePlaylist(playlist.id)"></i>
+                                            <i class="hide-for-large-up icon-playlist-item md-edit md-lg right on-hover" ng-show="!playlist.isEdit" ng-click="setEdit(playlist.id, playlist, true); setPlaylistCurrentRename(playlist.name)"></i>
+                                            <i class="show-for-large-up icon-playlist-item md-delete md-lg right on-hover" ng-show="playlist.isHover && !playlist.isEdit" ng-click="removePlaylist(playlist.id)"></i>
+                                            <i class="show-for-large-up icon-playlist-item md-edit md-lg right on-hover" ng-show="playlist.isHover  && !playlist.isEdit" ng-click="setEdit(playlist.id, playlist, true); setPlaylistCurrentRename(playlist.name)"></i>
+                                            <i class="icon-playlist-item md-cancel md-lg right on-hover" ng-show="playlist.isEdit" ng-click="setEdit(playlist.id,playlist, false); setPlaylistCurrentRename(playlist.name)"></i>
+                                            <i class="icon-playlist-item md-done md-lg right on-hover" ng-show="playlist.isEdit" ng-click="rename(playlist, playlistCurrentRename)"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div ng-repeat="playlist in sharedProperties.getPlaylists()">
-                <div class="panel">
-                    <p>[{{$index}}] {{playlist.name}}
-                    </p>
-
-                    <div ng-show="playlist.isEdit">
-                        <input ng-model="playlistName" type="text" placeholder="Name"/>
-                        <a ng-click="confirmRename(playlist, playlistName)" class="button">Confirm</a>
-                        <a ng-click="setEdit(playlist, false)" class="button">Cancel</a>
+            <div class="small-12 large-8 columns">
+                <div class="panel radius">
+                    <div class="row collapse header-playlist-table">
+                        <div class="small-9 columns left header-playlist-table-img-name">
+                            <img ng-src="{{getPlaylistImg(active, 100)}}" width="100" height="100" alt=""/>
+                            <h1>{{active.name | characters:19:false}}</h1>
+                        </div>
+                        <div class="small-3 columns">
+                            <a ng-click="" class="button red radius right disabled"><i class="fa fa-play fa-lg"></i> Lire</a>
+                        </div>
                     </div>
-                    <div ng-hide="playlist.isEdit">
-                        <a ng-click="setEdit(playlist, true)" class="button">Edit</a>
-                        <a ng-click="sharedProperties.removePlaylist($index)" class="button">Delete</a>
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th width="30">#</th>
+                                    <th width="600">Titre de la musique</th>
+                                    <th width="300">Album</th>
+                                    <th width="300" class="hide-for-small-only">Nom de l'artiste</th>
+                                    <th width="50" class="text-center hide-for-small-only"><i class="fa fa-clock-o fa-lg"></i></th>
+                                    <th width="30"><i class="md-delete md-lg"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="music-row" ng-repeat="track in active.tracks track by $index"
+                                    ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
+                                    <td class="text-center">
+                                        <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
+                                            <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter">
+                                                <i ng-click="sharedProperties.setCurrentTrack(track)" class="fa fa-play fa-lg"></i>
+                                            </span>
+                                        </div>
+                                        <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
+                                            {{track.trackNumber}}
+                                        </div>
+                                        <div ng-show="track.playState == sharedProperties.getPlayStates().play">
+                                            <i class="fa fa-circle-o-notch fa-spin"></i>
+                                        </div>
+                                        <div ng-show="track.playState == sharedProperties.getPlayStates().pause">
+                                            <i class="fa fa-pause"></i>
+                                        </div>
+                                    </td>
+                                    <td>{{track.trackName | characters:30:false}}</td>
+                                    <td><a href="#/album/{{track.collectionId}}">{{track.collectionName | characters:20:false}}</a></td>
+                                    <td class="hide-for-small-only"><a href="#/artist/{{track.artistId}}">{{track.artistName | characters:20:false}}</a></td>
+                                    <td class="text-center hide-for-small-only">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
+                                    <td class="text-center delete-track">
+                                        <i class="md-delete md-lg on-hover" ng-click="sharedProperties.removeTrackFromPlaylist($index, active.id)"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h4 class="text-center" ng-hide="active.tracks.length">Cette playlist ne contient aucun titre.</h4>
                     </div>
                 </div>
             </div>

@@ -43,6 +43,22 @@ body
   }
 }
 
+.bottom-border
+{
+  border-bottom: rem_calc(1) solid #bdbdbd;
+}
+
+.custom-reveal-class {
+  @include reveal-close(
+  $color:$reveal-close-color
+  );
+}
+
+.on-hover:hover
+{
+  color: $primary-color;
+}
+
 .img-circular
 {
   border-radius: 50%;
@@ -85,4 +101,24 @@ body
   white-space: nowrap;
   display: block;
   text-overflow: ellipsis;
+}
+
+.post-radius
+{
+  border-top-right-radius: rem-calc($button-radius);
+  border-bottom-right-radius: rem-calc($button-radius);
+}
+
+input[type="text"].pre-radius
+{
+  border-top-left-radius: rem-calc($button-radius);
+  border-bottom-left-radius: rem-calc($button-radius);
+}
+
+.disable-select
+{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
