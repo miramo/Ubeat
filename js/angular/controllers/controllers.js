@@ -552,7 +552,7 @@
     controllers.controller('PlaylistsController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties, localStorageService)
     {
         sharedPagesStatus.resetPageStatus();
-        $scope.missingImgPlaylist = 'http://i.imgur.com/mqE4SPZ.png';
+        $scope.missingImgPlaylist = './img/missing-album.png';
         $scope.sharedProperties = sharedProperties;
         $scope.playlistToAdd = {};
         $scope.playlistToAdd.defaultName = "Nouvelle playlist";
