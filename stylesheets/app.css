@@ -18570,24 +18570,24 @@ a {
   text-shadow: 1px 1px 1px black;
 }
 
-/* line 1, ../scss/_index.scss */
+/* line 1, ../scss/_home.scss */
 .new-artists {
   margin-top: 1.25rem;
   z-index: -1;
 }
 
-/* line 7, ../scss/_index.scss */
+/* line 7, ../scss/_home.scss */
 .slider-index {
   margin: 1.25rem 1.875rem;
 }
 
-/* line 12, ../scss/_index.scss */
+/* line 12, ../scss/_home.scss */
 .slider-index-element {
   margin: 0 0.5rem;
   opacity: 0.8;
 }
 
-/* line 18, ../scss/_index.scss */
+/* line 18, ../scss/_home.scss */
 .slider-img {
   position: relative;
   width: 100%;
@@ -18600,7 +18600,7 @@ a {
   background-size: cover;
 }
 
-/* line 31, ../scss/_index.scss */
+/* line 31, ../scss/_home.scss */
 .year-label-index {
   color: #FFFFFF;
   width: 100%;
@@ -18609,7 +18609,7 @@ a {
   margin: 0 auto;
 }
 
-/* line 40, ../scss/_index.scss */
+/* line 40, ../scss/_home.scss */
 .album-artist-label {
   background: #c60000;
   color: #ffffff;
@@ -18620,13 +18620,13 @@ a {
   padding: 0;
 }
 
-/* line 51, ../scss/_index.scss */
+/* line 51, ../scss/_home.scss */
 .slider-index-element.slick-center {
   opacity: 1;
   transform: scale(1.08);
 }
 
-/* line 57, ../scss/_index.scss */
+/* line 57, ../scss/_home.scss */
 .latest-item-element h5 {
   overflow: hidden;
   white-space: nowrap;
@@ -18634,7 +18634,7 @@ a {
   text-overflow: ellipsis;
 }
 
-/* line 65, ../scss/_index.scss */
+/* line 65, ../scss/_home.scss */
 footer-bar {
   position: fixed;
   bottom: 0;
