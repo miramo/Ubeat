@@ -61,12 +61,14 @@
 {
   position : relative;
   cursor   : pointer;
-}
-
-.artist-albums-img img
-{
-  width          : 100%;
-  vertical-align : top;
+  width               : 100%;
+  padding-bottom      : 100%;
+  display             : inline-block;
+  vertical-align      : middle;
+  background-image    : none;
+  background-repeat   : no-repeat;
+  background-position : center center;
+  background-size     : cover;
 }
 
 .artist-albums-img:after

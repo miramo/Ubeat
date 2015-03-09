@@ -12,8 +12,7 @@
                     <div class="slider-index-element"
                          ng-repeat="homeArtist in sharedProperties.homeArtists track by $index">
                         <a href="#/artist/{{homeArtist.artistId}}">
-                            <img ng-src={{homeArtist.image.url}} alt=""/>
-
+                            <div class="slider-img" back-img="{{homeArtist.image.url}}"></div>
                             <h5 class="text-center">
                                 <strong class="ellipsis">{{homeArtist.artistName}}</strong>
                             </h5>
@@ -37,8 +36,7 @@
                          ng-repeat="album in sharedProperties.homeAlbums track by $index">
                         <div load-progress="{{$index}}" data-callback="albumLoad" }>
                             <a href="#/album/{{album.collectionId}}">
-                                <img ng-src={{album.artworkUrl300}} alt=""/>
-
+                                <div class="slider-img" back-img="{{album.artworkUrl300}}"></div>
                                 <div class="album-artist-label ellipsis">
                                     <div class="text-center">{{album.artistName}}</div>
                                 </div>
