@@ -18953,30 +18953,32 @@ a {
   margin: 0 0.3125rem;
   position: absolute;
   top: 25%;
+  width: 100%;
 }
-/* line 45, ../scss/_playlists.scss */
+/* line 46, ../scss/_playlists.scss */
 .playlists-name .playlist-item .img {
   width: 3.125rem;
   height: 3.125rem;
   display: inline-block;
 }
 
-/* line 54, ../scss/_playlists.scss */
+/* line 55, ../scss/_playlists.scss */
 .header-playlist-table {
   height: 7.5rem;
 }
-/* line 59, ../scss/_playlists.scss */
+/* line 60, ../scss/_playlists.scss */
 .header-playlist-table .header-playlist-table-img-name img {
   height: 6.25rem;
   width: 6.25rem;
   display: inline-block;
 }
-/* line 65, ../scss/_playlists.scss */
+/* line 66, ../scss/_playlists.scss */
 .header-playlist-table .header-playlist-table-img-name h1 {
   display: inline-block;
+  width: 70%;
 }
 
-/* line 72, ../scss/_playlists.scss */
+/* line 74, ../scss/_playlists.scss */
 .delete-track {
   cursor: pointer;
 }
