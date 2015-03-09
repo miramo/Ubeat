@@ -18279,15 +18279,17 @@ input[type="text"].dream-search:focus {
 .artist-albums-img {
   position: relative;
   cursor: pointer;
-}
-
-/* line 66, ../scss/_artist.scss */
-.artist-albums-img img {
   width: 100%;
-  vertical-align: top;
+  padding-bottom: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
-/* line 72, ../scss/_artist.scss */
+/* line 74, ../scss/_artist.scss */
 .artist-albums-img:after {
   border-top-left-radius: 0.3125rem;
   border-top-right-radius: 0.3125rem;
@@ -18306,7 +18308,7 @@ input[type="text"].dream-search:focus {
   -webkit-transition: all 0.5s;
 }
 
-/* line 93, ../scss/_artist.scss */
+/* line 95, ../scss/_artist.scss */
 .artist-album-title {
   background: #c60000;
   -o-transition: 0.7s;
@@ -18316,12 +18318,12 @@ input[type="text"].dream-search:focus {
   /* ...and now for the proper property */
   transition: 0.7s;
 }
-/* line 104, ../scss/_artist.scss */
+/* line 106, ../scss/_artist.scss */
 .artist-album-title:hover {
   background: #9e0000;
 }
 
-/* line 110, ../scss/_artist.scss */
+/* line 112, ../scss/_artist.scss */
 .artist-albums-img:hover:after {
   opacity: 0.5;
 }
@@ -18568,32 +18570,37 @@ a {
   text-shadow: 1px 1px 1px black;
 }
 
-/* line 1, ../scss/_index.scss */
+/* line 1, ../scss/_home.scss */
 .new-artists {
   margin-top: 1.25rem;
   z-index: -1;
 }
 
-/* line 7, ../scss/_index.scss */
+/* line 7, ../scss/_home.scss */
 .slider-index {
   margin: 1.25rem 1.875rem;
 }
 
-/* line 12, ../scss/_index.scss */
+/* line 12, ../scss/_home.scss */
 .slider-index-element {
   margin: 0 0.5rem;
   opacity: 0.8;
 }
 
-/* line 18, ../scss/_index.scss */
-.slider-index-element img {
-  max-width: 100%;
-  max-height: 100%;
+/* line 18, ../scss/_home.scss */
+.slider-img {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
   display: inline-block;
-  margin: 0 auto;
+  vertical-align: middle;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
-/* line 26, ../scss/_index.scss */
+/* line 31, ../scss/_home.scss */
 .year-label-index {
   color: #FFFFFF;
   width: 100%;
@@ -18602,7 +18609,7 @@ a {
   margin: 0 auto;
 }
 
-/* line 35, ../scss/_index.scss */
+/* line 40, ../scss/_home.scss */
 .album-artist-label {
   background: #c60000;
   color: #ffffff;
@@ -18613,13 +18620,13 @@ a {
   padding: 0;
 }
 
-/* line 46, ../scss/_index.scss */
+/* line 51, ../scss/_home.scss */
 .slider-index-element.slick-center {
   opacity: 1;
   transform: scale(1.08);
 }
 
-/* line 52, ../scss/_index.scss */
+/* line 57, ../scss/_home.scss */
 .latest-item-element h5 {
   overflow: hidden;
   white-space: nowrap;
@@ -18627,7 +18634,7 @@ a {
   text-overflow: ellipsis;
 }
 
-/* line 60, ../scss/_index.scss */
+/* line 65, ../scss/_home.scss */
 footer-bar {
   position: fixed;
   bottom: 0;
