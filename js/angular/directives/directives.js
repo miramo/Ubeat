@@ -38,14 +38,14 @@
         };
     });
 
-    ubeatApp.directive('backImg', function()
+    ubeatApp.directive('backImg', function ()
     {
-        return function(scope, element, attrs)
+        return function (scope, element, attrs)
         {
-            attrs.$observe('backImg', function(value)
+            attrs.$observe('backImg', function (value)
             {
                 element.css({
-                    'background-image': 'url(' + value +')',
+                    'background-image': 'url(' + value + ')',
                     'background-size' : 'cover'
                 });
             });
