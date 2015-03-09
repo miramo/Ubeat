@@ -6,27 +6,6 @@
 {
     var ubeatApp = angular.module('directives', []);
 
-    ubeatApp.directive('backimg', function ($http)
-    {
-        function link(scope, element, attrs)
-        {
-            var imgUrl = attrs.backimg;
-
-            httpGetImageDataURI($http, imgUrl, function (result)
-            {
-                element.css(
-                    {
-                        'background-image': 'url(' + result + ')'
-                    });
-            });
-        }
-
-        return {
-            restrict: 'A',
-            link    : link
-        };
-    });
-
     ubeatApp.directive('navBar', function ()
     {
         return {
@@ -59,9 +38,12 @@
         };
     });
 
-    ubeatApp.directive('backImg', function(){
-        return function(scope, element, attrs){
-            attrs.$observe('backImg', function(value) {
+    ubeatApp.directive('backImg', function()
+    {
+        return function(scope, element, attrs)
+        {
+            attrs.$observe('backImg', function(value)
+            {
                 element.css({
                     'background-image': 'url(' + value +')',
                     'background-size' : 'cover'

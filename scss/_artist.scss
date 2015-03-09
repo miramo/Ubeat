@@ -1,3 +1,5 @@
+$transition-time: 0.7s;
+
 .type-label
 {
   @include label(
@@ -6,35 +8,12 @@
   );
 }
 
-.year-label
-{
-  width       : 100%;
-  @include label(
-  $text-size : em-calc(12),
-  $bg : $primary-color
-  );
-
-  padding-top : rem-calc(8);
-}
-
 .artist-header
 {
   background    : #333;
   position      : relative;
   margin-bottom : rem-calc(15);
   overflow      : hidden;
-}
-
-#img-artist
-{
-  width               : 100%;
-  padding-bottom      : 100%;
-  display             : inline-block;
-  vertical-align      : middle;
-  background-image    : none;
-  background-repeat   : no-repeat;
-  background-position : center center;
-  background-size     : cover;
 }
 
 .artist-albums-list
@@ -51,24 +30,10 @@
   }
 }
 
-.artist-panel img
-{
-  width  : 100%;
-  height : auto;
-}
-
 .artist-albums-img
 {
-  position : relative;
-  cursor   : pointer;
-  width               : 100%;
-  padding-bottom      : 100%;
-  display             : inline-block;
-  vertical-align      : middle;
-  background-image    : none;
-  background-repeat   : no-repeat;
-  background-position : center center;
-  background-size     : cover;
+  @extend .responsive-img;
+  cursor: pointer;
 }
 
 .artist-albums-img:after
@@ -86,30 +51,20 @@
   vertical-align          : middle;
   background-color        : black;
   opacity                 : 0;
-  transition              : all 0.5s;
-  -webkit-transition      : all 0.5s;
-}
-
-$transition-time: 0.7s;
-
-.artist-album-title
-{
-  background         : $primary-color;
-
-  -o-transition      : $transition-time;
-  -ms-transition     : $transition-time;
-  -moz-transition    : $transition-time;
-  -webkit-transition : $transition-time;
-  /* ...and now for the proper property */
-  transition         : $transition-time;
-
-  &:hover
-  {
-    background : scale-color($primary-color, $lightness : -20%);
-  }
+  transition              : all $transition-time;
 }
 
 .artist-albums-img:hover:after
 {
   opacity : 0.5;
+}
+
+.text-card-artist-album
+{
+  @extend .text-card;
+  transition         : $transition-time;
+  &:hover
+  {
+    background : scale-color($primary-color, $lightness : -20%) !important;
+  }
 }
