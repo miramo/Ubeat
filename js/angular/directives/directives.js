@@ -38,6 +38,17 @@
         };
     });
 
+    ubeatApp.directive('itunesLink', function ()
+    {
+        return {
+            restrict   : 'E',
+            scope      : {
+                url: '@'
+            },
+            templateUrl: './views/templates/itunes-link.html'
+        };
+    });
+
     ubeatApp.directive('backImg', function ()
     {
         return function (scope, element, attrs)
