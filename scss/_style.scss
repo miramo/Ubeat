@@ -28,6 +28,27 @@ body
   }
 }
 
+footer-bar {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: rem-calc(60);
+}
+
+.responsive-img
+{
+  position            : relative;
+  width               : 100%;
+  padding-bottom      : 100%;
+  display             : inline-block;
+  vertical-align      : middle;
+  background-image    : none;
+  background-repeat   : no-repeat;
+  background-position : center center;
+  background-size     : cover;
+}
+
 .slick-prev:before, .slick-next:before
 {
   color: $primary-color !important;
@@ -81,16 +102,23 @@ body
   {
     padding-bottom: rem-calc(0);
     border-radius: rem-calc(5);
-    //background: scale-color($primary-color, $lightness: -10%);
-    //background: $primary-color;
     overflow: hidden;
     box-shadow: rem-calc(0) rem-calc(8) rem-calc(17) rem-calc(0) rgba(0, 0, 0, 0.2);
-    p
+    .text-card
     {
-      font-size: rem-calc(16);
-      padding: rem-calc(0) rem-calc(5);
-      margin-bottom: 0;
-      color: $white;
+      background: $primary-color;
+      .first-text-card
+      {
+        font-size: rem-calc(16);
+        padding: rem-calc(0) rem-calc(5);
+        margin-bottom: 0;
+        color: $white;
+      }
+      .second-text-card
+      {
+        @extend .first-text-card;
+        font-size: rem-calc(12);
+      }
     }
   }
 }

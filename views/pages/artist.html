@@ -3,7 +3,7 @@
         <div class="row">
             <div class="album-artist-picture" ng-switch on="artistPictureLoaded">
                 <div ng-switch-when="true" class="show-for-medium-up">
-                    <div class="img-circular" id="img-artist" backimg={{artist.image.url}}></div>
+                    <div class="img-circular responsive-img" id="img-artist" back-img="{{artist.image.url}}"></div>
                 </div>
             </div>
             <div class="album-artist-infos">
@@ -36,12 +36,14 @@
                             <div class="row">
                                 <div class="card">
                                     <div class="artist-albums-img" back-img="{{album.artworkUrl300}}"></div>
-                                    <div class="row collapse artist-album-title">
+                                    <div class="row collapse text-card-artist-album">
                                         <a href="#/album/{{album.collectionId}}">
                                             <div class="text-center">
-                                                <p class="ellipsis">{{album.collectionName}}</p>
+                                                <p class="first-text-card ellipsis">{{album.collectionName}}</p>
                                             </div>
-                                            <div class="year-label-index">{{album.releaseDateObj | date:'yyyy'}}</div>
+                                            <div class="text-center">
+                                                <p class="second-text-card ellipsis">{{album.releaseDateObj | date:'yyyy'}}</p>
+                                            </div>
                                         </a>
                                     </div>
                                 </div>
