@@ -33,8 +33,8 @@
                                 <div class="small-12 columns">
                                     <div class="row collapse">
                                         <div class="small-9 columns">
-                                            <img ng-show="!playlist.isEdit" ng-src="{{getPlaylistImg(playlist, 50)}}" width="50" height="50" alt=""/>
-                                            <span ng-hide="playlist.isEdit">
+                                            <div class="img" ng-show="!playlist.isEdit" back-img="{{getPlaylistImg(playlist, 50)}}"></div>
+                                            <span ng-hide="playlist.isEdit" class="playlist-name">
                                                 {{playlist.name | characters:19:false}}
                                             </span>
                                             <span ng-show="playlist.isEdit">
