@@ -17925,23 +17925,45 @@ body::-webkit-scrollbar-track {
 }
 
 /* line 31, ../scss/_style.scss */
+footer-bar {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 3.75rem;
+}
+
+/* line 39, ../scss/_style.scss */
+.responsive-img, .artist-albums-img {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+/* line 52, ../scss/_style.scss */
 .slick-prev:before, .slick-next:before {
   color: #c60000 !important;
   width: 200% !important;
   height: 200% !important;
 }
 
-/* line 40, ../scss/_style.scss */
+/* line 61, ../scss/_style.scss */
 .slick-dots li button:before {
   color: #c60000 !important;
 }
 
-/* line 46, ../scss/_style.scss */
+/* line 67, ../scss/_style.scss */
 .bottom-border {
   border-bottom: 0.0625rem solid #bdbdbd;
 }
 
-/* line 51, ../scss/_style.scss */
+/* line 72, ../scss/_style.scss */
 .custom-reveal-class {
   font-size: 2.5rem;
   line-height: 1;
@@ -17953,45 +17975,57 @@ body::-webkit-scrollbar-track {
   cursor: pointer;
 }
 
-/* line 57, ../scss/_style.scss */
+/* line 78, ../scss/_style.scss */
 .on-hover:hover {
   color: #c60000;
 }
 
-/* line 62, ../scss/_style.scss */
+/* line 83, ../scss/_style.scss */
 .img-circular {
   border-radius: 50%;
   overflow: hidden;
 }
 
-/* line 69, ../scss/_style.scss */
+/* line 90, ../scss/_style.scss */
 ::selection {
   background: #f50000;
   color: #FFFFFF;
 }
 
-/* line 75, ../scss/_style.scss */
+/* line 96, ../scss/_style.scss */
 .bump {
   margin-top: 3.125rem;
   padding-right: 1.875rem;
   padding-left: 1.875rem;
 }
-/* line 80, ../scss/_style.scss */
-.bump .card {
+/* line 101, ../scss/_style.scss */
+.bump .card, .bump .card-noshadow {
   padding-bottom: 0;
   border-radius: 0.3125rem;
   overflow: hidden;
   box-shadow: 0 0.5rem 1.0625rem 0 rgba(0, 0, 0, 0.2);
 }
-/* line 88, ../scss/_style.scss */
-.bump .card p {
+/* line 107, ../scss/_style.scss */
+.bump .card .text-card, .bump .card-noshadow .text-card, .bump .card .text-card-artist-album, .bump .card-noshadow .text-card-artist-album {
+  background: #c60000;
+}
+/* line 110, ../scss/_style.scss */
+.bump .card .text-card .first-text-card, .bump .card-noshadow .text-card .first-text-card, .bump .card .text-card-artist-album .first-text-card, .bump .card-noshadow .text-card-artist-album .first-text-card, .bump .card .text-card .second-text-card, .bump .card-noshadow .text-card .second-text-card, .bump .card .text-card-artist-album .second-text-card, .bump .card-noshadow .text-card-artist-album .second-text-card {
   font-size: 1rem;
   padding: 0 0.3125rem;
   margin-bottom: 0;
   color: #FFFFFF;
 }
+/* line 117, ../scss/_style.scss */
+.bump .card .text-card .second-text-card, .bump .card-noshadow .text-card .second-text-card, .bump .card .text-card-artist-album .second-text-card, .bump .card-noshadow .text-card-artist-album .second-text-card {
+  font-size: 0.875rem;
+}
+/* line 124, ../scss/_style.scss */
+.bump .card-noshadow {
+  box-shadow: none;
+}
 
-/* line 98, ../scss/_style.scss */
+/* line 131, ../scss/_style.scss */
 .ellipsis {
   overflow: hidden;
   white-space: nowrap;
@@ -17999,19 +18033,19 @@ body::-webkit-scrollbar-track {
   text-overflow: ellipsis;
 }
 
-/* line 106, ../scss/_style.scss */
+/* line 139, ../scss/_style.scss */
 .post-radius {
   border-top-right-radius: 0.1875rem;
   border-bottom-right-radius: 0.1875rem;
 }
 
-/* line 112, ../scss/_style.scss */
+/* line 145, ../scss/_style.scss */
 input[type="text"].pre-radius {
   border-top-left-radius: 0.1875rem;
   border-bottom-left-radius: 0.1875rem;
 }
 
-/* line 118, ../scss/_style.scss */
+/* line 151, ../scss/_style.scss */
 .disable-select {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -18097,7 +18131,7 @@ input[type="text"].dream-search:focus {
     margin-top: 0.0625rem;
   }
 }
-/* line 1, ../scss/_artist.scss */
+/* line 3, ../scss/_artist.scss */
 .type-label {
   font-weight: normal;
   font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
@@ -18115,26 +18149,7 @@ input[type="text"].dream-search:focus {
   border-radius: 2px;
 }
 
-/* line 9, ../scss/_artist.scss */
-.year-label {
-  width: 100%;
-  font-weight: normal;
-  font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
-  text-align: center;
-  text-decoration: none;
-  line-height: 1;
-  white-space: nowrap;
-  display: inline-block;
-  position: relative;
-  margin-bottom: auto;
-  padding: 0.25rem 0.5rem 0.25rem;
-  font-size: 0.75rem;
-  background-color: #c60000;
-  color: #FFFFFF;
-  padding-top: 0.5rem;
-}
-
-/* line 20, ../scss/_artist.scss */
+/* line 11, ../scss/_artist.scss */
 .artist-header {
   background: #333;
   position: relative;
@@ -18142,20 +18157,8 @@ input[type="text"].dream-search:focus {
   overflow: hidden;
 }
 
-/* line 28, ../scss/_artist.scss */
-#img-artist {
-  width: 100%;
-  padding-bottom: 100%;
-  display: inline-block;
-  vertical-align: middle;
-  background-image: none;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-}
-
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 40, ../scss/_artist.scss */
+  /* line 19, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -18193,7 +18196,7 @@ input[type="text"].dream-search:focus {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 40, ../scss/_artist.scss */
+  /* line 19, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -18231,7 +18234,7 @@ input[type="text"].dream-search:focus {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 40, ../scss/_artist.scss */
+  /* line 19, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -18269,27 +18272,12 @@ input[type="text"].dream-search:focus {
   }
 }
 
-/* line 54, ../scss/_artist.scss */
-.artist-panel img {
-  width: 100%;
-  height: auto;
-}
-
-/* line 60, ../scss/_artist.scss */
+/* line 33, ../scss/_artist.scss */
 .artist-albums-img {
-  position: relative;
   cursor: pointer;
-  width: 100%;
-  padding-bottom: 100%;
-  display: inline-block;
-  vertical-align: middle;
-  background-image: none;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
 }
 
-/* line 74, ../scss/_artist.scss */
+/* line 39, ../scss/_artist.scss */
 .artist-albums-img:after {
   border-top-left-radius: 0.3125rem;
   border-top-right-radius: 0.3125rem;
@@ -18304,28 +18292,21 @@ input[type="text"].dream-search:focus {
   vertical-align: middle;
   background-color: black;
   opacity: 0;
-  transition: all 0.5s;
-  -webkit-transition: all 0.5s;
+  transition: all 0.7s;
 }
 
-/* line 95, ../scss/_artist.scss */
-.artist-album-title {
-  background: #c60000;
-  -o-transition: 0.7s;
-  -ms-transition: 0.7s;
-  -moz-transition: 0.7s;
-  -webkit-transition: 0.7s;
-  /* ...and now for the proper property */
-  transition: 0.7s;
-}
-/* line 106, ../scss/_artist.scss */
-.artist-album-title:hover {
-  background: #9e0000;
-}
-
-/* line 112, ../scss/_artist.scss */
+/* line 57, ../scss/_artist.scss */
 .artist-albums-img:hover:after {
   opacity: 0.5;
+}
+
+/* line 62, ../scss/_artist.scss */
+.text-card-artist-album {
+  transition: 0.7s;
+}
+/* line 66, ../scss/_artist.scss */
+.text-card-artist-album:hover {
+  background: #9e0000 !important;
 }
 
 /* line 1, ../scss/_albums.scss */
@@ -18583,64 +18564,15 @@ a {
 
 /* line 12, ../scss/_home.scss */
 .slider-index-element {
-  margin: 0 0.5rem;
+  margin: 0 0.0625rem;
   opacity: 0.8;
+  transform: scale(0.92);
 }
 
-/* line 18, ../scss/_home.scss */
-.slider-img {
-  position: relative;
-  width: 100%;
-  padding-bottom: 100%;
-  display: inline-block;
-  vertical-align: middle;
-  background-image: none;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-}
-
-/* line 31, ../scss/_home.scss */
-.year-label-index {
-  color: #FFFFFF;
-  width: 100%;
-  text-align: center;
-  font-size: 0.75rem;
-  margin: 0 auto;
-}
-
-/* line 40, ../scss/_home.scss */
-.album-artist-label {
-  background: #c60000;
-  color: #ffffff;
-  width: 100%;
-  text-align: center;
-  font-size: 0.75rem;
-  margin: 0;
-  padding: 0;
-}
-
-/* line 51, ../scss/_home.scss */
+/* line 19, ../scss/_home.scss */
 .slider-index-element.slick-center {
   opacity: 1;
-  transform: scale(1.08);
-}
-
-/* line 57, ../scss/_home.scss */
-.latest-item-element h5 {
-  overflow: hidden;
-  white-space: nowrap;
-  display: block;
-  text-overflow: ellipsis;
-}
-
-/* line 65, ../scss/_home.scss */
-footer-bar {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  height: 3.75rem;
+  transform: scale(1);
 }
 
 /* line 1, ../scss/_playbar.scss */
@@ -19014,30 +18946,39 @@ footer-bar {
 }
 /* line 35, ../scss/_playlists.scss */
 .playlists-name .playlist-item .icon-playlist-item {
-  vertical-align: middle;
-  padding-top: 0.9375rem;
+  padding-top: 1.25rem;
 }
-/* line 40, ../scss/_playlists.scss */
-.playlists-name .playlist-item img {
+/* line 39, ../scss/_playlists.scss */
+.playlists-name .playlist-item .playlist-name {
+  margin: 0 0.3125rem;
+  position: absolute;
+  top: 25%;
+  width: 100%;
+}
+/* line 46, ../scss/_playlists.scss */
+.playlists-name .playlist-item .img {
   width: 3.125rem;
   height: 3.125rem;
-}
-
-/* line 48, ../scss/_playlists.scss */
-.header-playlist-table {
-  height: 7.5rem;
-}
-/* line 53, ../scss/_playlists.scss */
-.header-playlist-table .header-playlist-table-img-name img {
-  height: 6.25rem;
-  width: 6.25rem;
-}
-/* line 58, ../scss/_playlists.scss */
-.header-playlist-table .header-playlist-table-img-name h1 {
   display: inline-block;
 }
 
-/* line 65, ../scss/_playlists.scss */
+/* line 55, ../scss/_playlists.scss */
+.header-playlist-table {
+  height: 7.5rem;
+}
+/* line 60, ../scss/_playlists.scss */
+.header-playlist-table .header-playlist-table-img-name img {
+  height: 6.25rem;
+  width: 6.25rem;
+  display: inline-block;
+}
+/* line 66, ../scss/_playlists.scss */
+.header-playlist-table .header-playlist-table-img-name h1 {
+  display: inline-block;
+  width: 70%;
+}
+
+/* line 74, ../scss/_playlists.scss */
 .delete-track {
   cursor: pointer;
 }

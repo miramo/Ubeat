@@ -12,10 +12,18 @@
                     <div class="slider-index-element"
                          ng-repeat="homeArtist in sharedProperties.homeArtists track by $index">
                         <a href="#/artist/{{homeArtist.artistId}}">
-                            <div class="slider-img" back-img="{{homeArtist.image.url}}"></div>
-                            <h5 class="text-center">
-                                <strong class="ellipsis">{{homeArtist.artistName}}</strong>
-                            </h5>
+                            <div class="row bump">
+                                <div class="row">
+                                    <div class="card-noshadow">
+                                        <div class="responsive-img" back-img="{{homeArtist.image.url}}"></div>
+                                        <div class="row collapse text-card">
+                                            <div class="text-center">
+                                                <p class="first-text-card ellipsis">{{homeArtist.artistName}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </a>
                     </div>
                 </slick>
@@ -36,13 +44,21 @@
                          ng-repeat="album in sharedProperties.homeAlbums track by $index">
                         <div load-progress="{{$index}}" data-callback="albumLoad" }>
                             <a href="#/album/{{album.collectionId}}">
-                                <div class="slider-img" back-img="{{album.artworkUrl300}}"></div>
-                                <div class="album-artist-label ellipsis">
-                                    <div class="text-center">{{album.artistName}}</div>
+                                <div class="row bump">
+                                    <div class="row">
+                                        <div class="card-noshadow">
+                                            <div class="responsive-img" back-img="{{album.artworkUrl300}}"></div>
+                                            <div class="row collapse text-card">
+                                                <div class="text-center">
+                                                    <p class="first-text-card ellipsis">{{album.collectionName}}</p>
+                                                </div>
+                                                <div class="text-center">
+                                                    <p class="second-text-card ellipsis">{{album.artistName}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h5 class="text-center">
-                                    <strong class="ellipsis">{{album.collectionName}}</strong>
-                                </h5>
                             </a>
                         </div>
                     </div>
