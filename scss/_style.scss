@@ -117,9 +117,14 @@ footer-bar {
       .second-text-card
       {
         @extend .first-text-card;
-        font-size: rem-calc(12);
+        font-size: rem-calc(14);
       }
     }
+  }
+  .card-noshadow
+  {
+    @extend .card;
+    box-shadow: none;
   }
 }
 
