@@ -18938,16 +18938,17 @@ a {
   padding: 0.3125rem;
   background-color: #e6e6e6;
   cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
-/* line 10, ../scss/_playlists.scss */
+/* line 11, ../scss/_playlists.scss */
 .playlists-name .playlist-item:hover {
   background-color: #cecece;
 }
-/* line 14, ../scss/_playlists.scss */
+/* line 15, ../scss/_playlists.scss */
 .playlists-name .playlist-item.new-playlist {
   vertical-align: middle;
 }
-/* line 17, ../scss/_playlists.scss */
+/* line 18, ../scss/_playlists.scss */
 .playlists-name .playlist-item.new-playlist i {
   padding-left: 1rem;
   padding-top: 1.25rem;
@@ -18956,49 +18957,57 @@ a {
   background-color: #dadada;
   color: #c60000;
 }
-/* line 27, ../scss/_playlists.scss */
+/* line 28, ../scss/_playlists.scss */
 .playlists-name .playlist-item.active {
   background-color: #cecece;
+  border-left: solid thick #c60000;
+  border-left-width: 0.1875rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-/* line 31, ../scss/_playlists.scss */
+/* line 35, ../scss/_playlists.scss */
 .playlists-name .playlist-item input, .playlists-name .playlist-item a {
   margin-top: 0.4375rem;
 }
-/* line 35, ../scss/_playlists.scss */
+/* line 39, ../scss/_playlists.scss */
 .playlists-name .playlist-item .icon-playlist-item {
+  background-color: #e6e6e6;
   padding-top: 1.25rem;
 }
-/* line 39, ../scss/_playlists.scss */
+/* line 44, ../scss/_playlists.scss */
+.playlists-name .playlist-item:hover .icon-playlist-item, .playlists-name .playlist-item.active .icon-playlist-item {
+  background-color: #cecece;
+}
+/* line 48, ../scss/_playlists.scss */
 .playlists-name .playlist-item .playlist-name {
   margin: 0 0.3125rem;
   position: absolute;
   top: 25%;
   width: 100%;
 }
-/* line 46, ../scss/_playlists.scss */
+/* line 55, ../scss/_playlists.scss */
 .playlists-name .playlist-item .img {
   width: 3.125rem;
   height: 3.125rem;
   display: inline-block;
 }
 
-/* line 55, ../scss/_playlists.scss */
+/* line 64, ../scss/_playlists.scss */
 .header-playlist-table {
   height: 7.5rem;
 }
-/* line 60, ../scss/_playlists.scss */
+/* line 69, ../scss/_playlists.scss */
 .header-playlist-table .header-playlist-table-img-name img {
   height: 6.25rem;
   width: 6.25rem;
   display: inline-block;
 }
-/* line 66, ../scss/_playlists.scss */
+/* line 75, ../scss/_playlists.scss */
 .header-playlist-table .header-playlist-table-img-name h1 {
   display: inline-block;
   width: 70%;
 }
 
-/* line 74, ../scss/_playlists.scss */
+/* line 83, ../scss/_playlists.scss */
 .delete-track {
   cursor: pointer;
 }
