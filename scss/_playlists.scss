@@ -66,20 +66,42 @@
 
 .header-playlist-table
 {
-  height: rem-calc(120);
+  height: rem-calc(110);
   .header-playlist-table-img-name
   {
-    img
+    .img
     {
       height: rem-calc(100);
       width: rem-calc(100);
-      display: inline-block;
+      display: inline;
+      margin-right: rem-calc(5);
+      float: left;
     }
     h1
     {
-      display: inline-block;
-      width: 70%;
+      display: inline;
+      width: 100%;
+//      height: rem-calc(100);
+//      line-height: rem-calc(100);
     }
+  }
+}
+
+.header-description
+{
+  display: block;
+  width: 100%;
+  background-color: scale-color($panel-bg, $lightness: -4%);
+  padding: rem-calc(0) rem-calc(10);
+  p
+  {
+    width: 100%;
+    height: rem-calc(35);
+    line-height: rem-calc(35);
+  }
+  a
+  {
+    margin-top: rem-calc(3);
   }
 }
 

@@ -56,15 +56,26 @@
             </div>
             <div class="small-12 large-8 columns">
                 <div class="panel radius">
-                    <div class="row collapse header-playlist-table">
-                        <div class="small-9 columns left header-playlist-table-img-name">
-                            <img ng-src="{{getPlaylistImg(active, 100)}}" width="100" height="100" alt=""/>
-                            <h1 class="ellipsis">{{active.name}}</h1>
+                    <div class="row header-playlist-table">
+                        <div class="small-12 columns header-playlist-table-img-name">
+                            <div class="img" back-img="{{getPlaylistImg(active, 100)}}"></div>
+                            <div class="playlist-name ellipsis">
+                                <h1>{{active.name}}</h1>
+                            </div>
                         </div>
-                        <div class="small-3 columns">
-                            <a ng-click="" class="button red radius right disabled"><i class="fa fa-play fa-lg"></i> Lire</a>
+                        <!--<div class="small-3 columns">-->
+                        <!--<a ng-click="" class="button red small radius right disabled"><i class="md-play-arrow md-lg"></i> Lire</a>-->
+                        <!--</div>-->
+                    </div>
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <div class="header-description">
+                                <a ng-click="" class="button red small radius right disabled"><i class="md-play-arrow md-lg"></i> Lire</a>
+                                <p>{{active.tracks.length}} titres, {{active.getTotalTime()}}</p>
+                            </div>
                         </div>
                     </div>
+
                     <div>
                         <table>
                             <thead>

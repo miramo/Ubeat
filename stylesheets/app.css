@@ -18993,21 +18993,41 @@ a {
 
 /* line 67, ../scss/_playlists.scss */
 .header-playlist-table {
-  height: 7.5rem;
+  height: 6.875rem;
 }
 /* line 72, ../scss/_playlists.scss */
-.header-playlist-table .header-playlist-table-img-name img {
+.header-playlist-table .header-playlist-table-img-name .img {
   height: 6.25rem;
   width: 6.25rem;
-  display: inline-block;
+  display: inline;
+  margin-right: 0.3125rem;
+  float: left;
 }
-/* line 78, ../scss/_playlists.scss */
+/* line 80, ../scss/_playlists.scss */
 .header-playlist-table .header-playlist-table-img-name h1 {
-  display: inline-block;
-  width: 70%;
+  display: inline;
+  width: 100%;
 }
 
-/* line 86, ../scss/_playlists.scss */
+/* line 90, ../scss/_playlists.scss */
+.header-description {
+  display: block;
+  width: 100%;
+  background-color: #e9e9e9;
+  padding: 0 0.625rem;
+}
+/* line 100, ../scss/_playlists.scss */
+.header-description p {
+  width: 100%;
+  height: 2.1875rem;
+  line-height: 2.1875rem;
+}
+/* line 106, ../scss/_playlists.scss */
+.header-description a {
+  margin-top: 0.1875rem;
+}
+
+/* line 112, ../scss/_playlists.scss */
 .delete-track {
   cursor: pointer;
 }

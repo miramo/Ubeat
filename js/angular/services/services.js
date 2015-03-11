@@ -72,6 +72,17 @@
             this.tracks = [];
             this.isEdit = false;
             this.isHover = false;
+            this.getTotalTime = function()
+            {
+                var totalTime;
+                console.log("zizi");
+                this.tracks.forEach(function(entry)
+                {
+                    totalTime += entry.trackTimeMillis;
+                    console.log(entry.trackId);
+                });
+                return totalTime;
+            }
         }
 
 
