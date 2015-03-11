@@ -17999,30 +17999,30 @@ footer-bar {
   padding-left: 1.875rem;
 }
 /* line 101, ../scss/_style.scss */
-.bump .card, .bump .card-noshadow {
+.bump .card, .bump .card-shadow {
   padding-bottom: 0;
   border-radius: 0.3125rem;
   overflow: hidden;
-  box-shadow: 0 0.5rem 1.0625rem 0 rgba(0, 0, 0, 0.2);
+  box-shadow: none;
 }
 /* line 107, ../scss/_style.scss */
-.bump .card .text-card, .bump .card-noshadow .text-card, .bump .card .text-card-artist-album, .bump .card-noshadow .text-card-artist-album {
+.bump .card .text-card, .bump .card-shadow .text-card, .bump .card .text-card-artist-album, .bump .card-shadow .text-card-artist-album {
   background: #c60000;
 }
 /* line 110, ../scss/_style.scss */
-.bump .card .text-card .first-text-card, .bump .card-noshadow .text-card .first-text-card, .bump .card .text-card-artist-album .first-text-card, .bump .card-noshadow .text-card-artist-album .first-text-card, .bump .card .text-card .second-text-card, .bump .card-noshadow .text-card .second-text-card, .bump .card .text-card-artist-album .second-text-card, .bump .card-noshadow .text-card-artist-album .second-text-card {
+.bump .card .text-card .first-text-card, .bump .card-shadow .text-card .first-text-card, .bump .card .text-card-artist-album .first-text-card, .bump .card-shadow .text-card-artist-album .first-text-card, .bump .card .text-card .second-text-card, .bump .card-shadow .text-card .second-text-card, .bump .card .text-card-artist-album .second-text-card, .bump .card-shadow .text-card-artist-album .second-text-card {
   font-size: 1rem;
   padding: 0 0.3125rem;
   margin-bottom: 0;
   color: #FFFFFF;
 }
 /* line 117, ../scss/_style.scss */
-.bump .card .text-card .second-text-card, .bump .card-noshadow .text-card .second-text-card, .bump .card .text-card-artist-album .second-text-card, .bump .card-noshadow .text-card-artist-album .second-text-card {
+.bump .card .text-card .second-text-card, .bump .card-shadow .text-card .second-text-card, .bump .card .text-card-artist-album .second-text-card, .bump .card-shadow .text-card-artist-album .second-text-card {
   font-size: 0.875rem;
 }
 /* line 124, ../scss/_style.scss */
-.bump .card-noshadow {
-  box-shadow: none;
+.bump .card-shadow {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 /* line 131, ../scss/_style.scss */
@@ -18054,6 +18054,16 @@ input[type="text"].pre-radius {
 }
 
 /* line 1, ../scss/_navbar.scss */
+.nav-bar {
+  border-bottom: solid thick #c60000;
+  border-bottom-width: 0.1875rem;
+}
+/* line 5, ../scss/_navbar.scss */
+.nav-bar:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+/* line 11, ../scss/_navbar.scss */
 .top-bar .name h1 a:before {
   background: url(../img/logo/logo-topbar.png) no-repeat center center;
   content: "";
@@ -18063,7 +18073,7 @@ input[type="text"].pre-radius {
   width: 100px;
 }
 
-/* line 11, ../scss/_navbar.scss */
+/* line 21, ../scss/_navbar.scss */
 #profile-picture {
   width: 2rem;
   height: 2rem;
@@ -18074,34 +18084,34 @@ input[type="text"].pre-radius {
   background-size: cover;
 }
 
-/* line 22, ../scss/_navbar.scss */
+/* line 32, ../scss/_navbar.scss */
 #profile-name {
   padding-left: 0.3125rem;
 }
 
-/* line 27, ../scss/_navbar.scss */
+/* line 37, ../scss/_navbar.scss */
 #profile-topbar {
   display: inline-block;
 }
 
-/* line 32, ../scss/_navbar.scss */
+/* line 42, ../scss/_navbar.scss */
 input[type="text"].dream-search {
   opacity: .5;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 32, ../scss/_navbar.scss */
+  /* line 42, ../scss/_navbar.scss */
   input[type="text"].dream-search {
     width: 75%;
     margin-left: 25%;
   }
 }
 
-/* line 42, ../scss/_navbar.scss */
+/* line 52, ../scss/_navbar.scss */
 input[type="text"].dream-search:focus {
   opacity: 1;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 42, ../scss/_navbar.scss */
+  /* line 52, ../scss/_navbar.scss */
   input[type="text"].dream-search:focus {
     width: 100%;
     margin-left: 0%;
@@ -18110,7 +18120,7 @@ input[type="text"].dream-search:focus {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 55, ../scss/_navbar.scss */
+  /* line 65, ../scss/_navbar.scss */
   .top-bar-section .has-dropdown > a:after {
     content: "";
     display: block;
@@ -18126,7 +18136,7 @@ input[type="text"].dream-search:focus {
     right: 0;
   }
 
-  /* line 70, ../scss/_navbar.scss */
+  /* line 80, ../scss/_navbar.scss */
   .button-search {
     margin-top: 0.0625rem;
   }
@@ -18575,18 +18585,23 @@ a {
   transform: scale(1);
 }
 
-/* line 1, ../scss/_playbar.scss */
+/* line 5, ../scss/_playbar.scss */
+.play-bar:hover {
+  box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.16), 0 -3px 6px rgba(0, 0, 0, 0.23);
+}
+
+/* line 11, ../scss/_playbar.scss */
 .bottom-bar {
   height: 3.75rem;
 }
 
-/* line 6, ../scss/_playbar.scss */
+/* line 16, ../scss/_playbar.scss */
 .bottom-bar i:hover {
   color: #c60000;
   cursor: pointer;
 }
 
-/* line 12, ../scss/_playbar.scss */
+/* line 22, ../scss/_playbar.scss */
 .play-area {
   text-align: center;
   padding-left: 0.9375rem;
@@ -18595,7 +18610,7 @@ a {
   float: left;
 }
 @media only screen and (max-width: 40em) {
-  /* line 12, ../scss/_playbar.scss */
+  /* line 22, ../scss/_playbar.scss */
   .play-area {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -18604,7 +18619,7 @@ a {
   }
 }
 
-/* line 21, ../scss/_playbar.scss */
+/* line 31, ../scss/_playbar.scss */
 .play-button {
   color: #FFFFFF;
   padding-right: 0.3125rem;
@@ -18614,7 +18629,7 @@ a {
   display: inline-block;
 }
 
-/* line 31, ../scss/_playbar.scss */
+/* line 41, ../scss/_playbar.scss */
 .volume {
   color: #FFFFFF;
   padding-right: 0;
@@ -18623,7 +18638,7 @@ a {
   display: inline-block;
 }
 
-/* line 42, ../scss/_playbar.scss */
+/* line 52, ../scss/_playbar.scss */
 .bottom-right {
   color: #FFFFFF;
   padding-right: 0.3125rem;
@@ -18634,7 +18649,7 @@ a {
   margin-right: 0.3125rem;
 }
 
-/* line 58, ../scss/_playbar.scss */
+/* line 68, ../scss/_playbar.scss */
 .test {
   overflow: hidden;
   width: 2.1875rem;
@@ -18646,31 +18661,31 @@ a {
   transition: width 0.5s;
 }
 
-/* line 71, ../scss/_playbar.scss */
+/* line 81, ../scss/_playbar.scss */
 .test i {
   width: 2.1875rem;
   padding-top: 0.9375rem;
 }
 
-/* line 77, ../scss/_playbar.scss */
+/* line 87, ../scss/_playbar.scss */
 .test li {
   white-space: nowrap;
 }
 
-/* line 82, ../scss/_playbar.scss */
+/* line 92, ../scss/_playbar.scss */
 .test:hover {
   width: 9.375rem;
   height: 3.125rem;
   visibility: visible;
 }
 
-/* line 89, ../scss/_playbar.scss */
+/* line 99, ../scss/_playbar.scss */
 .bottom-music-list {
   line-height: 0;
   margin-top: 0.9375rem;
 }
 
-/* line 96, ../scss/_playbar.scss */
+/* line 106, ../scss/_playbar.scss */
 #seek-volume {
   vertical-align: middle;
   -webkit-appearance: none;
@@ -18683,7 +18698,7 @@ a {
   outline: 0;
 }
 
-/* line 109, ../scss/_playbar.scss */
+/* line 119, ../scss/_playbar.scss */
 #seek-volume::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 0.75rem;
@@ -18692,7 +18707,7 @@ a {
   background: #c60000;
 }
 
-/* line 119, ../scss/_playbar.scss */
+/* line 129, ../scss/_playbar.scss */
 #seek-music {
   -webkit-appearance: none;
   border-bottom-right-radius: 0.3125rem;
@@ -18708,7 +18723,7 @@ a {
   outline: 0;
 }
 
-/* line 140, ../scss/_playbar.scss */
+/* line 150, ../scss/_playbar.scss */
 #seek-music::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 1.125rem;
@@ -18718,7 +18733,7 @@ a {
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 151, ../scss/_playbar.scss */
+  /* line 161, ../scss/_playbar.scss */
   .ul-volume {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;

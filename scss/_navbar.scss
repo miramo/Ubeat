@@ -1,3 +1,13 @@
+.nav-bar
+{
+  border-bottom: solid thick $primary-color;
+  border-bottom-width: rem-calc(3);
+  &:hover
+  {
+    @include material-shadow(2);
+  }
+}
+
 .top-bar .name h1 a:before
 {
   background: url(../img/logo/logo-topbar.png) no-repeat center center;
