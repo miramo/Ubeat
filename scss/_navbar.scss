@@ -2,6 +2,7 @@
 {
   border-bottom: solid thick $primary-color;
   border-bottom-width: rem-calc(3);
+  transition: box-shadow 0.3s;
   &:hover
   {
     @include material-shadow(2);
