@@ -19015,19 +19015,20 @@ a {
   width: 100%;
   background-color: #e6e6e6;
   padding: 0 0.625rem;
+  border-radius: 0.3125rem;
 }
-/* line 96, ../scss/_playlists.scss */
+/* line 97, ../scss/_playlists.scss */
 .header-description p {
   width: 100%;
   height: 2.1875rem;
   line-height: 2.1875rem;
 }
-/* line 102, ../scss/_playlists.scss */
+/* line 103, ../scss/_playlists.scss */
 .header-description a {
   margin-top: 0.1875rem;
 }
 
-/* line 108, ../scss/_playlists.scss */
+/* line 109, ../scss/_playlists.scss */
 .delete-track {
   cursor: pointer;
 }

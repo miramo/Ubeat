@@ -93,6 +93,7 @@
   width: 100%;
   background-color: scale-color($panel-bg, $lightness: -5%);
   padding: rem-calc(0) rem-calc(10);
+  border-radius: rem-calc(5);
   p
   {
     width: 100%;
