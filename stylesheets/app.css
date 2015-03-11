@@ -19000,7 +19000,7 @@ a {
   height: 6.25rem;
   width: 6.25rem;
   display: inline;
-  margin-right: 0.3125rem;
+  margin-right: 0.625rem;
   float: left;
 }
 /* line 80, ../scss/_playlists.scss */
@@ -19013,21 +19013,21 @@ a {
 .header-description {
   display: block;
   width: 100%;
-  background-color: #e9e9e9;
+  background-color: #e6e6e6;
   padding: 0 0.625rem;
 }
-/* line 100, ../scss/_playlists.scss */
+/* line 96, ../scss/_playlists.scss */
 .header-description p {
   width: 100%;
   height: 2.1875rem;
   line-height: 2.1875rem;
 }
-/* line 106, ../scss/_playlists.scss */
+/* line 102, ../scss/_playlists.scss */
 .header-description a {
   margin-top: 0.1875rem;
 }
 
-/* line 112, ../scss/_playlists.scss */
+/* line 108, ../scss/_playlists.scss */
 .delete-track {
   cursor: pointer;
 }
