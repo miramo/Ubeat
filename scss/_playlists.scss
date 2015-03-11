@@ -12,6 +12,13 @@
     {
       background-color: scale-color($panel-bg, $lightness: -15%);
     }
+    &.active
+    {
+      background-color: scale-color($panel-bg, $lightness: -15%);
+      border-left: solid thick $primary-color;
+      border-left-width: rem-calc(3);
+      @include material-shadow(2);
+    }
     &.new-playlist
     {
       vertical-align: middle;
@@ -25,38 +32,34 @@
         color: $primary-color;
       }
     }
-    &.active
-    {
-      background-color: scale-color($panel-bg, $lightness: -15%);
-      border-left: solid thick $primary-color;
-      border-left-width: rem-calc(3);
-      @include material-shadow(2);
-    }
     input, a
     {
       margin-top: rem-calc(7);
     }
-    .icon-playlist-item
+    .icon
     {
-      background-color: scale-color($panel-bg, $lightness: -5%);
-      padding-top: rem-calc(20);
+      i
+      {
+        display: inline;
+        height: rem-calc(50);
+        line-height: rem-calc(50);
+        vertical-align: middle;
+      }
     }
-    &:hover .icon-playlist-item, &.active .icon-playlist-item
+    .playlist-name p
     {
-      background-color: scale-color($panel-bg, $lightness: -15%);
-    }
-    .playlist-name
-    {
-      margin: rem-calc(0) rem-calc(5);
-      position: absolute;
-      top: 25%;
+      display: inline;
       width: 100%;
+      height: rem-calc(50);
+      line-height: rem-calc(50);
     }
     .img
     {
       width: rem-calc(50);
       height: rem-calc(50);
-      display: inline-block;
+      display: inline;
+      margin-right: rem-calc(5);
+      float: left;
     }
   }
 }

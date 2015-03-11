@@ -29,26 +29,24 @@
                         <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index"
                             ng-click="setPlaylistActive(playlist.id)" ng-mouseover="setHover(playlist, true)"
                             ng-mouseleave="setHover(playlist, false)" class="playlist-item" ng-class="{active: isActivePlaylist(playlist)}">
-                            <div class="row">
-                                <div class="small-12 columns">
-                                    <div class="row collapse">
-                                        <div class="small-9 columns">
-                                            <div class="img" ng-show="!playlist.isEdit" back-img="{{getPlaylistImg(playlist, 50)}}"></div>
-                                            <span ng-hide="playlist.isEdit" class="playlist-name">
-                                                <p class="ellipsis">{{playlist.name}}</p>
-                                            </span>
-                                            <span ng-show="playlist.isEdit">
-                                                <input ng-model="playlistCurrentRename.name" type="text" class="radius" onClick="this.select();" ng-keydown="$event.which == 13 && rename(playlist, playlistCurrentRename)">
-                                            </span>
-                                        </div>
-                                        <div class="small-3 columns">
-                                            <i class="hide-for-large-up icon-playlist-item md-delete md-lg right on-hover" ng-show="!playlist.isEdit" ng-click="removePlaylist(playlist.id)"></i>
-                                            <i class="hide-for-large-up icon-playlist-item md-edit md-lg right on-hover" ng-show="!playlist.isEdit" ng-click="setEdit(playlist.id, playlist, true); setPlaylistCurrentRename(playlist.name)"></i>
-                                            <i class="show-for-large-up icon-playlist-item md-delete md-lg right on-hover" ng-show="playlist.isHover && !playlist.isEdit" ng-click="removePlaylist(playlist.id)"></i>
-                                            <i class="show-for-large-up icon-playlist-item md-edit md-lg right on-hover" ng-show="playlist.isHover  && !playlist.isEdit" ng-click="setEdit(playlist.id, playlist, true); setPlaylistCurrentRename(playlist.name)"></i>
-                                            <i class="icon-playlist-item md-cancel md-lg right on-hover" ng-show="playlist.isEdit" ng-click="setEdit(playlist.id,playlist, false); setPlaylistCurrentRename(playlist.name)"></i>
-                                            <i class="icon-playlist-item md-done md-lg right on-hover" ng-show="playlist.isEdit" ng-click="rename(playlist, playlistCurrentRename)"></i>
-                                        </div>
+                            <div class="row collapse">
+                                <div class="small-9 columns">
+                                    <div class="img" ng-show="!playlist.isEdit" back-img="{{getPlaylistImg(playlist, 50)}}"></div>
+                                    <div ng-hide="playlist.isEdit" class="playlist-name ellipsis">
+                                        <p>{{playlist.name}}</p>
+                                    </div>
+                                    <div ng-show="playlist.isEdit">
+                                        <input ng-model="playlistCurrentRename.name" type="text" class="radius" onClick="this.select();" ng-keydown="$event.which == 13 && rename(playlist, playlistCurrentRename)">
+                                    </div>
+                                </div>
+                                <div class="small-3 columns">
+                                    <div class="icon">
+                                        <i class="hide-for-large-up md-delete md-lg right on-hover" ng-show="!playlist.isEdit" ng-click="removePlaylist(playlist.id)"></i>
+                                        <i class="hide-for-large-up md-edit md-lg right on-hover" ng-show="!playlist.isEdit" ng-click="setEdit(playlist.id, playlist, true); setPlaylistCurrentRename(playlist.name)"></i>
+                                        <i class="show-for-large-up md-delete md-lg right on-hover" ng-show="playlist.isHover && !playlist.isEdit" ng-click="removePlaylist(playlist.id)"></i>
+                                        <i class="show-for-large-up md-edit md-lg right on-hover" ng-show="playlist.isHover  && !playlist.isEdit" ng-click="setEdit(playlist.id, playlist, true); setPlaylistCurrentRename(playlist.name)"></i>
+                                        <i class="md-cancel md-lg right on-hover" ng-show="playlist.isEdit" ng-click="setEdit(playlist.id,playlist, false); setPlaylistCurrentRename(playlist.name)"></i>
+                                        <i class="md-done md-lg right on-hover" ng-show="playlist.isEdit" ng-click="rename(playlist, playlistCurrentRename)"></i>
                                     </div>
                                 </div>
                             </div>
