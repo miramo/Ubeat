@@ -10850,7 +10850,7 @@ th.hide-for-touch {
 }
 
 /* Slider */
-/* line 40, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 3, ../bower_components/slick-carousel/slick/slick.scss */
 .slick-slider {
   position: relative;
   display: block;
@@ -10867,7 +10867,7 @@ th.hide-for-touch {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* line 55, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 18, ../bower_components/slick-carousel/slick/slick.scss */
 .slick-list {
   position: relative;
   overflow: hidden;
@@ -10875,22 +10875,19 @@ th.hide-for-touch {
   margin: 0;
   padding: 0;
 }
-/* line 62, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 25, ../bower_components/slick-carousel/slick/slick.scss */
 .slick-list:focus {
   outline: none;
 }
-/* line 66, ../bower_components/slick-carousel/slick/slick.scss */
-.slick-loading .slick-list {
-  background: #fff url("../bower_components/slick-carousel/slick/ajax-loader.gif") center center no-repeat;
-}
-/* line 70, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 29, ../bower_components/slick-carousel/slick/slick.scss */
 .slick-list.dragging {
   cursor: pointer;
   cursor: hand;
 }
 
-/* line 75, ../bower_components/slick-carousel/slick/slick.scss */
-.slick-slider .slick-track {
+/* line 34, ../bower_components/slick-carousel/slick/slick.scss */
+.slick-slider .slick-track,
+.slick-slider .slick-list {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
@@ -10898,63 +10895,69 @@ th.hide-for-touch {
   transform: translate3d(0, 0, 0);
 }
 
-/* line 83, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 43, ../bower_components/slick-carousel/slick/slick.scss */
 .slick-track {
   position: relative;
   left: 0;
   top: 0;
   display: block;
 }
-/* line 89, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 49, ../bower_components/slick-carousel/slick/slick.scss */
 .slick-track:before, .slick-track:after {
   content: "";
   display: table;
 }
-/* line 95, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 55, ../bower_components/slick-carousel/slick/slick.scss */
 .slick-track:after {
   clear: both;
 }
-/* line 99, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 59, ../bower_components/slick-carousel/slick/slick.scss */
 .slick-loading .slick-track {
   visibility: hidden;
 }
 
-/* line 103, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 63, ../bower_components/slick-carousel/slick/slick.scss */
 .slick-slide {
   float: left;
   height: 100%;
   min-height: 1px;
   display: none;
 }
-/* line 107, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 67, ../bower_components/slick-carousel/slick/slick.scss */
 [dir="rtl"] .slick-slide {
   float: right;
 }
-/* line 110, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 70, ../bower_components/slick-carousel/slick/slick.scss */
 .slick-slide img {
   display: block;
 }
-/* line 113, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 73, ../bower_components/slick-carousel/slick/slick.scss */
 .slick-slide.slick-loading img {
   display: none;
 }
-/* line 119, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 79, ../bower_components/slick-carousel/slick/slick.scss */
 .slick-slide.dragging img {
   pointer-events: none;
 }
-/* line 123, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 83, ../bower_components/slick-carousel/slick/slick.scss */
 .slick-initialized .slick-slide {
   display: block;
 }
-/* line 127, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 87, ../bower_components/slick-carousel/slick/slick.scss */
 .slick-loading .slick-slide {
   visibility: hidden;
 }
-/* line 131, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 91, ../bower_components/slick-carousel/slick/slick.scss */
 .slick-vertical .slick-slide {
   display: block;
   height: auto;
   border: 1px solid transparent;
+}
+
+/* Slider */
+/* line 40, ../bower_components/slick-carousel/slick/slick-theme.scss */
+.slick-loading .slick-list {
+  background: #fff url("../bower_components/slick-carousel/slick/ajax-loader.gif") center center no-repeat;
 }
 
 /* Icons */
@@ -10966,15 +10969,15 @@ th.hide-for-touch {
   font-style: normal;
 }
 /* Arrows */
-/* line 154, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 58, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-prev,
 .slick-next {
   position: absolute;
   display: block;
   height: 20px;
   width: 20px;
-  line-height: 0;
-  font-size: 0;
+  line-height: 0px;
+  font-size: 0px;
   cursor: pointer;
   background: transparent;
   color: transparent;
@@ -10984,7 +10987,7 @@ th.hide-for-touch {
   border: none;
   outline: none;
 }
-/* line 170, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 74, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-prev:hover, .slick-prev:focus,
 .slick-next:hover,
 .slick-next:focus {
@@ -10992,19 +10995,19 @@ th.hide-for-touch {
   background: transparent;
   color: transparent;
 }
-/* line 174, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 78, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-prev:hover:before, .slick-prev:focus:before,
 .slick-next:hover:before,
 .slick-next:focus:before {
   opacity: 1;
 }
-/* line 178, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 82, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-prev.slick-disabled:before,
 .slick-next.slick-disabled:before {
   opacity: 0.25;
 }
 
-/* line 182, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 87, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-prev:before, .slick-next:before {
   font-family: "slick";
   font-size: 20px;
@@ -11015,49 +11018,49 @@ th.hide-for-touch {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* line 191, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 97, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-prev {
   left: -25px;
 }
-/* line 193, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 99, ../bower_components/slick-carousel/slick/slick-theme.scss */
 [dir="rtl"] .slick-prev {
   left: auto;
   right: -25px;
 }
-/* line 197, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 103, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-prev:before {
   content: "←";
 }
-/* line 199, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 105, ../bower_components/slick-carousel/slick/slick-theme.scss */
 [dir="rtl"] .slick-prev:before {
   content: "→";
 }
 
-/* line 204, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 111, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-next {
   right: -25px;
 }
-/* line 206, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 113, ../bower_components/slick-carousel/slick/slick-theme.scss */
 [dir="rtl"] .slick-next {
   left: -25px;
   right: auto;
 }
-/* line 210, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 117, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-next:before {
   content: "→";
 }
-/* line 212, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 119, ../bower_components/slick-carousel/slick/slick-theme.scss */
 [dir="rtl"] .slick-next:before {
   content: "←";
 }
 
 /* Dots */
-/* line 220, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 127, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-slider {
   margin-bottom: 30px;
 }
 
-/* line 223, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 131, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-dots {
   position: absolute;
   bottom: -45px;
@@ -11067,7 +11070,7 @@ th.hide-for-touch {
   padding: 0;
   width: 100%;
 }
-/* line 232, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 139, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-dots li {
   position: relative;
   display: inline-block;
@@ -11077,7 +11080,7 @@ th.hide-for-touch {
   padding: 0;
   cursor: pointer;
 }
-/* line 241, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 147, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-dots li button {
   border: 0;
   background: transparent;
@@ -11085,21 +11088,21 @@ th.hide-for-touch {
   height: 20px;
   width: 20px;
   outline: none;
-  line-height: 0;
-  font-size: 0;
+  line-height: 0px;
+  font-size: 0px;
   color: transparent;
   padding: 5px;
   cursor: pointer;
 }
-/* line 253, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 159, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-dots li button:hover, .slick-dots li button:focus {
   outline: none;
 }
-/* line 255, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 161, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-dots li button:hover:before, .slick-dots li button:focus:before {
   opacity: 1;
 }
-/* line 260, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 165, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-dots li button:before {
   position: absolute;
   top: 0;
@@ -11116,7 +11119,7 @@ th.hide-for-touch {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/* line 279, ../bower_components/slick-carousel/slick/slick.scss */
+/* line 182, ../bower_components/slick-carousel/slick/slick-theme.scss */
 .slick-dots li.slick-active button:before {
   color: black;
   opacity: 0.75;
