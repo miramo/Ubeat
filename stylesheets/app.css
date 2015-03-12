@@ -18057,14 +18057,10 @@ input[type="text"].pre-radius {
 .nav-bar {
   border-bottom: solid thick #c60000;
   border-bottom-width: 0.1875rem;
-  transition: box-shadow 0.3s;
-}
-/* line 6, ../scss/_navbar.scss */
-.nav-bar:hover {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
 }
 
-/* line 12, ../scss/_navbar.scss */
+/* line 13, ../scss/_navbar.scss */
 .top-bar .name h1 a:before {
   background: url(../img/logo/logo-topbar.png) no-repeat center center;
   content: "";
@@ -18074,7 +18070,7 @@ input[type="text"].pre-radius {
   width: 100px;
 }
 
-/* line 22, ../scss/_navbar.scss */
+/* line 23, ../scss/_navbar.scss */
 #profile-picture {
   width: 2rem;
   height: 2rem;
@@ -18085,34 +18081,34 @@ input[type="text"].pre-radius {
   background-size: cover;
 }
 
-/* line 33, ../scss/_navbar.scss */
+/* line 34, ../scss/_navbar.scss */
 #profile-name {
   padding-left: 0.3125rem;
 }
 
-/* line 38, ../scss/_navbar.scss */
+/* line 39, ../scss/_navbar.scss */
 #profile-topbar {
   display: inline-block;
 }
 
-/* line 43, ../scss/_navbar.scss */
+/* line 44, ../scss/_navbar.scss */
 input[type="text"].dream-search {
   opacity: .5;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 43, ../scss/_navbar.scss */
+  /* line 44, ../scss/_navbar.scss */
   input[type="text"].dream-search {
     width: 75%;
     margin-left: 25%;
   }
 }
 
-/* line 53, ../scss/_navbar.scss */
+/* line 54, ../scss/_navbar.scss */
 input[type="text"].dream-search:focus {
   opacity: 1;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 53, ../scss/_navbar.scss */
+  /* line 54, ../scss/_navbar.scss */
   input[type="text"].dream-search:focus {
     width: 100%;
     margin-left: 0%;
@@ -18121,7 +18117,7 @@ input[type="text"].dream-search:focus {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 66, ../scss/_navbar.scss */
+  /* line 67, ../scss/_navbar.scss */
   .top-bar-section .has-dropdown > a:after {
     content: "";
     display: block;
@@ -18137,7 +18133,7 @@ input[type="text"].dream-search:focus {
     right: 0;
   }
 
-  /* line 81, ../scss/_navbar.scss */
+  /* line 82, ../scss/_navbar.scss */
   .button-search {
     margin-top: 0.0625rem;
   }
@@ -18588,25 +18584,21 @@ a {
 
 /* line 1, ../scss/_playbar.scss */
 .play-bar {
-  transition: box-shadow 0.3s;
-}
-/* line 6, ../scss/_playbar.scss */
-.play-bar:hover {
-  box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.16), 0 -3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 -4px 8px rgba(0, 0, 0, 0.28);
 }
 
-/* line 12, ../scss/_playbar.scss */
+/* line 8, ../scss/_playbar.scss */
 .bottom-bar {
   height: 3.75rem;
 }
 
-/* line 17, ../scss/_playbar.scss */
+/* line 13, ../scss/_playbar.scss */
 .bottom-bar i:hover {
   color: #c60000;
   cursor: pointer;
 }
 
-/* line 23, ../scss/_playbar.scss */
+/* line 19, ../scss/_playbar.scss */
 .play-area {
   text-align: center;
   padding-left: 0.9375rem;
@@ -18615,7 +18607,7 @@ a {
   float: left;
 }
 @media only screen and (max-width: 40em) {
-  /* line 23, ../scss/_playbar.scss */
+  /* line 19, ../scss/_playbar.scss */
   .play-area {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -18624,7 +18616,7 @@ a {
   }
 }
 
-/* line 32, ../scss/_playbar.scss */
+/* line 28, ../scss/_playbar.scss */
 .play-button {
   color: #FFFFFF;
   padding-right: 0.3125rem;
@@ -18634,7 +18626,7 @@ a {
   display: inline-block;
 }
 
-/* line 42, ../scss/_playbar.scss */
+/* line 38, ../scss/_playbar.scss */
 .volume {
   color: #FFFFFF;
   padding-right: 0;
@@ -18643,7 +18635,7 @@ a {
   display: inline-block;
 }
 
-/* line 53, ../scss/_playbar.scss */
+/* line 49, ../scss/_playbar.scss */
 .bottom-right {
   color: #FFFFFF;
   padding-right: 0.3125rem;
@@ -18654,7 +18646,7 @@ a {
   margin-right: 0.3125rem;
 }
 
-/* line 69, ../scss/_playbar.scss */
+/* line 65, ../scss/_playbar.scss */
 .test {
   overflow: hidden;
   width: 2.1875rem;
@@ -18666,31 +18658,31 @@ a {
   transition: width 0.5s;
 }
 
-/* line 82, ../scss/_playbar.scss */
+/* line 78, ../scss/_playbar.scss */
 .test i {
   width: 2.1875rem;
   padding-top: 0.9375rem;
 }
 
-/* line 88, ../scss/_playbar.scss */
+/* line 84, ../scss/_playbar.scss */
 .test li {
   white-space: nowrap;
 }
 
-/* line 93, ../scss/_playbar.scss */
+/* line 89, ../scss/_playbar.scss */
 .test:hover {
   width: 9.375rem;
   height: 3.125rem;
   visibility: visible;
 }
 
-/* line 100, ../scss/_playbar.scss */
+/* line 96, ../scss/_playbar.scss */
 .bottom-music-list {
   line-height: 0;
   margin-top: 0.9375rem;
 }
 
-/* line 107, ../scss/_playbar.scss */
+/* line 103, ../scss/_playbar.scss */
 #seek-volume {
   vertical-align: middle;
   -webkit-appearance: none;
@@ -18703,7 +18695,7 @@ a {
   outline: 0;
 }
 
-/* line 120, ../scss/_playbar.scss */
+/* line 116, ../scss/_playbar.scss */
 #seek-volume::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 0.75rem;
@@ -18712,7 +18704,7 @@ a {
   background: #c60000;
 }
 
-/* line 130, ../scss/_playbar.scss */
+/* line 126, ../scss/_playbar.scss */
 #seek-music {
   -webkit-appearance: none;
   border-bottom-right-radius: 0.3125rem;
@@ -18728,7 +18720,7 @@ a {
   outline: 0;
 }
 
-/* line 151, ../scss/_playbar.scss */
+/* line 147, ../scss/_playbar.scss */
 #seek-music::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 1.125rem;
@@ -18738,7 +18730,7 @@ a {
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 162, ../scss/_playbar.scss */
+  /* line 158, ../scss/_playbar.scss */
   .ul-volume {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;

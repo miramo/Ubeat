@@ -2,11 +2,7 @@
 {
   border-bottom: solid thick $primary-color;
   border-bottom-width: rem-calc(3);
-  transition: box-shadow 0.3s;
-  &:hover
-  {
-    @include material-shadow(2);
-  }
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
 }
 
 .top-bar .name h1 a:before
