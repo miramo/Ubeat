@@ -15,14 +15,14 @@ angular.module('ngAudio', [])
             var audio = ngAudio.load($attrs.ngAudio);
             $scope.$audio = audio;
             // audio.unbind();
-
+            
             $element.on('click', function() {
                 if ($scope.clickPlay === false) {
                     return;
                 }
 
                 audio.audio.play();
-
+                
                 audio.volume = $scope.volume || audio.volume;
                 audio.loop = $scope.loop;
                 audio.currentTime = $scope.start || 0;
@@ -97,6 +97,13 @@ angular.module('ngAudio', [])
 
 .factory('NgAudioObject', ['cleverAudioFindingService', '$rootScope', '$interval', '$timeout', 'ngAudioGlobals', function(cleverAudioFindingService, $rootScope, $interval, $timeout, ngAudioGlobals) {
     return function(id) {
+
+        window.addEventListener("click",function twiddle(){
+            audio.play();
+            audio.pause();
+            window.removeEventListener("click",twiddle);
+        });
+
 
         var $audioWatch,
             $willPlay = false,
