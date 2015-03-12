@@ -1,7 +1,7 @@
 # Require any additional compass plugins here.
 add_import_path "bower_components/foundation/scss"
 add_import_path "bower_components/foundation-icon-fonts"
-add_import_path "bower_components/slick.js/slick"
+add_import_path "bower_components/slick-carousel/slick"
 add_import_path "bower_components/fontawesome/scss"
 add_import_path "bower_components/material-design-iconic-font/scss"
 

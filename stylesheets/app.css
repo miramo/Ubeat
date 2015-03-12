@@ -18060,7 +18060,7 @@ input[type="text"].pre-radius {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
 }
 
-/* line 13, ../scss/_navbar.scss */
+/* line 8, ../scss/_navbar.scss */
 .top-bar .name h1 a:before {
   background: url(../img/logo/logo-topbar.png) no-repeat center center;
   content: "";
@@ -18070,7 +18070,7 @@ input[type="text"].pre-radius {
   width: 100px;
 }
 
-/* line 23, ../scss/_navbar.scss */
+/* line 18, ../scss/_navbar.scss */
 #profile-picture {
   width: 2rem;
   height: 2rem;
@@ -18081,34 +18081,34 @@ input[type="text"].pre-radius {
   background-size: cover;
 }
 
-/* line 34, ../scss/_navbar.scss */
+/* line 29, ../scss/_navbar.scss */
 #profile-name {
   padding-left: 0.3125rem;
 }
 
-/* line 39, ../scss/_navbar.scss */
+/* line 34, ../scss/_navbar.scss */
 #profile-topbar {
   display: inline-block;
 }
 
-/* line 44, ../scss/_navbar.scss */
+/* line 39, ../scss/_navbar.scss */
 input[type="text"].dream-search {
   opacity: .5;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 44, ../scss/_navbar.scss */
+  /* line 39, ../scss/_navbar.scss */
   input[type="text"].dream-search {
     width: 75%;
     margin-left: 25%;
   }
 }
 
-/* line 54, ../scss/_navbar.scss */
+/* line 49, ../scss/_navbar.scss */
 input[type="text"].dream-search:focus {
   opacity: 1;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 54, ../scss/_navbar.scss */
+  /* line 49, ../scss/_navbar.scss */
   input[type="text"].dream-search:focus {
     width: 100%;
     margin-left: 0%;
@@ -18117,7 +18117,7 @@ input[type="text"].dream-search:focus {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 67, ../scss/_navbar.scss */
+  /* line 62, ../scss/_navbar.scss */
   .top-bar-section .has-dropdown > a:after {
     content: "";
     display: block;
@@ -18133,7 +18133,7 @@ input[type="text"].dream-search:focus {
     right: 0;
   }
 
-  /* line 82, ../scss/_navbar.scss */
+  /* line 77, ../scss/_navbar.scss */
   .button-search {
     margin-top: 0.0625rem;
   }
