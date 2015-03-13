@@ -18346,9 +18346,9 @@ input[type="text"].pre-radius {
 
 /* line 127, ../scss/_style.scss */
 .disable-select {
-  -webkit-user-select: none;
-  -moz-user-select: none;
+  -moz-user-select: -moz-none;
   -ms-user-select: none;
+  -webkit-user-select: none;
   user-select: none;
 }
 
