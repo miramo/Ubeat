@@ -1,15 +1,10 @@
 @include scrollbar(.5em, $primary-color);
 
-main {
-  margin-bottom: rem-calc(60);
-}
+$footer-height: rem-calc(60);
 
-footer-bar {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  height: rem-calc(60);
+main
+{
+  margin-bottom: $footer-height;
 }
 
 .top-page

@@ -5,6 +5,10 @@
   background: rgba(0, 0, 0, .7);
   @include transition-property(all);
   @include transition-duration(300ms);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: $footer-height;
   &:hover
   {
     background: rgba(0, 0, 0, .9);
