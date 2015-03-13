@@ -1,6 +1,12 @@
+@import "compass/css3/selection";
 @include scrollbar(.5em, $primary-color);
 
 $footer-height: rem-calc(60);
+
+*
+{
+  @include selection(scale-color($primary-color, $lightness: 15%), $white);
+}
 
 main
 {
@@ -63,13 +69,6 @@ main
 {
   @include border-radius(50%);
   overflow: hidden;
-}
-
-//Text Selection Color
-::selection
-{
-  background: scale-color($primary-color, $lightness: 15%);
-  color: $white;
 }
 
 .bump

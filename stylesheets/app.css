@@ -18194,12 +18194,23 @@ body {
   scrollbar-track-color: #e27f7f;
 }
 
-/* line 5, ../scss/_style.scss */
+/* line 53, C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_selection.scss */
+*::-moz-selection {
+  color: #FFFFFF;
+  background-color: #f50000;
+}
+/* line 53, C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_selection.scss */
+*::selection {
+  color: #FFFFFF;
+  background-color: #f50000;
+}
+
+/* line 11, ../scss/_style.scss */
 main {
   margin-bottom: 3.75rem;
 }
 
-/* line 10, ../scss/_style.scss */
+/* line 16, ../scss/_style.scss */
 .top-page {
   height: 2.8125rem;
   width: 100%;
@@ -18211,7 +18222,7 @@ main {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-/* line 18, ../scss/_style.scss */
+/* line 24, ../scss/_style.scss */
 .responsive-img, .bump .artist-albums-img {
   position: relative;
   width: 100%;
@@ -18224,24 +18235,24 @@ main {
   background-size: cover;
 }
 
-/* line 31, ../scss/_style.scss */
+/* line 37, ../scss/_style.scss */
 .slick-prev:before, .slick-next:before {
   color: #c60000 !important;
   width: 200% !important;
   height: 200% !important;
 }
 
-/* line 40, ../scss/_style.scss */
+/* line 46, ../scss/_style.scss */
 .slick-dots li button:before {
   color: #c60000 !important;
 }
 
-/* line 46, ../scss/_style.scss */
+/* line 52, ../scss/_style.scss */
 .bottom-border {
   border-bottom: 0.0625rem solid #bdbdbd;
 }
 
-/* line 51, ../scss/_style.scss */
+/* line 57, ../scss/_style.scss */
 .custom-reveal-class {
   font-size: 2.5rem;
   line-height: 1;
@@ -18253,12 +18264,12 @@ main {
   cursor: pointer;
 }
 
-/* line 57, ../scss/_style.scss */
+/* line 63, ../scss/_style.scss */
 .on-hover:hover {
   color: #c60000;
 }
 
-/* line 62, ../scss/_style.scss */
+/* line 68, ../scss/_style.scss */
 .img-circular {
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -18266,19 +18277,13 @@ main {
   overflow: hidden;
 }
 
-/* line 69, ../scss/_style.scss */
-::selection {
-  background: #f50000;
-  color: #FFFFFF;
-}
-
-/* line 75, ../scss/_style.scss */
+/* line 74, ../scss/_style.scss */
 .bump {
   margin-top: 3.125rem;
   padding-right: 1.875rem;
   padding-left: 1.875rem;
 }
-/* line 80, ../scss/_style.scss */
+/* line 79, ../scss/_style.scss */
 .bump .card, .bump .card-shadow {
   padding-bottom: 0;
   -moz-border-radius: 0.3125rem;
@@ -18289,29 +18294,29 @@ main {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-/* line 86, ../scss/_style.scss */
+/* line 85, ../scss/_style.scss */
 .bump .card .text-card, .bump .card-shadow .text-card, .bump .card .text-card-artist-album, .bump .card-shadow .text-card-artist-album {
   background: #c60000;
 }
-/* line 89, ../scss/_style.scss */
+/* line 88, ../scss/_style.scss */
 .bump .card .text-card .first-text-card, .bump .card-shadow .text-card .first-text-card, .bump .card .text-card-artist-album .first-text-card, .bump .card-shadow .text-card-artist-album .first-text-card, .bump .card .text-card .second-text-card, .bump .card-shadow .text-card .second-text-card, .bump .card .text-card-artist-album .second-text-card, .bump .card-shadow .text-card-artist-album .second-text-card {
   font-size: 1rem;
   padding: 0 0.3125rem;
   margin-bottom: 0;
   color: #FFFFFF;
 }
-/* line 96, ../scss/_style.scss */
+/* line 95, ../scss/_style.scss */
 .bump .card .text-card .second-text-card, .bump .card-shadow .text-card .second-text-card, .bump .card .text-card-artist-album .second-text-card, .bump .card-shadow .text-card-artist-album .second-text-card {
   font-size: 0.875rem;
 }
-/* line 103, ../scss/_style.scss */
+/* line 102, ../scss/_style.scss */
 .bump .card-shadow {
   -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-/* line 110, ../scss/_style.scss */
+/* line 109, ../scss/_style.scss */
 .ellipsis {
   overflow: hidden;
   white-space: nowrap;
@@ -18319,7 +18324,7 @@ main {
   text-overflow: ellipsis;
 }
 
-/* line 118, ../scss/_style.scss */
+/* line 117, ../scss/_style.scss */
 .post-radius {
   -moz-border-radius-topright: 3px;
   -webkit-border-top-right-radius: 3px;
@@ -18329,7 +18334,7 @@ main {
   border-bottom-right-radius: 3px;
 }
 
-/* line 123, ../scss/_style.scss */
+/* line 122, ../scss/_style.scss */
 input[type="text"].pre-radius {
   -moz-border-radius-topleft: 3px;
   -webkit-border-top-left-radius: 3px;
@@ -18339,7 +18344,7 @@ input[type="text"].pre-radius {
   border-bottom-left-radius: 3px;
 }
 
-/* line 128, ../scss/_style.scss */
+/* line 127, ../scss/_style.scss */
 .disable-select {
   -webkit-user-select: none;
   -moz-user-select: none;
