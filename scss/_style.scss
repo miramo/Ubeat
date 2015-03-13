@@ -36,6 +36,13 @@ footer-bar {
   height: rem-calc(60);
 }
 
+.top-page
+{
+  height: $topbar-height;
+  width: 100%;
+//  background: $black;
+}
+
 .responsive-img
 {
   position            : relative;

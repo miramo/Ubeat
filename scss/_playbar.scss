@@ -2,7 +2,13 @@
 {
 //  border-top: solid thick $primary-color;
 //  border-top-width: rem-calc(3);
-  box-shadow: 0 0 4px rgba(0,0,0,.14),0 -4px 8px rgba(0,0,0,.28);
+  background: rgba(0, 0, 0, .7);
+  transition: all 300ms;
+  &:hover
+  {
+    background: rgba(0, 0, 0, .9);
+    box-shadow: 0 0 4px rgba(0, 0, 0, .14),0 -4px 8px rgba(0, 0, 0, .28);
+  }
 }
 
 .bottom-bar

@@ -1367,6 +1367,7 @@ $has-tip-cursor-type: pointer;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
+$topbar-bg-color: rgba(0,0,0,0);
 // $topbar-bg-color: $oil;
 // $topbar-bg: $topbar-bg-color;
 
@@ -1379,8 +1380,11 @@ $has-tip-cursor-type: pointer;
 // $topbar-title-font-size: rem-calc(17);
 
 // Style the top bar dropdown elements
+$topbar-dropdown-bg: rgba(0,0,0,0);
 // $topbar-dropdown-bg: $oil;
 // $topbar-dropdown-link-color: $white;
+$topbar-dropdown-link-bg: rgba(0,0,0,.9);
+$topbar-dropdown-link-bg-hover: rgba(0,0,0,.9);
 // $topbar-dropdown-link-bg: $oil;
 // $topbar-dropdown-link-bg-hover: $oil;
 // $topbar-dropdown-link-weight: $font-weight-normal;
@@ -1399,6 +1403,7 @@ $has-tip-cursor-type: pointer;
 // $topbar-link-bg: $topbar-bg;
 // $topbar-link-bg-color-hover: $charcoal;
 // $topbar-link-bg-hover: $oil;
+$topbar-link-bg-hover: rgba(0,0,0,0);
 // $topbar-link-bg-active: $primary-color;
 // $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
 // $topbar-link-font-family: $body-font-family;
@@ -1434,6 +1439,8 @@ $has-tip-cursor-type: pointer;
 // Divider Styles
 // $topbar-divider-border-bottom: solid 1px  scale-color($topbar-bg-color, $lightness: 13%);
 // $topbar-divider-border-top: solid 1px scale-color($topbar-bg-color, $lightness: -50%);
+$topbar-divider-border-bottom: solid 1px  scale-color(rgba(33,33,33,.9), $lightness: 13%);
+$topbar-divider-border-top: solid 1px scale-color(rgba(33,33,33,.9), $lightness: -50%);
 
 // Sticky Class
 // $topbar-sticky-class: ".sticky";

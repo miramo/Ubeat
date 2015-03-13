@@ -16,6 +16,11 @@ $transition-time: 0.7s;
   overflow      : hidden;
 }
 
+.bloc-artist-img-infos
+{
+  margin-top: $topbar-height;
+}
+
 .artist-albums-list
 {
   @media #{$small-only} and (orientation : landscape) {
