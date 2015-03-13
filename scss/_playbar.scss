@@ -3,11 +3,12 @@
 //  border-top: solid thick $primary-color;
 //  border-top-width: rem-calc(3);
   background: rgba(0, 0, 0, .7);
-  transition: all 300ms;
+  @include transition-property(all);
+  @include transition-duration(300ms);
   &:hover
   {
     background: rgba(0, 0, 0, .9);
-    box-shadow: 0 0 4px rgba(0, 0, 0, .14),0 -4px 8px rgba(0, 0, 0, .28);
+    @include box-shadow(0 0 4px rgba(black, .14), 0 -4px 8px rgba(black, .28));
   }
 }
 

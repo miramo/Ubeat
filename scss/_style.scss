@@ -40,7 +40,8 @@ footer-bar {
 {
   height: $topbar-height;
   width: 100%;
-//  background: $black;
+  @include background-image(linear-gradient(top, rgba(black, .9) 0%,rgba(black, 0) 100%));
+  //  background: $black;
 }
 
 .responsive-img
@@ -89,7 +90,7 @@ footer-bar {
 
 .img-circular
 {
-  border-radius: 50%;
+  @include border-radius(50%);
   overflow: hidden;
 }
 
@@ -108,9 +109,9 @@ footer-bar {
   .card
   {
     padding-bottom: rem-calc(0);
-    border-radius: rem-calc(5);
+    @include border-radius(rem-calc(5));
     overflow: hidden;
-    box-shadow: none;
+    @include box-shadow(none);
     .text-card
     {
       background: $primary-color;
@@ -145,14 +146,12 @@ footer-bar {
 
 .post-radius
 {
-  border-top-right-radius: rem-calc($button-radius);
-  border-bottom-right-radius: rem-calc($button-radius);
+  @include border-right-radius($button-radius);
 }
 
 input[type="text"].pre-radius
 {
-  border-top-left-radius: rem-calc($button-radius);
-  border-bottom-left-radius: rem-calc($button-radius);
+  @include border-left-radius($button-radius);
 }
 
 .disable-select
