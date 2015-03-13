@@ -18212,7 +18212,7 @@ main {
 }
 
 /* line 18, ../scss/_style.scss */
-.responsive-img, .artist-albums-img {
+.responsive-img, .bump .artist-albums-img {
   position: relative;
   width: 100%;
   padding-bottom: 100%;
@@ -18460,7 +18460,7 @@ input[type="text"].dream-search:focus {
     margin-top: 0.0625rem;
   }
 }
-/* line 3, ../scss/_artist.scss */
+/* line 1, ../scss/_artist.scss */
 .type-label {
   font-weight: normal;
   font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
@@ -18478,7 +18478,7 @@ input[type="text"].dream-search:focus {
   border-radius: 2px;
 }
 
-/* line 11, ../scss/_artist.scss */
+/* line 9, ../scss/_artist.scss */
 .artist-header {
   background: #333;
   position: relative;
@@ -18486,13 +18486,13 @@ input[type="text"].dream-search:focus {
   overflow: hidden;
 }
 
-/* line 19, ../scss/_artist.scss */
+/* line 17, ../scss/_artist.scss */
 .bloc-artist-img-infos {
   margin-top: 2.8125rem;
 }
 
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 24, ../scss/_artist.scss */
+  /* line 22, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -18530,7 +18530,7 @@ input[type="text"].dream-search:focus {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 24, ../scss/_artist.scss */
+  /* line 22, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -18568,7 +18568,7 @@ input[type="text"].dream-search:focus {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 24, ../scss/_artist.scss */
+  /* line 22, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -18606,13 +18606,12 @@ input[type="text"].dream-search:focus {
   }
 }
 
-/* line 38, ../scss/_artist.scss */
-.artist-albums-img {
+/* line 40, ../scss/_artist.scss */
+.bump .artist-albums-img {
   cursor: pointer;
 }
-
 /* line 44, ../scss/_artist.scss */
-.artist-albums-img:after {
+.bump .artist-albums-img:after {
   border-top-left-radius: 0.3125rem;
   border-top-right-radius: 0.3125rem;
   content: '\A';
@@ -18626,20 +18625,32 @@ input[type="text"].dream-search:focus {
   vertical-align: middle;
   background-color: black;
   opacity: 0;
-  transition: all 0.7s;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
 }
-
 /* line 62, ../scss/_artist.scss */
-.artist-albums-img:hover:after {
+.bump .artist-albums-img:hover:after {
   opacity: 0.5;
 }
-
 /* line 67, ../scss/_artist.scss */
-.text-card-artist-album {
-  transition: 0.7s;
+.bump .text-card-artist-album {
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
 }
-/* line 71, ../scss/_artist.scss */
-.text-card-artist-album:hover {
+/* line 72, ../scss/_artist.scss */
+.bump .text-card-artist-album:hover {
   background: #9e0000 !important;
 }
 
