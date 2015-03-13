@@ -4,7 +4,7 @@
 
   .splash-load-background
   {
-    position   : absolute;
+    position   : fixed;
     top        : 0;
     left       : 0;
     height     : 100%;
@@ -19,7 +19,7 @@
   {
     width      : rem_calc(250);
     height     : rem_calc(100);
-    position   : relative;
+    position   : fixed;
     opacity    : 1.0;
     z-index    : 2;
     margin     : rem_calc(-100) 0 0 rem_calc(-125);
