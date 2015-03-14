@@ -19156,10 +19156,10 @@ a {
 .splash-load .splash-ubeat {
   width: 15.625rem;
   height: 6.25rem;
-  position: relative;
+  position: absolute;
   opacity: 1.0;
   z-index: 2;
-  margin: -6.25rem 0 0 -7.8125rem;
+  margin: -7.5rem 0 0 -7.8125rem;
   text-align: center;
 }
 /* line 29, ../scss/_splash.scss */
@@ -19172,7 +19172,7 @@ a {
   bottom: 50%;
   right: 50%;
   left: 50%;
-  margin: 0.625rem 0 0 0;
+  margin: -3.125rem 0 0 0;
   text-align: center;
   z-index: 2;
 }
