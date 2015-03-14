@@ -1,3 +1,21 @@
+.headroom
+{
+  @extend .fixed;
+  transition: transform 200ms linear;
+  &.headroom--top {  }
+  @media #{$small-only}, #{$medium-only}
+  {
+    &.headroom--pinned
+    {
+      transform: translateY(0%);
+    }
+    &.headroom--unpinned
+    {
+      transform: translateY(-100%);
+    }
+  }
+}
+
 .nav-bar
 {
   border-bottom: solid thick rgba(198, 0, 0, .7);
@@ -5,7 +23,6 @@
   background: rgba(0, 0, 0, .7);
   @include transition-property(all);
   @include transition-duration(300ms);
-  @extend .fixed;
   &:hover
   {
     background: rgba(0, 0, 0, .9);

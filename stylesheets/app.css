@@ -6612,7 +6612,7 @@ meta.foundation-mq-topbar {
 }
 
 /* line 127, ../bower_components/foundation/scss/foundation/components/_top-bar.scss */
-.fixed, .nav-bar {
+.fixed, .headroom {
   width: 100%;
   left: 0;
   position: fixed;
@@ -6620,20 +6620,20 @@ meta.foundation-mq-topbar {
   z-index: 99;
 }
 /* line 134, ../bower_components/foundation/scss/foundation/components/_top-bar.scss */
-.fixed.expanded:not(.top-bar), .expanded.nav-bar:not(.top-bar) {
+.fixed.expanded:not(.top-bar), .expanded.headroom:not(.top-bar) {
   overflow-y: auto;
   height: auto;
   width: 100%;
   max-height: 100%;
 }
 /* line 140, ../bower_components/foundation/scss/foundation/components/_top-bar.scss */
-.fixed.expanded:not(.top-bar) .title-area, .expanded.nav-bar:not(.top-bar) .title-area {
+.fixed.expanded:not(.top-bar) .title-area, .expanded.headroom:not(.top-bar) .title-area {
   position: fixed;
   width: 100%;
   z-index: 99;
 }
 /* line 146, ../bower_components/foundation/scss/foundation/components/_top-bar.scss */
-.fixed.expanded:not(.top-bar) .top-bar-section, .expanded.nav-bar:not(.top-bar) .top-bar-section {
+.fixed.expanded:not(.top-bar) .top-bar-section, .expanded.headroom:not(.top-bar) .top-bar-section {
   z-index: 98;
   margin-top: 2.8125rem;
 }
@@ -18353,6 +18353,21 @@ input[type="text"].pre-radius {
 }
 
 /* line 1, ../scss/_navbar.scss */
+.headroom {
+  transition: transform 200ms linear;
+}
+@media only screen and (max-width: 40em), only screen and (min-width: 40.063em) and (max-width: 64em) {
+  /* line 8, ../scss/_navbar.scss */
+  .headroom.headroom--pinned {
+    transform: translateY(0%);
+  }
+  /* line 12, ../scss/_navbar.scss */
+  .headroom.headroom--unpinned {
+    transform: translateY(-100%);
+  }
+}
+
+/* line 19, ../scss/_navbar.scss */
 .nav-bar {
   border-bottom: solid thick rgba(198, 0, 0, 0.7);
   border-bottom-width: 0.1875rem;
@@ -18366,7 +18381,7 @@ input[type="text"].pre-radius {
   -webkit-transition-duration: 300ms;
   transition-duration: 300ms;
 }
-/* line 9, ../scss/_navbar.scss */
+/* line 26, ../scss/_navbar.scss */
 .nav-bar:hover {
   background: rgba(0, 0, 0, 0.9);
   -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
@@ -18376,7 +18391,7 @@ input[type="text"].pre-radius {
   border-bottom-width: 0.1875rem;
 }
 
-/* line 18, ../scss/_navbar.scss */
+/* line 35, ../scss/_navbar.scss */
 .top-bar .name h1 a:before {
   background: url(../img/logo/logo-topbar.png) no-repeat center center;
   content: "";
@@ -18386,7 +18401,7 @@ input[type="text"].pre-radius {
   width: 100px;
 }
 
-/* line 28, ../scss/_navbar.scss */
+/* line 45, ../scss/_navbar.scss */
 #profile-picture {
   width: 2rem;
   height: 2rem;
@@ -18397,34 +18412,34 @@ input[type="text"].pre-radius {
   background-size: cover;
 }
 
-/* line 39, ../scss/_navbar.scss */
+/* line 56, ../scss/_navbar.scss */
 #profile-name {
   padding-left: 0.3125rem;
 }
 
-/* line 44, ../scss/_navbar.scss */
+/* line 61, ../scss/_navbar.scss */
 #profile-topbar {
   display: inline-block;
 }
 
-/* line 49, ../scss/_navbar.scss */
+/* line 66, ../scss/_navbar.scss */
 input[type="text"].dream-search {
   opacity: .5;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 49, ../scss/_navbar.scss */
+  /* line 66, ../scss/_navbar.scss */
   input[type="text"].dream-search {
     width: 75%;
     margin-left: 25%;
   }
 }
 
-/* line 59, ../scss/_navbar.scss */
+/* line 76, ../scss/_navbar.scss */
 input[type="text"].dream-search:focus {
   opacity: 1;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 59, ../scss/_navbar.scss */
+  /* line 76, ../scss/_navbar.scss */
   input[type="text"].dream-search:focus {
     width: 100%;
     margin-left: 0%;
@@ -18444,7 +18459,7 @@ input[type="text"].dream-search:focus {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 74, ../scss/_navbar.scss */
+  /* line 91, ../scss/_navbar.scss */
   .top-bar-section .has-dropdown > a:after {
     content: "";
     display: block;
@@ -18460,7 +18475,7 @@ input[type="text"].dream-search:focus {
     right: 0;
   }
 
-  /* line 89, ../scss/_navbar.scss */
+  /* line 106, ../scss/_navbar.scss */
   .button-search {
     margin-top: 0.0625rem;
   }
