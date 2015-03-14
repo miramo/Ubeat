@@ -18911,16 +18911,18 @@ input[type="text"].dream-search:focus {
 .slider-index .slider-index-element {
   margin: 0 0.0625rem;
   opacity: 0.8;
+  -moz-transform: scale(0.92);
+  -ms-transform: scale(0.92);
+  -webkit-transform: scale(0.92);
   transform: scale(0.92);
-  transition: transform 200ms linear;
+  transition: all 200ms linear;
 }
 /* line 16, ../scss/_home.scss */
-.slider-index .slider-index-element:hover {
-  transform: scale(1);
-}
-/* line 20, ../scss/_home.scss */
-.slider-index .slider-index-element.slick-center {
+.slider-index .slider-index-element.slick-center, .slider-index .slider-index-element:hover {
   opacity: 1;
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -webkit-transform: scale(1);
   transform: scale(1);
 }
 
