@@ -1,9 +1,6 @@
 .type-label
 {
-  @include label(
-  $text-size : em-calc(12),
-  $radius : 2px
-  );
+  @include label($text-size : em-calc(12), $radius : 2px);
 }
 
 .artist-header
@@ -21,10 +18,12 @@
 
 .artist-albums-list
 {
-  @media #{$small-only} and (orientation : landscape) {
+  @media #{$small-only} and (orientation : landscape)
+  {
     @include block-grid(2);
   }
-  @media #{$small-only} and (orientation : portrait) {
+  @media #{$small-only} and (orientation : portrait)
+  {
     @include block-grid(1);
   }
   @media #{$medium-up}
@@ -35,7 +34,7 @@
 
 .bump
 {
-  $transition-time: .5s;
+  $transition-time: .3s;
 
   .artist-albums-img
   {
@@ -56,8 +55,7 @@
       vertical-align          : middle;
       background-color        : black;
       opacity                 : 0;
-      @include transition-property(all);
-      @include transition-duration($transition-time);
+      @include single-transition(all, $transition-time, linear);
     }
     &:hover:after
     {
@@ -67,8 +65,7 @@
   .text-card-artist-album
   {
     @extend .text-card;
-    @include transition-property(all);
-    @include transition-duration($transition-time);
+    @include single-transition(all, $transition-time, linear);
     &:hover
     {
       background : scale-color($primary-color, $lightness : -20%) !important;
