@@ -18907,16 +18907,19 @@ input[type="text"].dream-search:focus {
 .slider-index {
   margin: 1.25rem 1.875rem;
 }
-
-/* line 12, ../scss/_home.scss */
-.slider-index-element {
+/* line 10, ../scss/_home.scss */
+.slider-index .slider-index-element {
   margin: 0 0.0625rem;
   opacity: 0.8;
   transform: scale(0.92);
+  transition: all 200ms linear;
 }
-
-/* line 19, ../scss/_home.scss */
-.slider-index-element.slick-center {
+/* line 16, ../scss/_home.scss */
+.slider-index .slider-index-element:hover {
+  transform: scale(1);
+}
+/* line 20, ../scss/_home.scss */
+.slider-index .slider-index-element.slider-index-element.slick-center {
   opacity: 1;
   transform: scale(1);
 }
