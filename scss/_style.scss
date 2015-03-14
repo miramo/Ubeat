@@ -1,46 +1,24 @@
-main {
-  margin-bottom: rem-calc(60);
-}
-body
+@import "compass/css3/selection";
+@include scrollbar(.5em, $primary-color);
+
+$footer-height: rem-calc(60);
+
+*
 {
-  &::-webkit-scrollbar
-  {
-    width: rem-calc(10);
-    background-color: $iron;
-  }
-  &::-webkit-scrollbar-thumb
-  {
-    background-color: scale-color($primary-color, $lightness: -5%);
-    border-radius: rem-calc(10);
-    &:hover
-    {
-      background-color: $primary-color;
-    }
-    &:active
-    {
-      background-color: scale-color($primary-color, $lightness: 5%);
-    }
-  }
-  &::-webkit-scrollbar-track
-  {
-    border-radius: rem-calc(10);
-    box-shadow: 0 0 6px gray inset;
-  }
+  @include selection(scale-color($primary-color, $lightness: 15%), $white);
 }
 
-footer-bar {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  height: rem-calc(60);
+main
+{
+  margin-bottom: $footer-height;
 }
 
 .top-page
 {
   height: $topbar-height;
   width: 100%;
-//  background: $black;
+  @include background-image(linear-gradient(top, rgba(black, .9) 0%,rgba(black, 0) 100%));
+  //  background: $black;
 }
 
 .responsive-img
@@ -89,15 +67,8 @@ footer-bar {
 
 .img-circular
 {
-  border-radius: 50%;
+  @include border-radius(50%);
   overflow: hidden;
-}
-
-//Text Selection Color
-::selection
-{
-  background: scale-color($primary-color, $lightness: 15%);
-  color: $white;
 }
 
 .bump
@@ -108,9 +79,9 @@ footer-bar {
   .card
   {
     padding-bottom: rem-calc(0);
-    border-radius: rem-calc(5);
+    @include border-radius(rem-calc(5));
     overflow: hidden;
-    box-shadow: none;
+    @include box-shadow(none);
     .text-card
     {
       background: $primary-color;
@@ -145,20 +116,15 @@ footer-bar {
 
 .post-radius
 {
-  border-top-right-radius: rem-calc($button-radius);
-  border-bottom-right-radius: rem-calc($button-radius);
+  @include border-right-radius($button-radius);
 }
 
 input[type="text"].pre-radius
 {
-  border-top-left-radius: rem-calc($button-radius);
-  border-bottom-left-radius: rem-calc($button-radius);
+  @include border-left-radius($button-radius);
 }
 
 .disable-select
 {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  @include user-select(none);
 }

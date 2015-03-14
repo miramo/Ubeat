@@ -10,9 +10,9 @@
     <script src="bower_components/modernizr/modernizr.js"></script>
 </head>
 <body ng-controller="MainController as mainCtrl">
-    <header>
+    <headroom tolerance='5' offset='0' classes="{pinned:'headroom--pinned',unpinned:'headroom--unpinned',initial:'headroom'}">
         <nav-bar></nav-bar>
-    </header>
+    </headroom>
     <main>
         <loader ng-hide="sharedPagesStatus.getIsPageLoaded()"></loader>
         <div ng-view></div>
@@ -32,6 +32,8 @@
 <script type="text/javascript" src="bower_components/slick-carousel/slick/slick.min.js"></script>
 <script type="text/javascript" src="bower_components/angular-slick/dist/slick.min.js"></script>
 <script type="text/javascript" src="bower_components/angular-truncate/src/truncate.js"></script>
+<script type="text/javascript" src="bower_components/headroom.js/dist/headroom.min.js"></script>
+<script type="text/javascript" src="bower_components/headroom.js/dist/angular.headroom.min.js"></script>
 <script type="text/javascript" src="js/libs/class.js"></script>
 <script type="text/javascript" src="js/libs/stackblur.min.js"></script>
 <script type="text/javascript" src="js/libs/angular-responsive-include.js"></script>
