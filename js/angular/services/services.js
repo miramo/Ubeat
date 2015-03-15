@@ -48,43 +48,6 @@
             localStorageService.set('playlists', playlists);
         }
 
-        //function Track()
-        //{
-        //    this.idInPlaylist = 0;
-        //    this.trackId = 0;
-        //    this.albumId = 0;
-        //    this.artistId = 0;
-        //    this.name = '';
-        //    this.artistName = '';
-        //    this.playState = playStates.idle;
-        //    this.albumName = '';
-        //    this.previewUrl = '';
-        //    this.trackTimeMillis = 0;
-        //    this.artworkUrl100 = '';
-        //    this.number = 0;
-        //    this.playlist = {};
-        //}
-        //
-        //function Playlist()
-        //{
-        //    this.id = 0;
-        //    this.name = '';
-        //    this.tracks = [];
-        //    this.isEdit = false;
-        //    this.isHover = false;
-        //    this.getTotalTime = function()
-        //    {
-        //        var totalTime;
-        //        this.tracks.forEach(function(entry)
-        //        {
-        //            totalTime += entry.trackTimeMillis;
-        //        });
-        //        return totalTime;
-        //    }
-        //    this.test = trackFactory;
-        //}
-
-
         this.getTitle = function ()
         {
             return title;
@@ -223,7 +186,7 @@
             if (name)
             {
                 var playlistLength = playlists.length;
-                var newPlaylist = playlistFactory;
+                var newPlaylist = new playlistFactory();
 
                 newPlaylist.name = name;
                 newPlaylist.id = playlistLength;

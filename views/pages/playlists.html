@@ -96,7 +96,7 @@
                                             </span>
                                         </div>
                                         <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
-                                            {{track.trackNumber}}
+                                            {{track.number}}
                                         </div>
                                         <div ng-show="track.playState == sharedProperties.getPlayStates().play">
                                             <i class="fa fa-circle-o-notch fa-spin"></i>
@@ -105,8 +105,8 @@
                                             <i class="fa fa-pause"></i>
                                         </div>
                                     </td>
-                                    <td>{{track.trackName | characters:30:false}}</td>
-                                    <td><a href="#/album/{{track.collectionId}}">{{track.collectionName | characters:20:false}}</a></td>
+                                    <td>{{track.name | characters:30:false}}</td>
+                                    <td><a href="#/album/{{track.albumId}}">{{track.albumName | characters:20:false}}</a></td>
                                     <td class="hide-for-small-only"><a href="#/artist/{{track.artistId}}">{{track.artistName | characters:20:false}}</a></td>
                                     <td class="text-center hide-for-small-only">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
                                     <td class="text-center disable-select delete-track">

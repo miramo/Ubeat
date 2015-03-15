@@ -254,7 +254,7 @@
     });
 
     controllers.controller('AlbumController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties,
-                                                        albumFactory, artistFactory, albumTracksFactory)
+                                                        albumFactory, artistFactory, albumTracksFactory, trackFactory)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.isResolved = false;
@@ -380,7 +380,7 @@
                     sharedPagesStatus.setTitle($scope.album.collectionName);
                     $scope.album.artworkUrl300 = itunesLinkImageSizeTo($scope.album.artworkUrl100, 300);
                     $scope.album.releaseDateObj = new Date($scope.album.releaseDate);
-                    $scope.filtersValues = ['trackNumber', 'trackName', 'artistName', '-time.Minutes', 'time.Minutes'];
+                    $scope.filtersValues = ['number', 'name', 'artistName', '-time.Minutes', 'time.Minutes'];
                     $scope.filtersNames = ['Numéro de piste', 'Chanson', 'Artiste', 'Durée'];
                     $scope.currentFilterName = $scope.filtersNames[0];
                     $scope.filter = $scope.filtersValues[0];
@@ -394,10 +394,14 @@
 
                     albumTracksFactory.get({id: $routeParams.id}, function (data)
                     {
-                        $scope.tracks = data.results;
+                        var dataTracks = data.results;
 
-                        for (var i = 0; i < $scope.tracks.length; ++i)
+                        for (var i = 0; i < dataTracks.length; ++i)
                         {
+                            var trackFacto = new trackFactory();
+                            trackFacto.fillFromData(dataTracks[i]);
+                            $scope.tracks[i] = trackFacto;
+
                             var currentTrack = sharedProperties.getCurrentTrack();
 
                             if (currentTrack && currentTrack.trackId == $scope.tracks[i].trackId)
@@ -412,6 +416,8 @@
                             $scope.tracks[i].time = millisToTime($scope.tracks[i].trackTimeMillis);
                             $scope.tracks[i].displayPlayButton = false;
                         }
+
+                        sharedPagesStatus.setIsPageLoaded(true);
                     });
 
                     $scope.displayPlayButton = function (track)
@@ -423,8 +429,6 @@
                     {
                         track.displayPlayButton = false;
                     }
-
-                    sharedPagesStatus.setIsPageLoaded(true);
                 }
                 else
                 {
