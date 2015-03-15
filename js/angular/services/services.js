@@ -304,6 +304,11 @@
         };
         var currentPage = pageEnum.home;
 
+        this.isCurrentPage = function(page)
+        {
+            return page == currentPage;
+        }
+
         this.getCurrentPage = function()
         {
             return currentPage;
