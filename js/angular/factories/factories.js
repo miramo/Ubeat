@@ -55,40 +55,45 @@
 
     factories.factory('trackFactory', function (playStates)
     {
-        return {
-            idInPlaylist   : 0,
-            trackId        : 0,
-            albumId        : 0,
-            artistId       : 0,
-            name           : '',
-            artistName     : '',
-            playState      : playStates.idle,
-            albumName      : '',
-            previewUrl     : '',
-            trackTimeMillis: 0,
-            artworkUrl100  : '',
-            number         : 0,
-            playlist       : {}
-        }
+        var newTrack = {};
+
+        newTrack.idInPlaylist = 0;
+        newTrack.trackId = 0;
+        newTrack.albumId = 0;
+        newTrack.artistId = 0;
+        newTrack.name = '';
+        newTrack.artistName = '';
+        newTrack.playState = playStates.idle;
+        newTrack.albumName = '';
+        newTrack.previewUrl = '';
+        newTrack.trackTimeMillis = 0;
+        newTrack.artworkUrl100 = '';
+        newTrack.number = 0;
+        newTrack.playlist = {};
+
+        return newTrack;
     });
 
     factories.factory('playlistFactory', function (playStates)
     {
-        return {
-            'id'        : 0,
-            name        : '',
-            tracks      : [],
-            isEdit      : false,
-            isHover     : false,
-            getTotalTime: function ()
+        var playlist = {};
+
+        playlist.id = 0;
+        playlist.name = '';
+        playlist.tracks = [];
+        playlist.isEdit = false;
+        playlist.isHover = false;
+        playlist.getTotalTime = function ()
+        {
+            var totalTime = 0;
+            this.tracks.forEach(function (entry)
             {
-                var totalTime;
-                this.tracks.forEach(function (entry)
-                {
-                    totalTime += entry.trackTimeMillis;
-                });
-                return totalTime;
-            }
+                totalTime += entry.trackTimeMillis;
+            });
+            return totalTime;
         }
+
+        return playlist;
     });
-})();
+})
+();
