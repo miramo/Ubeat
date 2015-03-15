@@ -30,11 +30,14 @@
         };
     })
 
-    ubeatApp.directive('notfound', function ()
+    ubeatApp.directive('errorMsg', function ()
     {
         return {
             restrict   : 'E',
-            templateUrl: './views/templates/notfound.html'
+            scope      : {
+                msg: '@'
+            },
+            templateUrl: './views/templates/error-template.html'
         };
     });
 
@@ -60,6 +63,55 @@
                     'background-size' : 'cover'
                 });
             });
+        };
+    });
+
+    ubeatApp.directive('customAudio', function ()
+    {
+        return {
+            restrict   : 'E',
+            transclude : true,
+            scope      : {},
+            controller : function ($scope)
+            {
+                var panes = $scope.panes = [];
+
+                $scope.select = function (pane)
+                {
+                    angular.forEach(panes, function (pane)
+                    {
+                        pane.selected = false;
+                    });
+                    pane.selected = true;
+                };
+
+                this.addPane = function (pane)
+                {
+                    if (panes.length === 0)
+                    {
+                        $scope.select(pane);
+                    }
+                    panes.push(pane);
+                };
+            },
+            templateUrl: 'my-tabs.html'
+        };
+    });
+
+    ubeatApp.directive('myPane', function ()
+    {
+        return {
+            require    : '^customAudio',
+            restrict   : 'E',
+            transclude : true,
+            scope      : {
+                title: '@'
+            },
+            link       : function (scope, element, attrs, tabsCtrl)
+            {
+                tabsCtrl.addPane(scope);
+            },
+            templateUrl: 'my-pane.html'
         };
     });
 })();

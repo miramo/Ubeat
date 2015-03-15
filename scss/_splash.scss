@@ -1,6 +1,6 @@
 .splash-load
 {
-  z-index : 110;
+  z-index : -20;
 
   .splash-load-background
   {
@@ -12,17 +12,17 @@
     margin     : auto;
     opacity    : 0.6;
     background : #000;
-    z-index    : 1;
+    z-index    : -20;
   }
 
   .splash-ubeat
   {
     width      : rem_calc(250);
     height     : rem_calc(100);
-    position   : absolute;
+    position   : fixed;
     opacity    : 1.0;
     z-index    : 2;
-    margin     : rem_calc(-120) 0 0 rem_calc(-125);
+    margin     : rem_calc(-100) 0 0 rem_calc(-125);
     text-align : center;
   }
 
@@ -30,13 +30,13 @@
   {
     width      : rem-calc(100);
     height     : rem-calc(50);
-    position   : absolute;
+    position   : fixed;
     color      : #ffffff;
     top        : 50%;
     bottom     : 50%;
     right      : 50%;
     left       : 50%;
-    margin     : rem_calc(-50) 0 0 0;
+    margin     : rem_calc(20) 0 0 0;
     text-align : center;
     z-index    : 2;
   }

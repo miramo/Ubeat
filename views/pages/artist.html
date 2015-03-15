@@ -1,4 +1,4 @@
-<div ng-show="sharedPagesStatus.getIsPageLoaded() && !sharedPagesStatus.getIsPageError()">
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && !sharedPagesStatus.getIsCriticalError()">
     <div class="artist-header">
         <div class="row bloc-artist-img-infos">
             <div class="album-artist-picture" ng-switch on="artistPictureLoaded">
@@ -50,7 +50,7 @@
         </div>
     </div>
 </div>
-<div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsPageError()">
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsCriticalError()">
     <notfound></notfound>
 </div>
 <script type="text/javascript" src="js/libs/stackblur.js"></script>

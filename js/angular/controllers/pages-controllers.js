@@ -21,6 +21,7 @@
         $scope.artistsTab = [];
         $scope.albumsTab = [];
         $scope.sharedProperties = sharedProperties;
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().home);
 
         $scope.albumLoad = function (id)
         {
@@ -156,6 +157,7 @@
         sharedPagesStatus.resetPageStatus();
         $scope.artistPictureLoaded = false;
         $scope.isTabletOrDesktop = true;
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().artist);
 
         var isValidArtist = /^\d+$/.test($routeParams.id);
 
@@ -232,7 +234,7 @@
                     }
                     else
                     {
-                        sharedPagesStatus.pageFailedLoad();
+                        sharedPagesStatus.pageCriticFailure();
                     }
                 },
                 function (err)
@@ -241,7 +243,7 @@
         }
         else
         {
-            sharedPagesStatus.pageFailedLoad();
+            sharedPagesStatus.pageCriticFailure();
         }
 
 
@@ -263,6 +265,7 @@
         $scope.tracks = [];
         $scope.album = null;
         $scope.isPageFailedLoad = false;
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().album);
 
         var updateTracks = function ()
         {
@@ -425,14 +428,14 @@
                 }
                 else
                 {
-                    sharedPagesStatus.pageFailedLoad();
+                    sharedPagesStatus.pageCriticFailure();
                 }
 
             });
         }
         else
         {
-            sharedPagesStatus.pageFailedLoad();
+            sharedPagesStatus.pageCriticFailure();
         }
 
         $scope.check = function ()
@@ -449,7 +452,7 @@
         });
     });
 
-    controllers.controller('PlaylistsController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties, localStorageService)
+    controllers.controller('PlaylistsController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.missingImgPlaylist = './img/missing-album.png';
@@ -466,8 +469,9 @@
         $scope.playStates = sharedProperties.getPlayStates();
         $scope.defaultPlaylist = {};
         $scope.defaultPlaylist.name = "Pas de playlist";
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().playlist);
 
-        var refreshPlaylists = function()
+        var refreshPlaylists = function ()
         {
             if ($scope.playlists)
             {
@@ -481,7 +485,7 @@
 
         refreshPlaylists();
 
-        $scope.isActivePlaylist = function(playlist)
+        $scope.isActivePlaylist = function (playlist)
         {
             if (playlist && $scope.active)
             {
@@ -555,7 +559,7 @@
             $scope.alertMessages.splice(id, 1);
         }
 
-        $scope.rename = function(playlist, playlistCurrentRename)
+        $scope.rename = function (playlist, playlistCurrentRename)
         {
             $scope.setEdit(playlist.id, playlist, false);
             $scope.confirmRename(playlist.id, playlist, playlistCurrentRename.name)
@@ -627,5 +631,10 @@
             $(document).foundation();
             $(document).foundation('dropdown', 'reflow');
         });
+    });
+
+    controllers.controller('ErrorPageController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties)
+    {
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().error);
     });
 })();

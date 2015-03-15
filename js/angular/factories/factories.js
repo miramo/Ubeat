@@ -9,6 +9,15 @@
     factories.ubeatBaseUnsecureUrl = 'http://ubeat.herokuapp.com/unsecure/';
     factories.spotifyUrl = 'https://api.spotify.com/v1/';
 
+    factories.factory('playStates', function ()
+    {
+        return {
+            play : 'play',
+            pause: 'pause',
+            idle : 'idle'
+        };
+    });
+
     factories.factory('albumFactory', function ($resource)
     {
         return $resource(factories.ubeatBaseUnsecureUrl + 'albums/:id');
@@ -42,5 +51,44 @@
     factories.factory('spotifySearchFactory', function ($resource)
     {
         return $resource(factories.spotifyUrl + 'search?query=:name&type=:type');
+    });
+
+    factories.factory('trackFactory', function (playStates)
+    {
+        return {
+            idInPlaylist   : 0,
+            trackId        : 0,
+            albumId        : 0,
+            artistId       : 0,
+            name           : '',
+            artistName     : '',
+            playState      : playStates.idle,
+            albumName      : '',
+            previewUrl     : '',
+            trackTimeMillis: 0,
+            artworkUrl100  : '',
+            number         : 0,
+            playlist       : {}
+        }
+    });
+
+    factories.factory('playlistFactory', function (playStates)
+    {
+        return {
+            'id'        : 0,
+            name        : '',
+            tracks      : [],
+            isEdit      : false,
+            isHover     : false,
+            getTotalTime: function ()
+            {
+                var totalTime;
+                this.tracks.forEach(function (entry)
+                {
+                    totalTime += entry.trackTimeMillis;
+                });
+                return totalTime;
+            }
+        }
     });
 })();

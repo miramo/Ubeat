@@ -12,7 +12,7 @@
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
             $(document).foundation();
-            // call your functions here
+            // call your functions herez
         });
     });
 

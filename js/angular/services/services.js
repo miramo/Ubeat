@@ -6,7 +6,7 @@
 {
     var services = angular.module('services', []);
 
-    services.service('sharedProperties', function (ngAudio, localStorageService)
+    services.service('sharedProperties', function (ngAudio, localStorageService, trackFactory, playlistFactory)
     {
         var title = 'Ubeat';
         var homeArtists = [];
@@ -48,42 +48,41 @@
             localStorageService.set('playlists', playlists);
         }
 
-        function Track()
-        {
-            this.idInPlaylist = 0;
-            this.trackId = 0;
-            this.albumId = 0;
-            this.artistId = 0;
-            this.name = '';
-            this.artistName = '';
-            this.playState = playStates.idle;
-            this.albumName = '';
-            this.previewUrl = '';
-            this.trackTimeMillis = 0;
-            this.artworkUrl100 = '';
-            this.number = 0;
-            this.playlist = {};
-        }
-
-        function Playlist()
-        {
-            this.id = 0;
-            this.name = '';
-            this.tracks = [];
-            this.isEdit = false;
-            this.isHover = false;
-            this.getTotalTime = function()
-            {
-                var totalTime;
-                console.log("zizi");
-                this.tracks.forEach(function(entry)
-                {
-                    totalTime += entry.trackTimeMillis;
-                    console.log(entry.trackId);
-                });
-                return totalTime;
-            }
-        }
+        //function Track()
+        //{
+        //    this.idInPlaylist = 0;
+        //    this.trackId = 0;
+        //    this.albumId = 0;
+        //    this.artistId = 0;
+        //    this.name = '';
+        //    this.artistName = '';
+        //    this.playState = playStates.idle;
+        //    this.albumName = '';
+        //    this.previewUrl = '';
+        //    this.trackTimeMillis = 0;
+        //    this.artworkUrl100 = '';
+        //    this.number = 0;
+        //    this.playlist = {};
+        //}
+        //
+        //function Playlist()
+        //{
+        //    this.id = 0;
+        //    this.name = '';
+        //    this.tracks = [];
+        //    this.isEdit = false;
+        //    this.isHover = false;
+        //    this.getTotalTime = function()
+        //    {
+        //        var totalTime;
+        //        this.tracks.forEach(function(entry)
+        //        {
+        //            totalTime += entry.trackTimeMillis;
+        //        });
+        //        return totalTime;
+        //    }
+        //    this.test = trackFactory;
+        //}
 
 
         this.getTitle = function ()
@@ -224,7 +223,7 @@
             if (name)
             {
                 var playlistLength = playlists.length;
-                var newPlaylist = new Playlist();
+                var newPlaylist = playlistFactory;
 
                 newPlaylist.name = name;
                 newPlaylist.id = playlistLength;
@@ -292,10 +291,33 @@
     services.service('sharedPagesStatus', function ($location)
     {
         var pageTitle = 'Ubeat';
-        var isPageError = false;
+        var isCriticalError = false;
         var isPageLoaded = false;
         var errorMessage = '';
         var pageErrorUrl = '/notfound/';
+        var pageEnum = {
+            home    : 'home',
+            artist  : 'artist',
+            albums  : 'albums',
+            playlist: 'playlist',
+            error   : 'error'
+        };
+        var currentPage = pageEnum.home;
+
+        this.getCurrentPage = function()
+        {
+            return currentPage;
+        }
+
+        this.setCurrentPage = function(page)
+        {
+            currentPage = page;
+        }
+
+        this.getPageEnum = function()
+        {
+            return pageEnum;
+        }
 
         this.getTitle = function ()
         {
@@ -317,14 +339,14 @@
             errorMessage = msg;
         }
 
-        this.getIsPageError = function ()
+        this.getIsCriticalError = function ()
         {
-            return isPageError;
+            return isCriticalError;
         }
 
-        this.setIsPageError = function (val)
+        this.setIsCriticalError = function (val)
         {
-            isPageError = val;
+            isCriticalError = val;
         }
 
         this.getIsPageLoaded = function ()
@@ -339,13 +361,13 @@
 
         this.resetPageStatus = function ()
         {
-            isPageError = false;
+            isCriticalError = false;
             isPageLoaded = false;
         }
 
-        this.pageFailedLoad = function ()
+        this.pageCriticFailure = function ()
         {
-            this.setIsPageError(true);
+            this.setIsCriticalError(true);
             this.setIsPageLoaded(true);
         }
     });
