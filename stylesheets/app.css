@@ -1733,7 +1733,7 @@ select {
   padding: 0.875rem 1.5rem 0.875rem 0.875rem;
   font-size: 0.8125rem;
   transition: opacity 300ms ease-out;
-  background-color: #c60000;
+  background-color: #C60000;
   border-color: #aa0000;
   color: #FFFFFF;
 }
@@ -2347,7 +2347,7 @@ select {
   font-size: 0.6875rem;
   line-height: 0.6875rem;
   text-transform: uppercase;
-  color: #c60000;
+  color: #C60000;
 }
 /* line 68, ../bower_components/foundation/scss/foundation/components/_breadcrumbs.scss */
 .breadcrumbs > *:hover a, .breadcrumbs > *:focus a {
@@ -2355,7 +2355,7 @@ select {
 }
 /* line 70, ../bower_components/foundation/scss/foundation/components/_breadcrumbs.scss */
 .breadcrumbs > * a {
-  color: #c60000;
+  color: #C60000;
 }
 /* line 75, ../bower_components/foundation/scss/foundation/components/_breadcrumbs.scss */
 .breadcrumbs > *.current {
@@ -2426,7 +2426,7 @@ button, .button {
   padding-bottom: 1.0625rem;
   padding-left: 2rem;
   font-size: 1rem;
-  background-color: #c60000;
+  background-color: #C60000;
   border-color: #9e0000;
   color: #FFFFFF;
   transition: background-color 300ms ease-out;
@@ -2559,7 +2559,7 @@ button.round, .button.round {
 }
 /* line 240, ../bower_components/foundation/scss/foundation/components/_buttons.scss */
 button.disabled, button[disabled], .button.disabled, .button[disabled] {
-  background-color: #c60000;
+  background-color: #C60000;
   border-color: #9e0000;
   color: #FFFFFF;
   cursor: default;
@@ -2576,7 +2576,7 @@ button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[dis
 }
 /* line 178, ../bower_components/foundation/scss/foundation/components/_buttons.scss */
 button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[disabled]:focus, .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
-  background-color: #c60000;
+  background-color: #C60000;
 }
 /* line 241, ../bower_components/foundation/scss/foundation/components/_buttons.scss */
 button.disabled.secondary, button[disabled].secondary, .button.disabled.secondary, .button[disabled].secondary {
@@ -4529,7 +4529,7 @@ label.error {
 }
 /* line 182, ../bower_components/foundation/scss/foundation/components/_icon-bar.scss */
 .icon-bar > a:hover {
-  background: #c60000;
+  background: #C60000;
 }
 /* line 186, ../bower_components/foundation/scss/foundation/components/_icon-bar.scss */
 .icon-bar > a:hover label {
@@ -4541,7 +4541,7 @@ label.error {
 }
 /* line 191, ../bower_components/foundation/scss/foundation/components/_icon-bar.scss */
 .icon-bar > a.active {
-  background: #c60000;
+  background: #C60000;
 }
 /* line 195, ../bower_components/foundation/scss/foundation/components/_icon-bar.scss */
 .icon-bar > a.active label {
@@ -4945,7 +4945,7 @@ kbd {
   margin-bottom: auto;
   padding: 0.25rem 0.5rem 0.25rem;
   font-size: 0.6875rem;
-  background-color: #c60000;
+  background-color: #C60000;
   color: #FFFFFF;
 }
 /* line 96, ../bower_components/foundation/scss/foundation/components/_labels.scss */
@@ -5384,14 +5384,14 @@ ul.pagination li.unavailable:hover a, ul.pagination li.unavailable a:focus, ul.p
 }
 /* line 68, ../bower_components/foundation/scss/foundation/components/_pagination.scss */
 ul.pagination li.current a, ul.pagination li.current button {
-  background: #c60000;
+  background: #C60000;
   color: #FFFFFF;
   font-weight: bold;
   cursor: default;
 }
 /* line 74, ../bower_components/foundation/scss/foundation/components/_pagination.scss */
 ul.pagination li.current a:hover, ul.pagination li.current a:focus, ul.pagination li.current button:hover, ul.pagination li.current button:focus {
-  background: #c60000;
+  background: #C60000;
 }
 /* line 136, ../bower_components/foundation/scss/foundation/components/_pagination.scss */
 ul.pagination li {
@@ -5475,7 +5475,7 @@ ul.pagination li {
 }
 /* line 84, ../bower_components/foundation/scss/foundation/components/_panels.scss */
 .panel.callout a:not(.button) {
-  color: #c60000;
+  color: #C60000;
 }
 /* line 87, ../bower_components/foundation/scss/foundation/components/_panels.scss */
 .panel.callout a:not(.button):hover, .panel.callout a:not(.button):focus {
@@ -5557,7 +5557,7 @@ ul.pagination li {
 }
 /* line 61, ../bower_components/foundation/scss/foundation/components/_progress-bars.scss */
 .progress .meter {
-  background: #c60000;
+  background: #C60000;
   height: 100%;
   display: block;
 }
@@ -5642,7 +5642,7 @@ ul.pagination li {
 }
 /* line 147, ../bower_components/foundation/scss/foundation/components/_range-slider.scss */
 .range-slider.radius .range-slider-handle {
-  background: #c60000;
+  background: #C60000;
   border-radius: 3px;
 }
 /* line 116, ../bower_components/foundation/scss/foundation/components/_range-slider.scss */
@@ -5656,7 +5656,7 @@ ul.pagination li {
 }
 /* line 151, ../bower_components/foundation/scss/foundation/components/_range-slider.scss */
 .range-slider.round .range-slider-handle {
-  background: #c60000;
+  background: #C60000;
   border-radius: 1000px;
 }
 /* line 116, ../bower_components/foundation/scss/foundation/components/_range-slider.scss */
@@ -5671,7 +5671,7 @@ ul.pagination li {
 }
 /* line 155, ../bower_components/foundation/scss/foundation/components/_range-slider.scss */
 .range-slider.disabled .range-slider-handle, .range-slider[disabled] .range-slider-handle {
-  background: #c60000;
+  background: #C60000;
   cursor: default;
   opacity: 0.7;
 }
@@ -5700,7 +5700,7 @@ ul.pagination li {
   cursor: pointer;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
-  background: #c60000;
+  background: #C60000;
 }
 /* line 116, ../bower_components/foundation/scss/foundation/components/_range-slider.scss */
 .range-slider-handle:hover {
@@ -5883,7 +5883,7 @@ ul.pagination li {
 /* line 75, ../bower_components/foundation/scss/foundation/components/_side-nav.scss */
 .side-nav li a:not(.button) {
   display: block;
-  color: #c60000;
+  color: #C60000;
   margin: 0;
   padding: 0.4375rem 0.875rem;
 }
@@ -5908,7 +5908,7 @@ ul.pagination li {
 }
 /* line 101, ../bower_components/foundation/scss/foundation/components/_side-nav.scss */
 .side-nav li.heading {
-  color: #c60000;
+  color: #C60000;
   font-size: 0.875rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -6115,7 +6115,7 @@ ul.pagination li {
 .sub-nav li.active a {
   border-radius: 3px;
   font-weight: normal;
-  background: #c60000;
+  background: #C60000;
   padding: 0.1875rem 1rem;
   cursor: default;
   color: #FFFFFF;
@@ -6184,7 +6184,7 @@ ul.pagination li {
 }
 /* line 107, ../bower_components/foundation/scss/foundation/components/_switches.scss */
 .switch input:checked + label {
-  background: #c60000;
+  background: #C60000;
 }
 /* line 111, ../bower_components/foundation/scss/foundation/components/_switches.scss */
 .switch input:checked + label:after {
@@ -6215,7 +6215,7 @@ ul.pagination li {
 }
 /* line 163, ../bower_components/foundation/scss/foundation/components/_switches.scss */
 .switch input:checked + label {
-  background: #c60000;
+  background: #C60000;
 }
 /* line 123, ../bower_components/foundation/scss/foundation/components/_switches.scss */
 .switch.large label {
@@ -6496,7 +6496,7 @@ table tr td {
 /* line 44, ../bower_components/foundation/scss/foundation/components/_tooltips.scss */
 .has-tip:hover, .has-tip:focus {
   border-bottom: none;
-  color: #c60000;
+  color: #C60000;
 }
 /* line 50, ../bower_components/foundation/scss/foundation/components/_tooltips.scss */
 .has-tip.tip-left, .has-tip.tip-right {
@@ -6549,7 +6549,7 @@ table tr td {
 }
 /* line 95, ../bower_components/foundation/scss/foundation/components/_tooltips.scss */
 .tooltip.opened {
-  color: #c60000 !important;
+  color: #C60000 !important;
   border-bottom: none !important;
 }
 
@@ -6817,7 +6817,7 @@ meta.foundation-mq-topbar {
   font-size: 0.8125rem;
   padding-right: 0.9375rem;
   padding-left: 0.9375rem;
-  background-color: #c60000;
+  background-color: #C60000;
   border-color: #9e0000;
   color: #FFFFFF;
 }
@@ -6890,7 +6890,7 @@ meta.foundation-mq-topbar {
   font-size: 0.8125rem;
   padding-right: 0.9375rem;
   padding-left: 0.9375rem;
-  background-color: #c60000;
+  background-color: #C60000;
   border-color: #9e0000;
   color: #FFFFFF;
 }
@@ -6966,7 +6966,7 @@ meta.foundation-mq-topbar {
 }
 /* line 363, ../bower_components/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar-section ul li.active > a {
-  background: #c60000;
+  background: #C60000;
   color: #FFFFFF;
 }
 /* line 366, ../bower_components/foundation/scss/foundation/components/_top-bar.scss */
@@ -7164,7 +7164,7 @@ meta.foundation-mq-topbar {
     padding: 0 0.9375rem;
     line-height: 2.8125rem;
     color: #FFFFFF;
-    background: #c60000;
+    background: #C60000;
   }
   /* line 529, ../bower_components/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar-section li.active:not(.has-form) a:not(.button):hover {
@@ -7237,7 +7237,7 @@ meta.foundation-mq-topbar {
   .top-bar-section .dropdown li:not(.has-form):not(.active):hover > a:not(.button) {
     color: #FFFFFF;
     background-color: #555555;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(20, 20, 20, 0.9);
   }
   /* line 610, ../bower_components/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar-section .dropdown li label {
@@ -7291,7 +7291,7 @@ meta.foundation-mq-topbar {
   }
   /* line 672, ../bower_components/foundation/scss/foundation/components/_top-bar.scss */
   .no-js .top-bar-section ul li:active > a {
-    background: #c60000;
+    background: #C60000;
     color: #FFFFFF;
   }
   /* line 680, ../bower_components/foundation/scss/foundation/components/_top-bar.scss */
@@ -7573,7 +7573,7 @@ td {
 /* Default Link Styles */
 /* line 217, ../bower_components/foundation/scss/foundation/components/_type.scss */
 a {
-  color: #c60000;
+  color: #C60000;
   text-decoration: none;
   line-height: inherit;
 }
@@ -18164,7 +18164,7 @@ button.radius, .button.radius {
 
 /* line 184, ../scss/_flat-button.scss */
 .button.red {
-  background-color: #c60000;
+  background-color: #C60000;
 }
 
 /* line 187, ../scss/_flat-button.scss */
@@ -18180,7 +18180,7 @@ button.radius, .button.radius {
 
 /* line 10, ../scss/_scrollbar.scss */
 ::-webkit-scrollbar-thumb {
-  background: #c60000;
+  background: #C60000;
 }
 
 /* line 15, ../scss/_scrollbar.scss */
@@ -18190,7 +18190,7 @@ button.radius, .button.radius {
 
 /* line 21, ../scss/_scrollbar.scss */
 body {
-  scrollbar-face-color: #c60000;
+  scrollbar-face-color: #C60000;
   scrollbar-track-color: #e27f7f;
 }
 
@@ -18206,11 +18206,45 @@ body {
 }
 
 /* line 11, ../scss/_style.scss */
+a {
+  color: inherit;
+}
+
+/* line 16, ../scss/_style.scss */
 main {
   margin-bottom: 3.75rem;
 }
 
-/* line 16, ../scss/_style.scss */
+/* line 21, ../scss/_style.scss */
+.on-hover:hover {
+  color: #C60000;
+}
+
+/* line 26, ../scss/_style.scss */
+.img-circular {
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* line 32, ../scss/_style.scss */
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  text-overflow: ellipsis;
+}
+
+/* line 40, ../scss/_style.scss */
+.disable-select {
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* line 45, ../scss/_style.scss */
 .top-page {
   height: 2.8125rem;
   width: 100%;
@@ -18222,7 +18256,7 @@ main {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-/* line 24, ../scss/_style.scss */
+/* line 52, ../scss/_style.scss */
 .responsive-img, .bump .artist-albums-img {
   position: relative;
   width: 100%;
@@ -18235,24 +18269,23 @@ main {
   background-size: cover;
 }
 
-/* line 37, ../scss/_style.scss */
-.slick-prev:before, .slick-next:before {
-  color: #c60000 !important;
+/* line 67, ../scss/_style.scss */
+slick .slick-prev:before, slick .slick-next:before {
+  color: #C60000 !important;
   width: 200% !important;
   height: 200% !important;
 }
-
-/* line 46, ../scss/_style.scss */
-.slick-dots li button:before {
-  color: #c60000 !important;
+/* line 76, ../scss/_style.scss */
+slick .slick-dots li button:before {
+  color: #C60000 !important;
 }
 
-/* line 52, ../scss/_style.scss */
+/* line 83, ../scss/_style.scss */
 .bottom-border {
   border-bottom: 0.0625rem solid #bdbdbd;
 }
 
-/* line 57, ../scss/_style.scss */
+/* line 88, ../scss/_style.scss */
 .custom-reveal-class {
   font-size: 2.5rem;
   line-height: 1;
@@ -18264,26 +18297,13 @@ main {
   cursor: pointer;
 }
 
-/* line 63, ../scss/_style.scss */
-.on-hover:hover {
-  color: #c60000;
-}
-
-/* line 68, ../scss/_style.scss */
-.img-circular {
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-/* line 74, ../scss/_style.scss */
+/* line 93, ../scss/_style.scss */
 .bump {
   margin-top: 3.125rem;
   padding-right: 1.875rem;
   padding-left: 1.875rem;
 }
-/* line 79, ../scss/_style.scss */
+/* line 98, ../scss/_style.scss */
 .bump .card, .bump .card-shadow {
   padding-bottom: 0;
   -moz-border-radius: 0.3125rem;
@@ -18294,37 +18314,29 @@ main {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-/* line 85, ../scss/_style.scss */
+/* line 104, ../scss/_style.scss */
 .bump .card .text-card, .bump .card-shadow .text-card, .bump .card .text-card-artist-album, .bump .card-shadow .text-card-artist-album {
-  background: #c60000;
+  background: #C60000;
 }
-/* line 88, ../scss/_style.scss */
+/* line 107, ../scss/_style.scss */
 .bump .card .text-card .first-text-card, .bump .card-shadow .text-card .first-text-card, .bump .card .text-card-artist-album .first-text-card, .bump .card-shadow .text-card-artist-album .first-text-card, .bump .card .text-card .second-text-card, .bump .card-shadow .text-card .second-text-card, .bump .card .text-card-artist-album .second-text-card, .bump .card-shadow .text-card-artist-album .second-text-card {
   font-size: 1rem;
   padding: 0 0.3125rem;
   margin-bottom: 0;
   color: #FFFFFF;
 }
-/* line 95, ../scss/_style.scss */
+/* line 114, ../scss/_style.scss */
 .bump .card .text-card .second-text-card, .bump .card-shadow .text-card .second-text-card, .bump .card .text-card-artist-album .second-text-card, .bump .card-shadow .text-card-artist-album .second-text-card {
   font-size: 0.875rem;
 }
-/* line 102, ../scss/_style.scss */
+/* line 121, ../scss/_style.scss */
 .bump .card-shadow {
   -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-/* line 109, ../scss/_style.scss */
-.ellipsis {
-  overflow: hidden;
-  white-space: nowrap;
-  display: block;
-  text-overflow: ellipsis;
-}
-
-/* line 117, ../scss/_style.scss */
+/* line 128, ../scss/_style.scss */
 .post-radius {
   -moz-border-radius-topright: 3px;
   -webkit-border-top-right-radius: 3px;
@@ -18334,7 +18346,7 @@ main {
   border-bottom-right-radius: 3px;
 }
 
-/* line 122, ../scss/_style.scss */
+/* line 133, ../scss/_style.scss */
 input[type="text"].pre-radius {
   -moz-border-radius-topleft: 3px;
   -webkit-border-top-left-radius: 3px;
@@ -18342,14 +18354,6 @@ input[type="text"].pre-radius {
   -moz-border-radius-bottomleft: 3px;
   -webkit-border-bottom-left-radius: 3px;
   border-bottom-left-radius: 3px;
-}
-
-/* line 127, ../scss/_style.scss */
-.disable-select {
-  -moz-user-select: -moz-none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
 
 /* line 1, ../scss/_navbar.scss */
@@ -18369,29 +18373,20 @@ input[type="text"].pre-radius {
 
 /* line 19, ../scss/_navbar.scss */
 .nav-bar {
-  border-bottom: solid thick rgba(198, 0, 0, 0.7);
-  border-bottom-width: 0.1875rem;
+  border-bottom: solid 0.1875rem rgba(198, 0, 0, 0.7);
   background: rgba(0, 0, 0, 0.7);
-  -moz-transition-property: all;
-  -o-transition-property: all;
-  -webkit-transition-property: all;
-  transition-property: all;
-  -moz-transition-duration: 300ms;
-  -o-transition-duration: 300ms;
-  -webkit-transition-duration: 300ms;
-  transition-duration: 300ms;
+  transition: all 300ms linear;
 }
-/* line 26, ../scss/_navbar.scss */
+/* line 24, ../scss/_navbar.scss */
 .nav-bar:hover {
   background: rgba(0, 0, 0, 0.9);
   -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
-  border-bottom: solid thick rgba(198, 0, 0, 0.9);
-  border-bottom-width: 0.1875rem;
+  border-bottom: solid 0.1875rem rgba(198, 0, 0, 0.9);
 }
 
-/* line 35, ../scss/_navbar.scss */
+/* line 32, ../scss/_navbar.scss */
 .top-bar .name h1 a:before {
   background: url(../img/logo/logo-topbar.png) no-repeat center center;
   content: "";
@@ -18401,45 +18396,45 @@ input[type="text"].pre-radius {
   width: 100px;
 }
 
-/* line 45, ../scss/_navbar.scss */
+/* line 42, ../scss/_navbar.scss */
 #profile-picture {
   width: 2rem;
   height: 2rem;
-  border: 0.125rem solid #c60000;
+  border: 0.125rem solid #C60000;
   display: inline-block;
   vertical-align: middle;
   background: url(http://i.imgur.com/ztQQtqn.jpg) no-repeat center center;
   background-size: cover;
 }
 
-/* line 56, ../scss/_navbar.scss */
+/* line 53, ../scss/_navbar.scss */
 #profile-name {
   padding-left: 0.3125rem;
 }
 
-/* line 61, ../scss/_navbar.scss */
+/* line 58, ../scss/_navbar.scss */
 #profile-topbar {
   display: inline-block;
 }
 
-/* line 66, ../scss/_navbar.scss */
+/* line 63, ../scss/_navbar.scss */
 input[type="text"].dream-search {
   opacity: .5;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 66, ../scss/_navbar.scss */
+  /* line 63, ../scss/_navbar.scss */
   input[type="text"].dream-search {
     width: 75%;
     margin-left: 25%;
   }
 }
 
-/* line 76, ../scss/_navbar.scss */
+/* line 73, ../scss/_navbar.scss */
 input[type="text"].dream-search:focus {
   opacity: 1;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 76, ../scss/_navbar.scss */
+  /* line 73, ../scss/_navbar.scss */
   input[type="text"].dream-search:focus {
     width: 100%;
     margin-left: 0%;
@@ -18459,7 +18454,7 @@ input[type="text"].dream-search:focus {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 91, ../scss/_navbar.scss */
+  /* line 88, ../scss/_navbar.scss */
   .top-bar-section .has-dropdown > a:after {
     content: "";
     display: block;
@@ -18475,7 +18470,7 @@ input[type="text"].dream-search:focus {
     right: 0;
   }
 
-  /* line 106, ../scss/_navbar.scss */
+  /* line 103, ../scss/_navbar.scss */
   .button-search {
     margin-top: 0.0625rem;
   }
@@ -18493,12 +18488,12 @@ input[type="text"].dream-search:focus {
   margin-bottom: auto;
   padding: 0.25rem 0.5rem 0.25rem;
   font-size: 0.75rem;
-  background-color: #c60000;
+  background-color: #C60000;
   color: #FFFFFF;
   border-radius: 2px;
 }
 
-/* line 9, ../scss/_artist.scss */
+/* line 6, ../scss/_artist.scss */
 .artist-header {
   background: #333;
   position: relative;
@@ -18506,13 +18501,13 @@ input[type="text"].dream-search:focus {
   overflow: hidden;
 }
 
-/* line 17, ../scss/_artist.scss */
+/* line 14, ../scss/_artist.scss */
 .bloc-artist-img-infos {
   margin-top: 2.8125rem;
 }
 
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 22, ../scss/_artist.scss */
+  /* line 19, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -18550,7 +18545,7 @@ input[type="text"].dream-search:focus {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 22, ../scss/_artist.scss */
+  /* line 19, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -18588,7 +18583,7 @@ input[type="text"].dream-search:focus {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 22, ../scss/_artist.scss */
+  /* line 19, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -18626,11 +18621,11 @@ input[type="text"].dream-search:focus {
   }
 }
 
-/* line 40, ../scss/_artist.scss */
+/* line 39, ../scss/_artist.scss */
 .bump .artist-albums-img {
   cursor: pointer;
 }
-/* line 44, ../scss/_artist.scss */
+/* line 43, ../scss/_artist.scss */
 .bump .artist-albums-img:after {
   border-top-left-radius: 0.3125rem;
   border-top-right-radius: 0.3125rem;
@@ -18645,31 +18640,17 @@ input[type="text"].dream-search:focus {
   vertical-align: middle;
   background-color: black;
   opacity: 0;
-  -moz-transition-property: all;
-  -o-transition-property: all;
-  -webkit-transition-property: all;
-  transition-property: all;
-  -moz-transition-duration: 0.5s;
-  -o-transition-duration: 0.5s;
-  -webkit-transition-duration: 0.5s;
-  transition-duration: 0.5s;
+  transition: all 0.3s linear;
 }
-/* line 62, ../scss/_artist.scss */
+/* line 60, ../scss/_artist.scss */
 .bump .artist-albums-img:hover:after {
   opacity: 0.5;
 }
-/* line 67, ../scss/_artist.scss */
+/* line 65, ../scss/_artist.scss */
 .bump .text-card-artist-album {
-  -moz-transition-property: all;
-  -o-transition-property: all;
-  -webkit-transition-property: all;
-  transition-property: all;
-  -moz-transition-duration: 0.5s;
-  -o-transition-duration: 0.5s;
-  -webkit-transition-duration: 0.5s;
-  transition-duration: 0.5s;
+  transition: all 0.3s linear;
 }
-/* line 72, ../scss/_artist.scss */
+/* line 69, ../scss/_artist.scss */
 .bump .text-card-artist-album:hover {
   background: #9e0000 !important;
 }
@@ -18681,21 +18662,16 @@ input[type="text"].dream-search:focus {
 }
 
 /* line 7, ../scss/_albums.scss */
-a {
-  color: inherit;
-}
-
-/* line 12, ../scss/_albums.scss */
 .music-row:hover {
   background: #ebf4ff;
 }
 
-/* line 17, ../scss/_albums.scss */
+/* line 12, ../scss/_albums.scss */
 .bloc-album-img-infos {
   margin-top: 2.8125rem;
 }
 
-/* line 22, ../scss/_albums.scss */
+/* line 17, ../scss/_albums.scss */
 .row-infos-list {
   width: 100%;
   margin-left: auto;
@@ -18718,7 +18694,7 @@ a {
 }
 
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 31, ../scss/_albums.scss */
+  /* line 26, ../scss/_albums.scss */
   .album-infos {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -18727,7 +18703,7 @@ a {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 31, ../scss/_albums.scss */
+  /* line 26, ../scss/_albums.scss */
   .album-infos {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -18736,7 +18712,7 @@ a {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 31, ../scss/_albums.scss */
+  /* line 26, ../scss/_albums.scss */
   .album-infos {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -18746,7 +18722,7 @@ a {
 }
 
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 47, ../scss/_albums.scss */
+  /* line 42, ../scss/_albums.scss */
   .album-picture {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -18755,7 +18731,7 @@ a {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 47, ../scss/_albums.scss */
+  /* line 42, ../scss/_albums.scss */
   .album-picture {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -18764,7 +18740,7 @@ a {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 47, ../scss/_albums.scss */
+  /* line 42, ../scss/_albums.scss */
   .album-picture {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -18773,13 +18749,13 @@ a {
   }
 }
 
-/* line 63, ../scss/_albums.scss */
+/* line 58, ../scss/_albums.scss */
 .img-album {
   width: 100%;
   height: 100%;
 }
 
-/* line 69, ../scss/_albums.scss */
+/* line 64, ../scss/_albums.scss */
 .type-label {
   font-weight: normal;
   font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
@@ -18792,11 +18768,11 @@ a {
   margin-bottom: auto;
   padding: 0.25rem 0.5rem 0.25rem;
   font-size: 0.75rem;
-  background-color: #c60000;
+  background-color: #C60000;
   color: #FFFFFF;
 }
 
-/* line 77, ../scss/_albums.scss */
+/* line 72, ../scss/_albums.scss */
 #tool-bar .button, button {
   overflow: hidden;
   white-space: nowrap;
@@ -18807,14 +18783,14 @@ a {
   margin-bottom: 0.1875rem;
 }
 
-/* line 88, ../scss/_albums.scss */
+/* line 83, ../scss/_albums.scss */
 #tool-bar input {
   margin-top: 0.1875rem;
   margin-bottom: 0.1875rem;
   height: 1.75rem;
 }
 
-/* line 95, ../scss/_albums.scss */
+/* line 90, ../scss/_albums.scss */
 .tool-bar-panel {
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
@@ -18931,37 +18907,36 @@ a {
 .slider-index {
   margin: 1.25rem 1.875rem;
 }
-
-/* line 12, ../scss/_home.scss */
-.slider-index-element {
+/* line 10, ../scss/_home.scss */
+.slider-index .slider-index-element {
   margin: 0 0.0625rem;
   opacity: 0.8;
+  -moz-transform: scale(0.92);
+  -ms-transform: scale(0.92);
+  -webkit-transform: scale(0.92);
   transform: scale(0.92);
+  transition: all 200ms linear;
 }
-
-/* line 19, ../scss/_home.scss */
-.slider-index-element.slick-center {
+/* line 16, ../scss/_home.scss */
+.slider-index .slider-index-element.slick-center, .slider-index .slider-index-element:hover {
   opacity: 1;
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -webkit-transform: scale(1);
   transform: scale(1);
 }
 
 /* line 1, ../scss/_playbar.scss */
 .play-bar {
   background: rgba(0, 0, 0, 0.7);
-  -moz-transition-property: all;
-  -o-transition-property: all;
-  -webkit-transition-property: all;
-  transition-property: all;
-  -moz-transition-duration: 300ms;
-  -o-transition-duration: 300ms;
-  -webkit-transition-duration: 300ms;
-  transition-duration: 300ms;
+  transition: all 300ms linear;
   position: fixed;
   bottom: 0;
   left: 0;
+  right: 0;
   height: 3.75rem;
 }
-/* line 12, ../scss/_playbar.scss */
+/* line 10, ../scss/_playbar.scss */
 .play-bar:hover {
   background: rgba(0, 0, 0, 0.9);
   -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 -4px 8px rgba(0, 0, 0, 0.28);
@@ -18969,18 +18944,18 @@ a {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 -4px 8px rgba(0, 0, 0, 0.28);
 }
 
-/* line 19, ../scss/_playbar.scss */
+/* line 17, ../scss/_playbar.scss */
 .bottom-bar {
   height: 3.75rem;
 }
 
-/* line 24, ../scss/_playbar.scss */
+/* line 22, ../scss/_playbar.scss */
 .bottom-bar i:hover {
-  color: #c60000;
+  color: #C60000;
   cursor: pointer;
 }
 
-/* line 30, ../scss/_playbar.scss */
+/* line 28, ../scss/_playbar.scss */
 .play-area {
   text-align: center;
   padding-left: 0.9375rem;
@@ -18989,7 +18964,7 @@ a {
   float: left;
 }
 @media only screen and (max-width: 40em) {
-  /* line 30, ../scss/_playbar.scss */
+  /* line 28, ../scss/_playbar.scss */
   .play-area {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -18998,7 +18973,7 @@ a {
   }
 }
 
-/* line 39, ../scss/_playbar.scss */
+/* line 37, ../scss/_playbar.scss */
 .play-button {
   color: #FFFFFF;
   padding-right: 0.3125rem;
@@ -19008,7 +18983,7 @@ a {
   display: inline-block;
 }
 
-/* line 49, ../scss/_playbar.scss */
+/* line 47, ../scss/_playbar.scss */
 .volume {
   color: #FFFFFF;
   padding-right: 0;
@@ -19017,7 +18992,7 @@ a {
   display: inline-block;
 }
 
-/* line 60, ../scss/_playbar.scss */
+/* line 58, ../scss/_playbar.scss */
 .bottom-right {
   color: #FFFFFF;
   padding-right: 0.3125rem;
@@ -19028,7 +19003,7 @@ a {
   margin-right: 0.3125rem;
 }
 
-/* line 76, ../scss/_playbar.scss */
+/* line 72, ../scss/_playbar.scss */
 .test {
   overflow: hidden;
   width: 2.1875rem;
@@ -19040,31 +19015,31 @@ a {
   transition: width 0.5s;
 }
 
-/* line 89, ../scss/_playbar.scss */
+/* line 85, ../scss/_playbar.scss */
 .test i {
   width: 2.1875rem;
   padding-top: 0.9375rem;
 }
 
-/* line 95, ../scss/_playbar.scss */
+/* line 91, ../scss/_playbar.scss */
 .test li {
   white-space: nowrap;
 }
 
-/* line 100, ../scss/_playbar.scss */
+/* line 96, ../scss/_playbar.scss */
 .test:hover {
   width: 9.375rem;
   height: 3.125rem;
   visibility: visible;
 }
 
-/* line 107, ../scss/_playbar.scss */
+/* line 103, ../scss/_playbar.scss */
 .bottom-music-list {
   line-height: 0;
   margin-top: 0.9375rem;
 }
 
-/* line 114, ../scss/_playbar.scss */
+/* line 110, ../scss/_playbar.scss */
 #seek-volume {
   vertical-align: middle;
   -webkit-appearance: none;
@@ -19077,16 +19052,16 @@ a {
   outline: 0;
 }
 
-/* line 127, ../scss/_playbar.scss */
+/* line 123, ../scss/_playbar.scss */
 #seek-volume::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 0.75rem;
   height: 0.75rem;
   border-radius: 0.625rem;
-  background: #c60000;
+  background: #C60000;
 }
 
-/* line 137, ../scss/_playbar.scss */
+/* line 133, ../scss/_playbar.scss */
 #seek-music {
   -webkit-appearance: none;
   border-bottom-right-radius: 0.3125rem;
@@ -19102,17 +19077,17 @@ a {
   outline: 0;
 }
 
-/* line 158, ../scss/_playbar.scss */
+/* line 154, ../scss/_playbar.scss */
 #seek-music::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 1.125rem;
   height: 1.125rem;
   border-radius: 0.625rem;
-  background: #c60000;
+  background: #C60000;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 169, ../scss/_playbar.scss */
+  /* line 164, ../scss/_playbar.scss */
   .ul-volume {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -19323,7 +19298,7 @@ a {
 /* line 15, ../scss/_playlists.scss */
 .playlists-name .playlist-item.active {
   background-color: #cecece;
-  border-left: solid thick #c60000;
+  border-left: solid thick #C60000;
   border-left-width: 0.1875rem;
   -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -19340,7 +19315,7 @@ a {
   width: 3.125rem;
   height: 3.125rem;
   background-color: #dadada;
-  color: #c60000;
+  color: #C60000;
 }
 /* line 35, ../scss/_playlists.scss */
 .playlists-name .playlist-item input, .playlists-name .playlist-item a {

@@ -8,9 +8,38 @@ $footer-height: rem-calc(60);
   @include selection(scale-color($primary-color, $lightness: 15%), $white);
 }
 
+a
+{
+  color: inherit;
+}
+
 main
 {
   margin-bottom: $footer-height;
+}
+
+.on-hover:hover
+{
+  color: $primary-color;
+}
+
+.img-circular
+{
+  @include border-radius(50%);
+  overflow: hidden;
+}
+
+.ellipsis
+{
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  text-overflow: ellipsis;
+}
+
+.disable-select
+{
+  @include user-select(none);
 }
 
 .top-page
@@ -18,7 +47,6 @@ main
   height: $topbar-height;
   width: 100%;
   @include background-image(linear-gradient(top, rgba(black, .9) 0%,rgba(black, 0) 100%));
-  //  background: $black;
 }
 
 .responsive-img
@@ -34,18 +62,21 @@ main
   background-size     : cover;
 }
 
-.slick-prev:before, .slick-next:before
+slick
 {
-  color: $primary-color !important;
-  width: 200% !important;
-  height: 200% !important;
-}
-
-.slick-dots
-{
-  li button:before
+  .slick-prev:before, .slick-next:before
   {
     color: $primary-color !important;
+    width: 200% !important;
+    height: 200% !important;
+  }
+
+  .slick-dots
+  {
+    li button:before
+    {
+      color: $primary-color !important;
+    }
   }
 }
 
@@ -54,21 +85,9 @@ main
   border-bottom: rem_calc(1) solid #bdbdbd;
 }
 
-.custom-reveal-class {
-  @include reveal-close(
-  $color:$reveal-close-color
-  );
-}
-
-.on-hover:hover
+.custom-reveal-class
 {
-  color: $primary-color;
-}
-
-.img-circular
-{
-  @include border-radius(50%);
-  overflow: hidden;
+  @include reveal-close($color:$reveal-close-color);
 }
 
 .bump
@@ -106,14 +125,6 @@ main
   }
 }
 
-.ellipsis
-{
-  overflow: hidden;
-  white-space: nowrap;
-  display: block;
-  text-overflow: ellipsis;
-}
-
 .post-radius
 {
   @include border-right-radius($button-radius);
@@ -122,9 +133,4 @@ main
 input[type="text"].pre-radius
 {
   @include border-left-radius($button-radius);
-}
-
-.disable-select
-{
-  @include user-select(none);
 }
