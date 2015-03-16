@@ -18403,38 +18403,39 @@ input[type="text"].pre-radius {
   border: 0.125rem solid #C60000;
   display: inline-block;
   vertical-align: middle;
-  background: url(http://i.imgur.com/ztQQtqn.jpg) no-repeat center center;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
-/* line 53, ../scss/_navbar.scss */
+/* line 54, ../scss/_navbar.scss */
 #profile-name {
   padding-left: 0.3125rem;
 }
 
-/* line 58, ../scss/_navbar.scss */
+/* line 59, ../scss/_navbar.scss */
 #profile-topbar {
   display: inline-block;
 }
 
-/* line 63, ../scss/_navbar.scss */
+/* line 64, ../scss/_navbar.scss */
 input[type="text"].dream-search {
   opacity: .5;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 63, ../scss/_navbar.scss */
+  /* line 64, ../scss/_navbar.scss */
   input[type="text"].dream-search {
     width: 75%;
     margin-left: 25%;
   }
 }
 
-/* line 73, ../scss/_navbar.scss */
+/* line 74, ../scss/_navbar.scss */
 input[type="text"].dream-search:focus {
   opacity: 1;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 73, ../scss/_navbar.scss */
+  /* line 74, ../scss/_navbar.scss */
   input[type="text"].dream-search:focus {
     width: 100%;
     margin-left: 0%;
@@ -18454,7 +18455,7 @@ input[type="text"].dream-search:focus {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 88, ../scss/_navbar.scss */
+  /* line 89, ../scss/_navbar.scss */
   .top-bar-section .has-dropdown > a:after {
     content: "";
     display: block;
@@ -18470,7 +18471,7 @@ input[type="text"].dream-search:focus {
     right: 0;
   }
 
-  /* line 103, ../scss/_navbar.scss */
+  /* line 104, ../scss/_navbar.scss */
   .button-search {
     margin-top: 0.0625rem;
   }
