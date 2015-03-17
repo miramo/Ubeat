@@ -21,7 +21,7 @@
                         </div>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="" class="button red expand sign-up">Inscription</a></li>
+                    <li><a href="" class="button red sign-up" data-reveal-id="sign-up-modal">Inscription</a></li>
                     <li><a href="" class="sign-in" data-reveal-id="sign-in-modal">Connection</a></li>
 
                     <!--<li class="has-dropdown not-click">-->
@@ -49,30 +49,79 @@
     </div>
     <div id="sign-in-modal" class="reveal-modal remove-whitespace" data-reveal>
         <div class="row">
-            <div class="small-6 columns auth-plain small-centered">
+            <div class="small-12 large-6 columns auth-plain small-centered">
                 <div class="signup-panel left-solid">
-                    <p class="welcome">Merci de saisir votre nom de connexion et votre mot de passe</p>
+                    <p class="welcome">Merci de saisir votre adresse e-mail et votre mot de passe</p>
                     <form data-abide>
                         <div class="row collapse">
-                            <div class="small-2  columns">
-                                <span class="prefix"><i class="fi-torso-female"></i></span>
+                            <div class="small-2 columns">
+                                <span class="prefix"><i class="md md-email md-lg"></i></span>
                             </div>
                             <div class="small-10 columns">
                                 <input type="email" placeholder="Adresse e-mail" required>
-                                <small class="error">Vous devez entrer une adresse e-mail valide</small>
+                                <small class="error">Vous devez entrer une adresse e-mail valide.</small>
                             </div>
                         </div>
                         <div class="row collapse">
-                            <div class="small-2 columns ">
-                                <span class="prefix"><i class="fi-lock"></i></span>
+                            <div class="small-2 columns">
+                                <span class="prefix"><i class="md md-lock md-lg"></i></span>
                             </div>
-                            <div class="small-10 columns ">
+                            <div class="small-10 columns">
                                 <input type="password" placeholder="Mot de passe" required>
                                 <small class="error">Vous devez entrer un mot de passe.</small>
                             </div>
                         </div>
                     </form>
-                    <a href="#" class="button red radius">Connection</a>
+                    <a href="#" class="button red radius right">Connection</a>
+                </div>
+            </div>
+        </div>
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
+    <div id="sign-up-modal" class="reveal-modal remove-whitespace" data-reveal>
+        <div class="row">
+            <div class="small-12 large-6 columns auth-plain small-centered">
+                <div class="signup-panel left-solid">
+                    <p class="welcome">Merci de renseigner tous les champs</p>
+                    <form data-abide>
+                        <div class="row collapse">
+                            <div class="small-2 columns">
+                                <span class="prefix"><i class="md md-person md-lg"></i></span>
+                            </div>
+                            <div class="small-10 columns">
+                                <input type="text" placeholder="Nom d'utilisateur" required>
+                                <small class="error">Vous devez entrer un nom d'utilisateur.</small>
+                            </div>
+                        </div>
+                        <div class="row collapse">
+                            <div class="small-2 columns">
+                                <span class="prefix"><i class="md md-email md-lg"></i></span>
+                            </div>
+                            <div class="small-10 columns">
+                                <input type="email" placeholder="Adresse e-mail" required>
+                                <small class="error">Vous devez entrer une adresse e-mail valide.</small>
+                            </div>
+                        </div>
+                        <div class="row collapse">
+                            <div class="small-2 columns">
+                                <span class="prefix"><i class="md md-lock md-lg"></i></span>
+                            </div>
+                            <div class="small-10 columns">
+                                <input type="password" id="password" placeholder="Mot de passe" required>
+                                <small class="error">Vous devez entrer un mot de passe.</small>
+                            </div>
+                        </div>
+                        <div class="row collapse">
+                            <div class="small-2 columns">
+                                <span class="prefix"><i class="md md-lock md-lg"></i></span>
+                            </div>
+                            <div class="small-10 columns">
+                                <input type="password" placeholder="Confirmer le mot de passe" data-equalto="password" required>
+                                <small class="error">Les mots de passe saisis ne sont pas identiques.</small>
+                            </div>
+                        </div>
+                    </form>
+                    <a href="#" class="button red radius right">Créer un compte</a>
                 </div>
             </div>
         </div>
