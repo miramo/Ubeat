@@ -18476,6 +18476,11 @@ input[type="text"].dream-search:focus {
     margin-top: 0.0625rem;
   }
 }
+/* line 111, ../scss/_navbar.scss */
+.top-bar-section .divider {
+  margin-right: 0.9375rem;
+}
+
 /* line 1, ../scss/_artist.scss */
 .type-label {
   font-weight: normal;

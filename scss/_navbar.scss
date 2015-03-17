@@ -106,8 +106,10 @@ input[type="text"].dream-search:focus
     margin-top: rem-calc(1);
   }
 }
-
-.sign-up
+.top-bar-section
 {
-//  margin-left: rem-calc(15);
+  .divider
+  {
+    margin-right: rem-calc(15);
+  }
 }
