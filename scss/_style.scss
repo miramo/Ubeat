@@ -8,6 +8,11 @@ $footer-height: rem-calc(60);
   @include selection(scale-color($primary-color, $lightness: 15%), $white);
 }
 
+body
+{
+  @include single-transition(background, .5s, linear);
+}
+
 a
 {
   color: inherit;

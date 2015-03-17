@@ -18206,21 +18206,26 @@ body {
 }
 
 /* line 11, ../scss/_style.scss */
+body {
+  transition: background 0.5s linear;
+}
+
+/* line 16, ../scss/_style.scss */
 a {
   color: inherit;
 }
 
-/* line 16, ../scss/_style.scss */
+/* line 21, ../scss/_style.scss */
 main {
   margin-bottom: 3.75rem;
 }
 
-/* line 21, ../scss/_style.scss */
+/* line 26, ../scss/_style.scss */
 .on-hover:hover {
   color: #C60000;
 }
 
-/* line 26, ../scss/_style.scss */
+/* line 31, ../scss/_style.scss */
 .img-circular {
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -18228,7 +18233,7 @@ main {
   overflow: hidden;
 }
 
-/* line 32, ../scss/_style.scss */
+/* line 37, ../scss/_style.scss */
 .ellipsis {
   overflow: hidden;
   white-space: nowrap;
@@ -18236,7 +18241,7 @@ main {
   text-overflow: ellipsis;
 }
 
-/* line 40, ../scss/_style.scss */
+/* line 45, ../scss/_style.scss */
 .disable-select {
   -moz-user-select: -moz-none;
   -ms-user-select: none;
@@ -18244,7 +18249,7 @@ main {
   user-select: none;
 }
 
-/* line 45, ../scss/_style.scss */
+/* line 50, ../scss/_style.scss */
 .top-page {
   height: 2.8125rem;
   width: 100%;
@@ -18256,7 +18261,7 @@ main {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-/* line 52, ../scss/_style.scss */
+/* line 57, ../scss/_style.scss */
 .responsive-img, .bump .artist-albums-img {
   position: relative;
   width: 100%;
@@ -18269,23 +18274,23 @@ main {
   background-size: cover;
 }
 
-/* line 67, ../scss/_style.scss */
+/* line 72, ../scss/_style.scss */
 slick .slick-prev:before, slick .slick-next:before {
   color: #C60000 !important;
   width: 200% !important;
   height: 200% !important;
 }
-/* line 76, ../scss/_style.scss */
+/* line 81, ../scss/_style.scss */
 slick .slick-dots li button:before {
   color: #C60000 !important;
 }
 
-/* line 83, ../scss/_style.scss */
+/* line 88, ../scss/_style.scss */
 .bottom-border {
   border-bottom: 0.0625rem solid #bdbdbd;
 }
 
-/* line 88, ../scss/_style.scss */
+/* line 93, ../scss/_style.scss */
 .custom-reveal-class {
   font-size: 2.5rem;
   line-height: 1;
@@ -18297,13 +18302,13 @@ slick .slick-dots li button:before {
   cursor: pointer;
 }
 
-/* line 93, ../scss/_style.scss */
+/* line 98, ../scss/_style.scss */
 .bump {
   margin-top: 3.125rem;
   padding-right: 1.875rem;
   padding-left: 1.875rem;
 }
-/* line 98, ../scss/_style.scss */
+/* line 103, ../scss/_style.scss */
 .bump .card, .bump .card-shadow {
   padding-bottom: 0;
   -moz-border-radius: 0.3125rem;
@@ -18314,29 +18319,29 @@ slick .slick-dots li button:before {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-/* line 104, ../scss/_style.scss */
+/* line 109, ../scss/_style.scss */
 .bump .card .text-card, .bump .card-shadow .text-card, .bump .card .text-card-artist-album, .bump .card-shadow .text-card-artist-album {
   background: #C60000;
 }
-/* line 107, ../scss/_style.scss */
+/* line 112, ../scss/_style.scss */
 .bump .card .text-card .first-text-card, .bump .card-shadow .text-card .first-text-card, .bump .card .text-card-artist-album .first-text-card, .bump .card-shadow .text-card-artist-album .first-text-card, .bump .card .text-card .second-text-card, .bump .card-shadow .text-card .second-text-card, .bump .card .text-card-artist-album .second-text-card, .bump .card-shadow .text-card-artist-album .second-text-card {
   font-size: 1rem;
   padding: 0 0.3125rem;
   margin-bottom: 0;
   color: #FFFFFF;
 }
-/* line 114, ../scss/_style.scss */
+/* line 119, ../scss/_style.scss */
 .bump .card .text-card .second-text-card, .bump .card-shadow .text-card .second-text-card, .bump .card .text-card-artist-album .second-text-card, .bump .card-shadow .text-card-artist-album .second-text-card {
   font-size: 0.875rem;
 }
-/* line 121, ../scss/_style.scss */
+/* line 126, ../scss/_style.scss */
 .bump .card-shadow {
   -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-/* line 128, ../scss/_style.scss */
+/* line 133, ../scss/_style.scss */
 .post-radius {
   -moz-border-radius-topright: 3px;
   -webkit-border-top-right-radius: 3px;
@@ -18346,7 +18351,7 @@ slick .slick-dots li button:before {
   border-bottom-right-radius: 3px;
 }
 
-/* line 133, ../scss/_style.scss */
+/* line 138, ../scss/_style.scss */
 input[type="text"].pre-radius {
   -moz-border-radius-topleft: 3px;
   -webkit-border-top-left-radius: 3px;
