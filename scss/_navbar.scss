@@ -46,8 +46,9 @@
   border: rem-calc(2) solid $primary-color;
   display: inline-block;
   vertical-align: middle;
-  background: url(http://i.imgur.com/ztQQtqn.jpg) no-repeat center center;
   background-size: cover;
+  background-repeat : no-repeat;
+  background-position : center center;
 }
 
 #profile-name
@@ -103,5 +104,12 @@ input[type="text"].dream-search:focus
   .button-search
   {
     margin-top: rem-calc(1);
+  }
+}
+.top-bar-section
+{
+  .divider
+  {
+    margin-right: rem-calc(15);
   }
 }

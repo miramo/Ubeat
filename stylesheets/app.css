@@ -18194,12 +18194,12 @@ body {
   scrollbar-track-color: #e27f7f;
 }
 
-/* line 53, C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_selection.scss */
+/* line 53, ../../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_selection.scss */
 *::-moz-selection {
   color: #FFFFFF;
   background-color: #f50000;
 }
-/* line 53, C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_selection.scss */
+/* line 53, ../../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_selection.scss */
 *::selection {
   color: #FFFFFF;
   background-color: #f50000;
@@ -18403,38 +18403,39 @@ input[type="text"].pre-radius {
   border: 0.125rem solid #C60000;
   display: inline-block;
   vertical-align: middle;
-  background: url(http://i.imgur.com/ztQQtqn.jpg) no-repeat center center;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
-/* line 53, ../scss/_navbar.scss */
+/* line 54, ../scss/_navbar.scss */
 #profile-name {
   padding-left: 0.3125rem;
 }
 
-/* line 58, ../scss/_navbar.scss */
+/* line 59, ../scss/_navbar.scss */
 #profile-topbar {
   display: inline-block;
 }
 
-/* line 63, ../scss/_navbar.scss */
+/* line 64, ../scss/_navbar.scss */
 input[type="text"].dream-search {
   opacity: .5;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 63, ../scss/_navbar.scss */
+  /* line 64, ../scss/_navbar.scss */
   input[type="text"].dream-search {
     width: 75%;
     margin-left: 25%;
   }
 }
 
-/* line 73, ../scss/_navbar.scss */
+/* line 74, ../scss/_navbar.scss */
 input[type="text"].dream-search:focus {
   opacity: 1;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 73, ../scss/_navbar.scss */
+  /* line 74, ../scss/_navbar.scss */
   input[type="text"].dream-search:focus {
     width: 100%;
     margin-left: 0%;
@@ -18454,7 +18455,7 @@ input[type="text"].dream-search:focus {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 88, ../scss/_navbar.scss */
+  /* line 89, ../scss/_navbar.scss */
   .top-bar-section .has-dropdown > a:after {
     content: "";
     display: block;
@@ -18470,11 +18471,16 @@ input[type="text"].dream-search:focus {
     right: 0;
   }
 
-  /* line 103, ../scss/_navbar.scss */
+  /* line 104, ../scss/_navbar.scss */
   .button-search {
     margin-top: 0.0625rem;
   }
 }
+/* line 111, ../scss/_navbar.scss */
+.top-bar-section .divider {
+  margin-right: 0.9375rem;
+}
+
 /* line 1, ../scss/_artist.scss */
 .type-label {
   font-weight: normal;
@@ -18935,8 +18941,14 @@ input[type="text"].dream-search:focus {
   left: 0;
   right: 0;
   height: 3.75rem;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.9)));
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 100%);
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 100%);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 100%);
 }
-/* line 10, ../scss/_playbar.scss */
+/* line 11, ../scss/_playbar.scss */
 .play-bar:hover {
   background: rgba(0, 0, 0, 0.9);
   -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 -4px 8px rgba(0, 0, 0, 0.28);
@@ -18944,18 +18956,18 @@ input[type="text"].dream-search:focus {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 -4px 8px rgba(0, 0, 0, 0.28);
 }
 
-/* line 17, ../scss/_playbar.scss */
+/* line 18, ../scss/_playbar.scss */
 .bottom-bar {
   height: 3.75rem;
 }
 
-/* line 22, ../scss/_playbar.scss */
+/* line 23, ../scss/_playbar.scss */
 .bottom-bar i:hover {
   color: #C60000;
   cursor: pointer;
 }
 
-/* line 28, ../scss/_playbar.scss */
+/* line 29, ../scss/_playbar.scss */
 .play-area {
   text-align: center;
   padding-left: 0.9375rem;
@@ -18964,7 +18976,7 @@ input[type="text"].dream-search:focus {
   float: left;
 }
 @media only screen and (max-width: 40em) {
-  /* line 28, ../scss/_playbar.scss */
+  /* line 29, ../scss/_playbar.scss */
   .play-area {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
@@ -18973,7 +18985,7 @@ input[type="text"].dream-search:focus {
   }
 }
 
-/* line 37, ../scss/_playbar.scss */
+/* line 38, ../scss/_playbar.scss */
 .play-button {
   color: #FFFFFF;
   padding-right: 0.3125rem;
@@ -18983,7 +18995,7 @@ input[type="text"].dream-search:focus {
   display: inline-block;
 }
 
-/* line 47, ../scss/_playbar.scss */
+/* line 48, ../scss/_playbar.scss */
 .volume {
   color: #FFFFFF;
   padding-right: 0;
@@ -18992,7 +19004,7 @@ input[type="text"].dream-search:focus {
   display: inline-block;
 }
 
-/* line 58, ../scss/_playbar.scss */
+/* line 59, ../scss/_playbar.scss */
 .bottom-right {
   color: #FFFFFF;
   padding-right: 0.3125rem;
@@ -19003,7 +19015,7 @@ input[type="text"].dream-search:focus {
   margin-right: 0.3125rem;
 }
 
-/* line 72, ../scss/_playbar.scss */
+/* line 73, ../scss/_playbar.scss */
 .test {
   overflow: hidden;
   width: 2.1875rem;
@@ -19015,31 +19027,31 @@ input[type="text"].dream-search:focus {
   transition: width 0.5s;
 }
 
-/* line 85, ../scss/_playbar.scss */
+/* line 86, ../scss/_playbar.scss */
 .test i {
   width: 2.1875rem;
   padding-top: 0.9375rem;
 }
 
-/* line 91, ../scss/_playbar.scss */
+/* line 92, ../scss/_playbar.scss */
 .test li {
   white-space: nowrap;
 }
 
-/* line 96, ../scss/_playbar.scss */
+/* line 97, ../scss/_playbar.scss */
 .test:hover {
   width: 9.375rem;
   height: 3.125rem;
   visibility: visible;
 }
 
-/* line 103, ../scss/_playbar.scss */
+/* line 104, ../scss/_playbar.scss */
 .bottom-music-list {
   line-height: 0;
   margin-top: 0.9375rem;
 }
 
-/* line 110, ../scss/_playbar.scss */
+/* line 111, ../scss/_playbar.scss */
 #seek-volume {
   vertical-align: middle;
   -webkit-appearance: none;
@@ -19052,7 +19064,7 @@ input[type="text"].dream-search:focus {
   outline: 0;
 }
 
-/* line 123, ../scss/_playbar.scss */
+/* line 124, ../scss/_playbar.scss */
 #seek-volume::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 0.75rem;
@@ -19061,7 +19073,7 @@ input[type="text"].dream-search:focus {
   background: #C60000;
 }
 
-/* line 133, ../scss/_playbar.scss */
+/* line 134, ../scss/_playbar.scss */
 #seek-music {
   -webkit-appearance: none;
   border-bottom-right-radius: 0.3125rem;
@@ -19077,7 +19089,7 @@ input[type="text"].dream-search:focus {
   outline: 0;
 }
 
-/* line 154, ../scss/_playbar.scss */
+/* line 155, ../scss/_playbar.scss */
 #seek-music::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 1.125rem;
@@ -19087,7 +19099,7 @@ input[type="text"].dream-search:focus {
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 164, ../scss/_playbar.scss */
+  /* line 165, ../scss/_playbar.scss */
   .ul-volume {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
