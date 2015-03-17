@@ -18480,6 +18480,12 @@ input[type="text"].dream-search:focus {
 .top-bar-section .divider {
   margin-right: 0.9375rem;
 }
+@media only screen and (max-width: 40em) {
+  /* line 117, ../scss/_navbar.scss */
+  .top-bar-section .divider {
+    margin-right: 0;
+  }
+}
 
 /* line 1, ../scss/_artist.scss */
 .type-label {

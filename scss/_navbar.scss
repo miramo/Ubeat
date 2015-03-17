@@ -112,4 +112,11 @@ input[type="text"].dream-search:focus
   {
     margin-right: rem-calc(15);
   }
+  @media #{$small-only}
+  {
+    .divider
+    {
+      margin-right: rem-calc(0);
+    }
+  }
 }
