@@ -1,6 +1,6 @@
 <div ng-controller="NavbarController as navbarCtrl">
-    <div class="contain-to-grid sticky">
-        <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
+    <div class="contain-to-grid nav-bar">
+        <nav class="top-bar" data-topbar role="navigation">
             <ul class="title-area">
                 <li class="name">
                     <h1><a href="#/"></a></h1>
@@ -21,27 +21,111 @@
                         </div>
                     </li>
                     <li class="divider"></li>
-                    <li class="has-dropdown not-click">
-                        <a href="">
-                            <div id="profile-topbar">
-                                <div class="img-circular" id="profile-picture"></div>
-                                <div class="hide-for-medium-only">
-                                    <div id="profile-name">John Doe</div>
-                                </div>
-                            </div>
-                        </a>
-                        <ul class="dropdown">
-                            <li><a href="#/playlists/"><i class="md md-my-library-music md-lg"></i> Listes de lectures</a></li>
-                            <li><a href=""><i class="fa fa-cog fa-lg"></i> Paramètres</a></li>
-                            <li class="divider"></li>
-                            <li><a href=""><i class="fa fa-sign-out fa-lg"></i> Se déconnecter</a></li>
-                        </ul>
-                    </li>
+                    <li class="hide-for-small-only sign-up-button"><a href="" class="button red sign-up" data-reveal-id="sign-up-modal">Inscription</a></li>
+                    <li class="show-for-small-only"><a href="" class="sign-up" data-reveal-id="sign-up-modal"><i class="md md-person-add md-lg"></i> Inscription</a></li>
+                    <li class="hide-for-small-only sign-in-button"><a href="" class="sign-in" data-reveal-id="sign-in-modal">Connection</a></li>
+                    <li class="show-for-small-only"><a href="" class="sign-in" data-reveal-id="sign-in-modal"><i class="fa fa-sign-in fa-lg"></i> Connection</a></li>
+                    <!--<li class="has-dropdown not-click">-->
+                        <!--<a href="">-->
+                            <!--<div id="profile-topbar">-->
+                                <!--<div class="img-circular" id="profile-picture" back-img="http://i.imgur.com/ztQQtqn.jpg"></div>-->
+                                <!--<div class="hide-for-medium-only">-->
+                                    <!--<div id="profile-name">John Doe</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</a>-->
+                        <!--<ul class="dropdown">-->
+                            <!--<li ng-class="{active: sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().playlist)}"><a href="#/playlists/"><i class="md md-my-library-music md-lg"></i> Listes de lectures</a></li>-->
+                            <!--<li><a href=""><i class="fa fa-cog fa-lg"></i> Paramètres</a></li>-->
+                            <!--<li class="divider"></li>-->
+                            <!--<li><a href=""><i class="fa fa-sign-out fa-lg"></i> Se déconnecter</a></li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
                 </ul>
                 <!-- Left Nav Section -->
                 <ul class="left">
                 </ul>
             </section>
         </nav>
+    </div>
+    <div id="sign-in-modal" class="reveal-modal" data-reveal>
+        <div class="row">
+            <div class="small-12 large-6 columns auth-plain small-centered">
+                <div class="signup-panel left-solid">
+                    <p class="welcome">Merci de saisir votre adresse e-mail et votre mot de passe</p>
+                    <form data-abide>
+                        <div class="row collapse">
+                            <div class="small-2 columns">
+                                <span class="prefix"><i class="md md-email md-lg"></i></span>
+                            </div>
+                            <div class="small-10 columns">
+                                <input type="email" placeholder="Adresse e-mail" required>
+                                <small class="error">Vous devez entrer une adresse e-mail valide.</small>
+                            </div>
+                        </div>
+                        <div class="row collapse">
+                            <div class="small-2 columns">
+                                <span class="prefix"><i class="md md-lock md-lg"></i></span>
+                            </div>
+                            <div class="small-10 columns">
+                                <input type="password" placeholder="Mot de passe" required>
+                                <small class="error">Vous devez entrer un mot de passe.</small>
+                            </div>
+                        </div>
+                    </form>
+                    <a href="#" class="button red radius right">Connection</a>
+                </div>
+            </div>
+        </div>
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
+    <div id="sign-up-modal" class="reveal-modal" data-reveal>
+        <div class="row">
+            <div class="small-12 large-6 columns auth-plain small-centered">
+                <div class="signup-panel left-solid">
+                    <p class="welcome">Merci de renseigner tous les champs</p>
+                    <form data-abide>
+                        <div class="row collapse">
+                            <div class="small-2 columns">
+                                <span class="prefix"><i class="md md-person md-lg"></i></span>
+                            </div>
+                            <div class="small-10 columns">
+                                <input type="text" placeholder="Nom d'utilisateur" required>
+                                <small class="error">Vous devez entrer un nom d'utilisateur.</small>
+                            </div>
+                        </div>
+                        <div class="row collapse">
+                            <div class="small-2 columns">
+                                <span class="prefix"><i class="md md-email md-lg"></i></span>
+                            </div>
+                            <div class="small-10 columns">
+                                <input type="email" placeholder="Adresse e-mail" required>
+                                <small class="error">Vous devez entrer une adresse e-mail valide.</small>
+                            </div>
+                        </div>
+                        <div class="row collapse">
+                            <div class="small-2 columns">
+                                <span class="prefix"><i class="md md-lock md-lg"></i></span>
+                            </div>
+                            <div class="small-10 columns">
+                                <input type="password" id="password" placeholder="Mot de passe" required>
+                                <small class="error">Vous devez entrer un mot de passe.</small>
+                            </div>
+                        </div>
+                        <div class="row collapse">
+                            <div class="small-2 columns">
+                                <span class="prefix"><i class="md md-lock md-lg"></i></span>
+                            </div>
+                            <div class="small-10 columns">
+                                <input type="password" placeholder="Confirmer le mot de passe" data-equalto="password" required>
+                                <small class="error">Les mots de passe saisis ne sont pas identiques.</small>
+                            </div>
+                        </div>
+                    </form>
+                    <a href="#" class="button red radius right">Créer un compte</a>
+                </div>
+            </div>
+        </div>
+        <a class="close-reveal-modal">&#215;</a>
     </div>
 </div>

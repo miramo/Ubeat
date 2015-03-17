@@ -1,3 +1,34 @@
+.headroom
+{
+  @extend .fixed;
+  @include single-transition(transform, 200ms, linear);
+  &.headroom--top {  }
+  @media #{$small-only}, #{$medium-only}
+  {
+    &.headroom--pinned
+    {
+      transform: translateY(0%);
+    }
+    &.headroom--unpinned
+    {
+      transform: translateY(-100%);
+    }
+  }
+}
+
+.nav-bar
+{
+  border-bottom: solid rem-calc(3) rgba(198, 0, 0, .7);
+  background: rgba(0, 0, 0, .7);
+  @include single-transition(all, 300ms, linear);
+  &:hover
+  {
+    background: rgba(0, 0, 0, .9);
+    @include box-shadow(0 0 4px rgba(black, .14), 0 4px 8px rgba(black, .28));
+    border-bottom: solid rem-calc(3) rgba(198, 0, 0, .9);
+  }
+}
+
 .top-bar .name h1 a:before
 {
   background: url(../img/logo/logo-topbar.png) no-repeat center center;
@@ -15,8 +46,9 @@
   border: rem-calc(2) solid $primary-color;
   display: inline-block;
   vertical-align: middle;
-  background: url(http://i.imgur.com/ztQQtqn.jpg) no-repeat center center;
   background-size: cover;
+  background-repeat : no-repeat;
+  background-position : center center;
 }
 
 #profile-name
@@ -45,7 +77,9 @@ input[type="text"].dream-search:focus
   {
     width: 100%;
     margin-left: 0%;
-    transition: ease-in-out, width .35s ease-in-out, margin-left .35s ease-in-out;
+    @include transition-property(width, margin-left);
+    @include transition-duration(.35s);
+    @include transition-timing-function(ease-in);
   }
   opacity: 1;
 }
@@ -70,5 +104,12 @@ input[type="text"].dream-search:focus
   .button-search
   {
     margin-top: rem-calc(1);
+  }
+}
+.top-bar-section
+{
+  .sign-up-button
+  {
+    margin-left: rem-calc(15);
   }
 }

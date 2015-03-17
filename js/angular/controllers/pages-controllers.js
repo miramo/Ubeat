@@ -10,8 +10,8 @@
                                                        artistFactory, albumFactory, spotifyArtistFactory, spotifySearchFactory)
     {
         sharedPagesStatus.resetPageStatus();
-        $scope.artistIds = [285976572, 185933496, 111051, 371362363, 994656, 405129701, 115429828, 263132120];
-        $scope.albumsIds = [289081371, 260725492, 731756766, 422478077, 266075192, 669445575, 598997036, 305792965];
+        $scope.artistIds = [115429828, 371362363, 994656, 405129701, 263132120, 285976572, 185933496, 111051];
+        $scope.albumsIds = [598997036, 422478077, 266075192, 669445575,305792965, 289081371, 260725492, 731756766];
         sharedPagesStatus.setTitle('Accueil');
 
         $scope.artistsLoadedCount = 0;
@@ -21,65 +21,7 @@
         $scope.artistsTab = [];
         $scope.albumsTab = [];
         $scope.sharedProperties = sharedProperties;
-
-        $scope.albumLoad = function (id)
-        {
-            //console.log("AlbumLoad[" + id + "]");
-        }
-
-        $scope.$watch('artistsLoadedCount', function (newVal, oldVal)
-        {
-            if (newVal >= $scope.artistIds.length)
-            {
-                $scope.artistsLoadComplete = true;
-                sharedProperties.setHomeArtists($scope.artistsTab);
-                $scope.sharedProperties.homeArtists = sharedProperties.getHomeArtists();
-
-                //var blur = new Blur({
-                //    el        : document.querySelector('body'),
-                //    path      : '',
-                //    radius    : 50,
-                //    fullscreen: true
-                //});
-
-                //$scope.$evalAsync(function()
-                //{
-                //
-                //    console.log(document.getElementsByClassName('slick-center')[0]);
-                //});
-
-                //angular.element.find('.slider-index').on('swipe', function(event, slick, direction)
-                //{
-                //
-                //    console.log("ZIZI");
-                //});
-                //blur.init({
-                //    el  : document.querySelector('body'),
-                //    path: $('.slick-center')[0].src
-                //});
-
-                if ($scope.albumsLoadComplete)
-                {
-                    sharedPagesStatus.setIsPageLoaded(true);
-                }
-            }
-        });
-
-        $scope.$watch('albumsLoadedCount', function (newVal, oldVal)
-        {
-            if (newVal >= $scope.albumsIds.length)
-            {
-                $scope.albumsLoadComplete = true;
-                sharedProperties.setHomeAlbums($scope.albumsTab);
-                $scope.sharedProperties.homeAlbums = sharedProperties.getHomeAlbums();
-
-                if ($scope.artistsLoadComplete)
-                {
-                    sharedPagesStatus.setIsPageLoaded(true);
-                }
-            }
-        });
-
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().home);
 
         angular.forEach($scope.artistIds, function (value, key)
         {
@@ -125,28 +67,85 @@
                 },
                 function (err)
                 {
+                    console.log("Album Err: " + err);
                 });
+        });
+
+        var blur = new Blur({
+            el        : document.querySelector('body'),
+            path      : '',
+            radius    : 50,
+            fullscreen: true
+        });
+
+        var albumsSliderChange = function(currentSlide)
+        {
+            blur.init({
+                el  : document.querySelector('body'),
+                path: $scope.albumsTab[currentSlide].artworkUrl300
+            });
+        }
+
+        var artistsSliderChange = function(currentSlide)
+        {
+            blur.init({
+                el  : document.querySelector('body'),
+                path: $scope.artistsTab[currentSlide].image.url
+            });
+        }
+
+        var pageLoaded = function ()
+        {
+            var artistsSlider = $('#artists-slider');
+            var albumsSlider = $('#albums-slider');
+
+            albumsSlider.on('afterChange', function (event, slick, currentSlide, nextSlide)
+            {
+                albumsSliderChange(currentSlide);
+            });
+
+            artistsSlider.on('afterChange', function (event, slick, currentSlide, nextSlide)
+            {
+                artistsSliderChange(currentSlide);
+            });
+
+            artistsSliderChange(0);
+            sharedPagesStatus.setIsPageLoaded(true);
+        }
+
+        $scope.$watch('artistsLoadedCount', function (newVal, oldVal)
+        {
+            if (newVal >= $scope.artistIds.length)
+            {
+                $scope.artistsLoadComplete = true;
+                sharedProperties.setHomeArtists($scope.artistsTab);
+                $scope.sharedProperties.homeArtists = sharedProperties.getHomeArtists();
+
+                if ($scope.albumsLoadComplete)
+                {
+                    pageLoaded();
+                }
+            }
+        });
+
+        $scope.$watch('albumsLoadedCount', function (newVal, oldVal)
+        {
+            if (newVal >= $scope.albumsIds.length)
+            {
+                $scope.albumsLoadComplete = true;
+                sharedProperties.setHomeAlbums($scope.albumsTab);
+                $scope.sharedProperties.homeAlbums = sharedProperties.getHomeAlbums();
+
+                if ($scope.artistsLoadComplete)
+                {
+                    pageLoaded();
+                }
+            }
         });
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
             $(document).foundation();
-
-
-            //$('.slider-index').on('click', function(event, slick, direction)
-            //{
-            //    console.log("CLICK");
-            //});
-            //
-            //$('.slider-index').on('afterChange', function(event, slick, direction)
-            //{
-            //    console.log("After Change");
-            //});
-            //$('.slider-index').on('init', function(event, slick, direction)
-            //{
-            //    console.log("Init");
-            //});
-
         });
     });
 
@@ -156,6 +155,7 @@
         sharedPagesStatus.resetPageStatus();
         $scope.artistPictureLoaded = false;
         $scope.isTabletOrDesktop = true;
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().artist);
 
         var isValidArtist = /^\d+$/.test($routeParams.id);
 
@@ -232,7 +232,7 @@
                     }
                     else
                     {
-                        sharedPagesStatus.pageFailedLoad();
+                        sharedPagesStatus.pageCriticFailure();
                     }
                 },
                 function (err)
@@ -241,7 +241,7 @@
         }
         else
         {
-            sharedPagesStatus.pageFailedLoad();
+            sharedPagesStatus.pageCriticFailure();
         }
 
 
@@ -252,7 +252,7 @@
     });
 
     controllers.controller('AlbumController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties,
-                                                        albumFactory, artistFactory, albumTracksFactory)
+                                                        albumFactory, artistFactory, albumTracksFactory, trackFactory)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.isResolved = false;
@@ -263,6 +263,9 @@
         $scope.tracks = [];
         $scope.album = null;
         $scope.isPageFailedLoad = false;
+        $scope.errorTitle = "Erreur 503";
+        $scope.errorMsg = "Service temporairement indisponible.";
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().album);
 
         var updateTracks = function ()
         {
@@ -377,7 +380,7 @@
                     sharedPagesStatus.setTitle($scope.album.collectionName);
                     $scope.album.artworkUrl300 = itunesLinkImageSizeTo($scope.album.artworkUrl100, 300);
                     $scope.album.releaseDateObj = new Date($scope.album.releaseDate);
-                    $scope.filtersValues = ['trackNumber', 'trackName', 'artistName', '-time.Minutes', 'time.Minutes'];
+                    $scope.filtersValues = ['number', 'name', 'artistName', '-time.Minutes', 'time.Minutes'];
                     $scope.filtersNames = ['Numéro de piste', 'Chanson', 'Artiste', 'Durée'];
                     $scope.currentFilterName = $scope.filtersNames[0];
                     $scope.filter = $scope.filtersValues[0];
@@ -391,10 +394,14 @@
 
                     albumTracksFactory.get({id: $routeParams.id}, function (data)
                     {
-                        $scope.tracks = data.results;
+                        var dataTracks = data.results;
 
-                        for (var i = 0; i < $scope.tracks.length; ++i)
+                        for (var i = 0; i < dataTracks.length; ++i)
                         {
+                            var trackFacto = new trackFactory();
+                            trackFacto.fillFromData(dataTracks[i]);
+                            $scope.tracks[i] = trackFacto;
+
                             var currentTrack = sharedProperties.getCurrentTrack();
 
                             if (currentTrack && currentTrack.trackId == $scope.tracks[i].trackId)
@@ -409,6 +416,8 @@
                             $scope.tracks[i].time = millisToTime($scope.tracks[i].trackTimeMillis);
                             $scope.tracks[i].displayPlayButton = false;
                         }
+
+                        sharedPagesStatus.setIsPageLoaded(true);
                     });
 
                     $scope.displayPlayButton = function (track)
@@ -420,19 +429,17 @@
                     {
                         track.displayPlayButton = false;
                     }
-
-                    sharedPagesStatus.setIsPageLoaded(true);
                 }
                 else
                 {
-                    sharedPagesStatus.pageFailedLoad();
+                    sharedPagesStatus.pageCriticFailure();
                 }
 
             });
         }
         else
         {
-            sharedPagesStatus.pageFailedLoad();
+            sharedPagesStatus.pageCriticFailure();
         }
 
         $scope.check = function ()
@@ -449,7 +456,7 @@
         });
     });
 
-    controllers.controller('PlaylistsController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties, localStorageService)
+    controllers.controller('PlaylistsController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.missingImgPlaylist = './img/missing-album.png';
@@ -466,8 +473,9 @@
         $scope.playStates = sharedProperties.getPlayStates();
         $scope.defaultPlaylist = {};
         $scope.defaultPlaylist.name = "Pas de playlist";
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().playlist);
 
-        var refreshPlaylists = function()
+        var refreshPlaylists = function ()
         {
             if ($scope.playlists)
             {
@@ -481,13 +489,46 @@
 
         refreshPlaylists();
 
-        $scope.isActivePlaylist = function(playlist)
+        $scope.isActivePlaylist = function (playlist)
         {
             if (playlist && $scope.active)
             {
                 return playlist.id == $scope.active.id;
             }
             return false;
+        }
+
+        var getTotalTime = function(playlist)
+        {
+            var totalTime = 0;
+
+            playlist.tracks.forEach(function (entry)
+            {
+                totalTime += entry.trackTimeMillis;
+            });
+            return millisToTime(totalTime);
+        }
+
+        $scope.getFormatedTotalTime = function(playlist)
+        {
+            var totalTime = getTotalTime(playlist);
+            var formatedStr = "";
+
+            if ((totalTime.Hours + totalTime.Minutes + totalTime.Seconds) <= 0)
+            {
+                formatedStr += "0 s";
+            }
+            else
+            {
+                if (totalTime.Hours > 0)
+                    formatedStr += totalTime.Hours + " h ";
+                if (totalTime.Minutes > 0)
+                    formatedStr += totalTime.Minutes + " min ";
+                else if (totalTime.Seconds > 0)
+                    formatedStr += totalTime.Seconds + " s ";
+            }
+
+            return formatedStr;
         }
 
         $scope.$watch('sharedProperties.getPlaylists()', function (newVal, oldVal)
@@ -555,7 +596,7 @@
             $scope.alertMessages.splice(id, 1);
         }
 
-        $scope.rename = function(playlist, playlistCurrentRename)
+        $scope.rename = function (playlist, playlistCurrentRename)
         {
             $scope.setEdit(playlist.id, playlist, false);
             $scope.confirmRename(playlist.id, playlist, playlistCurrentRename.name)
@@ -627,5 +668,10 @@
             $(document).foundation();
             $(document).foundation('dropdown', 'reflow');
         });
+    });
+
+    controllers.controller('ErrorPageController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties)
+    {
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().error);
     });
 })();

@@ -30,6 +30,18 @@
         };
     })
 
+    ubeatApp.directive('errorMsg', function ()
+    {
+        return {
+            restrict   : 'E',
+            scope      : {
+                errorNb: '@',
+                msg: '@'
+            },
+            templateUrl: './views/templates/error-template.html'
+        };
+    });
+
     ubeatApp.directive('notfound', function ()
     {
         return {

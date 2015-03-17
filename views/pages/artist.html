@@ -1,6 +1,6 @@
-<div ng-show="sharedPagesStatus.getIsPageLoaded() && !sharedPagesStatus.getIsPageError()">
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && !sharedPagesStatus.getIsCriticalError()">
     <div class="artist-header">
-        <div class="row">
+        <div class="row bloc-artist-img-infos">
             <div class="album-artist-picture" ng-switch on="artistPictureLoaded">
                 <div ng-switch-when="true" class="show-for-medium-up">
                     <div class="img-circular responsive-img" id="img-artist" back-img="{{artist.image.url}}"></div>
@@ -29,7 +29,7 @@
                     <li class="artist-panel" ng-repeat="album in albums | orderBy:'-releaseDateObj'">
                         <div class="row bump">
                             <div class="row">
-                                <div class="card">
+                                <div class="card-shadow">
                                     <div class="artist-albums-img" back-img="{{album.artworkUrl300}}"></div>
                                     <div class="row collapse text-card-artist-album">
                                         <a href="#/album/{{album.collectionId}}">
@@ -50,7 +50,7 @@
         </div>
     </div>
 </div>
-<div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsPageError()">
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsCriticalError()">
     <notfound></notfound>
 </div>
 <script type="text/javascript" src="js/libs/stackblur.js"></script>

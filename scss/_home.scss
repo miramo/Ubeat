@@ -1,23 +1,29 @@
 .new-artists
 {
-  margin-top : rem-calc(20);
-  z-index    : -1;
+  margin-top : rem-calc(80);
+  background: rgba(242, 242, 242, .7);
+  border: rgba(216, 216, 216, .7);
+}
+
+.new-albums
+{
+  background: rgba(242, 242, 242, .7);
+  border: rgba(216, 216, 216, .7);
 }
 
 .slider-index
 {
   margin : rem-calc(20) rem-calc(30);
-}
-
-.slider-index-element
-{
-  margin  : 0 rem-calc(1);
-  opacity : 0.8;
-  transform : scale(.92);
-}
-
-.slider-index-element.slick-center
-{
-  opacity   : 1;
-  transform : scale(1);
+  .slider-index-element
+  {
+    margin  : 0 rem-calc(1);
+    opacity : 0.8;
+    @include transform2d(scale(.92));
+    @include single-transition(all, 200ms, linear);
+    &.slick-center, &:hover
+    {
+      opacity   : 1;
+      @include transform2d(scale(1));
+    }
+  }
 }

@@ -21,7 +21,7 @@ function httpGetImageDataURI($http, url, callback)
 
 function millisToTime(s)
 {
-    function addZ(n)
+    function add(n)
     {
         if (n < 10)
             n *= 10;
@@ -35,7 +35,7 @@ function millisToTime(s)
     var minutes = s % 60;
     var hours = (s - minutes) / 60;
 
-    seconds = addZ(seconds);
+    seconds = add(seconds);
     return {"Hours": hours, "Minutes": minutes, "Seconds": seconds};
 }
 

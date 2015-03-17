@@ -7,9 +7,17 @@
     padding: rem-calc(5);
     background-color: scale-color($panel-bg, $lightness: -5%);
     cursor: pointer;
+    @include material-shadow(1);
     &:hover
     {
       background-color: scale-color($panel-bg, $lightness: -15%);
+    }
+    &.active
+    {
+      background-color: scale-color($panel-bg, $lightness: -15%);
+      border-left: solid thick $primary-color;
+      border-left-width: rem-calc(3);
+      @include material-shadow(2);
     }
     &.new-playlist
     {
@@ -24,50 +32,77 @@
         color: $primary-color;
       }
     }
-    &.active
-    {
-      background-color: scale-color($panel-bg, $lightness: -15%);
-    }
     input, a
     {
       margin-top: rem-calc(7);
     }
-    .icon-playlist-item
+    .icon
     {
-      padding-top: rem-calc(20);
+      i
+      {
+        display: inline;
+        height: rem-calc(50);
+        line-height: rem-calc(50);
+        vertical-align: middle;
+      }
     }
-    .playlist-name
+    .playlist-name p
     {
-      margin: rem-calc(0) rem-calc(5);
-      position: absolute;
-      top: 25%;
+      display: inline;
       width: 100%;
+      height: rem-calc(50);
+      line-height: rem-calc(50);
     }
     .img
     {
       width: rem-calc(50);
       height: rem-calc(50);
-      display: inline-block;
+      display: inline;
+      margin-right: rem-calc(5);
+      float: left;
     }
   }
 }
 
 .header-playlist-table
 {
-  height: rem-calc(120);
+  height: rem-calc(110);
   .header-playlist-table-img-name
   {
-    img
+    .img
     {
       height: rem-calc(100);
       width: rem-calc(100);
-      display: inline-block;
+      display: inline;
+      margin-right: rem-calc(10);
+      float: left;
     }
     h1
     {
-      display: inline-block;
-      width: 70%;
+      display: inline;
+      width: 100%;
+//      height: rem-calc(100);
+//      line-height: rem-calc(100);
     }
+  }
+}
+
+.header-description
+{
+  display: block;
+  width: 100%;
+  background-color: scale-color($panel-bg, $lightness: -5%);
+  padding: rem-calc(0) rem-calc(10);
+  border-radius: rem-calc($global-radius);
+  p
+  {
+    width: 100%;
+    height: rem-calc(35);
+    line-height: rem-calc(35);
+  }
+  a
+  {
+    margin-top: rem-calc(3);
   }
 }
 

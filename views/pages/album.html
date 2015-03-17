@@ -1,6 +1,6 @@
-<div ng-show="sharedPagesStatus.getIsPageLoaded() && !sharedPagesStatus.getIsPageError()">
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && !sharedPagesStatus.getIsCriticalError()">
     <div class="artist-header">
-        <div class="row">
+        <div class="row bloc-album-img-infos">
             <div class="show-for-medium-up">
                 <div class="album-artist-picture">
                     <img ng-src={{album.artworkUrl300}} class="img-album">
@@ -51,13 +51,13 @@
                                aria-expanded="false" class="button red expand radius tiny"><i
                                     class="fa fa-plus fa-lg"></i> Tout ajouter
                             </a>
-                            <ul id="drop2" class="f-dropdown" data-dropdown-content>
+                            <ul id="drop2" class="f-dropdown text-center" data-dropdown-content>
                                 <li class="bottom-border">
                                     <a href="" data-reveal-id="myModal2"
                                        ng-click="addTrackArrayToAdd(trackArrayToAddToNewPlaylist)">Nouvelle
                                         playlist</a>
                                 </li>
-                                <li ng-repeat="playlist in sharedProperties.getPlaylists()">
+                                <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index">
                                     <a href=""
                                        ng-click="sharedProperties.addTrackArrayToPlaylist(trackArrayToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
                                 </li>
@@ -98,7 +98,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="music-row" ng-repeat="track in tracks | orderBy:filter"
+            <tr class="music-row" ng-repeat="track in tracks | orderBy:filter track by $index"
                 ng-mouseover="displayPlayButton(track)"
                 ng-mouseleave="hidePlayButton(track)">
                 <td class="text-center">
@@ -107,7 +107,7 @@
                                 ng-click="sharedProperties.setCurrentTrack(track)" class="fa fa-play fa-lg"></i></span>
                     </div>
                     <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
-                        {{track.trackNumber}}
+                        {{track.number}}
                     </div>
                     <div ng-show="track.playState == sharedProperties.getPlayStates().play">
                         <i class="fa fa-circle-o-notch fa-spin"></i>
@@ -128,13 +128,13 @@
                             <a href="" data-reveal-id="myModal" ng-click="addTrackToAdd(trackToAddToNewPlaylist)">Nouvelle
                                 playlist</a>
                         </li>
-                        <li ng-repeat="playlist in sharedProperties.getPlaylists()">
+                        <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index">
                             <a href=""
                                ng-click="sharedProperties.addTrackToPlaylist(trackToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
                         </li>
                     </ul>
                 </td>
-                <td>{{track.trackName}}</td>
+                <td>{{track.name}}</td>
                 <td><a href="#/artist/{{track.artistId}}">{{track.artistName}}</a></td>
                 <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
             </tr>
@@ -166,7 +166,7 @@
         <a class="close-reveal-modal">&#215;</a>
     </div>
 </div>
-<div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsPageError()">
-    <notfound></notfound>
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsCriticalError()">
+    <error-msg error-nb={{errorTitle}} msg={{errorMsg}}></error-msg>
 </div>
 <script type="text/javascript" src="js/libs/stackblur.js"></script>

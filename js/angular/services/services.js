@@ -6,7 +6,7 @@
 {
     var services = angular.module('services', []);
 
-    services.service('sharedProperties', function (ngAudio, localStorageService)
+    services.service('sharedProperties', function (ngAudio, localStorageService, trackFactory, playlistFactory)
     {
         var title = 'Ubeat';
         var homeArtists = [];
@@ -48,59 +48,38 @@
             localStorageService.set('playlists', playlists);
         }
 
-        function Track()
-        {
-            this.idInPlaylist = 0;
-            this.trackId = 0;
-            this.albumId = 0;
-            this.artistId = 0;
-            this.name = '';
-            this.artistName = '';
-            this.playState = playStates.idle;
-            this.albumName = '';
-            this.previewUrl = '';
-            this.trackTimeMillis = 0;
-            this.artworkUrl100 = '';
-            this.number = 0;
-            this.playlist = {};
-        }
-
-        function Playlist()
-        {
-            this.id = 0;
-            this.name = '';
-            this.tracks = [];
-            this.isEdit = false;
-            this.isHover = false;
-        }
-
-
         this.getTitle = function ()
         {
             return title;
         }
+
         this.setTitle = function (value)
         {
             title = value;
         }
+
         this.getHomeArtists = function ()
         {
             return homeArtists;
         }
+
         this.setHomeArtists = function (artists)
         {
             homeArtists = [];
             angular.copy(artists, homeArtists);
         }
+
         this.getHomeAlbums = function ()
         {
             return homeAlbums;
         }
+
         this.setHomeAlbums = function (albums)
         {
             homeAlbums = [];
             angular.copy(albums, homeAlbums);
         }
+
         this.getPlaylists = function ()
         {
             if (playlists)
@@ -112,12 +91,14 @@
             }
             return playlists;
         }
+
         this.setPlaylists = function (value)
         {
             playlists = [];
             angular.copy(playlists, value);
             localStorageService.set('playlists', playlists);
         }
+
         this.getPlaylist = function (id)
         {
             for (var i = 0; i < playlists.length; ++i)
@@ -130,6 +111,7 @@
             }
             return null;
         }
+
         this.getTrackFromPlaylist = function (trackId, playlistId)
         {
             for (var i = 0; i < playlists.length; ++i)
@@ -148,6 +130,7 @@
             }
             return null;
         }
+
         this.addTrackToPlaylist = function (track, playlistId)
         {
             for (var i = 0; i < playlists.length; ++i)
@@ -171,6 +154,7 @@
             }
             return false;
         }
+
         this.addTrackArrayToPlaylist = function (tracks, playlistId)
         {
             if (tracks)
@@ -188,6 +172,7 @@
             }
             return false;
         }
+
         this.removeTrackFromPlaylist = function (trackIdInPlaylist, playlistId)
         {
             for (var i = 0; i < playlists.length; ++i)
@@ -208,12 +193,13 @@
             }
             return false;
         }
+
         this.createPlaylist = function (name)
         {
             if (name)
             {
                 var playlistLength = playlists.length;
-                var newPlaylist = new Playlist();
+                var newPlaylist = new playlistFactory();
 
                 newPlaylist.name = name;
                 newPlaylist.id = playlistLength;
@@ -225,17 +211,20 @@
             }
             return null;
         }
+
         this.addExistingPlaylist = function (playlist)
         {
             var playlistLength = playlists.length;
             playlists[playlistLength] = playlist;
             localStorageService.set('playlists', playlists);
         }
+
         this.removePlaylist = function (id)
         {
             playlists.splice(id, 1);
             localStorageService.set('playlists', playlists);
         }
+
         this.renamePlaylist = function (id, newName)
         {
             if (newName)
@@ -254,11 +243,13 @@
             }
             return false;
         }
+
         this.getCurrentTrack = function ()
         {
             return currentTrack;
             updateTrackStates();
         }
+
         this.setCurrentTrack = function (track, state)
         {
             currentTrack = track;
@@ -268,10 +259,12 @@
             }
             updateTrackStates();
         }
+
         this.getPlayStates = function ()
         {
             return playStates
         }
+
         this.updateTrackStates = function ()
         {
             updateTrackStates();
@@ -281,10 +274,38 @@
     services.service('sharedPagesStatus', function ($location)
     {
         var pageTitle = 'Ubeat';
-        var isPageError = false;
+        var isCriticalError = false;
         var isPageLoaded = false;
         var errorMessage = '';
         var pageErrorUrl = '/notfound/';
+        var pageEnum = {
+            home    : 'home',
+            artist  : 'artist',
+            albums  : 'albums',
+            playlist: 'playlist',
+            error   : 'error'
+        };
+        var currentPage = pageEnum.home;
+
+        this.isCurrentPage = function (page)
+        {
+            return page == currentPage;
+        }
+
+        this.getCurrentPage = function ()
+        {
+            return currentPage;
+        }
+
+        this.setCurrentPage = function (page)
+        {
+            currentPage = page;
+        }
+
+        this.getPageEnum = function ()
+        {
+            return pageEnum;
+        }
 
         this.getTitle = function ()
         {
@@ -306,14 +327,14 @@
             errorMessage = msg;
         }
 
-        this.getIsPageError = function ()
+        this.getIsCriticalError = function ()
         {
-            return isPageError;
+            return isCriticalError;
         }
 
-        this.setIsPageError = function (val)
+        this.setIsCriticalError = function (val)
         {
-            isPageError = val;
+            isCriticalError = val;
         }
 
         this.getIsPageLoaded = function ()
@@ -328,13 +349,13 @@
 
         this.resetPageStatus = function ()
         {
-            isPageError = false;
+            isCriticalError = false;
             isPageLoaded = false;
         }
 
-        this.pageFailedLoad = function ()
+        this.pageCriticFailure = function ()
         {
-            this.setIsPageError(true);
+            this.setIsCriticalError(true);
             this.setIsPageLoaded(true);
         }
     });

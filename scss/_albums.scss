@@ -4,14 +4,14 @@
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 }
 
-a
-{
-  color: inherit;
-}
-
 .music-row:hover
 {
   background: rgba(235, 244, 255, 1);
+}
+
+.bloc-album-img-infos
+{
+  margin-top: $topbar-height;
 }
 
 .row-infos-list

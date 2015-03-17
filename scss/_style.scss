@@ -1,39 +1,57 @@
-main {
-  margin-bottom: rem-calc(60);
-}
-body
+@import "compass/css3/selection";
+@include scrollbar(.5em, $primary-color);
+
+$footer-height: rem-calc(60);
+
+*
 {
-  &::-webkit-scrollbar
-  {
-    width: rem-calc(10);
-    background-color: $iron;
-  }
-  &::-webkit-scrollbar-thumb
-  {
-    background-color: scale-color($primary-color, $lightness: -5%);
-    border-radius: rem-calc(10);
-    &:hover
-    {
-      background-color: $primary-color;
-    }
-    &:active
-    {
-      background-color: scale-color($primary-color, $lightness: 5%);
-    }
-  }
-  &::-webkit-scrollbar-track
-  {
-    border-radius: rem-calc(10);
-    box-shadow: 0 0 6px gray inset;
-  }
+  @include selection(scale-color($primary-color, $lightness: 15%), $white);
 }
 
-footer-bar {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  height: rem-calc(60);
+body
+{
+  @include single-transition(background, .5s, linear);
+}
+
+a
+{
+  color: inherit;
+}
+
+main
+{
+  margin-bottom: $footer-height;
+}
+
+.on-hover:hover
+{
+  color: $primary-color;
+}
+
+.img-circular
+{
+  @include border-radius(50%);
+  overflow: hidden;
+}
+
+.ellipsis
+{
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  text-overflow: ellipsis;
+}
+
+.disable-select
+{
+  @include user-select(none);
+}
+
+.top-page
+{
+  height: $topbar-height;
+  width: 100%;
+  @include background-image(linear-gradient(top, rgba(black, .9) 0%,rgba(black, 0) 100%));
 }
 
 .responsive-img
@@ -49,18 +67,21 @@ footer-bar {
   background-size     : cover;
 }
 
-.slick-prev:before, .slick-next:before
+slick
 {
-  color: $primary-color !important;
-  width: 200% !important;
-  height: 200% !important;
-}
-
-.slick-dots
-{
-  li button:before
+  .slick-prev:before, .slick-next:before
   {
     color: $primary-color !important;
+    width: 200% !important;
+    height: 200% !important;
+  }
+
+  .slick-dots
+  {
+    li button:before
+    {
+      color: $primary-color !important;
+    }
   }
 }
 
@@ -69,28 +90,9 @@ footer-bar {
   border-bottom: rem_calc(1) solid #bdbdbd;
 }
 
-.custom-reveal-class {
-  @include reveal-close(
-  $color:$reveal-close-color
-  );
-}
-
-.on-hover:hover
+.custom-reveal-class
 {
-  color: $primary-color;
-}
-
-.img-circular
-{
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-//Text Selection Color
-::selection
-{
-  background: scale-color($primary-color, $lightness: 15%);
-  color: $white;
+  @include reveal-close($color:$reveal-close-color);
 }
 
 .bump
@@ -101,9 +103,9 @@ footer-bar {
   .card
   {
     padding-bottom: rem-calc(0);
-    border-radius: rem-calc(5);
+    @include border-radius(rem-calc(5));
     overflow: hidden;
-    box-shadow: rem-calc(0) rem-calc(8) rem-calc(17) rem-calc(0) rgba(0, 0, 0, 0.2);
+    @include box-shadow(none);
     .text-card
     {
       background: $primary-color;
@@ -121,37 +123,19 @@ footer-bar {
       }
     }
   }
-  .card-noshadow
+  .card-shadow
   {
     @extend .card;
-    box-shadow: none;
+    @include material-shadow(2);
   }
-}
-
-.ellipsis
-{
-  overflow: hidden;
-  white-space: nowrap;
-  display: block;
-  text-overflow: ellipsis;
 }
 
 .post-radius
 {
-  border-top-right-radius: rem-calc($button-radius);
-  border-bottom-right-radius: rem-calc($button-radius);
+  @include border-right-radius($button-radius);
 }
 
 input[type="text"].pre-radius
 {
-  border-top-left-radius: rem-calc($button-radius);
-  border-bottom-left-radius: rem-calc($button-radius);
-}
-
-.disable-select
-{
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  @include border-left-radius($button-radius);
 }
