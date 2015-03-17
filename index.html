@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="theme-color" content="#C60000">
-    <title ng-cloak>{{sharedPagesStatus.getTitle()}}</title>
+    <title ng-bind="sharedPagesStatus.getTitle() ? sharedPagesStatus.getTitle() + ' - Ubeat' : 'Ubeat'">Ubeat</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/logo/logo.png"/>
     <link rel="stylesheet" href="stylesheets/app.css"/>
     <script src="bower_components/modernizr/modernizr.js"></script>
