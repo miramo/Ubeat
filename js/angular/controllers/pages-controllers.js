@@ -265,6 +265,8 @@
         $scope.tracks = [];
         $scope.album = null;
         $scope.isPageFailedLoad = false;
+        $scope.errorTitle = "Erreur 503";
+        $scope.errorMsg = "Service temporairement indisponible.";
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().album);
 
         var updateTracks = function ()

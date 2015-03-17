@@ -167,6 +167,6 @@
     </div>
 </div>
 <div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsCriticalError()">
-    <notfound></notfound>
+    <error-msg error-nb={{errorTitle}} msg={{errorMsg}}></error-msg>
 </div>
 <script type="text/javascript" src="js/libs/stackblur.js"></script>

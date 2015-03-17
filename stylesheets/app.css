@@ -19402,3 +19402,10 @@ input[type="text"].dream-search:focus {
   text-align: center;
   z-index: -20;
 }
+
+/* line 18, ../scss/_errors.scss */
+.error-msg {
+  width: 100%;
+  position: fixed;
+  top: 45%;
+}
