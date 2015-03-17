@@ -21,27 +21,30 @@
                         </div>
                     </li>
                     <li class="divider"></li>
-                    <li class="hide-for-small-only sign-up-button"><a href="" class="button red sign-up" data-reveal-id="sign-up-modal">Inscription</a></li>
-                    <li class="show-for-small-only"><a href="" class="sign-up" data-reveal-id="sign-up-modal"><i class="md md-person-add md-lg"></i> Inscription</a></li>
-                    <li class="hide-for-small-only sign-in-button"><a href="" class="sign-in" data-reveal-id="sign-in-modal">Connection</a></li>
-                    <li class="show-for-small-only"><a href="" class="sign-in" data-reveal-id="sign-in-modal"><i class="fa fa-sign-in fa-lg"></i> Connection</a></li>
-
-                    <!--<li class="has-dropdown not-click">-->
-                        <!--<a href="">-->
-                            <!--<div id="profile-topbar">-->
-                                <!--<div class="img-circular" id="profile-picture" back-img="http://i.imgur.com/ztQQtqn.jpg"></div>-->
-                                <!--<div class="hide-for-medium-only">-->
-                                    <!--<div id="profile-name">John Doe</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</a>-->
-                        <!--<ul class="dropdown">-->
-                            <!--<li ng-class="{active: sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().playlist)}"><a href="#/playlists/"><i class="md md-my-library-music md-lg"></i> Listes de lectures</a></li>-->
-                            <!--<li><a href=""><i class="fa fa-cog fa-lg"></i> Paramètres</a></li>-->
-                            <!--<li class="divider"></li>-->
-                            <!--<li><a href=""><i class="fa fa-sign-out fa-lg"></i> Se déconnecter</a></li>-->
-                        <!--</ul>-->
-                    <!--</li>-->
+                    <span class="connection">
+                        <li class="hide-for-small-only sign-up-button"><a href="" class="button red sign-up" data-reveal-id="sign-up-modal">Inscription</a></li>
+                        <li class="show-for-small-only"><a href="" class="sign-up" data-reveal-id="sign-up-modal"><i class="md md-person-add md-lg"></i> Inscription</a></li>
+                        <li class="hide-for-small-only sign-in-button"><a href="" class="sign-in" data-reveal-id="sign-in-modal">Connection</a></li>
+                        <li class="show-for-small-only"><a href="" class="sign-in" data-reveal-id="sign-in-modal"><i class="fa fa-sign-in fa-lg"></i> Connection</a></li>
+                    </span>
+                    <span class="connected hide">
+                        <li class="has-dropdown not-click">
+                            <a href="">
+                                <div id="profile-topbar">
+                                    <div class="img-circular" id="profile-picture" back-img="http://i.imgur.com/ztQQtqn.jpg"></div>
+                                    <div class="hide-for-medium-only">
+                                        <div id="profile-name">John Doe</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <ul class="dropdown">
+                                <li ng-class="{active: sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().playlist)}"><a href="#/playlists/"><i class="md md-my-library-music md-lg"></i> Listes de lectures</a></li>
+                                <li><a href=""><i class="fa fa-cog fa-lg"></i> Paramètres</a></li>
+                                <li class="divider"></li>
+                                <li><a href=""><i class="fa fa-sign-out fa-lg"></i> Se déconnecter</a></li>
+                            </ul>
+                        </li>
+                    </span>
                 </ul>
                 <!-- Left Nav Section -->
                 <ul class="left">
