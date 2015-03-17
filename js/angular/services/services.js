@@ -52,28 +52,34 @@
         {
             return title;
         }
+
         this.setTitle = function (value)
         {
             title = value;
         }
+
         this.getHomeArtists = function ()
         {
             return homeArtists;
         }
+
         this.setHomeArtists = function (artists)
         {
             homeArtists = [];
             angular.copy(artists, homeArtists);
         }
+
         this.getHomeAlbums = function ()
         {
             return homeAlbums;
         }
+
         this.setHomeAlbums = function (albums)
         {
             homeAlbums = [];
             angular.copy(albums, homeAlbums);
         }
+
         this.getPlaylists = function ()
         {
             if (playlists)
@@ -85,12 +91,14 @@
             }
             return playlists;
         }
+
         this.setPlaylists = function (value)
         {
             playlists = [];
             angular.copy(playlists, value);
             localStorageService.set('playlists', playlists);
         }
+
         this.getPlaylist = function (id)
         {
             for (var i = 0; i < playlists.length; ++i)
@@ -103,6 +111,7 @@
             }
             return null;
         }
+
         this.getTrackFromPlaylist = function (trackId, playlistId)
         {
             for (var i = 0; i < playlists.length; ++i)
@@ -121,6 +130,7 @@
             }
             return null;
         }
+
         this.addTrackToPlaylist = function (track, playlistId)
         {
             for (var i = 0; i < playlists.length; ++i)
@@ -144,6 +154,7 @@
             }
             return false;
         }
+
         this.addTrackArrayToPlaylist = function (tracks, playlistId)
         {
             if (tracks)
@@ -161,6 +172,7 @@
             }
             return false;
         }
+
         this.removeTrackFromPlaylist = function (trackIdInPlaylist, playlistId)
         {
             for (var i = 0; i < playlists.length; ++i)
@@ -181,6 +193,7 @@
             }
             return false;
         }
+
         this.createPlaylist = function (name)
         {
             if (name)
@@ -198,17 +211,20 @@
             }
             return null;
         }
+
         this.addExistingPlaylist = function (playlist)
         {
             var playlistLength = playlists.length;
             playlists[playlistLength] = playlist;
             localStorageService.set('playlists', playlists);
         }
+
         this.removePlaylist = function (id)
         {
             playlists.splice(id, 1);
             localStorageService.set('playlists', playlists);
         }
+
         this.renamePlaylist = function (id, newName)
         {
             if (newName)
@@ -227,11 +243,13 @@
             }
             return false;
         }
+
         this.getCurrentTrack = function ()
         {
             return currentTrack;
             updateTrackStates();
         }
+
         this.setCurrentTrack = function (track, state)
         {
             currentTrack = track;
@@ -241,10 +259,12 @@
             }
             updateTrackStates();
         }
+
         this.getPlayStates = function ()
         {
             return playStates
         }
+
         this.updateTrackStates = function ()
         {
             updateTrackStates();
@@ -267,22 +287,22 @@
         };
         var currentPage = pageEnum.home;
 
-        this.isCurrentPage = function(page)
+        this.isCurrentPage = function (page)
         {
             return page == currentPage;
         }
 
-        this.getCurrentPage = function()
+        this.getCurrentPage = function ()
         {
             return currentPage;
         }
 
-        this.setCurrentPage = function(page)
+        this.setCurrentPage = function (page)
         {
             currentPage = page;
         }
 
-        this.getPageEnum = function()
+        this.getPageEnum = function ()
         {
             return pageEnum;
         }

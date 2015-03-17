@@ -120,8 +120,6 @@
                 sharedProperties.setHomeArtists($scope.artistsTab);
                 $scope.sharedProperties.homeArtists = sharedProperties.getHomeArtists();
 
-
-
                 if ($scope.albumsLoadComplete)
                 {
                     pageLoaded();

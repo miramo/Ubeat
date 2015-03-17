@@ -51,13 +51,13 @@
                                aria-expanded="false" class="button red expand radius tiny"><i
                                     class="fa fa-plus fa-lg"></i> Tout ajouter
                             </a>
-                            <ul id="drop2" class="f-dropdown" data-dropdown-content>
+                            <ul id="drop2" class="f-dropdown text-center" data-dropdown-content>
                                 <li class="bottom-border">
                                     <a href="" data-reveal-id="myModal2"
                                        ng-click="addTrackArrayToAdd(trackArrayToAddToNewPlaylist)">Nouvelle
                                         playlist</a>
                                 </li>
-                                <li ng-repeat="playlist in sharedProperties.getPlaylists()">
+                                <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index">
                                     <a href=""
                                        ng-click="sharedProperties.addTrackArrayToPlaylist(trackArrayToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
                                 </li>
@@ -128,7 +128,7 @@
                             <a href="" data-reveal-id="myModal" ng-click="addTrackToAdd(trackToAddToNewPlaylist)">Nouvelle
                                 playlist</a>
                         </li>
-                        <li ng-repeat="playlist in sharedProperties.getPlaylists()">
+                        <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index">
                             <a href=""
                                ng-click="sharedProperties.addTrackToPlaylist(trackToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
                         </li>
