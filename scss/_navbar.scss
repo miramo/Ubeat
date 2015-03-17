@@ -108,15 +108,8 @@ input[type="text"].dream-search:focus
 }
 .top-bar-section
 {
-  .divider
+  .sign-up-button
   {
-    margin-right: rem-calc(15);
-  }
-  @media #{$small-only}
-  {
-    .divider
-    {
-      margin-right: rem-calc(0);
-    }
+    margin-left: rem-calc(15);
   }
 }
