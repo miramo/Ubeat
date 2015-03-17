@@ -55,7 +55,7 @@
 
     factories.factory('trackFactory', function (playStates)
     {
-        var newTrack = function()
+        var newTrack = function ()
         {
             this.idInPlaylist = 0;
             this.trackId = 0;
@@ -71,7 +71,7 @@
             this.number = 0;
             this.playlist = {};
 
-            this.fillFromData = function(data)
+            this.fillFromData = function (data)
             {
                 this.trackId = data.trackId;
                 this.albumId = data.collectionId;
@@ -92,22 +92,13 @@
 
     factories.factory('playlistFactory', function (playStates)
     {
-        var playlist = function()
+        var playlist = function ()
         {
             this.id = 0;
             this.name = '';
             this.tracks = [];
             this.isEdit = false;
             this.isHover = false;
-            this.getTotalTime = function ()
-            {
-                var totalTime = 0;
-                this.tracks.forEach(function (entry)
-                {
-                    totalTime += entry.trackTimeMillis;
-                });
-                return totalTime;
-            }
         }
 
         return playlist;

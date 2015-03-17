@@ -67,6 +67,7 @@
                 },
                 function (err)
                 {
+                    console.log("Album Err: " + err);
                 });
         });
 
@@ -495,6 +496,39 @@
                 return playlist.id == $scope.active.id;
             }
             return false;
+        }
+
+        var getTotalTime = function(playlist)
+        {
+            var totalTime = 0;
+
+            playlist.tracks.forEach(function (entry)
+            {
+                totalTime += entry.trackTimeMillis;
+            });
+            return millisToTime(totalTime);
+        }
+
+        $scope.getFormatedTotalTime = function(playlist)
+        {
+            var totalTime = getTotalTime(playlist);
+            var formatedStr = "";
+
+            if ((totalTime.Hours + totalTime.Minutes + totalTime.Seconds) <= 0)
+            {
+                formatedStr += "0 s";
+            }
+            else
+            {
+                if (totalTime.Hours > 0)
+                    formatedStr += totalTime.Hours + " h ";
+                if (totalTime.Minutes > 0)
+                    formatedStr += totalTime.Minutes + " min ";
+                else if (totalTime.Seconds > 0)
+                    formatedStr += totalTime.Seconds + " s ";
+            }
+
+            return formatedStr;
         }
 
         $scope.$watch('sharedProperties.getPlaylists()', function (newVal, oldVal)
