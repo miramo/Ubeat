@@ -10,8 +10,8 @@
                                                        artistFactory, albumFactory, spotifyArtistFactory, spotifySearchFactory)
     {
         sharedPagesStatus.resetPageStatus();
-        $scope.artistIds = [285976572, 185933496, 111051, 371362363, 994656, 405129701, 115429828, 263132120];
-        $scope.albumsIds = [289081371, 260725492, 731756766, 422478077, 266075192, 669445575, 598997036, 305792965];
+        $scope.artistIds = [115429828, 371362363, 994656, 405129701, 263132120, 285976572, 185933496, 111051];
+        $scope.albumsIds = [598997036, 422478077, 266075192, 669445575,305792965, 289081371, 260725492, 731756766];
         sharedPagesStatus.setTitle('Accueil');
 
         $scope.artistsLoadedCount = 0;
@@ -22,65 +22,6 @@
         $scope.albumsTab = [];
         $scope.sharedProperties = sharedProperties;
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().home);
-
-        $scope.albumLoad = function (id)
-        {
-            //console.log("AlbumLoad[" + id + "]");
-        }
-
-        $scope.$watch('artistsLoadedCount', function (newVal, oldVal)
-        {
-            if (newVal >= $scope.artistIds.length)
-            {
-                $scope.artistsLoadComplete = true;
-                sharedProperties.setHomeArtists($scope.artistsTab);
-                $scope.sharedProperties.homeArtists = sharedProperties.getHomeArtists();
-
-                //var blur = new Blur({
-                //    el        : document.querySelector('body'),
-                //    path      : '',
-                //    radius    : 50,
-                //    fullscreen: true
-                //});
-
-                //$scope.$evalAsync(function()
-                //{
-                //
-                //    console.log(document.getElementsByClassName('slick-center')[0]);
-                //});
-
-                //angular.element.find('.slider-index').on('swipe', function(event, slick, direction)
-                //{
-                //
-                //    console.log("ZIZI");
-                //});
-                //blur.init({
-                //    el  : document.querySelector('body'),
-                //    path: $('.slick-center')[0].src
-                //});
-
-                if ($scope.albumsLoadComplete)
-                {
-                    sharedPagesStatus.setIsPageLoaded(true);
-                }
-            }
-        });
-
-        $scope.$watch('albumsLoadedCount', function (newVal, oldVal)
-        {
-            if (newVal >= $scope.albumsIds.length)
-            {
-                $scope.albumsLoadComplete = true;
-                sharedProperties.setHomeAlbums($scope.albumsTab);
-                $scope.sharedProperties.homeAlbums = sharedProperties.getHomeAlbums();
-
-                if ($scope.artistsLoadComplete)
-                {
-                    sharedPagesStatus.setIsPageLoaded(true);
-                }
-            }
-        });
-
 
         angular.forEach($scope.artistIds, function (value, key)
         {
@@ -129,25 +70,83 @@
                 });
         });
 
+        var blur = new Blur({
+            el        : document.querySelector('body'),
+            path      : '',
+            radius    : 50,
+            fullscreen: true
+        });
+
+        var albumsSliderChange = function(currentSlide)
+        {
+            blur.init({
+                el  : document.querySelector('body'),
+                path: $scope.albumsTab[currentSlide].artworkUrl300
+            });
+        }
+
+        var artistsSliderChange = function(currentSlide)
+        {
+            blur.init({
+                el  : document.querySelector('body'),
+                path: $scope.artistsTab[currentSlide].image.url
+            });
+        }
+
+        var pageLoaded = function ()
+        {
+            var artistsSlider = $('#artists-slider');
+            var albumsSlider = $('#albums-slider');
+
+            albumsSlider.on('afterChange', function (event, slick, currentSlide, nextSlide)
+            {
+                albumsSliderChange(currentSlide);
+            });
+
+            artistsSlider.on('afterChange', function (event, slick, currentSlide, nextSlide)
+            {
+                artistsSliderChange(currentSlide);
+            });
+
+            artistsSliderChange(0);
+            sharedPagesStatus.setIsPageLoaded(true);
+        }
+
+        $scope.$watch('artistsLoadedCount', function (newVal, oldVal)
+        {
+            if (newVal >= $scope.artistIds.length)
+            {
+                $scope.artistsLoadComplete = true;
+                sharedProperties.setHomeArtists($scope.artistsTab);
+                $scope.sharedProperties.homeArtists = sharedProperties.getHomeArtists();
+
+
+
+                if ($scope.albumsLoadComplete)
+                {
+                    pageLoaded();
+                }
+            }
+        });
+
+        $scope.$watch('albumsLoadedCount', function (newVal, oldVal)
+        {
+            if (newVal >= $scope.albumsIds.length)
+            {
+                $scope.albumsLoadComplete = true;
+                sharedProperties.setHomeAlbums($scope.albumsTab);
+                $scope.sharedProperties.homeAlbums = sharedProperties.getHomeAlbums();
+
+                if ($scope.artistsLoadComplete)
+                {
+                    pageLoaded();
+                }
+            }
+        });
+
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
             $(document).foundation();
-
-
-            //$('.slider-index').on('click', function(event, slick, direction)
-            //{
-            //    console.log("CLICK");
-            //});
-            //
-            //$('.slider-index').on('afterChange', function(event, slick, direction)
-            //{
-            //    console.log("After Change");
-            //});
-            //$('.slider-index').on('init', function(event, slick, direction)
-            //{
-            //    console.log("Init");
-            //});
-
         });
     });
 
