@@ -1,7 +1,14 @@
 .new-artists
 {
   margin-top : rem-calc(80);
-  z-index    : -1;
+  background: rgba(242, 242, 242, .7);
+  border: rgba(216, 216, 216, .7);
+}
+
+.new-albums
+{
+  background: rgba(242, 242, 242, .7);
+  border: rgba(216, 216, 216, .7);
 }
 
 .slider-index
