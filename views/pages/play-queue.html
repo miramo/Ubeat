@@ -5,7 +5,7 @@
             <h1><i class="md md-queue-music"></i> File d'attente</h1>
         </div>
     </div>
-    <div ng-show="sharedProperties.getPlayQueue().queue.length > 0" id="tool-bar" class="row">
+    <div id="tool-bar" class="row">
             <div class="small-12">
                 <div class="panel tool-bar-panel radius">
                     <div class="row collapse">
@@ -13,7 +13,7 @@
                             <div class="small-12 medium-5 columns left">
 
                                 <a data-dropdown="drop2" aria-controls="drop1" ng-click="addTrackArrayToAdd(sharedProperties.getPlayQueue().queue)"
-                                   aria-expanded="false" class="button red expand radius tiny"><i
+                                   aria-expanded="false" class="button red expand radius tiny" ng-class="{disabled: sharedProperties.getPlayQueue().queue.length <= 0}"><i
                                         class="fa fa-plus fa-lg"></i> Enregistrer
                                 </a>
                                 <ul id="dropPlay" class="f-dropdown" data-dropdown-content>
@@ -26,8 +26,8 @@
                             </div>
                             <div class="small-12 medium-5 columns left">
                                 <a ng-click="sharedProperties.resetPlayQueue()"
-                                   class="button red expand radius tiny"><i
-                                        class="md-delete md-lg"></i> Effacer
+                                   class="button red expand radius tiny"  ng-class="{disabled: sharedProperties.getPlayQueue().queue.length <= 0}"><i
+                                        class="md-delete md-lg" ></i> Effacer
                                 </a>
                                 <ul id="drop2" class="f-dropdown text-center" data-dropdown-content>
                                     <li class="bottom-border">
@@ -48,7 +48,7 @@
         </div>
     <div class="row-infos-list">
         <div class="small-12">
-            <div ng-show="sharedProperties.getPlayQueue().queue.length > 0">
+            <div>
                 <table>
                     <thead>
                     <tr>
@@ -62,7 +62,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="music-row" ng-repeat="track in sharedProperties.getPlayQueue().queue track by $index" ng-mouseover="displayPlayButton(track)"
+                    <tr ng-show="sharedProperties.getPlayQueue().queue.length > 0" class="music-row" ng-repeat="track in sharedProperties.getPlayQueue().queue track by $index" ng-mouseover="displayPlayButton(track)"
                         ng-mouseleave="hidePlayButton(track)">
                         <td class="text-center">
                             <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
