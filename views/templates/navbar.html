@@ -32,7 +32,7 @@
                     <li class="has-dropdown not-click" ng-class="{hide: !sharedProperties.getConnected()}">
                         <a href="">
                             <div id="profile-topbar">
-                                <div class="img-circular" id="profile-picture" back-img="http://i.imgur.com/ztQQtqn.jpg"></div>
+                                <div class="img-circular" id="profile-picture" back-img="http://www.gravatar.com/avatar/74b536b4687bd8b0f23999958755743c?s=50&r=pg"></div>
                                 <div class="hide-for-medium-only">
                                     <div id="profile-name">{{sharedProperties.getConnection().name}}</div>
                                 </div>
@@ -63,7 +63,7 @@
                                 <span class="prefix"><i class="md md-email md-lg"></i></span>
                             </div>
                             <div class="small-10 columns">
-                                <input type="email" placeholder="Adresse e-mail" ng-model="connection.email" required>
+                                <input type="email" name="email" placeholder="Adresse e-mail" ng-model="connection.email" required>
                                 <small class="error">Vous devez entrer une adresse e-mail valide.</small>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                                 <span class="prefix"><i class="md md-lock md-lg"></i></span>
                             </div>
                             <div class="small-10 columns">
-                                <input type="password" placeholder="Mot de passe" ng-model="connection.password" required>
+                                <input type="password" name="password" placeholder="Mot de passe" ng-model="connection.password" required>
                                 <small class="error">Vous devez entrer un mot de passe.</small>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                                 <span class="prefix"><i class="md md-person md-lg"></i></span>
                             </div>
                             <div class="small-10 columns">
-                                <input type="text" placeholder="Nom d'utilisateur" required>
+                                <input type="text" name="login" autocomplete="login" placeholder="Nom d'utilisateur" required>
                                 <small class="error">Vous devez entrer un nom d'utilisateur.</small>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                                 <span class="prefix"><i class="md md-email md-lg"></i></span>
                             </div>
                             <div class="small-10 columns">
-                                <input type="email" placeholder="Adresse e-mail" required>
+                                <input type="email" name="email" autocomplete="email" placeholder="Adresse e-mail" required>
                                 <small class="error">Vous devez entrer une adresse e-mail valide.</small>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                                 <span class="prefix"><i class="md md-lock md-lg"></i></span>
                             </div>
                             <div class="small-10 columns">
-                                <input type="password" id="password" placeholder="Mot de passe" required>
+                                <input type="password" name="password" id="password" placeholder="Mot de passe" required>
                                 <small class="error">Vous devez entrer un mot de passe.</small>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                                 <span class="prefix"><i class="md md-lock md-lg"></i></span>
                             </div>
                             <div class="small-10 columns">
-                                <input type="password" placeholder="Confirmer le mot de passe" data-equalto="password" required>
+                                <input type="password" name="confirm-password" placeholder="Confirmer le mot de passe" data-equalto="password" required>
                                 <small class="error">Les mots de passe saisis ne sont pas identiques.</small>
                             </div>
                         </div>
