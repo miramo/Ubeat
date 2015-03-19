@@ -312,10 +312,6 @@
             $scope.trackToAddToNewPlaylist = track;
         }
 
-        $scope.addTrackArrayToAdd = function (tracks)
-        {
-            $scope.trackArrayToAddToNewPlaylist = tracks;
-        }
 
         $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
         {
@@ -341,11 +337,6 @@
                 return true;
             }
             return false;
-        }
-
-        $scope.trackArrayToAddIsValid = function ()
-        {
-            return ($scope.trackArrayToAddToNewPlaylist && $scope.trackArrayToAddToNewPlaylist.length > 0);
         }
 
         $scope.createPlaylistByAlbum = function (playlistToAdd, modalId)
@@ -474,6 +465,7 @@
         $scope.defaultPlaylist = {};
         $scope.defaultPlaylist.name = "Pas de playlist";
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().playlist);
+        sharedPagesStatus.setTitle('Playlists');
 
         var refreshPlaylists = function ()
         {
@@ -673,5 +665,73 @@
     controllers.controller('ErrorPageController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties)
     {
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().error);
+    })
+
+    controllers.controller('PlayQueueController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties)
+    {
+        sharedPagesStatus.setTitle("File d'attente");
+        sharedPagesStatus.resetPageStatus();
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().queue);
+        $scope.sharedProperties = sharedProperties;
+        sharedPagesStatus.setIsPageLoaded(true);
+        $scope.trackToAddToNewPlaylist = null;
+        $scope.trackArrayToAddToNewPlaylist;
+
+        $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
+        {
+            if (playlistToAdd)
+            {
+                var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
+
+                sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, newPlaylist.id);
+                $scope.closeModal(modalId);
+                return true;
+            }
+            return false;
+        }
+
+        $scope.createPlaylistByTrackArray = function (playlistToAdd, modalId)
+        {
+            if (playlistToAdd)
+            {
+                var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
+
+                sharedProperties.addTrackArrayToPlaylist($scope.trackArrayToAddToNewPlaylist, newPlaylist.id);
+                $scope.closeModal(modalId);
+                return true;
+            }
+            return false;
+        }
+
+        $scope.displayPlayButton = function (track)
+        {
+            track.displayPlayButton = true;
+        }
+
+        $scope.hidePlayButton = function (track)
+        {
+            track.displayPlayButton = false;
+        }
+
+        $scope.addTrackToAdd = function (track)
+        {
+            $scope.trackToAddToNewPlaylist = track;
+        }
+
+
+        $scope.addTrackArrayToAdd = function (tracks)
+        {
+            $scope.trackArrayToAddToNewPlaylist = tracks;
+        }
+
+        $scope.trackArrayToAddIsValid = function ()
+        {
+            return ($scope.trackArrayToAddToNewPlaylist && $scope.trackArrayToAddToNewPlaylist.length > 0);
+        }
+
+        $scope.closeModal = function (id)
+        {
+            $(id).foundation('reveal', 'close');
+        }
     });
 })();
