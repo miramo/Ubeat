@@ -18402,7 +18402,11 @@ input[type="text"].pre-radius {
 }
 
 /* line 42, ../scss/_navbar.scss */
-#profile-picture {
+#profile-topbar {
+  display: inline-block;
+}
+/* line 45, ../scss/_navbar.scss */
+#profile-topbar #profile-picture {
   width: 2rem;
   height: 2rem;
   border: 0.125rem solid #C60000;
@@ -18412,35 +18416,29 @@ input[type="text"].pre-radius {
   background-repeat: no-repeat;
   background-position: center center;
 }
-
-/* line 54, ../scss/_navbar.scss */
-#profile-name {
+/* line 56, ../scss/_navbar.scss */
+#profile-topbar #profile-name {
   padding-left: 0.3125rem;
 }
 
-/* line 59, ../scss/_navbar.scss */
-#profile-topbar {
-  display: inline-block;
-}
-
-/* line 64, ../scss/_navbar.scss */
+/* line 62, ../scss/_navbar.scss */
 input[type="text"].dream-search {
   opacity: .5;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 64, ../scss/_navbar.scss */
+  /* line 62, ../scss/_navbar.scss */
   input[type="text"].dream-search {
     width: 75%;
     margin-left: 25%;
   }
 }
 
-/* line 74, ../scss/_navbar.scss */
+/* line 72, ../scss/_navbar.scss */
 input[type="text"].dream-search:focus {
   opacity: 1;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 74, ../scss/_navbar.scss */
+  /* line 72, ../scss/_navbar.scss */
   input[type="text"].dream-search:focus {
     width: 100%;
     margin-left: 0%;
@@ -18460,7 +18458,7 @@ input[type="text"].dream-search:focus {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 89, ../scss/_navbar.scss */
+  /* line 87, ../scss/_navbar.scss */
   .top-bar-section .has-dropdown > a:after {
     content: "";
     display: block;
@@ -18476,14 +18474,22 @@ input[type="text"].dream-search:focus {
     right: 0;
   }
 
-  /* line 104, ../scss/_navbar.scss */
+  /* line 102, ../scss/_navbar.scss */
   .button-search {
     margin-top: 0.0625rem;
   }
 }
-/* line 111, ../scss/_navbar.scss */
-.top-bar-section .sign-up-button {
+/* line 109, ../scss/_navbar.scss */
+.top-bar-section #connection-button-large {
+  display: flex;
+}
+/* line 112, ../scss/_navbar.scss */
+.top-bar-section #connection-button-large li:first-child {
   margin-left: 0.9375rem;
+}
+/* line 117, ../scss/_navbar.scss */
+.top-bar-section #connection-button-mobile {
+  display: block;
 }
 
 /* line 1, ../scss/_artist.scss */

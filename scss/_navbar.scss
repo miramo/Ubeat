@@ -39,26 +39,24 @@
   width: 100px;
 }
 
-#profile-picture
-{
-  width: rem-calc(32);
-  height: rem-calc(32);
-  border: rem-calc(2) solid $primary-color;
-  display: inline-block;
-  vertical-align: middle;
-  background-size: cover;
-  background-repeat : no-repeat;
-  background-position : center center;
-}
-
-#profile-name
-{
-  padding-left: rem-calc(5);
-}
-
 #profile-topbar
 {
   display: inline-block;
+  #profile-picture
+  {
+    width: rem-calc(32);
+    height: rem-calc(32);
+    border: rem-calc(2) solid $primary-color;
+    display: inline-block;
+    vertical-align: middle;
+    background-size: cover;
+    background-repeat : no-repeat;
+    background-position : center center;
+  }
+  #profile-name
+  {
+    padding-left: rem-calc(5);
+  }
 }
 
 input[type="text"].dream-search
@@ -108,8 +106,16 @@ input[type="text"].dream-search:focus
 }
 .top-bar-section
 {
-  .sign-up-button
+  #connection-button-large
   {
-    margin-left: rem-calc(15);
+    display: flex;
+    li:first-child
+    {
+      margin-left: rem-calc(15);
+    }
+  }
+  #connection-button-mobile
+  {
+    display: block;
   }
 }
