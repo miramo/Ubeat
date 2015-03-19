@@ -93,7 +93,7 @@
                 <th width="30">#</th>
                 <th width="30"></th>
                 <th width="600">Titre de la musique</th>
-                <th width="300">Nom de l'artiste</th>
+                <th width="300">Artiste</th>
                 <th width="50" class="text-center"><i class="fa fa-clock-o fa-lg"></i></th>
             </tr>
             </thead>
@@ -104,7 +104,7 @@
                 <td class="text-center">
                     <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
                         <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
-                                ng-click="sharedProperties.setCurrentTrack(track)" class="fa fa-play fa-lg"></i></span>
+                                ng-click="sharedProperties.setCurrentTrack(track, true)" class="fa fa-play fa-lg"></i></span>
                     </div>
                     <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
                         {{track.number}}

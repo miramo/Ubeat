@@ -37,6 +37,11 @@
                     templateUrl: 'views/pages/error.html',
                     controller : 'ErrorPageController'
                 })
+                .when('/queue/',
+                {
+                    templateUrl: 'views/pages/play-queue.html',
+                    controller : 'PlayQueueController'
+                })
                 .otherwise({
                     redirectTo: '/error/',
                     controller: 'ErrorPageController'

@@ -14,6 +14,19 @@
         var playlists = localStorageService.get('playlists');
         var currentTrack = null;
         var playStates = {play: 'play', pause: 'pause', idle: 'idle'};
+        var playQueue = localStorageService.get('playQueue');
+
+        if (playlists == null)
+        {
+            playlists = [];
+            localStorageService.set('playlists', playlists);
+        }
+
+        if (playQueue == null)
+        {
+            playQueue = {queue: [], currentTrackId: 0};
+            localStorageService.set('playQueue', playQueue);
+        }
 
         var updateTrackStates = function ()
         {
@@ -40,12 +53,103 @@
                     }
                 }
             }
+
+            for (var n = 0; n < playQueue.queue.length; ++n)
+            {
+                playQueue.displayPlayButton = false;
+                if (currentTrack)
+                {
+                    if (currentTrack.trackId == playQueue.queue[n].trackId)
+                    {
+                        playQueue.queue[n].playState = currentTrack.playState;
+                    }
+                    else
+                    {
+                        playQueue.queue[n].playState = playStates.idle;
+                    }
+                }
+                else
+                {
+                    playQueue.queue[n].playState = playStates.idle;
+                }
+                localStorageService.set('playQueue', playQueue);
+            }
         }
 
-        if (playlists == null)
+
+        this.addTrackToPlayQueue = function (track)
         {
-            playlists = [];
-            localStorageService.set('playlists', playlists);
+            playQueue.queue[playQueue.queue.length] = track;
+            playQueue.currentTrackId = playQueue.queue.length - 1;
+
+            localStorageService.set('playQueue', playQueue);
+        }
+
+        this.removeTrackFromPlayQueue = function (id)
+        {
+            playQueue.queue.splice(id, 1);
+            localStorageService.set('playQueue', playQueue);
+        }
+
+        this.getPlayQueue = function ()
+        {
+            return playQueue;
+        }
+
+        this.resetPlayQueue = function ()
+        {
+            playQueue.queue = [];
+            localStorageService.set('playQueue', playQueue);
+        }
+
+        this.getPlayQueueCurrentTrack = function ()
+        {
+            return playQueue.queue[playQueue.currentTrackId];
+        }
+
+        this.getPlayQueueCurrentTrackId = function ()
+        {
+            return playQueue.currentTrackId;
+        }
+
+        this.getPlayQueueNextTrack = function (setCurrentTrackId)
+        {
+            var track = null;
+            if (playQueue.currentTrackId >= (playQueue.queue.length - 1))
+            {
+                track = playQueue.queue[0];
+                if (setCurrentTrackId)
+                    playQueue.currentTrackId = 0;
+            }
+            else
+            {
+                track = playQueue.queue[playQueue.currentTrackId + 1];
+                if (setCurrentTrackId)
+                    playQueue.currentTrackId += 1;
+            }
+
+            localStorageService.set('playQueue', playQueue);
+            return track;
+        }
+
+        this.getPlayQueuePreviousTrack = function (setCurrentTrackId)
+        {
+            var track = null;
+            if (playQueue.currentTrackId <= 0)
+            {
+                track = playQueue.queue[playQueue.queue.length - 1];
+                if (setCurrentTrackId)
+                    playQueue.currentTrackId = playQueue.queue.length - 1;
+            }
+            else
+            {
+                track = playQueue.queue[playQueue.currentTrackId - 1];
+                if (setCurrentTrackId)
+                    playQueue.currentTrackId -= 1;
+            }
+
+            localStorageService.set('playQueue', playQueue);
+            return track;
         }
 
         this.getTitle = function ()
@@ -250,13 +354,19 @@
             updateTrackStates();
         }
 
-        this.setCurrentTrack = function (track, state)
+        this.setCurrentTrack = function (track, addToPlayQueue, state)
         {
             currentTrack = track;
             if (state)
             {
                 currentTrack.playState = state;
             }
+
+            if (addToPlayQueue)
+            {
+                this.addTrackToPlayQueue(currentTrack);
+            }
+
             updateTrackStates();
         }
 
@@ -279,11 +389,12 @@
         var errorMessage = '';
         var pageErrorUrl = '/notfound/';
         var pageEnum = {
-            home    : 'home',
-            artist  : 'artist',
-            albums  : 'albums',
-            playlist: 'playlist',
-            error   : 'error'
+            home     : 'home',
+            artist   : 'artist',
+            albums   : 'albums',
+            playlist : 'playlist',
+            error    : 'error',
+            playQueue: 'queue'
         };
         var currentPage = pageEnum.home;
 
