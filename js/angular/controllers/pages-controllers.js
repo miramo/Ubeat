@@ -11,7 +11,7 @@
     {
         sharedPagesStatus.resetPageStatus();
         $scope.artistIds = [115429828, 371362363, 994656, 405129701, 263132120, 285976572, 185933496, 111051];
-        $scope.albumsIds = [598997036, 422478077, 266075192, 669445575,305792965, 289081371, 260725492, 731756766];
+        $scope.albumsIds = [598997036, 422478077, 266075192, 669445575, 305792965, 289081371, 260725492, 731756766];
         sharedPagesStatus.setTitle('Accueil');
 
         $scope.artistsLoadedCount = 0;
@@ -78,7 +78,7 @@
             fullscreen: true
         });
 
-        var albumsSliderChange = function(currentSlide)
+        var albumsSliderChange = function (currentSlide)
         {
             blur.init({
                 el  : document.querySelector('body'),
@@ -86,7 +86,7 @@
             });
         }
 
-        var artistsSliderChange = function(currentSlide)
+        var artistsSliderChange = function (currentSlide)
         {
             blur.init({
                 el  : document.querySelector('body'),
@@ -490,7 +490,7 @@
             return false;
         }
 
-        var getTotalTime = function(playlist)
+        var getTotalTime = function (playlist)
         {
             var totalTime = 0;
 
@@ -501,7 +501,7 @@
             return millisToTime(totalTime);
         }
 
-        $scope.getFormatedTotalTime = function(playlist)
+        $scope.getFormatedTotalTime = function (playlist)
         {
             var totalTime = getTotalTime(playlist);
             var formatedStr = "";
@@ -733,5 +733,140 @@
         {
             $(id).foundation('reveal', 'close');
         }
+    });
+
+    controllers.controller('SearchController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties,
+                                                         searchFactory, trackFactory, spotifySearchFactory, spotifyArtistFactory,
+                                                         albumFactory)
+    {
+        sharedPagesStatus.setTitle("Recherche: " + $routeParams.element);
+        sharedPagesStatus.resetPageStatus();
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().search);
+        $scope.elementToSearch = $routeParams.element;
+        $scope.tracks = [];
+        $scope.artists = [];
+        $scope.albums = [];
+        $scope.trackToAddToNewPlaylist = null;
+        $scope.trackArrayToAddToNewPlaylist = null;
+
+        searchFactory.get({element: encodeURIComponent($routeParams.element), maxItems: 20}, function (data)
+        {
+            if (data && data.results.length > 0)
+            {
+                console.log(data.results.length);
+                for (var i = 0; i < data.results.length; ++i)
+                {
+                    switch (data.results[i].wrapperType)
+                    {
+                        case "track":
+                            var newElem = new trackFactory();
+                            newElem.fillFromData(data.results[i]);
+                            $scope.tracks[$scope.tracks.length] = newElem;
+                            break;
+                        case "collection":
+                            $scope.albums[$scope.albums.length] = data.results[i];
+                            break;
+                        case "artist":
+                            var newArtist = data.results[i];
+                            spotifySearchFactory.get({
+                                name: newArtist.artistName,
+                                type: 'artist'
+                            }).$promise.then(function (data)
+                                {
+                                    spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
+                                    {
+                                        newArtist.image = data.images[0];
+                                        $scope.artists[$scope.artists.length] = newArtist;
+                                    }, function (err)
+                                    {
+                                    });
+
+                                }, function (err)
+                                {
+                                });
+                            break;
+                    }
+                }
+
+                angular.forEach($scope.albums, function (value, key)
+                {
+                    albumFactory.get({id: value.collectionId}).$promise.then(function (data)
+                        {
+                            $scope.albums[key].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[key].artworkUrl100, 300);
+                        },
+                        function (err)
+                        {
+                            console.log("Album Err: " + err);
+                        });
+                });
+                sharedPagesStatus.setIsPageLoaded(true);
+            }
+            else
+            {
+                sharedPagesStatus.pageCriticFailure();
+            }
+        });
+
+        $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
+        {
+            if (playlistToAdd)
+            {
+                var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
+
+                sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, newPlaylist.id);
+                $scope.closeModal(modalId);
+                return true;
+            }
+            return false;
+        }
+
+        $scope.createPlaylistByTrackArray = function (playlistToAdd, modalId)
+        {
+            if (playlistToAdd)
+            {
+                var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
+
+                sharedProperties.addTrackArrayToPlaylist($scope.trackArrayToAddToNewPlaylist, newPlaylist.id);
+                $scope.closeModal(modalId);
+                return true;
+            }
+            return false;
+        }
+
+        $scope.displayPlayButton = function (track)
+        {
+            track.displayPlayButton = true;
+        }
+
+        $scope.hidePlayButton = function (track)
+        {
+            track.displayPlayButton = false;
+        }
+
+        $scope.addTrackToAdd = function (track)
+        {
+            $scope.trackToAddToNewPlaylist = track;
+        }
+
+
+        $scope.addTrackArrayToAdd = function (tracks)
+        {
+            $scope.trackArrayToAddToNewPlaylist = tracks;
+        }
+
+        $scope.trackArrayToAddIsValid = function ()
+        {
+            return ($scope.trackArrayToAddToNewPlaylist && $scope.trackArrayToAddToNewPlaylist.length > 0);
+        }
+
+        $scope.closeModal = function (id)
+        {
+            $(id).foundation('reveal', 'close');
+        }
+
+        $scope.$on('$routeChangeSuccess', function (next, current)
+        {
+            $(document).foundation();
+        });
     });
 })();

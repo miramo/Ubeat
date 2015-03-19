@@ -394,7 +394,8 @@
             albums   : 'albums',
             playlist : 'playlist',
             error    : 'error',
-            playQueue: 'queue'
+            playQueue: 'queue',
+            search   : 'search'
         };
         var currentPage = pageEnum.home;
 
