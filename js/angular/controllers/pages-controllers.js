@@ -749,7 +749,7 @@
         $scope.trackToAddToNewPlaylist = null;
         $scope.trackArrayToAddToNewPlaylist = null;
 
-        searchFactory.get({element: encodeURIComponent($routeParams.element), maxItems: 20}, function (data)
+        searchFactory.get({element: encodeURIComponent($routeParams.element), maxItems: 20}).$promise.then(function (data)
         {
             if (data && data.results.length > 0)
             {
@@ -803,8 +803,12 @@
             }
             else
             {
-                sharedPagesStatus.pageCriticFailure();
+                sharedPagesStatus.setIsPageLoaded(true);
             }
+        }, function(err)
+        {
+            console.log("Search Error: " + err);
+            sharedPagesStatus.pageCriticFailure();
         });
 
         $scope.createPlaylistByTrack = function (playlistToAdd, modalId)

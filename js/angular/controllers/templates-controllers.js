@@ -39,6 +39,11 @@
                     sharedProperties.setConnected(false);
                 });
         }
+
+        $scope.search = function(str)
+        {
+
+        }
     });
 
     controllers.controller('PlaybarController', function ($scope, ngAudio, sharedPagesStatus, sharedProperties)
