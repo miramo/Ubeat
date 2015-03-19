@@ -746,48 +746,15 @@
         $scope.tracks = [];
         $scope.artists = [];
         $scope.albums = [];
+        $scope.results = [];
         $scope.trackToAddToNewPlaylist = null;
         $scope.trackArrayToAddToNewPlaylist = null;
+        $scope.elementsLoaded = 0;
 
-        searchFactory.get({element: encodeURIComponent($routeParams.element), maxItems: 20}).$promise.then(function (data)
+        $scope.$watch('elementsLoaded', function (oldVal, newVal)
         {
-            if (data && data.results.length > 0)
+            if (newVal > 0 && newVal >= ($scope.results.length - 1))
             {
-                console.log(data.results.length);
-                for (var i = 0; i < data.results.length; ++i)
-                {
-                    switch (data.results[i].wrapperType)
-                    {
-                        case "track":
-                            var newElem = new trackFactory();
-                            newElem.fillFromData(data.results[i]);
-                            $scope.tracks[$scope.tracks.length] = newElem;
-                            break;
-                        case "collection":
-                            $scope.albums[$scope.albums.length] = data.results[i];
-                            break;
-                        case "artist":
-                            var newArtist = data.results[i];
-                            spotifySearchFactory.get({
-                                name: newArtist.artistName,
-                                type: 'artist'
-                            }).$promise.then(function (data)
-                                {
-                                    spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
-                                    {
-                                        newArtist.image = data.images[0];
-                                        $scope.artists[$scope.artists.length] = newArtist;
-                                    }, function (err)
-                                    {
-                                    });
-
-                                }, function (err)
-                                {
-                                });
-                            break;
-                    }
-                }
-
                 angular.forEach($scope.albums, function (value, key)
                 {
                     albumFactory.get({id: value.collectionId}).$promise.then(function (data)
@@ -801,15 +768,64 @@
                 });
                 sharedPagesStatus.setIsPageLoaded(true);
             }
-            else
-            {
-                sharedPagesStatus.setIsPageLoaded(true);
-            }
-        }, function(err)
-        {
-            console.log("Search Error: " + err);
-            sharedPagesStatus.pageCriticFailure();
         });
+
+        searchFactory.get({
+            element : encodeURIComponent($routeParams.element),
+            maxItems: 200
+        }).$promise.then(function (data)
+            {
+                if (data && data.results.length > 0)
+                {
+                    $scope.results = data.results;
+                    console.log(data.results.length);
+                    for (var i = 0; i < data.results.length; ++i)
+                    {
+                        switch (data.results[i].wrapperType)
+                        {
+                            case "track":
+                                var newElem = new trackFactory();
+                                newElem.fillFromData(data.results[i]);
+                                $scope.tracks[$scope.tracks.length] = newElem;
+                                ++$scope.elementsLoaded;
+                                break;
+                            case "collection":
+                                $scope.albums[$scope.albums.length] = data.results[i];
+                                ++$scope.elementsLoaded;
+                                break;
+                            case "artist":
+                                var newArtist = data.results[i];
+                                spotifySearchFactory.get({
+                                    name: newArtist.artistName,
+                                    type: 'artist'
+                                }).$promise.then(function (data)
+                                    {
+                                        spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
+                                        {
+                                            newArtist.image = data.images[0];
+                                            $scope.artists[$scope.artists.length] = newArtist;
+                                            ++$scope.elementsLoaded;
+                                        }, function (err)
+                                        {
+                                        });
+
+                                    }, function (err)
+                                    {
+                                    });
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    sharedPagesStatus.setIsPageLoaded(true);
+                }
+            }, function (err)
+            {
+                console.log("Search Error: " + err);
+                sharedPagesStatus.setIsPageLoaded(true);
+                sharedPagesStatus.pageCriticFailure();
+            });
 
         $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
         {
