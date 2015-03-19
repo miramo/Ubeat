@@ -10,7 +10,7 @@
     {
         sharedPagesStatus.resetPageStatus();
         $scope.sharedProperties = sharedProperties;
-        $scope.connection = function ()
+        $scope.connection = function()
         {
             this.email = "";
             this.password = "";
@@ -112,9 +112,7 @@
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
-            ;
             $(document).foundation();
-            // call your functions here
         });
     });
 
