@@ -28,7 +28,7 @@
 
     factories.factory('connectionFactory', function ($resource)
     {
-        return $resource(factories.ubeatBaseUrl + 'login');
+        return $resource(factories.ubeatBaseSecureUrl + 'login');
     });
 
     factories.factory('albumFactory', function ($resource)
