@@ -7,6 +7,9 @@
     var factories = angular.module('factories', ['ngResource']);
 
     factories.ubeatBaseUnsecureUrl = 'http://ubeat.herokuapp.com/unsecure/';
+    factories.ubeatBaseSecureUrl = 'http://ubeat.herokuapp.com/';
+    factories.isSecure = false
+    factories.ubeatBaseUrl = factories.isSecure ? factories.ubeatBaseSecureUrl : factories.ubeatBaseUnsecureUrl;
     factories.spotifyUrl = 'https://api.spotify.com/v1/';
 
     factories.factory('playStates', function ()
@@ -18,24 +21,29 @@
         };
     });
 
+    factories.factory('searchFactory', function ($resource)
+    {
+        return $resource(factories.ubeatBaseUrl + 'search/?q=:element&limit=:maxItems');
+    });
+
     factories.factory('albumFactory', function ($resource)
     {
-        return $resource(factories.ubeatBaseUnsecureUrl + 'albums/:id');
+        return $resource(factories.ubeatBaseUrl + 'albums/:id');
     });
 
     factories.factory('albumTracksFactory', function ($resource)
     {
-        return $resource(factories.ubeatBaseUnsecureUrl + 'albums/:id/tracks');
+        return $resource(factories.ubeatBaseUrl + 'albums/:id/tracks');
     });
 
     factories.factory('artistFactory', function ($resource)
     {
-        return $resource(factories.ubeatBaseUnsecureUrl + 'artists/:id');
+        return $resource(factories.ubeatBaseUrl + 'artists/:id');
     });
 
     factories.factory('artistAlbumsFactory', function ($resource)
     {
-        return $resource(factories.ubeatBaseUnsecureUrl + 'artists/:id/albums');
+        return $resource(factories.ubeatBaseUrl + 'artists/:id/albums');
     });
 
     factories.factory('artistBiographiesFactory', function ($resource)
@@ -84,6 +92,7 @@
                 this.trackTimeMillis = data.trackTimeMillis;
                 this.artworkUrl100 = data.artworkUrl100;
                 this.number = data.trackNumber;
+                this.time = millisToTime(this.trackTimeMillis);
             }
         }
 
