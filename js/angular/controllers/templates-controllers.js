@@ -6,7 +6,7 @@
 {
     var controllers = angular.module('templatesControllers', ['factories', 'directives', 'services', 'ngAudio', 'truncate']);
 
-    controllers.controller('NavbarController', function ($scope, sharedPagesStatus, sharedProperties, connectionFactory)
+    controllers.controller('NavbarController', function ($scope, $route, $location, sharedPagesStatus, sharedProperties, connectionFactory)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.sharedProperties = sharedProperties;
@@ -42,7 +42,7 @@
 
         $scope.search = function(str)
         {
-
+            $location.path('search/' + str);
         }
     });
 
