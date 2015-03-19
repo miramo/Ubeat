@@ -6,14 +6,39 @@
 {
     var controllers = angular.module('templatesControllers', ['factories', 'directives', 'services', 'ngAudio', 'truncate']);
 
-    controllers.controller('NavbarController', function ($scope, sharedPagesStatus)
+    controllers.controller('NavbarController', function ($scope, sharedPagesStatus, sharedProperties, connectionFactory)
     {
         sharedPagesStatus.resetPageStatus();
+        $scope.sharedProperties = sharedProperties;
+        $scope.connection = function()
+        {
+            this.email = "";
+            this.password = "";
+        }
+
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
             $(document).foundation();
-            // call your functions herez
         });
+
+        $scope.login = function ()
+        {
+            connectionFactory.save({email: $scope.connection.email, password: $scope.connection.password}).$promise.then(function (data)
+                {
+                    if (data.email && data.name && data.token && data.id)
+                    {
+                        sharedProperties.setConnection(data.email, data.name, data.token, data.id);
+                        sharedProperties.setConnected(true);
+                        console.log(sharedProperties.getConnection());
+                        $('#sign-in-modal').foundation('reveal', 'close');
+                    }
+                },
+                function (err)
+                {
+                    console.log(err);
+                    sharedProperties.setConnected(false);
+                });
+        }
     });
 
     controllers.controller('PlaybarController', function ($scope, ngAudio, sharedPagesStatus, sharedProperties)
@@ -87,9 +112,7 @@
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
-            ;
             $(document).foundation();
-            // call your functions here
         });
     });
 

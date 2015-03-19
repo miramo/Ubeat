@@ -21,20 +21,20 @@
                         </div>
                     </li>
                     <li class="divider"></li>
-                    <ul id="connection-button-large" class="hide">
+                    <ul id="connection-button-large" ng-class="{hide: sharedProperties.getConnected()}">
                         <li class="hide-for-small-only"><a href="" class="button red sign-up" data-reveal-id="sign-up-modal">Inscription</a></li>
                         <li class="hide-for-small-only"><a href="" class="sign-in" data-reveal-id="sign-in-modal">Connection</a></li>
                     </ul>
-                    <ul id="connection-button-mobile" class="hide">
+                    <ul id="connection-button-mobile" ng-class="{hide: sharedProperties.getConnected()}">
                         <li class="show-for-small-only"><a href="" class="sign-up" data-reveal-id="sign-up-modal"><i class="md md-person-add md-lg"></i> Inscription</a></li>
                         <li class="show-for-small-only"><a href="" class="sign-in" data-reveal-id="sign-in-modal"><i class="fa fa-sign-in fa-lg"></i> Connection</a></li>
                     </ul>
-                    <li class="has-dropdown not-click ">
+                    <li class="has-dropdown not-click" ng-class="{hide: !sharedProperties.getConnected()}">
                         <a href="">
                             <div id="profile-topbar">
                                 <div class="img-circular" id="profile-picture" back-img="http://i.imgur.com/ztQQtqn.jpg"></div>
                                 <div class="hide-for-medium-only">
-                                    <div id="profile-name">John Doe</div>
+                                    <div id="profile-name">{{sharedProperties.getConnection().name}}</div>
                                 </div>
                             </div>
                         </a>
@@ -57,13 +57,13 @@
             <div class="small-12 large-6 columns auth-plain small-centered">
                 <div class="signup-panel left-solid">
                     <p class="welcome">Merci de saisir votre adresse e-mail et votre mot de passe</p>
-                    <form data-abide>
+                    <form id="sign-in-form" data-abide>
                         <div class="row collapse">
                             <div class="small-2 columns">
                                 <span class="prefix"><i class="md md-email md-lg"></i></span>
                             </div>
                             <div class="small-10 columns">
-                                <input type="email" placeholder="Adresse e-mail" required>
+                                <input type="email" placeholder="Adresse e-mail" ng-model="connection.email" required>
                                 <small class="error">Vous devez entrer une adresse e-mail valide.</small>
                             </div>
                         </div>
@@ -72,12 +72,12 @@
                                 <span class="prefix"><i class="md md-lock md-lg"></i></span>
                             </div>
                             <div class="small-10 columns">
-                                <input type="password" placeholder="Mot de passe" required>
+                                <input type="password" placeholder="Mot de passe" ng-model="connection.password" required>
                                 <small class="error">Vous devez entrer un mot de passe.</small>
                             </div>
                         </div>
                     </form>
-                    <a href="#" class="button red radius right">Connection</a>
+                    <a class="button red radius right" ng-click="login()">Connection</a>
                 </div>
             </div>
         </div>

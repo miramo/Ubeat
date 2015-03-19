@@ -26,6 +26,11 @@
         return $resource(factories.ubeatBaseUrl + 'search/?q=:element&limit=:maxItems');
     });
 
+    factories.factory('connectionFactory', function ($resource)
+    {
+        return $resource(factories.ubeatBaseUrl + 'login');
+    });
+
     factories.factory('albumFactory', function ($resource)
     {
         return $resource(factories.ubeatBaseUrl + 'albums/:id');
