@@ -494,10 +494,14 @@
         {
             var totalTime = 0;
 
-            playlist.tracks.forEach(function (entry)
+            if (playlist && playlist.tracks)
             {
-                totalTime += entry.trackTimeMillis;
-            });
+                playlist.tracks.forEach(function (entry)
+                {
+                    totalTime += entry.trackTimeMillis;
+                });
+            }
+            
             return millisToTime(totalTime);
         }
 
