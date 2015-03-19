@@ -7,6 +7,7 @@
     var factories = angular.module('factories', ['ngResource']);
 
     factories.ubeatBaseUnsecureUrl = 'http://ubeat.herokuapp.com/unsecure/';
+    factories.ubeatBaseUrl = 'http://ubeat.herokuapp.com/';
     factories.spotifyUrl = 'https://api.spotify.com/v1/';
 
     factories.factory('playStates', function ()
@@ -16,6 +17,11 @@
             pause: 'pause',
             idle : 'idle'
         };
+    });
+
+    factories.factory('connectionFactory', function ($resource)
+    {
+        return $resource(factories.ubeatBaseUrl + 'login');
     });
 
     factories.factory('albumFactory', function ($resource)

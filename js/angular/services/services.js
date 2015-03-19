@@ -14,6 +14,8 @@
         var playlists = localStorageService.get('playlists');
         var currentTrack = null;
         var playStates = {play: 'play', pause: 'pause', idle: 'idle'};
+        var connection = {email: '', name: '', token: '', id: ''};
+        var connected = false;
 
         var updateTrackStates = function ()
         {
@@ -262,12 +264,39 @@
 
         this.getPlayStates = function ()
         {
-            return playStates
+            return playStates;
         }
 
         this.updateTrackStates = function ()
         {
             updateTrackStates();
+        }
+
+        this.getConnection = function()
+        {
+            return connection;
+        }
+
+        this.setConnection = function(email, name, token, id)
+        {
+            connection =
+            {
+                email: email,
+                name: name,
+                token: token,
+                id: id
+            };
+        }
+
+        this.getConnected = function()
+        {
+            return connected;
+        }
+
+        this.setConnected = function(val)
+        {
+            if (val == true || val == false)
+                connected = val;
         }
     });
 
