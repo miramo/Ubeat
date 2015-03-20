@@ -1,147 +1,7 @@
 <div ng-show="sharedPagesStatus.getIsPageLoaded() && !sharedPagesStatus.getIsCriticalError()">
-    <div class="artist-header">
-        <div class="row bloc-album-img-infos">
-            <div class="show-for-medium-up">
-                <div class="album-artist-picture">
-                    <img ng-src={{album.artworkUrl300}} class="img-album">
-                </div>
-            </div>
-            <div class="album-artist-infos">
-                <div class="album-title">
-                    <h1>{{album.collectionName}}</h1>
-                </div>
-                <div class="artist-title">
-                    <h2><a href="#/artist/{{artist.artistId}}" class="album-artist-link">{{artist.artistName}}</a>
-                    </h2>
-                </div>
-                <span class="type-label">{{album.primaryGenreName}}</span>
-
-                <div class="album-artist-description">
-                    <h3>
-                        <small>{{album.trackCount}} Chansons</small>
-                    </h3>
-                    <h3>
-                        <small>Année de Parution : {{album.releaseDateObj.getFullYear()}}</small>
-                    </h3>
-                </div>
-                <itunes-link url={{album.collectionViewUrl}}></itunes-link>
-            </div>
-        </div>
-    </div>
-
-    <div id="tool-bar" class="row">
-        <div class="small-12">
-            <div class="panel tool-bar-panel radius">
-                <div class="row collapse">
-                    <div class="small-6 large-5 columns left">
-                        <div class="small-12 medium-7 large-6 columns left">
-                            <a href="" class="button red split expand radius tiny disabled">
-                                <i class="fa fa-play fa-lg"></i> Lire tout <span data-dropdown="dropPlay"></span>
-                            </a>
-                            <ul id="dropPlay" class="f-dropdown" data-dropdown-content>
-                                <li><a href="">Écouter</a></li>
-                                <li><a href="">Lire à la suite</a></li>
-                                <li><a href="">Lire en dernier</a></li>
-                                <li class="divider"></li>
-                                <li><a href="">Remplacer la file d'attente</a></li>
-                            </ul>
-                        </div>
-                        <div class="small-12 medium-5 columns left">
-                            <a data-dropdown="drop2" aria-controls="drop1" ng-click="addTrackArrayToAdd(tracks)"
-                               aria-expanded="false" class="button red expand radius tiny"><i
-                                    class="fa fa-plus fa-lg"></i> Tout ajouter
-                            </a>
-                            <ul id="drop2" class="f-dropdown text-center" data-dropdown-content>
-                                <li class="bottom-border">
-                                    <a href="" data-reveal-id="myModal2"
-                                       ng-click="addTrackArrayToAdd(trackArrayToAddToNewPlaylist)">Nouvelle
-                                        playlist</a>
-                                </li>
-                                <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index">
-                                    <a href=""
-                                       ng-click="sharedProperties.addTrackArrayToPlaylist(trackArrayToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="small-6 large-5 columns right">
-                        <div class="small-12 medium-7 columns right">
-                            <input class="radius" type="text" placeholder="Filtre">
-                        </div>
-                        <div class="small-12 medium-5 columns right">
-                            <button href="" data-dropdown="dropSort" aria-controls="dropSort" aria-expanded="false"
-                                    class="button red dropdown expand radius tiny"><i class="fa fa-sort fa-lg"></i>
-                                {{currentFilterName}}
-                            </button>
-                            <ul id="dropSort" data-dropdown-content class="f-dropdown" aria-hidden="true"
-                                tabindex="-1">
-                                <li ng-repeat="filterName in filtersNames track by $index">
-                                    <a href="" ng-click="modifyFilter($index)">{{filtersNames[$index]}}</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row-infos-list">
-        <table>
-            <thead>
-            <tr>
-                <th width="30">#</th>
-                <th width="30"></th>
-                <th width="600">Titre de la musique</th>
-                <th width="300">Artiste</th>
-                <th width="50" class="text-center"><i class="fa fa-clock-o fa-lg"></i></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="music-row" ng-repeat="track in tracks | orderBy:filter track by $index"
-                ng-mouseover="displayPlayButton(track)"
-                ng-mouseleave="hidePlayButton(track)">
-                <td class="text-center">
-                    <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
-                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
-                                ng-click="sharedProperties.setCurrentTrack(track, true)" class="fa fa-play fa-lg"></i></span>
-                    </div>
-                    <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
-                        {{track.number}}
-                    </div>
-                    <div ng-show="track.playState == sharedProperties.getPlayStates().play">
-                        <i class="fa fa-circle-o-notch fa-spin"></i>
-                    </div>
-                    <div ng-show="track.playState == sharedProperties.getPlayStates().pause">
-                        <i class="fa fa-pause"></i>
-                    </div>
-                </td>
-                <td class="text-center">
-                    <a data-dropdown="drop1" ng-click="addTrackToAdd(track)" aria-controls="drop1"
-                       aria-expanded="false">
-                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
-                        <i class="fa fa-plus"></i>
-                    </span>
-                    </a>
-                    <ul id="drop1" class="f-dropdown" data-dropdown-content>
-                        <li class="bottom-border">
-                            <a href="" data-reveal-id="myModal" ng-click="addTrackToAdd(trackToAddToNewPlaylist)">Nouvelle
-                                playlist</a>
-                        </li>
-                        <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index">
-                            <a href=""
-                               ng-click="sharedProperties.addTrackToPlaylist(trackToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
-                        </li>
-                    </ul>
-                </td>
-                <td>{{track.name}}</td>
-                <td><a href="#/artist/{{track.artistId}}">{{track.artistName}}</a></td>
-                <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
+    <album-header></album-header>
+    <album-toolbar></album-toolbar>
+    <album-tracks></album-tracks>
     <div id="myModal" class="reveal-modal" data-reveal>
         <h2>Ajouter le titre à une nouvelle playlist</h2>
 
@@ -159,7 +19,7 @@
         <h2>
             <small>{{trackArrayToAddIsValid() && trackArrayToAddToNewPlaylist[0].collectionName}}</small>
         </h2>
-        <input class="radius"  ng-model="playlistToAdd"
+        <input class="radius" ng-model="playlistToAdd"
                ng-keydown="$event.which == 13 && createPlaylistByTrackArray(playlistToAdd, '#myModal2')" type="text"
                placeholder="Nom de la playlist"/>
         <a ng-click="createPlaylistByTrackArray(playlistToAdd, '#myModal2')" class="button red radius">Confirmer</a>

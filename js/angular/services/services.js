@@ -382,28 +382,28 @@
             updateTrackStates();
         }
 
-        this.getConnection = function()
+        this.getConnection = function ()
         {
             return connection;
         }
 
-        this.setConnection = function(email, name, token, id)
+        this.setConnection = function (email, name, token, id)
         {
             connection =
             {
                 email: email,
-                name: name,
+                name : name,
                 token: token,
-                id: id
+                id   : id
             };
         }
 
-        this.getConnected = function()
+        this.getConnected = function ()
         {
             return connected;
         }
 
-        this.setConnected = function(val)
+        this.setConnected = function (val)
         {
             if (val == true || val == false)
                 connected = val;
@@ -424,7 +424,8 @@
             playlist : 'playlist',
             error    : 'error',
             playQueue: 'queue',
-            search   : 'search'
+            search   : 'search',
+            user     : 'user'
         };
         var currentPage = pageEnum.home;
 

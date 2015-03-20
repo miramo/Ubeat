@@ -4,7 +4,7 @@
 
 (function ()
 {
-    var ubeatApp = angular.module('directives', []);
+    var ubeatApp = angular.module('directives', ['homeDirectives', 'albumDirectives']);
 
     ubeatApp.directive('navBar', function ()
     {

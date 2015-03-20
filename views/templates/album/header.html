@@ -1,0 +1,29 @@
+<div class="artist-header">
+    <div class="row bloc-album-img-infos">
+        <div class="show-for-medium-up">
+            <div class="album-artist-picture">
+                <img ng-src={{album.artworkUrl300}} class="img-album">
+            </div>
+        </div>
+        <div class="album-artist-infos">
+            <div class="album-title">
+                <h1>{{album.collectionName}}</h1>
+            </div>
+            <div class="artist-title">
+                <h2><a href="#/artist/{{artist.artistId}}" class="album-artist-link">{{artist.artistName}}</a>
+                </h2>
+            </div>
+            <span class="type-label">{{album.primaryGenreName}}</span>
+
+            <div class="album-artist-description">
+                <h3>
+                    <small>{{album.trackCount}} Chansons</small>
+                </h3>
+                <h3>
+                    <small>Année de Parution : {{album.releaseDateObj.getFullYear()}}</small>
+                </h3>
+            </div>
+            <itunes-link url={{album.collectionViewUrl}}></itunes-link>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div id="tool-bar" class="row">
+    <div class="small-12">
+        <div class="panel tool-bar-panel radius">
+            <div class="row collapse">
+                <div class="small-6 large-5 columns left">
+                    <div class="small-12 medium-7 large-6 columns left">
+                        <a href="" class="button red split expand radius tiny disabled">
+                            <i class="fa fa-play fa-lg"></i> Lire tout <span data-dropdown="dropPlay"></span>
+                        </a>
+                        <ul id="dropPlay" class="f-dropdown" data-dropdown-content>
+                            <li><a href="">Écouter</a></li>
+                            <li><a href="">Lire à la suite</a></li>
+                            <li><a href="">Lire en dernier</a></li>
+                            <li class="divider"></li>
+                            <li><a href="">Remplacer la file d'attente</a></li>
+                        </ul>
+                    </div>
+                    <div class="small-12 medium-5 columns left">
+                        <a data-dropdown="drop2" aria-controls="drop1" ng-click="addTrackArrayToAdd(tracks)"
+                           aria-expanded="false" class="button red expand radius tiny"><i
+                                class="fa fa-plus fa-lg"></i> Tout ajouter
+                        </a>
+                        <ul id="drop2" class="f-dropdown text-center" data-dropdown-content>
+                            <li class="bottom-border">
+                                <a href="" data-reveal-id="myModal2"
+                                   ng-click="addTrackArrayToAdd(trackArrayToAddToNewPlaylist)">Nouvelle
+                                    playlist</a>
+                            </li>
+                            <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index">
+                                <a href=""
+                                   ng-click="sharedProperties.addTrackArrayToPlaylist(trackArrayToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="small-6 large-5 columns right">
+                    <div class="small-12 medium-7 columns right">
+                        <input class="radius" type="text" placeholder="Filtre">
+                    </div>
+                    <div class="small-12 medium-5 columns right">
+                        <button href="" data-dropdown="dropSort" aria-controls="dropSort" aria-expanded="false"
+                                class="button red dropdown expand radius tiny"><i class="fa fa-sort fa-lg"></i>
+                            {{currentFilterName}}
+                        </button>
+                        <ul id="dropSort" data-dropdown-content class="f-dropdown" aria-hidden="true"
+                            tabindex="-1">
+                            <li ng-repeat="filterName in filtersNames track by $index">
+                                <a href="" ng-click="modifyFilter($index)">{{filtersNames[$index]}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

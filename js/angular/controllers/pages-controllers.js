@@ -287,6 +287,13 @@
             }
         }
 
+        var pageIsLoaded = function()
+        {
+            sharedPagesStatus.setIsPageLoaded(true);
+
+            $(document).foundation('dropdown', 'reflow');
+        }
+
         $scope.$watch('sharedProperties.getCurrentTrack()', function (newVal, oldVal)
         {
             updateTracks();
@@ -408,7 +415,7 @@
                             $scope.tracks[i].displayPlayButton = false;
                         }
 
-                        sharedPagesStatus.setIsPageLoaded(true);
+                        pageIsLoaded();
                     });
 
                     $scope.displayPlayButton = function (track)
@@ -433,17 +440,13 @@
             sharedPagesStatus.pageCriticFailure();
         }
 
-        $scope.check = function ()
-        {
-            console.log("FAIL");
-        }
-
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
             $(document).foundation();
             $(document).foundation('interchange', 'reflow');
             $(document).foundation('tooltip', 'reflow');
             $(document).foundation('reveal', 'reflow');
+            $(document).foundation('dropdown', 'reflow');
         });
     });
 
@@ -501,7 +504,7 @@
                     totalTime += entry.trackTimeMillis;
                 });
             }
-            
+
             return millisToTime(totalTime);
         }
 
@@ -669,6 +672,7 @@
     controllers.controller('ErrorPageController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties)
     {
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().error);
+        sharedPagesStatus.setIsPageLoaded(true);
     })
 
     controllers.controller('PlayQueueController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties)
@@ -892,5 +896,13 @@
         {
             $(document).foundation();
         });
+    });
+
+    controllers.controller('SingleUserController', function($scope, $routeParams, sharedPagesStatus, sharedProperties)
+    {
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().user);
+       // sharedPagesStatus.setIsPageLoaded(true);
+        $scope.sharedPagesStatus = sharedPagesStatus;
+        $scope.sharedProperties = sharedProperties;
     });
 })();

@@ -27,6 +27,11 @@
                     templateUrl: 'views/pages/artist.html',
                     controller : 'ArtistController'
                 })
+                .when('/user/:id',
+                {
+                    templateUrl: 'views/pages/single-user.html',
+                    controller : 'SingleUserController'
+                })
                 .when('/playlists/',
                 {
                     templateUrl: 'views/pages/playlists.html',
