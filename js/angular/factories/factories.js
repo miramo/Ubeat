@@ -36,6 +36,11 @@
         return $resource(factories.ubeatBaseSecureUrl + 'logout');
     });
 
+    factories.factory('signupFactory', function ($resource)
+    {
+        return $resource(factories.ubeatBaseSecureUrl + 'signup');
+    });
+
     factories.factory('tokenInfoFactory', function ($resource)
     {
         return $resource(factories.ubeatBaseSecureUrl + 'tokenInfo');

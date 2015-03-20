@@ -6,19 +6,16 @@
 {
     var controllers = angular.module('templatesControllers', ['directives', 'services', 'ngAudio', 'truncate']);
 
-    controllers.controller('NavbarController', function ($scope, $route, $location, sharedPagesStatus, sharedProperties, loginFactory, logoutFactory, localStorageService)
+    controllers.controller('NavbarController', function ($scope, $route, $location, sharedPagesStatus, sharedProperties, loginFactory, logoutFactory, signupFactory, localStorageService)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.sharedProperties = sharedProperties;
-        $scope.connection = function()
-        {
-            this.email = "";
-            this.password = "";
-        }
+        $scope.connectionInfo = {email: "", password: ""};
+        $scope.signupInfo = {name: "", email: "", password: ""};
 
         $scope.login = function ()
         {
-            loginFactory.save({email: $scope.connection.email, password: $scope.connection.password}).$promise.then(function (data)
+            loginFactory.save({email: $scope.connectionInfo.email, password: $scope.connectionInfo.password}).$promise.then(function (data)
                 {
                     if (data.email && data.name && data.token && data.id)
                     {
@@ -47,6 +44,21 @@
                     $location.path('/');
                     $(document).foundation('topbar', 'reflow');
                     Foundation.libs.topbar.toggle($('.top-bar'));
+                },
+                function (err)
+                {
+                    console.log(err);
+                });
+        }
+
+        $scope.signup = function ()
+        {
+            signupFactory.save({name: $scope.signupInfo.name, email: $scope.signupInfo.email, password: $scope.signupInfo.password}).$promise.then(function (data)
+                {
+                    if (data.email && data.name && data.id)
+                    {
+                        console.log(data);
+                    }
                 },
                 function (err)
                 {
