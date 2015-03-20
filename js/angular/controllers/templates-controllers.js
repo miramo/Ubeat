@@ -4,9 +4,9 @@
 
 (function ()
 {
-    var controllers = angular.module('templatesControllers', ['factories', 'directives', 'services', 'ngAudio', 'truncate']);
+    var controllers = angular.module('templatesControllers', ['directives', 'services', 'ngAudio', 'truncate']);
 
-    controllers.controller('NavbarController', function ($scope, $route, $location, sharedPagesStatus, sharedProperties, connectionFactory)
+    controllers.controller('NavbarController', function ($scope, $route, $location, sharedPagesStatus, sharedProperties, loginFactory, logoutFactory, localStorageService)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.sharedProperties = sharedProperties;
@@ -16,27 +16,41 @@
             this.password = "";
         }
 
-        $scope.$on('$routeChangeSuccess', function (next, current)
-        {
-            $(document).foundation();
-        });
-
         $scope.login = function ()
         {
-            connectionFactory.save({email: $scope.connection.email, password: $scope.connection.password}).$promise.then(function (data)
+            loginFactory.save({email: $scope.connection.email, password: $scope.connection.password}).$promise.then(function (data)
                 {
                     if (data.email && data.name && data.token && data.id)
                     {
-                        sharedProperties.setConnection(data.email, data.name, data.token, data.id);
+                        sharedProperties.setInfoConnection(data.email, data.name, data.token, data.id);
                         sharedProperties.setConnected(true);
-                        console.log(sharedProperties.getConnection());
+                        localStorageService.cookie.set('token', data.token);
                         $('#sign-in-modal').foundation('reveal', 'close');
+                        $(document).foundation('topbar', 'reflow');
+                        Foundation.libs.topbar.toggle($('.top-bar'));
+                        $route.reload();
                     }
                 },
                 function (err)
                 {
-                    console.log(err);
                     sharedProperties.setConnected(false);
+                    console.log(err);
+                });
+        }
+
+        $scope.logout = function ()
+        {
+            logoutFactory.get().$promise.then(function (data)
+                {
+                    localStorageService.cookie.remove('token');
+                    sharedProperties.setConnected(false);
+                    $location.path('/');
+                    $(document).foundation('topbar', 'reflow');
+                    Foundation.libs.topbar.toggle($('.top-bar'));
+                },
+                function (err)
+                {
+                    console.log(err);
                 });
         }
 
@@ -44,6 +58,11 @@
         {
             $location.path('search/' + str);
         }
+
+        $scope.$on('$routeChangeSuccess', function (next, current)
+        {
+            $(document).foundation();
+        });
     });
 
     controllers.controller('PlaybarController', function ($scope, ngAudio, sharedPagesStatus, sharedProperties)

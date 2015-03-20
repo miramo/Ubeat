@@ -33,9 +33,9 @@
                     <li class="has-dropdown not-click" ng-class="{hide: !sharedProperties.getConnected()}">
                         <a href="">
                             <div id="profile-topbar">
-                                <div class="img-circular" id="profile-picture" back-img="http://www.gravatar.com/avatar/{{sharedProperties.getConnection().email | gravatar}}?s=50&r=pg&d=http://glo3102.github.io/team02/img/mystery-man-red.png"></div>
+                                <div class="img-circular" id="profile-picture" back-img="http://www.gravatar.com/avatar/{{sharedProperties.getInfoConnection().email | gravatar}}?s=50&r=pg&d=http://glo3102.github.io/team02/img/mystery-man-red.png"></div>
                                 <div class="hide-for-medium-only">
-                                    <div id="profile-name">{{sharedProperties.getConnection().name}}</div>
+                                    <div id="profile-name">{{sharedProperties.getInfoConnection().name}}</div>
                                 </div>
                             </div>
                         </a>
@@ -43,7 +43,7 @@
                             <li ng-class="{active: sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().playlist)}"><a href="#/playlists/"><i class="md md-my-library-music md-lg"></i> Listes de lectures</a></li>
                             <li><a href=""><i class="fa fa-cog fa-lg"></i> Paramètres</a></li>
                             <li class="divider"></li>
-                            <li><a href=""><i class="fa fa-sign-out fa-lg"></i> Se déconnecter</a></li>
+                            <li ng-click="logout()"><a href=""><i class="fa fa-sign-out fa-lg"></i> Se déconnecter</a></li>
                         </ul>
                     </li>
                 </ul>
