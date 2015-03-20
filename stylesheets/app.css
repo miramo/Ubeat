@@ -18162,14 +18162,17 @@ button.radius, .button.radius {
   border-radius: 3px;
 }
 
-/* line 184, ../scss/_flat-button.scss */
-.button.red {
+/* line 186, ../scss/_flat-button.scss */
+button.red, .button.red {
   background-color: #C60000;
 }
-
-/* line 187, ../scss/_flat-button.scss */
-.button.red:hover, .button.red:focus {
+/* line 190, ../scss/_flat-button.scss */
+button.red:hover, button.red:focus, .button.red:hover, .button.red:focus {
   background-color: #f50000;
+}
+/* line 193, ../scss/_flat-button.scss */
+button.red:hover.disabled, button.red:focus.disabled, .button.red:hover.disabled, .button.red:focus.disabled {
+  background-color: #C60000;
 }
 
 /* line 4, ../scss/_scrollbar.scss */
@@ -19407,7 +19410,7 @@ input[type="text"].dream-search:focus {
   line-height: 2.1875rem;
 }
 /* line 103, ../scss/_playlists.scss */
-.header-description a {
+.header-description button {
   margin-top: 0.1875rem;
 }
 

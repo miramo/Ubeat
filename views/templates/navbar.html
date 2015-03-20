@@ -57,7 +57,7 @@
             <div class="small-12 large-6 columns auth-plain small-centered">
                 <div class="signup-panel left-solid">
                     <p class="welcome">Merci de saisir votre adresse e-mail et votre mot de passe</p>
-                    <form id="sign-in-form" data-abide>
+                    <form id="sign-in-form" name="signInForm" data-abide>
                         <div class="row collapse">
                             <div class="small-2 columns">
                                 <span class="prefix"><i class="md md-email md-lg"></i></span>
@@ -76,8 +76,8 @@
                                 <small class="error">Vous devez entrer un mot de passe.</small>
                             </div>
                         </div>
+                        <button type="submit" class="red small radius right" ng-click="login()" ng-disabled="signInForm.$invalid" ng-class="{disabled: signInForm.$invalid}">Connection</button>
                     </form>
-                    <a class="button red radius right" ng-click="login()">Connection</a>
                 </div>
             </div>
         </div>
@@ -88,7 +88,7 @@
             <div class="small-12 large-6 columns auth-plain small-centered">
                 <div class="signup-panel left-solid">
                     <p class="welcome">Merci de renseigner tous les champs</p>
-                    <form data-abide>
+                    <form id="sign-up-form" name="signUpForm" data-abide>
                         <div class="row collapse">
                             <div class="small-2 columns">
                                 <span class="prefix"><i class="md md-person md-lg"></i></span>
@@ -125,8 +125,8 @@
                                 <small class="error">Les mots de passe saisis ne sont pas identiques.</small>
                             </div>
                         </div>
+                        <button type="submit" class="red small radius right" ng-click="signup()" ng-disabled="signUpForm.$invalid" ng-class="{disabled: signUpForm.$invalid}">Créer un compte</button>
                     </form>
-                    <a href="" class="button red radius right" ng-click="signup()">Créer un compte</a>
                 </div>
             </div>
         </div>
