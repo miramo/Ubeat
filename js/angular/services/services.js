@@ -4,7 +4,7 @@
 
 (function ()
 {
-    var services = angular.module('services', []);
+    var services = angular.module('services', ['factories']);
 
     services.service('sharedProperties', function (ngAudio, localStorageService, trackFactory, playlistFactory)
     {
@@ -14,7 +14,7 @@
         var playlists = localStorageService.get('playlists');
         var currentTrack = null;
         var playStates = {play: 'play', pause: 'pause', idle: 'idle'};
-        var connection = {email: '', name: '', token: '', id: ''};
+        var infoConnection = {email: '', name: '', token: '', id: ''};
         var connected = false;
         var playQueue = localStorageService.get('playQueue');
 
@@ -32,7 +32,6 @@
 
         var updateTrackStates = function ()
         {
-
             for (var i = 0; i < playlists.length; ++i)
             {
                 var currentPlaylist = playlists[i];
@@ -77,7 +76,6 @@
                 localStorageService.set('playQueue', playQueue);
             }
         }
-
 
         this.addTrackToPlayQueue = function (track)
         {
@@ -382,14 +380,14 @@
             updateTrackStates();
         }
 
-        this.getConnection = function ()
+        this.getInfoConnection = function()
         {
-            return connection;
+            return infoConnection;
         }
 
-        this.setConnection = function (email, name, token, id)
+        this.setInfoConnection = function(email, name, token, id)
         {
-            connection =
+            infoConnection =
             {
                 email: email,
                 name : name,
@@ -406,7 +404,11 @@
         this.setConnected = function (val)
         {
             if (val == true || val == false)
+            {
                 connected = val;
+                services.isSecure = val;
+                //factories.isSecure = val;
+            }
         }
     });
 

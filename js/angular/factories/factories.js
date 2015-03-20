@@ -8,7 +8,7 @@
 
     factories.ubeatBaseUnsecureUrl = 'http://ubeat.herokuapp.com/unsecure/';
     factories.ubeatBaseSecureUrl = 'http://ubeat.herokuapp.com/';
-    factories.isSecure = false
+    factories.isSecure = false;
     factories.ubeatBaseUrl = factories.isSecure ? factories.ubeatBaseSecureUrl : factories.ubeatBaseUnsecureUrl;
     factories.spotifyUrl = 'https://api.spotify.com/v1/';
 
@@ -26,9 +26,24 @@
         return $resource(factories.ubeatBaseUrl + 'search/?q=:element&limit=:maxItems');
     });
 
-    factories.factory('connectionFactory', function ($resource)
+    factories.factory('loginFactory', function ($resource)
     {
-        return $resource(factories.ubeatBaseUrl + 'login');
+        return $resource(factories.ubeatBaseSecureUrl + 'login');
+    });
+
+    factories.factory('logoutFactory', function ($resource)
+    {
+        return $resource(factories.ubeatBaseSecureUrl + 'logout');
+    });
+
+    factories.factory('signupFactory', function ($resource)
+    {
+        return $resource(factories.ubeatBaseSecureUrl + 'signup');
+    });
+
+    factories.factory('tokenInfoFactory', function ($resource)
+    {
+        return $resource(factories.ubeatBaseSecureUrl + 'tokenInfo');
     });
 
     factories.factory('albumFactory', function ($resource)
