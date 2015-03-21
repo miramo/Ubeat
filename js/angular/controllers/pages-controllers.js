@@ -450,7 +450,7 @@
         });
     });
 
-    controllers.controller('PlaylistsController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties)
+    controllers.controller('PlaylistsController', function ($scope, $location, $routeParams, sharedPagesStatus, sharedProperties)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.missingImgPlaylist = './img/missing-album.png';
@@ -469,6 +469,11 @@
         $scope.defaultPlaylist.name = "Pas de playlist";
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().playlist);
         sharedPagesStatus.setTitle('Playlists');
+
+        if (sharedProperties.isConnected() == false)
+        {
+            $location.path("/");
+        }
 
         var refreshPlaylists = function ()
         {
