@@ -12,6 +12,11 @@
     factories.ubeatBaseUrl = factories.isSecure ? factories.ubeatBaseSecureUrl : factories.ubeatBaseUnsecureUrl;
     factories.spotifyUrl = 'https://api.spotify.com/v1/';
 
+    factories.getUbeatApiURL = function(sharedProperties)
+    {
+        return sharedProperties.isConnected() ? factories.ubeatBaseSecureUrl : factories.ubeatBaseUnsecureUrl;
+    }
+
     factories.factory('playStates', function ()
     {
         return {
@@ -21,49 +26,49 @@
         };
     });
 
-    factories.factory('searchFactory', function ($resource)
+    factories.factory('searchFactory', function ($resource, sharedProperties)
     {
-        return $resource(factories.ubeatBaseUrl + 'search/?q=:element&limit=:maxItems');
+        return $resource(factories.getUbeatApiURL(sharedProperties) + 'search/?q=:element&limit=:maxItems');
     });
 
-    factories.factory('loginFactory', function ($resource)
+    factories.factory('loginFactory', function ($resource, sharedProperties)
     {
-        return $resource(factories.ubeatBaseSecureUrl + 'login');
+        return $resource(factories.ubeatBaseSecureUrl  + 'login');
     });
 
-    factories.factory('logoutFactory', function ($resource)
+    factories.factory('logoutFactory', function ($resource, sharedProperties)
     {
-        return $resource(factories.ubeatBaseSecureUrl + 'logout');
+        return $resource(factories.ubeatBaseSecureUrl  + 'logout');
     });
 
-    factories.factory('signupFactory', function ($resource)
+    factories.factory('signupFactory', function ($resource, sharedProperties)
     {
-        return $resource(factories.ubeatBaseSecureUrl + 'signup');
+        return $resource(factories.ubeatBaseSecureUrl  + 'signup');
     });
 
-    factories.factory('tokenInfoFactory', function ($resource)
+    factories.factory('tokenInfoFactory', function ($resource, sharedProperties)
     {
-        return $resource(factories.ubeatBaseSecureUrl + 'tokenInfo');
+        return $resource(factories.ubeatBaseSecureUrl  + 'tokenInfo');
     });
 
-    factories.factory('albumFactory', function ($resource)
+    factories.factory('albumFactory', function ($resource, sharedProperties)
     {
-        return $resource(factories.ubeatBaseUrl + 'albums/:id');
+        return $resource(factories.getUbeatApiURL(sharedProperties) + 'albums/:id');
     });
 
-    factories.factory('albumTracksFactory', function ($resource)
+    factories.factory('albumTracksFactory', function ($resource, sharedProperties)
     {
-        return $resource(factories.ubeatBaseUrl + 'albums/:id/tracks');
+        return $resource(factories.getUbeatApiURL(sharedProperties) + 'albums/:id/tracks');
     });
 
-    factories.factory('artistFactory', function ($resource)
+    factories.factory('artistFactory', function ($resource, sharedProperties)
     {
-        return $resource(factories.ubeatBaseUrl + 'artists/:id');
+        return $resource(factories.getUbeatApiURL(sharedProperties) + 'artists/:id');
     });
 
-    factories.factory('artistAlbumsFactory', function ($resource)
+    factories.factory('artistAlbumsFactory', function ($resource, sharedProperties)
     {
-        return $resource(factories.ubeatBaseUrl + 'artists/:id/albums');
+        return $resource(factories.getUbeatApiURL(sharedProperties) + 'artists/:id/albums');
     });
 
     factories.factory('artistBiographiesFactory', function ($resource)

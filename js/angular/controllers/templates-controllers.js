@@ -21,7 +21,7 @@
                     {
                         sharedProperties.setInfoConnection(data.email, data.name, data.token, data.id);
                         sharedProperties.setConnected(true);
-                        localStorageService.cookie.set('token', data.token);
+                        localStorageService.cookie.set(sharedProperties.getTokenCookieName(), data.token);
                         $('#sign-in-modal').foundation('reveal', 'close');
                         $(document).foundation('topbar', 'reflow');
                         Foundation.libs.topbar.toggle($('.top-bar'));

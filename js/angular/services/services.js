@@ -11,23 +11,26 @@
         var title = 'Ubeat';
         var homeArtists = [];
         var homeAlbums = [];
-        var playlists = localStorageService.get('playlists');
+        var playlistsStorageName = 'playlists';
+        var playlists = localStorageService.get(playlistsStorageName);
         var currentTrack = null;
         var playStates = {play: 'play', pause: 'pause', idle: 'idle'};
         var infoConnection = {email: '', name: '', token: '', id: ''};
         var connected = false;
-        var playQueue = localStorageService.get('playQueue');
+        var playQueueStorageName = 'playQueue'
+        var playQueue = localStorageService.get(playQueueStorageName);
+        var tokenCookieName = 'token';
 
         if (playlists == null)
         {
             playlists = [];
-            localStorageService.set('playlists', playlists);
+            localStorageService.set(playlistsStorageName, playlists);
         }
 
         if (playQueue == null)
         {
             playQueue = {queue: [], currentTrackId: 0};
-            localStorageService.set('playQueue', playQueue);
+            localStorageService.set(playQueueStorageName, playQueue);
         }
 
         var updateTrackStates = function ()
@@ -73,8 +76,25 @@
                 {
                     playQueue.queue[n].playState = playStates.idle;
                 }
-                localStorageService.set('playQueue', playQueue);
+                localStorageService.set(playQueueStorageName, playQueue);
             }
+        }
+
+        this.isConnected = function()
+        {
+            var token = localStorageService.cookie.get(tokenCookieName);
+
+            if (token)
+            {
+                console.log("Token: " + token);
+                return true;
+            }
+            return false;
+        }
+
+        this.getTokenCookieName = function()
+        {
+            return tokenCookieName;
         }
 
         this.addTrackToPlayQueue = function (track)
@@ -82,13 +102,13 @@
             playQueue.queue[playQueue.queue.length] = track;
             playQueue.currentTrackId = playQueue.queue.length - 1;
 
-            localStorageService.set('playQueue', playQueue);
+            localStorageService.set(playQueueStorageName, playQueue);
         }
 
         this.removeTrackFromPlayQueue = function (id)
         {
             playQueue.queue.splice(id, 1);
-            localStorageService.set('playQueue', playQueue);
+            localStorageService.set(playQueueStorageName, playQueue);
         }
 
         this.getPlayQueue = function ()
@@ -99,7 +119,7 @@
         this.resetPlayQueue = function ()
         {
             playQueue.queue = [];
-            localStorageService.set('playQueue', playQueue);
+            localStorageService.set(playQueueStorageName, playQueue);
         }
 
         this.getPlayQueueCurrentTrack = function ()
@@ -128,7 +148,7 @@
                     playQueue.currentTrackId += 1;
             }
 
-            localStorageService.set('playQueue', playQueue);
+            localStorageService.set(playQueueStorageName, playQueue);
             return track;
         }
 
@@ -148,7 +168,7 @@
                     playQueue.currentTrackId -= 1;
             }
 
-            localStorageService.set('playQueue', playQueue);
+            localStorageService.set(playQueueStorageName, playQueue);
             return track;
         }
 
@@ -200,7 +220,7 @@
         {
             playlists = [];
             angular.copy(playlists, value);
-            localStorageService.set('playlists', playlists);
+            localStorageService.set(playlistsStorageName, playlists);
         }
 
         this.getPlaylist = function (id)
@@ -252,7 +272,7 @@
                     //}
                     track.idInPlaylist = tracksLength;
                     playlist.tracks[tracksLength] = track;
-                    localStorageService.set('playlists', playlists);
+                    localStorageService.set(playlistsStorageName, playlists);
                     return true;
                 }
             }
@@ -269,7 +289,7 @@
                     {
                         var playlist = playlists[i];
                         playlist.tracks = playlist.tracks.concat(tracks);
-                        localStorageService.set('playlists', playlists);
+                        localStorageService.set(playlistsStorageName, playlists);
                         return true;
                     }
                 }
@@ -289,7 +309,7 @@
                         if (j == trackIdInPlaylist)
                         {
                             playlist.tracks.splice(j, 1);
-                            localStorageService.set('playlists', playlists);
+                            localStorageService.set(playlistsStorageName, playlists);
                             return true;
                         }
                     }
@@ -309,7 +329,7 @@
                 newPlaylist.id = playlistLength;
                 newPlaylist.tracks = [];
                 playlists[playlistLength] = newPlaylist;
-                localStorageService.set('playlists', playlists);
+                localStorageService.set(playlistsStorageName, playlists);
 
                 return newPlaylist;
             }
@@ -320,13 +340,13 @@
         {
             var playlistLength = playlists.length;
             playlists[playlistLength] = playlist;
-            localStorageService.set('playlists', playlists);
+            localStorageService.set(playlistsStorageName, playlists);
         }
 
         this.removePlaylist = function (id)
         {
             playlists.splice(id, 1);
-            localStorageService.set('playlists', playlists);
+            localStorageService.set(playlistsStorageName, playlists);
         }
 
         this.renamePlaylist = function (id, newName)
@@ -340,7 +360,7 @@
                         var playlist = playlists[id];
                         playlist.name = newName;
                         console.log("Rename: " + playlist.name);
-                        localStorageService.set('playlists', playlists);
+                        localStorageService.set(playlistsStorageName, playlists);
                         return true;
                     }
                 }
