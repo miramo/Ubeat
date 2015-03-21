@@ -16,14 +16,14 @@
                         </ul>
                     </div>
                     <div class="small-12 medium-5 columns left">
-                        <a data-dropdown="drop2" aria-controls="drop1" ng-click="addTrackArrayToAdd(tracks)"
+                        <a data-dropdown="addTrackArrayDrop" aria-controls="addTrackArrayDrop" ng-click="addTrackArrayToAdd(tracks)"
                            aria-expanded="false" class="button red expand radius tiny"><i
                                 class="fa fa-plus fa-lg"></i> Tout ajouter
                         </a>
-                        <ul id="drop2" class="f-dropdown text-center" data-dropdown-content>
+                        <ul id="addTrackArrayDrop" class="f-dropdown text-center" data-dropdown-content>
                             <li class="bottom-border">
-                                <a href="" data-reveal-id="myModal2"
-                                   ng-click="addTrackArrayToAdd(trackArrayToAddToNewPlaylist)">Nouvelle
+                                <a href="" data-reveal-id="addAlbumToPlaylist"
+                                   ng-click="addTrackArrayToAdd(trackArrayToAddToNewPlaylist)"><i class="md md-add-box md-lg"></i>Nouvelle
                                     playlist</a>
                             </li>
                             <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index">

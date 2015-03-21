@@ -1,4 +1,3 @@
-
 <div class="row-infos-list">
     <table>
         <thead>
@@ -31,15 +30,15 @@
                 </div>
             </td>
             <td class="text-center">
-                <a data-dropdown="drop1" ng-click="addTrackToAdd(track)" aria-controls="drop1"
+                <a data-dropdown="addTrackDrop" ng-click="addTrackToAdd(track)" aria-controls="addTrackDrop"
                    aria-expanded="false">
                     <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
                         <i class="fa fa-plus"></i>
                     </span>
                 </a>
-                <ul id="drop1" class="f-dropdown" data-dropdown-content>
+                <ul id="addTrackDrop" class="f-dropdown" data-dropdown-content>
                     <li class="bottom-border">
-                        <a href="" data-reveal-id="myModal" ng-click="addTrackToAdd(trackToAddToNewPlaylist)">Nouvelle
+                        <a href="" data-reveal-id="addTrackToPlaylist" ng-click="addTrackToAdd(trackToAddToNewPlaylist)"><i class="md md-add-box md-lg"></i>Nouvelle
                             playlist</a>
                     </li>
                     <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index">

@@ -106,15 +106,15 @@
                     </div>
                 </td>
                 <td class="text-center">
-                    <a data-dropdown="drop1" ng-click="addTrackToAdd(track)" aria-controls="drop1"
+                    <a data-dropdown="addTrackDrop" ng-click="addTrackToAdd(track)" aria-controls="addTrackDrop"
                        aria-expanded="false">
                     <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
                         <i class="fa fa-plus"></i>
                     </span>
                     </a>
-                    <ul id="drop1" class="f-dropdown" data-dropdown-content>
+                    <ul id="addTrackDrop" class="f-dropdown" data-dropdown-content>
                         <li class="bottom-border">
-                            <a href="" data-reveal-id="myModal" ng-click="addTrackToAdd(trackToAddToNewPlaylist)">Nouvelle
+                            <a href="" data-reveal-id="addTrackModal" ng-click="addTrackToAdd(trackToAddToNewPlaylist)">Nouvelle
                                 playlist</a>
                         </li>
                         <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index">
@@ -135,26 +135,17 @@
         </div>
     </div>
 </div>
-<div id="myModal" class="reveal-modal" data-reveal>
+<div id="addTrackModal" class="reveal-modal" data-reveal>
     <h2>Ajouter le titre à une nouvelle playlist</h2>
 
     <h2>
         <small>{{trackToAddToNewPlaylist.trackName}}</small>
     </h2>
-    <input class="radius" ng-keydown="$event.which == 13 && createPlaylistByTrack(playlistToAdd, '#myModal')"
+    <input class="radius" ng-keydown="$event.which == 13 && createPlaylistByTrack(playlistToAdd, '#addTrackModal')"
            ng-model="playlistToAdd" type="text" placeholder="Nom de la playlist"/>
-    <a ng-click="createPlaylistByTrack(playlistToAdd, '#myModal')" class="button red radius">Confirmer</a>
+    <a ng-click="createPlaylistByTrack(playlistToAdd, '#addTrackModal')" class="button red radius">Confirmer</a>
     <a class="close-reveal-modal">&#215;</a>
 </div>
-<!--<div id="myModal2" class="reveal-modal" data-reveal>-->
-<!--<h2>Ajouter la file d'attente à une nouvelle playlist</h2>-->
-
-<!--<input class="radius"  ng-model="playlistToAdd"-->
-<!--ng-keydown="$event.which == 13 && createPlaylistByTrackArray(playlistToAdd, '#myModal2')" type="text"-->
-<!--placeholder="Nom de la playlist"/>-->
-<!--<a ng-click="createPlaylistByTrackArray(playlistToAdd, '#myModal2')" class="button red radius">Confirmer</a>-->
-<!--<a class="close-reveal-modal">&#215;</a>-->
-<!--</div>-->
 <div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsCriticalError()">
     <error-msg error-nb={{errorTitle}} msg={{errorMsg}}></error-msg>
 </div>

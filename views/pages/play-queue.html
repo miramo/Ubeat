@@ -12,11 +12,11 @@
                         <div class="small-6 large-5 columns left">
                             <div class="small-12 medium-5 columns left">
 
-                                <a data-dropdown="drop2" aria-controls="drop1" ng-click="addTrackArrayToAdd(sharedProperties.getPlayQueue().queue)"
+                                <a data-dropdown="saveQueueDrop" aria-controls="dropdown" ng-click="addTrackArrayToAdd(sharedProperties.getPlayQueue().queue)"
                                    aria-expanded="false" class="button red expand radius tiny" ng-class="{disabled: sharedProperties.getPlayQueue().queue.length <= 0}"><i
                                         class="fa fa-plus fa-lg"></i> Enregistrer
                                 </a>
-                                <ul id="dropPlay" class="f-dropdown" data-dropdown-content>
+                                <ul id="saveQueueDrop" class="f-dropdown" data-dropdown-content>
                                     <li><a href="">Écouter</a></li>
                                     <li><a href="">Lire à la suite</a></li>
                                     <li><a href="">Lire en dernier</a></li>
@@ -29,9 +29,9 @@
                                    class="button red expand radius tiny"  ng-class="{disabled: sharedProperties.getPlayQueue().queue.length <= 0}"><i
                                         class="md-delete md-lg" ></i> Effacer
                                 </a>
-                                <ul id="drop2" class="f-dropdown text-center" data-dropdown-content>
+                                <ul id="addTrackArrayDrop" class="f-dropdown text-center" data-dropdown-content>
                                     <li class="bottom-border">
-                                        <a href="" data-reveal-id="myModal2"
+                                        <a href="" data-reveal-id="addAlbumToPlaylistModal"
                                            ng-click="addTrackArrayToAdd(trackArrayToAddToNewPlaylist)">Nouvelle
                                             playlist</a>
                                     </li>
@@ -81,17 +81,17 @@
                             </div>
                         </td>
                         <td class="text-center">
-                            <a data-dropdown="drop1"
+                            <a data-dropdown="addTrackDrop"
                                ng-click="addTrackToAdd(track)"
-                               aria-controls="drop1"
+                               aria-controls="addTrackDrop"
                                aria-expanded="false">
                       <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
                           <i class="fa fa-plus"></i>
                       </span>
                             </a>
-                            <ul id="drop1" class="f-dropdown" data-dropdown-content>
+                            <ul id="addTrackDrop" class="f-dropdown" data-dropdown-content>
                                 <li class="bottom-border">
-                                    <a href="" data-reveal-id="myModal"
+                                    <a href="" data-reveal-id="addTrackToPlaylistModal"
                                        ng-click="addTrackToAdd(trackToAddToNewPlaylist)">Nouvelle
                                         playlist</a>
                                 </li>
@@ -122,24 +122,24 @@
         </div>
     </div>
 </div>
-<div id="myModal" class="reveal-modal" data-reveal>
+<div id="addTrackToPlaylistModal" class="reveal-modal" data-reveal>
     <h2>Ajouter le titre à une nouvelle playlist</h2>
 
     <h2>
         <small>{{trackToAddToNewPlaylist.trackName}}</small>
     </h2>
-    <input class="radius" ng-keydown="$event.which == 13 && createPlaylistByTrack(playlistToAdd, '#myModal')"
+    <input class="radius" ng-keydown="$event.which == 13 && createPlaylistByTrack(playlistToAdd, '#addTrackToPlaylistModal')"
            ng-model="playlistToAdd" type="text" placeholder="Nom de la playlist"/>
-    <a ng-click="createPlaylistByTrack(playlistToAdd, '#myModal')" class="button red radius">Confirmer</a>
+    <a ng-click="createPlaylistByTrack(playlistToAdd, '#addTrackToPlaylistModal')" class="button red radius">Confirmer</a>
     <a class="close-reveal-modal">&#215;</a>
 </div>
-<div id="myModal2" class="reveal-modal" data-reveal>
+<div id="addAlbumToPlaylistModal" class="reveal-modal" data-reveal>
     <h2>Ajouter la file d'attente à une nouvelle playlist</h2>
 
     <input class="radius"  ng-model="playlistToAdd"
-           ng-keydown="$event.which == 13 && createPlaylistByTrackArray(playlistToAdd, '#myModal2')" type="text"
+           ng-keydown="$event.which == 13 && createPlaylistByTrackArray(playlistToAdd, '#addAlbumToPlaylistModal')" type="text"
            placeholder="Nom de la playlist"/>
-    <a ng-click="createPlaylistByTrackArray(playlistToAdd, '#myModal2')" class="button red radius">Confirmer</a>
+    <a ng-click="createPlaylistByTrackArray(playlistToAdd, '#addAlbumToPlaylistModal')" class="button red radius">Confirmer</a>
     <a class="close-reveal-modal">&#215;</a>
 </div>
 <div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsCriticalError()">
