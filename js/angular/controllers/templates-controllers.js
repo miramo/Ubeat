@@ -11,7 +11,7 @@
         sharedPagesStatus.resetPageStatus();
         $scope.sharedProperties = sharedProperties;
         $scope.connectionInfo = {email: "", password: ""};
-        $scope.signupInfo = {name: "", email: "", password: ""};
+        $scope.signupInfo = {name: "", email: "", password: "", confirmPassword: ""};
 
         $scope.login = function ()
         {

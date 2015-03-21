@@ -121,11 +121,11 @@
                                 <span class="prefix"><i class="md md-lock md-lg"></i></span>
                             </div>
                             <div class="small-10 columns">
-                                <input type="password" name="confirm-password" placeholder="Confirmer le mot de passe" data-equalto="password" required>
+                                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirmer le mot de passe" data-equalto="password" ng-model="signupInfo.confirmPassword" required>
                                 <small class="error">Les mots de passe saisis ne sont pas identiques.</small>
                             </div>
                         </div>
-                        <button type="submit" class="red small radius right" ng-click="signup()" ng-disabled="signUpForm.$invalid" ng-class="{disabled: signUpForm.$invalid}">Créer un compte</button>
+                        <button type="submit" class="red small radius right" ng-click="signup()" ng-disabled="signUpForm.$invalid || (signupInfo.password != signupInfo.confirmPassword)" ng-class="{disabled: signUpForm.$invalid || (signupInfo.password != signupInfo.confirmPassword)}">Créer un compte</button>
                     </form>
                 </div>
             </div>
