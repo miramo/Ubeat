@@ -18355,7 +18355,7 @@ slick .slick-dots li button:before {
 }
 
 /* line 138, ../scss/_style.scss */
-input[type="text"].pre-radius {
+input[type="search"].pre-radius {
   -moz-border-radius-topleft: 3px;
   -webkit-border-top-left-radius: 3px;
   border-top-left-radius: 3px;
@@ -18425,24 +18425,24 @@ input[type="text"].pre-radius {
 }
 
 /* line 62, ../scss/_navbar.scss */
-input[type="text"].dream-search {
+input[type="search"].dream-search {
   opacity: .5;
 }
 @media only screen and (min-width: 40.063em) {
   /* line 62, ../scss/_navbar.scss */
-  input[type="text"].dream-search {
+  input[type="search"].dream-search {
     width: 75%;
     margin-left: 25%;
   }
 }
 
 /* line 72, ../scss/_navbar.scss */
-input[type="text"].dream-search:focus {
+input[type="search"].dream-search:focus {
   opacity: 1;
 }
 @media only screen and (min-width: 40.063em) {
   /* line 72, ../scss/_navbar.scss */
-  input[type="text"].dream-search:focus {
+  input[type="search"].dream-search:focus {
     width: 100%;
     margin-left: 0%;
     -moz-transition-property: width, margin-left;

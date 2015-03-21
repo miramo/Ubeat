@@ -59,7 +59,7 @@
   }
 }
 
-input[type="text"].dream-search
+input[type="search"].dream-search
 {
   @media #{$medium-up}
   {
@@ -69,7 +69,7 @@ input[type="text"].dream-search
   opacity: .5;
 }
 
-input[type="text"].dream-search:focus
+input[type="search"].dream-search:focus
 {
   @media #{$medium-up}
   {

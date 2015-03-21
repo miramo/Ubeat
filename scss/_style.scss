@@ -135,7 +135,7 @@ slick
   @include border-right-radius($button-radius);
 }
 
-input[type="text"].pre-radius
+input[type="search"].pre-radius
 {
   @include border-left-radius($button-radius);
 }
