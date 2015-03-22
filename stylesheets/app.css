@@ -18355,7 +18355,7 @@ slick .slick-dots li button:before {
 }
 
 /* line 138, ../scss/_style.scss */
-input[type="search"].pre-radius {
+input[type="search"].pre-radius, input[type="text"].pre-radius {
   -moz-border-radius-topleft: 3px;
   -webkit-border-top-left-radius: 3px;
   border-top-left-radius: 3px;
@@ -19353,22 +19353,23 @@ input[type="search"].dream-search:focus {
 /* line 35, ../scss/_playlists.scss */
 .playlists-name .playlist-item input, .playlists-name .playlist-item a {
   margin-top: 0.4375rem;
+  height: 2.3125rem;
 }
-/* line 41, ../scss/_playlists.scss */
+/* line 42, ../scss/_playlists.scss */
 .playlists-name .playlist-item .icon i {
   display: inline;
   height: 3.125rem;
   line-height: 3.125rem;
   vertical-align: middle;
 }
-/* line 49, ../scss/_playlists.scss */
+/* line 50, ../scss/_playlists.scss */
 .playlists-name .playlist-item .playlist-name p {
   display: inline;
   width: 100%;
   height: 3.125rem;
   line-height: 3.125rem;
 }
-/* line 56, ../scss/_playlists.scss */
+/* line 57, ../scss/_playlists.scss */
 .playlists-name .playlist-item .img {
   width: 3.125rem;
   height: 3.125rem;
@@ -19377,11 +19378,11 @@ input[type="search"].dream-search:focus {
   float: left;
 }
 
-/* line 67, ../scss/_playlists.scss */
+/* line 68, ../scss/_playlists.scss */
 .header-playlist-table {
   height: 6.875rem;
 }
-/* line 72, ../scss/_playlists.scss */
+/* line 73, ../scss/_playlists.scss */
 .header-playlist-table .header-playlist-table-img-name .img {
   height: 6.25rem;
   width: 6.25rem;
@@ -19389,13 +19390,13 @@ input[type="search"].dream-search:focus {
   margin-right: 0.625rem;
   float: left;
 }
-/* line 80, ../scss/_playlists.scss */
+/* line 81, ../scss/_playlists.scss */
 .header-playlist-table .header-playlist-table-img-name h1 {
   display: inline;
   width: 100%;
 }
 
-/* line 90, ../scss/_playlists.scss */
+/* line 91, ../scss/_playlists.scss */
 .header-description {
   display: block;
   width: 100%;
@@ -19403,18 +19404,18 @@ input[type="search"].dream-search:focus {
   padding: 0 0.625rem;
   border-radius: 0.1875rem;
 }
-/* line 97, ../scss/_playlists.scss */
+/* line 98, ../scss/_playlists.scss */
 .header-description p {
   width: 100%;
   height: 2.1875rem;
   line-height: 2.1875rem;
 }
-/* line 103, ../scss/_playlists.scss */
+/* line 104, ../scss/_playlists.scss */
 .header-description button {
   margin-top: 0.1875rem;
 }
 
-/* line 109, ../scss/_playlists.scss */
+/* line 110, ../scss/_playlists.scss */
 .delete-track {
   cursor: pointer;
 }

@@ -132,10 +132,10 @@ slick
 
 .post-radius
 {
-  @include border-right-radius($button-radius);
+  @include border-right-radius($global-radius);
 }
 
-input[type="search"].pre-radius
+input[type="search"].pre-radius, input[type="text"].pre-radius
 {
-  @include border-left-radius($button-radius);
+  @include border-left-radius($global-radius);
 }
