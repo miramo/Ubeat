@@ -6,26 +6,22 @@
 {
     var services = angular.module('services', ['factories']);
 
-    services.service('sharedProperties', function (ngAudio, localStorageService, trackFactory, playlistFactory)
+    services.service('sharedProperties', function (ngAudio, localStorageService, trackFactory, playlistFactory,
+                                                   totalPlaylistsFactory, singlePlaylistFactory, singlePlaylistTracksFactory,
+                                                   singlePlaylistSingleTrackFactory, tokenInfoFactory)
     {
         var title = 'Ubeat';
         var homeArtists = [];
         var homeAlbums = [];
         var playlistsStorageName = 'playlists';
-        var playlists = localStorageService.get(playlistsStorageName);
+        var playlists = [];
         var currentTrack = null;
         var playStates = {play: 'play', pause: 'pause', idle: 'idle'};
         var infoConnection = {email: '', name: '', token: '', id: ''};
         var connected = false;
-        var playQueueStorageName = 'playQueue'
+        var playQueueStorageName = 'playQueue';
         var playQueue = localStorageService.get(playQueueStorageName);
         var tokenCookieName = 'token';
-
-        if (playlists == null)
-        {
-            playlists = [];
-            localStorageService.set(playlistsStorageName, playlists);
-        }
 
         if (playQueue == null)
         {
@@ -80,19 +76,18 @@
             }
         }
 
-        this.isConnected = function()
+        this.isConnected = function ()
         {
             var token = localStorageService.cookie.get(tokenCookieName);
 
             if (token)
             {
-                console.log("Token: " + token);
                 return true;
             }
             return false;
         }
 
-        this.getTokenCookieName = function()
+        this.getTokenCookieName = function ()
         {
             return tokenCookieName;
         }
@@ -204,8 +199,49 @@
             angular.copy(albums, homeAlbums);
         }
 
-        this.getPlaylists = function ()
+        this.getPlaylists = function (callback)
         {
+            tokenInfoFactory.get().$promise.then(function (tokenData)
+                {
+                    if (tokenData)
+                    {
+                        console.log("Token: " + tokenData);
+                        totalPlaylistsFactory.query({}).$promise.then(function (data)
+                            {
+                                if (data)
+                                {
+                                    playlists = [];
+                                    for (var i = 0; i < data.length; ++i)
+                                    {
+                                        if (data[i].owner && data[i].owner.email == tokenData.email)
+                                        {
+                                            var dataPlaylist = data[i];
+                                            dataPlaylist.arrayId = i;
+                                            playlists[playlists.length] = dataPlaylist;
+                                        }
+                                    }
+                                    if (callback)
+                                    {
+                                        callback(playlists, false);
+                                    }
+                                }
+                            },
+                            function (err)
+                            {
+                            }
+                        );
+                    }
+                },
+                function (err)
+                {
+                    console.log("Token Fail: " + err);
+                    if (callback)
+                    {
+                        callback(null, true);
+                    }
+                }
+            );
+
             if (playlists)
             {
                 for (var i = 0; i < playlists.length; ++i)
@@ -223,17 +259,19 @@
             localStorageService.set(playlistsStorageName, playlists);
         }
 
-        this.getPlaylist = function (id)
+        this.getSinglePlaylist = function (playlistId, callback)
         {
-            for (var i = 0; i < playlists.length; ++i)
+            singlePlaylistFactory.get({id: playlistId}).$promise.then(function (data)
             {
-                playlists[i].id = i;
-                if (i == id)
+                if (data && callback)
                 {
-                    return playlists[i];
+                    callback(data);
                 }
-            }
-            return null;
+            }, function (err)
+            {
+
+            });
+            return;
         }
 
         this.getTrackFromPlaylist = function (trackId, playlistId)
@@ -318,22 +356,35 @@
             return false;
         }
 
-        this.createPlaylist = function (name)
+        this.createPlaylist = function (name, callback)
         {
-            if (name)
+            tokenInfoFactory.get().$promise.then(function (tokenData)
             {
-                var playlistLength = playlists.length;
-                var newPlaylist = new playlistFactory();
-
-                newPlaylist.name = name;
-                newPlaylist.id = playlistLength;
-                newPlaylist.tracks = [];
-                playlists[playlistLength] = newPlaylist;
-                localStorageService.set(playlistsStorageName, playlists);
-
-                return newPlaylist;
-            }
-            return null;
+                if (tokenData)
+                {
+                    totalPlaylistsFactory.save({name: name, owner: tokenData}, function (data)
+                    {
+                        if (data && data.name == name)
+                        {
+                            var dataPlaylist = data;
+                            dataPlaylist.arrayId = playlists.length - 1;
+                            callback(dataPlaylist);
+                        }
+                        else if (callback)
+                        {
+                            callback(null);
+                        }
+                    }, function (err)
+                    {
+                        if (callback)
+                        {
+                            callback(null);
+                        }
+                    });
+                }
+            }, function (err)
+            {
+            });
         }
 
         this.addExistingPlaylist = function (playlist)
@@ -343,29 +394,60 @@
             localStorageService.set(playlistsStorageName, playlists);
         }
 
-        this.removePlaylist = function (id)
+        this.removePlaylist = function (id, callback)
         {
-            playlists.splice(id, 1);
-            localStorageService.set(playlistsStorageName, playlists);
+            console.log("RemovePlaylist");
+            singlePlaylistFactory.delete({id: id}, function (data)
+            {
+                if (data)
+                {
+                    console.log("DeletePlaylist[" + id + "]:" + JSON.stringify(data));
+                }
+                if (callback)
+                {
+                    callback();
+                }
+            }, function (err)
+            {
+            });
         }
 
-        this.renamePlaylist = function (id, newName)
+        this.renamePlaylist = function (playlistId, newName, callback)
         {
-            if (newName)
+            singlePlaylistFactory.get({id: playlistId}).$promise.then(function(data)
             {
-                for (var i = 0; i < playlists.length; ++i)
+                if (data)
                 {
-                    if (i == id)
+                    data.name = newName;
+                    singlePlaylistFactory.put({id: playlistId, 'name': newName}).$promise.then(function (data)
                     {
-                        var playlist = playlists[id];
-                        playlist.name = newName;
-                        console.log("Rename: " + playlist.name);
-                        localStorageService.set(playlistsStorageName, playlists);
-                        return true;
-                    }
+                        if (callback)
+                        {
+                            callback();
+                        }
+                    }, function (err)
+                    {
+                    });
                 }
-            }
-            return false;
+            }, function (err)
+            {
+
+            });
+            //if (newName)
+            //{
+            //    for (var i = 0; i < playlists.length; ++i)
+            //    {
+            //        if (i == id)
+            //        {
+            //            var playlist = playlists[id];
+            //            playlist.name = newName;
+            //            console.log("Rename: " + playlist.name);
+            //            localStorageService.set(playlistsStorageName, playlists);
+            //            return true;
+            //        }
+            //    }
+            //}
+            //return false;
         }
 
         this.getCurrentTrack = function ()
@@ -400,12 +482,12 @@
             updateTrackStates();
         }
 
-        this.getInfoConnection = function()
+        this.getInfoConnection = function ()
         {
             return infoConnection;
         }
 
-        this.setInfoConnection = function(email, name, token, id)
+        this.setInfoConnection = function (email, name, token, id)
         {
             infoConnection =
             {

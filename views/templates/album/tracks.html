@@ -3,7 +3,7 @@
         <thead>
         <tr>
             <th width="30">#</th>
-            <th width="30"></th>
+            <th width="30" ng-show="sharedProperties.isConnected()"></th>
             <th width="600">Titre de la musique</th>
             <th width="300">Artiste</th>
             <th width="50" class="text-center"><i class="fa fa-clock-o fa-lg"></i></th>
@@ -29,7 +29,7 @@
                     <i class="fa fa-pause"></i>
                 </div>
             </td>
-            <td class="text-center">
+            <td class="text-center" ng-show="sharedProperties.isConnected()">
                 <a data-dropdown="addTrackDrop" ng-click="addTrackToAdd(track)" aria-controls="addTrackDrop"
                    aria-expanded="false">
                     <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
@@ -41,7 +41,7 @@
                         <a href="" data-reveal-id="addTrackToPlaylist" ng-click="addTrackToAdd(trackToAddToNewPlaylist)"><i class="md md-add-box md-lg"></i>Nouvelle
                             playlist</a>
                     </li>
-                    <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index">
+                    <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index">
                         <a href=""
                            ng-click="sharedProperties.addTrackToPlaylist(trackToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
                     </li>

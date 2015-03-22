@@ -14,7 +14,8 @@
 
     factories.getUbeatApiURL = function(sharedProperties)
     {
-        return sharedProperties.isConnected() ? factories.ubeatBaseSecureUrl : factories.ubeatBaseUnsecureUrl;
+       // return sharedProperties.isConnected() ? factories.ubeatBaseSecureUrl : factories.ubeatBaseUnsecureUrl;
+        return factories.ubeatBaseUnsecureUrl;
     }
 
     factories.factory('playStates', function ()
@@ -44,11 +45,6 @@
     factories.factory('signupFactory', function ($resource, sharedProperties)
     {
         return $resource(factories.ubeatBaseSecureUrl  + 'signup');
-    });
-
-    factories.factory('tokenInfoFactory', function ($resource, sharedProperties)
-    {
-        return $resource(factories.ubeatBaseSecureUrl  + 'tokenInfo');
     });
 
     factories.factory('albumFactory', function ($resource, sharedProperties)
@@ -84,6 +80,31 @@
     factories.factory('spotifySearchFactory', function ($resource)
     {
         return $resource(factories.spotifyUrl + 'search?query=:name&type=:type');
+    });
+
+    factories.factory('totalPlaylistsFactory', function($resource)
+    {
+        return $resource(factories.ubeatBaseSecureUrl + 'playlists/');
+    });
+
+    factories.factory('singlePlaylistFactory', function($resource)
+    {
+        return $resource(factories.ubeatBaseSecureUrl + 'playlists/:id', {id: '@id'}, {'put': {method:'PUT'}});
+    });
+
+    factories.factory('singlePlaylistTracksFactory', function($resource)
+    {
+        return $resource(factories.ubeatBaseSecureUrl + 'playlists/:id/tracks');
+    });
+
+    factories.factory('singlePlaylistSingleTrackFactory', function($resource)
+    {
+        return $resource(factories.ubeatBaseSecureUrl + 'playlists/:playlistId/tracks/:trackId');
+    });
+
+    factories.factory('tokenInfoFactory', function ($resource)
+    {
+        return $resource(factories.ubeatBaseSecureUrl  + 'tokenInfo');
     });
 
     factories.factory('trackFactory', function (playStates)
@@ -128,11 +149,17 @@
     {
         var playlist = function ()
         {
-            this.id = 0;
-            this.name = '';
-            this.tracks = [];
+            this.data = {};
             this.isEdit = false;
             this.isHover = false;
+
+            this.fillFromData = function(data)
+            {
+                if (data)
+                {
+                    this.data = data;
+                }
+            }
         }
 
         return playlist;

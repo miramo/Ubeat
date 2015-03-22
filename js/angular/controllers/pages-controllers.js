@@ -262,10 +262,25 @@
         $scope.trackArrayToAddToNewPlaylist = [];
         $scope.tracks = [];
         $scope.album = null;
+        $scope.playlits = [];
         $scope.isPageFailedLoad = false;
         $scope.errorTitle = "Erreur 503";
         $scope.errorMsg = "Service temporairement indisponible.";
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().album);
+
+
+        var getPlaylistsCallback = function (playlists)
+        {
+            if (playlists)
+            {
+                $scope.playlists = playlists;
+            }
+        }
+
+        if (sharedProperties.isConnected())
+        {
+            sharedProperties.getPlaylists(getPlaylistsCallback);
+        }
 
         var updateTracks = function ()
         {
@@ -287,7 +302,7 @@
             }
         }
 
-        var pageIsLoaded = function()
+        var pageIsLoaded = function ()
         {
             sharedPagesStatus.setIsPageLoaded(true);
 
@@ -319,6 +334,10 @@
             $scope.trackToAddToNewPlaylist = track;
         }
 
+        $scope.getActualPlaylists = function ()
+        {
+            return $scope.playlists;
+        }
 
         $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
         {
@@ -458,9 +477,8 @@
         $scope.playlistToAdd = {};
         $scope.playlistToAdd.defaultName = "Nouvelle playlist";
         $scope.playlistToAdd.name = $scope.playlistToAdd.defaultName;
-        $scope.playlists = sharedProperties.getPlaylists();
         $scope.alertMessages = [];
-        $scope.active = sharedProperties.getPlaylist(0);
+        $scope.active = {name: "Pas de playlist", tracks: []};
         $scope.isNewPlaylistClicked = false;
         $scope.playlistCurrentRename = {};
         $scope.playlistCurrentRename.name = '';
@@ -470,10 +488,48 @@
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().playlist);
         sharedPagesStatus.setTitle('Playlists');
 
-        if (sharedProperties.isConnected() == false)
+        var isRemovingPlaylist = false;
+
+        var redirectToHome = function ()
         {
             $location.path("/");
         }
+
+        if (sharedProperties.isConnected() == false)
+        {
+            redirectToHome();
+        }
+
+        $scope.getActualPlaylists = function ()
+        {
+            return $scope.playlists;
+        }
+
+        var getPlaylistsCallback = function (playlists, isError)
+        {
+            ;
+            if (playlists && playlists.length > 0)
+            {
+                $scope.active = playlists[0];
+                $scope.playlists = playlists;
+
+                for (var i = 0; i < playlists.length; ++i)
+                {
+                    playlists[i].isEdit = false;
+                }
+            }
+            else
+            {
+                $scope.playlists = [];
+            }
+            sharedPagesStatus.setIsPageLoaded(true);
+            if (isError)
+            {
+                redirectToHome();
+            }
+        }
+
+        sharedProperties.getPlaylists(getPlaylistsCallback);
 
         var refreshPlaylists = function ()
         {
@@ -535,27 +591,26 @@
             return formatedStr;
         }
 
-        $scope.$watch('sharedProperties.getPlaylists()', function (newVal, oldVal)
-        {
-            $scope.playlists = sharedProperties.getPlaylists();
-
-            sharedPagesStatus.setIsPageLoaded(true);
-            if (newVal)
-            {
-                for (var i = 0; i < newVal.length; ++i)
-                {
-                    newVal[i].id = i;
-                }
-            }
-            if (!$scope.playlists || $scope.playlists.length <= 0)
-            {
-                $scope.active = $scope.defaultPlaylist;
-            }
-            else if ($scope.playlists && $scope.playlists.length > 0)
-            {
-                $scope.active = $scope.playlists[$scope.playlists.length - 1];
-            }
-        });
+        //$scope.$watch('sharedProperties.getPlaylists()', function (newVal, oldVal)
+        //{
+        //    $scope.playlists = sharedProperties.getPlaylists();
+        //
+        //    if (newVal)
+        //    {
+        //        for (var i = 0; i < newVal.length; ++i)
+        //        {
+        //            newVal[i].id = i;
+        //        }
+        //    }
+        //    if (!$scope.playlists || $scope.playlists.length <= 0)
+        //    {
+        //        $scope.active = $scope.defaultPlaylist;
+        //    }
+        //    else if ($scope.playlists && $scope.playlists.length > 0)
+        //    {
+        //        $scope.active = $scope.playlists[$scope.playlists.length - 1];
+        //    }
+        //});
 
         $scope.getPlaylistImg = function (playlist, size)
         {
@@ -575,19 +630,45 @@
             }
         }
 
-        $scope.removePlaylist = function (id)
+        var removePlaylistCallback = function ()
         {
-            sharedProperties.removePlaylist(id);
-            $scope.playlists = sharedProperties.getPlaylists();
+            sharedProperties.getPlaylists(getPlaylistsCallback);
+            isRemovingPlaylist = false;
+        }
 
-            if ($scope.playlists.length > 0)
-            {
-                $scope.active = $scope.playlists[0];
-            }
-            else
-            {
-                $scope.active = $scope.defaultPlaylist;
-            }
+        $scope.removePlaylist = function (playlistId)
+        {
+            console.log("PlaylistId: " + playlistId);
+            isRemovingPlaylist = true;
+            sharedProperties.removePlaylist(playlistId, removePlaylistCallback);
+            //var playlist = sharedProperties.getSinglePlaylist(playlistId);
+            //
+            //if (playlist)
+            //{
+            //    singlePlaylistFactory.delete({id: playlist.apiId}, function (data)
+            //    {
+            //        if (data)
+            //        {
+            //            console.log("RemovePlaylist: " + JSON.stringify(data))
+            //
+            //            sharedProperties.removePlaylist(playlistId);
+            //            $scope.playlists = sharedProperties.getPlaylists();
+            //
+            //            if ($scope.playlists.length > 0)
+            //            {
+            //                $scope.active = $scope.playlists[0];
+            //            }
+            //            else
+            //            {
+            //                $scope.active = $scope.defaultPlaylist;
+            //            }
+            //            //$scope.active = sharedProperties.createPlaylist(playlistName);
+            //            //$scope.playlistToAdd.name = $scope.playlistToAdd.defaultName;
+            //        }
+            //    }, function (err)
+            //    {
+            //    });
+            //}
         }
 
         $scope.switchNewPlaylistClicked = function ()
@@ -609,13 +690,12 @@
         $scope.setEdit = function (id, playlist, isEdit)
         {
             playlist.isEdit = isEdit;
-            var playlists = sharedProperties.getPlaylists();
 
-            for (var i = 0; i < playlists.length; ++i)
+            for (var i = 0; i < $scope.playlists.length; ++i)
             {
-                if (i != id)
+                if ($scope.playlists[i].id != id)
                 {
-                    playlists[i].isEdit = false;
+                    $scope.playlists[i].isEdit = false;
                 }
             }
         }
@@ -640,31 +720,64 @@
             track.displayPlayButton = false;
         }
 
+        var confirmRenameCallback = function ()
+        {
+            sharedProperties.getPlaylists(getPlaylistsCallback);
+        }
+
         $scope.confirmRename = function (id, playlist, newName)
         {
-            var val = sharedProperties.renamePlaylist(id, newName);
             playlist.isEdit = false;
             playlist.isHover = false;
+            sharedProperties.renamePlaylist(id, newName, confirmRenameCallback);
             $scope.setPlaylistCurrentRename(newName);
             $scope.active = playlist;
         }
 
-        $scope.createPlaylist = function (value)
+        var createPlaylistCallback = function (playlist)
         {
-            $scope.active = sharedProperties.createPlaylist(value);
-            $scope.playlistToAdd.name = $scope.playlistToAdd.defaultName;
+            if (playlist)
+            {
+                $scope.active = playlist;
+                sharedProperties.getPlaylists(getPlaylistsCallback);
+            }
         }
 
-        $scope.createPlaylistUI = function (value)
+        $scope.createPlaylist = function (playlistName)
         {
-            $scope.createPlaylist(value);
+            sharedProperties.createPlaylist(playlistName, createPlaylistCallback);
+        }
+
+        $scope.createPlaylistUI = function (playlistName)
+        {
+            $scope.createPlaylist(playlistName);
             $scope.switchNewPlaylistClicked();
+        }
+
+        var setPlaylistActiveCallback = function (playlist)
+        {
+            if (playlist)
+            {
+                $scope.active = playlist;
+            }
         }
 
         $scope.setPlaylistActive = function (id)
         {
-            //console.log("setPlaylistActive: " + id);
-            $scope.active = sharedProperties.getPlaylist(id);
+            if (isRemovingPlaylist == false)
+            {
+                var actualPlaylists = $scope.getActualPlaylists();
+
+                for (var i = 0; i < actualPlaylists.length; ++i)
+                {
+                    if (actualPlaylists[i].id == id)
+                    {
+                        console.log("Active: " + id);
+                        $scope.active = actualPlaylists[i];
+                        return;
+                    }
+                }
+            }
         }
 
         $scope.$on('$routeChangeSuccess', function (next, current)
@@ -903,10 +1016,10 @@
         });
     });
 
-    controllers.controller('SingleUserController', function($scope, $routeParams, sharedPagesStatus, sharedProperties)
+    controllers.controller('SingleUserController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties)
     {
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().user);
-       // sharedPagesStatus.setIsPageLoaded(true);
+        // sharedPagesStatus.setIsPageLoaded(true);
         $scope.sharedPagesStatus = sharedPagesStatus;
         $scope.sharedProperties = sharedProperties;
     });
