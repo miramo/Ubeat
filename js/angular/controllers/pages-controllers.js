@@ -478,13 +478,12 @@
         $scope.playlistToAdd.defaultName = "Nouvelle playlist";
         $scope.playlistToAdd.name = $scope.playlistToAdd.defaultName;
         $scope.alertMessages = [];
-        $scope.active = {name: "Pas de playlist", tracks: []};
+        $scope.defaultPlaylist = {name: "Pas de playlist"};
+        $scope.active = $scope.defaultPlaylist;
         $scope.isNewPlaylistClicked = false;
         $scope.playlistCurrentRename = {};
         $scope.playlistCurrentRename.name = '';
         $scope.playStates = sharedProperties.getPlayStates();
-        $scope.defaultPlaylist = {};
-        $scope.defaultPlaylist.name = "Pas de playlist";
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().playlist);
         sharedPagesStatus.setTitle('Playlists');
 
@@ -502,6 +501,10 @@
 
         $scope.getActualPlaylists = function ()
         {
+            if ($scope.playlists && $scope.playlists.length <= 0)
+            {
+                $scope.active = $scope.defaultPlaylist;
+            }
             return $scope.playlists;
         }
 
