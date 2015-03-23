@@ -16,12 +16,16 @@
                                    aria-expanded="false" class="button red expand radius tiny" ng-class="{disabled: sharedProperties.getPlayQueue().queue.length <= 0}"><i
                                         class="fa fa-plus fa-lg"></i> Enregistrer
                                 </a>
-                                <ul id="saveQueueDrop" class="f-dropdown" data-dropdown-content>
-                                    <li><a href="">Écouter</a></li>
-                                    <li><a href="">Lire à la suite</a></li>
-                                    <li><a href="">Lire en dernier</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="">Remplacer la file d'attente</a></li>
+                                <ul id="saveQueueDrop" class="f-dropdown text-center" data-dropdown-content>
+                                    <li class="bottom-border">
+                                        <a href="" data-reveal-id="addAlbumToPlaylistModal"
+                                           ng-click="addTrackArrayToAdd(trackArrayToAddToNewPlaylist)"><i class="md md-add-box md-lg"></i>Nouvelle
+                                            playlist</a>
+                                    </li>
+                                    <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index">
+                                        <a href=""
+                                           ng-click="sharedProperties.addTrackArrayToPlaylist(trackArrayToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="small-12 medium-5 columns left">
@@ -35,7 +39,7 @@
                                            ng-click="addTrackArrayToAdd(trackArrayToAddToNewPlaylist)">Nouvelle
                                             playlist</a>
                                     </li>
-                                    <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index">
+                                    <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index">
                                         <a href=""
                                            ng-click="sharedProperties.addTrackArrayToPlaylist(trackArrayToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
                                     </li>
@@ -95,14 +99,14 @@
                                        ng-click="addTrackToAdd(trackToAddToNewPlaylist)">Nouvelle
                                         playlist</a>
                                 </li>
-                                <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index">
+                                <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index">
                                     <a href=""
                                        ng-click="sharedProperties.addTrackToPlaylist(trackToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
                                 </li>
                             </ul>
                         </td>
-                        <td>{{track.name}}</td>
-                        <td><a href="#/album/{{track.albumId}}">{{track.albumName}}</a>
+                        <td>{{track.trackName}}</td>
+                        <td><a href="#/album/{{track.collectionId}}">{{track.collectionName}}</a>
                         </td>
                         <td><a href="#/artist/{{track.artistId}}">{{track.artistName}}</a>
                         </td>
