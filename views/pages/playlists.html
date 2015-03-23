@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index"
+                        <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index"
                             ng-click="setPlaylistActive(playlist.id)" ng-mouseover="setHover(playlist, true)"
                             ng-mouseleave="setHover(playlist, false)" class="playlist-item" ng-class="{active: isActivePlaylist(playlist)}">
                             <div class="row collapse">

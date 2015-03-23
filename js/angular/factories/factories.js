@@ -46,11 +46,6 @@
         return $resource(factories.ubeatBaseSecureUrl  + 'signup');
     });
 
-    factories.factory('tokenInfoFactory', function ($resource, sharedProperties)
-    {
-        return $resource(factories.ubeatBaseSecureUrl  + 'tokenInfo');
-    });
-
     factories.factory('albumFactory', function ($resource, sharedProperties)
     {
         return $resource(factories.getUbeatApiURL(sharedProperties) + 'albums/:id');
@@ -86,56 +81,29 @@
         return $resource(factories.spotifyUrl + 'search?query=:name&type=:type');
     });
 
-    factories.factory('trackFactory', function (playStates)
+    factories.factory('totalPlaylistsFactory', function($resource)
     {
-        var newTrack = function ()
-        {
-            this.idInPlaylist = 0;
-            this.trackId = 0;
-            this.albumId = 0;
-            this.artistId = 0;
-            this.name = '';
-            this.artistName = '';
-            this.playState = playStates.idle;
-            this.albumName = '';
-            this.previewUrl = '';
-            this.trackTimeMillis = 0;
-            this.artworkUrl100 = '';
-            this.number = 0;
-            this.playlist = {};
-
-            this.fillFromData = function (data)
-            {
-                this.trackId = data.trackId;
-                this.albumId = data.collectionId;
-                this.artistId = data.artistId;
-                this.name = data.trackName;
-                this.artistName = data.artistName;
-                this.playState = playStates.idle;
-                this.albumName = data.collectionName;
-                this.previewUrl = data.previewUrl;
-                this.trackTimeMillis = data.trackTimeMillis;
-                this.artworkUrl100 = data.artworkUrl100;
-                this.number = data.trackNumber;
-                this.time = millisToTime(this.trackTimeMillis);
-            }
-        }
-
-        return newTrack;
+        return $resource(factories.ubeatBaseSecureUrl + 'playlists/');
     });
 
-    factories.factory('playlistFactory', function (playStates)
+    factories.factory('singlePlaylistFactory', function($resource)
     {
-        var playlist = function ()
-        {
-            this.id = 0;
-            this.name = '';
-            this.tracks = [];
-            this.isEdit = false;
-            this.isHover = false;
-        }
+        return $resource(factories.ubeatBaseSecureUrl + 'playlists/:id', {id: '@id'}, {'put': {method:'PUT'}});
+    });
 
-        return playlist;
+    factories.factory('singlePlaylistTracksFactory', function($resource)
+    {
+        return $resource(factories.ubeatBaseSecureUrl + 'playlists/:id/tracks', {id: '@id'}, {'put': {method:'PUT'}});
+    });
+
+    factories.factory('singlePlaylistSingleTrackFactory', function($resource)
+    {
+        return $resource(factories.ubeatBaseSecureUrl + 'playlists/:playlistId/tracks/:trackId');
+    });
+
+    factories.factory('tokenInfoFactory', function ($resource)
+    {
+        return $resource(factories.ubeatBaseSecureUrl  + 'tokenInfo');
     });
 })
 ();
