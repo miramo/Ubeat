@@ -4,7 +4,7 @@
 
 (function ()
 {
-    var controllers = angular.module('pagesControllers', ['factories', 'directives', 'services', 'ngAudio', 'truncate']);
+    var controllers = angular.module('pagesControllers', ['factories', 'directives', 'services', 'truncate']);
 
     controllers.controller('HomeController', function ($scope, sharedPagesStatus, sharedProperties,
                                                        artistFactory, albumFactory, spotifyArtistFactory, spotifySearchFactory)

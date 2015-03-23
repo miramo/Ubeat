@@ -6,7 +6,7 @@
 {
     var services = angular.module('services', ['factories']);
 
-    services.service('sharedProperties', function (ngAudio, localStorageService, trackFactory, playlistFactory)
+    services.service('sharedProperties', function (localStorageService, trackFactory, playlistFactory)
     {
         var title = 'Ubeat';
         var homeArtists = [];

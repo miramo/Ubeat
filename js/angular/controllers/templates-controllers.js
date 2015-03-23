@@ -4,7 +4,7 @@
 
 (function ()
 {
-    var controllers = angular.module('templatesControllers', ['directives', 'services', 'ngAudio', 'truncate']);
+    var controllers = angular.module('templatesControllers', ['directives', 'mediaPlayer', 'services', 'truncate']);
 
     controllers.controller('NavbarController', function ($scope, $route, $location, sharedPagesStatus, sharedProperties, loginFactory, logoutFactory, signupFactory, localStorageService)
     {
@@ -77,31 +77,46 @@
         });
     });
 
-    controllers.controller('PlaybarController', function ($scope, ngAudio, sharedPagesStatus, sharedProperties)
+    controllers.controller('PlaybarController', function ($scope, sharedPagesStatus, sharedProperties)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.sharedProperties = sharedProperties;
-        $scope.audio = ngAudio.load('');
-        $scope.audio.progress = 0;
-        $scope.audio.currentTime = 0;
+
+        $scope.next = function()
+        {
+            $scope.myAudio.stop();
+            //$scope.myAudio.load([{"src": "http://upload.wikimedia.org/wikipedia/en/7/79/Korn_-_Predictable_%28demo%29.ogg",  "type": "audio/ogg"}]);
+            $scope.myAudio.playPause();
+        }
+
+        $scope.prev = function()
+        {
+            $scope.myAudio.stop();
+            //$scope.myAudio.load([{"src": "http://upload.wikimedia.org/wikipedia/en/7/79/Korn_-_Predictable_%28demo%29.ogg",  "type": "audio/ogg"}]);
+            $scope.myAudio.playPause();
+        }
+
+        $scope.play = function()
+        {
+            $scope.myAudio.playPause();
+        }
 
         $scope.$watch('sharedProperties.getCurrentTrack()', function (newVal, oldVal)
         {
             if (oldVal)
                 oldVal.playState = sharedProperties.getPlayStates().idle;
-            if ($scope.audio && newVal)
+            if ($scope.myAudio && newVal)
             {
-                $scope.audio.pause();
-                $scope.audio = ngAudio.load(newVal.previewUrl);
-                $scope.audio.play();
+                $scope.myAudio.stop();
+                $scope.myAudio.load([{"src": newVal.previewUrl,  "type": "audio/mp4"}]);
+                $scope.myAudio.playPause();
                 newVal.playState = sharedProperties.getPlayStates().play;
             }
         });
 
-        $scope.$watch('audio.paused', function (newVal, oldVal)
+        $scope.$watch('!myAudio.playing', function (newVal, oldVal)
         {
             var track = sharedProperties.getCurrentTrack();
-
             if (track)
             {
                 track.playState = (newVal == true ? sharedProperties.getPlayStates().pause : sharedProperties.getPlayStates().play);
@@ -113,36 +128,9 @@
             sharedProperties.updateTrackStates();
         });
 
-        $scope.canPlay = function ()
-        {
-            if ($scope.audio)
-            {
-                return $scope.audio.canPlay;
-            }
-            return false;
-        }
-
         $scope.switchMute = function ()
         {
-            if ($scope.audio)
-            {
-                $scope.audio.muting = $scope.audio.muting;
-                if ($scope.audio.muting)
-                {
-
-                }
-            }
-        }
-
-        $scope.getVolume = function ()
-        {
-            if ($scope.audio)
-            {
-                if ($scope.audio.muting == false)
-                    return 0;
-                return $scope.audio.volume * 100;
-            }
-            return 0;
+            $scope.myAudio.toggleMute();
         }
 
 
