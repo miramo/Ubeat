@@ -6,7 +6,7 @@
 {
     var services = angular.module('services', ['factories']);
 
-    services.service('sharedProperties', function (ngAudio, localStorageService, trackFactory, playlistFactory,
+    services.service('sharedProperties', function (ngAudio, localStorageService,
                                                    totalPlaylistsFactory, singlePlaylistFactory, singlePlaylistTracksFactory,
                                                    singlePlaylistSingleTrackFactory, tokenInfoFactory)
     {
@@ -293,28 +293,14 @@
             return null;
         }
 
-        this.addTrackToPlaylist = function (track, playlistId)
+        this.addTrackToPlaylist = function (trackToAdd, playlistId)
         {
-            for (var i = 0; i < playlists.length; ++i)
+            singlePlaylistTracksFactory.put({id: playlistId, track: trackToAdd}).$promise.then(function(data)
             {
-                if (i == playlistId)
-                {
-                    var playlist = playlists[i];
-                    var tracksLength = playlist.tracks.length;
-                    //for (var j = 0; j < tracksLength; ++j)
-                    //{
-                    //    if (playlist.tracks[j].idInPlaylist == track.id)
-                    //    {
-                    //        return false;
-                    //    }
-                    //}
-                    track.idInPlaylist = tracksLength;
-                    playlist.tracks[tracksLength] = track;
-                    localStorageService.set(playlistsStorageName, playlists);
-                    return true;
-                }
-            }
-            return false;
+
+            }, function(err) {});
+
+            return true;
         }
 
         this.addTrackArrayToPlaylist = function (tracks, playlistId)
@@ -433,21 +419,6 @@
             {
 
             });
-            //if (newName)
-            //{
-            //    for (var i = 0; i < playlists.length; ++i)
-            //    {
-            //        if (i == id)
-            //        {
-            //            var playlist = playlists[id];
-            //            playlist.name = newName;
-            //            console.log("Rename: " + playlist.name);
-            //            localStorageService.set(playlistsStorageName, playlists);
-            //            return true;
-            //        }
-            //    }
-            //}
-            //return false;
         }
 
         this.getCurrentTrack = function ()

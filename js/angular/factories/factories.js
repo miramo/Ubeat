@@ -14,8 +14,7 @@
 
     factories.getUbeatApiURL = function(sharedProperties)
     {
-       // return sharedProperties.isConnected() ? factories.ubeatBaseSecureUrl : factories.ubeatBaseUnsecureUrl;
-        return factories.ubeatBaseUnsecureUrl;
+        return sharedProperties.isConnected() ? factories.ubeatBaseSecureUrl : factories.ubeatBaseUnsecureUrl;
     }
 
     factories.factory('playStates', function ()
@@ -94,7 +93,7 @@
 
     factories.factory('singlePlaylistTracksFactory', function($resource)
     {
-        return $resource(factories.ubeatBaseSecureUrl + 'playlists/:id/tracks');
+        return $resource(factories.ubeatBaseSecureUrl + 'playlists/:id/tracks', {id: '@id'}, {'put': {method:'PUT'}});
     });
 
     factories.factory('singlePlaylistSingleTrackFactory', function($resource)
@@ -105,64 +104,6 @@
     factories.factory('tokenInfoFactory', function ($resource)
     {
         return $resource(factories.ubeatBaseSecureUrl  + 'tokenInfo');
-    });
-
-    factories.factory('trackFactory', function (playStates)
-    {
-        var newTrack = function ()
-        {
-            this.idInPlaylist = 0;
-            this.trackId = 0;
-            this.albumId = 0;
-            this.artistId = 0;
-            this.name = '';
-            this.artistName = '';
-            this.playState = playStates.idle;
-            this.albumName = '';
-            this.previewUrl = '';
-            this.trackTimeMillis = 0;
-            this.artworkUrl100 = '';
-            this.number = 0;
-            this.playlist = {};
-
-            this.fillFromData = function (data)
-            {
-                this.trackId = data.trackId;
-                this.albumId = data.collectionId;
-                this.artistId = data.artistId;
-                this.name = data.trackName;
-                this.artistName = data.artistName;
-                this.playState = playStates.idle;
-                this.albumName = data.collectionName;
-                this.previewUrl = data.previewUrl;
-                this.trackTimeMillis = data.trackTimeMillis;
-                this.artworkUrl100 = data.artworkUrl100;
-                this.number = data.trackNumber;
-                this.time = millisToTime(this.trackTimeMillis);
-            }
-        }
-
-        return newTrack;
-    });
-
-    factories.factory('playlistFactory', function (playStates)
-    {
-        var playlist = function ()
-        {
-            this.data = {};
-            this.isEdit = false;
-            this.isHover = false;
-
-            this.fillFromData = function(data)
-            {
-                if (data)
-                {
-                    this.data = data;
-                }
-            }
-        }
-
-        return playlist;
     });
 })
 ();

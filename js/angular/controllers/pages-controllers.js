@@ -252,7 +252,7 @@
     });
 
     controllers.controller('AlbumController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties,
-                                                        albumFactory, artistFactory, albumTracksFactory, trackFactory)
+                                                        albumFactory, artistFactory, albumTracksFactory)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.isResolved = false;
@@ -334,6 +334,7 @@
             $scope.trackToAddToNewPlaylist = track;
         }
 
+
         $scope.getActualPlaylists = function ()
         {
             return $scope.playlists;
@@ -397,7 +398,7 @@
                     sharedPagesStatus.setTitle($scope.album.collectionName);
                     $scope.album.artworkUrl300 = itunesLinkImageSizeTo($scope.album.artworkUrl100, 300);
                     $scope.album.releaseDateObj = new Date($scope.album.releaseDate);
-                    $scope.filtersValues = ['number', 'name', 'artistName', '-time.Minutes', 'time.Minutes'];
+                    $scope.filtersValues = ['trackNumber', 'trackName', 'artistName', '-time.Minutes', 'time.Minutes'];
                     $scope.filtersNames = ['Numéro de piste', 'Chanson', 'Artiste', 'Durée'];
                     $scope.currentFilterName = $scope.filtersNames[0];
                     $scope.filter = $scope.filtersValues[0];
@@ -415,9 +416,7 @@
 
                         for (var i = 0; i < dataTracks.length; ++i)
                         {
-                            var trackFacto = new trackFactory();
-                            trackFacto.fillFromData(dataTracks[i]);
-                            $scope.tracks[i] = trackFacto;
+                            $scope.tracks[i] = dataTracks[i];
 
                             var currentTrack = sharedProperties.getCurrentTrack();
 
@@ -565,7 +564,10 @@
             {
                 playlist.tracks.forEach(function (entry)
                 {
-                    totalTime += entry.trackTimeMillis;
+                    if (entry && entry.trackTimeMillis)
+                    {
+                        totalTime += entry.trackTimeMillis;
+                    }
                 });
             }
 
@@ -865,7 +867,7 @@
     });
 
     controllers.controller('SearchController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties,
-                                                         searchFactory, trackFactory, spotifySearchFactory, spotifyArtistFactory,
+                                                         searchFactory, spotifySearchFactory, spotifyArtistFactory,
                                                          albumFactory)
     {
         sharedPagesStatus.setTitle("Recherche: " + $routeParams.element);
@@ -913,8 +915,7 @@
                         switch (data.results[i].wrapperType)
                         {
                             case "track":
-                                var newElem = new trackFactory();
-                                newElem.fillFromData(data.results[i]);
+                                var newElem = data.results[i];
                                 $scope.tracks[$scope.tracks.length] = newElem;
                                 ++$scope.elementsLoaded;
                                 break;

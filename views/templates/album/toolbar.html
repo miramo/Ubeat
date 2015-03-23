@@ -26,7 +26,7 @@
                                    ng-click="addTrackArrayToAdd(trackArrayToAddToNewPlaylist)"><i class="md md-add-box md-lg"></i>Nouvelle
                                     playlist</a>
                             </li>
-                            <li ng-repeat="playlist in getActualPlaylists | orderBy:'-id' track by $index">
+                            <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index">
                                 <a href=""
                                    ng-click="sharedProperties.addTrackArrayToPlaylist(trackArrayToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
                             </li>
