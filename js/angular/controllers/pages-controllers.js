@@ -344,26 +344,42 @@
             return $scope.playlists;
         }
 
+        var createPlaylistByTrackCallback = function(data)
+        {
+            if (data)
+            {
+                sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, data.id);
+                sharedProperties.getPlaylists(getPlaylistsCallback);
+            }
+        }
+
         $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
         {
             if (playlistToAdd)
             {
-                var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
+                sharedProperties.createPlaylist(playlistToAdd, createPlaylistByTrackCallback);
 
-                sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, newPlaylist.id);
                 $scope.closeModal(modalId);
                 return true;
             }
             return false;
         }
 
+        var createPlaylistByTrackArrayCallback = function(data)
+        {
+            if (data)
+            {
+                sharedProperties.addTrackArrayToPlaylist($scope.trackArrayToAddToNewPlaylist, data.id);
+                sharedProperties.getPlaylists(getPlaylistsCallback);
+            }
+        }
+
         $scope.createPlaylistByTrackArray = function (playlistToAdd, modalId)
         {
             if (playlistToAdd)
             {
-                var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
+                sharedProperties.createPlaylist(playlistToAdd, createPlaylistByTrackArrayCallback);
 
-                sharedProperties.addTrackArrayToPlaylist($scope.trackArrayToAddToNewPlaylist, newPlaylist.id);
                 $scope.closeModal(modalId);
                 return true;
             }

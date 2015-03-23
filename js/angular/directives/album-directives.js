@@ -28,4 +28,12 @@
             templateUrl: './views/templates/album/tracks.html'
         };
     });
+
+    ubeatApp.directive('albumModals', function ()
+    {
+        return {
+            restrict   : 'E',
+            templateUrl: './views/templates/album/modals.html'
+        };
+    });
 })();
