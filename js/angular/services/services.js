@@ -313,14 +313,12 @@
 
         this.addTrackArrayToPlaylist = function (tracks, playlistId)
         {
-            console.log(tracks);
             singlePlaylistFactory.get({id: playlistId}).$promise.then(function(data)
             {
                 if (data)
                 {
-                    data.tracks = tracks;
+                    data.tracks = data.tracks.concat(tracks);
 
-                    console.log(JSON.stringify(data));
                     singlePlaylistFactory.put({id: playlistId}, data).$promise.then(function (data)
                     {
                     }, function (err)

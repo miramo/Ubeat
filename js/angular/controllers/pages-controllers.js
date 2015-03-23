@@ -334,6 +334,10 @@
             $scope.trackToAddToNewPlaylist = track;
         }
 
+        $scope.addTrackArrayToAdd = function(tracks)
+        {
+            $scope.trackArrayToAddToNewPlaylist = tracks;
+        }
 
         $scope.getActualPlaylists = function ()
         {
