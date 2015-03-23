@@ -93,7 +93,7 @@
 
     factories.factory('singlePlaylistTracksFactory', function($resource)
     {
-        return $resource(factories.ubeatBaseSecureUrl + 'playlists/:id/tracks', {id: '@id'}, {'put': {method:'PUT'}});
+        return $resource(factories.ubeatBaseSecureUrl + 'playlists/:id/tracks', {id: '@id'});
     });
 
     factories.factory('singlePlaylistSingleTrackFactory', function($resource)

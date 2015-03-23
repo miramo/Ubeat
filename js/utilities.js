@@ -41,10 +41,17 @@ function millisToTime(s)
 
 function itunesLinkImageSizeTo(url, size)
 {
-    var str1 = url.substring(0, url.lastIndexOf('x') - 3);
-    var str2 = url.substring(url.lastIndexOf('x') + 4, url.length);
+    if (url && size)
+    {
+        var str1 = url.substring(0, url.lastIndexOf('x') - 3);
+        var str2 = url.substring(url.lastIndexOf('x') + 4, url.length);
 
-    return str1 + size + "x" + size + str2;
+        return str1 + size + "x" + size + str2;
+    }
+    else
+    {
+        return null;
+    }
 }
 
 function getSentencesNb(str, nb)

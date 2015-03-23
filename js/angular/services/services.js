@@ -219,6 +219,13 @@
                                             var dataPlaylist = data[i];
                                             dataPlaylist.arrayId = i;
                                             playlists[playlists.length] = dataPlaylist;
+
+                                            for (var j = 0; j < dataPlaylist.tracks.length; ++j)
+                                            {
+                                                dataPlaylist.tracks[j].playState = playStates.idle;
+                                                dataPlaylist.tracks[j].displayPlayButton = false;
+                                                dataPlaylist.tracks[j].time = millisToTime(dataPlaylist.tracks[j].trackTimeMillis);
+                                            }
                                         }
                                     }
                                     if (callback)
@@ -296,7 +303,7 @@
 
         this.addTrackToPlaylist = function (trackToAdd, playlistId)
         {
-            singlePlaylistTracksFactory.put({id: playlistId, track: trackToAdd}).$promise.then(function(data)
+            singlePlaylistTracksFactory.save({id: playlistId}, trackToAdd).$promise.then(function(data)
             {
 
             }, function(err) {});
@@ -306,41 +313,44 @@
 
         this.addTrackArrayToPlaylist = function (tracks, playlistId)
         {
-            if (tracks)
+            console.log(tracks);
+            singlePlaylistFactory.get({id: playlistId}).$promise.then(function(data)
             {
-                for (var i = 0; i < playlists.length; ++i)
+                if (data)
                 {
-                    if (i == playlistId)
+                    data.tracks = tracks;
+
+                    console.log(JSON.stringify(data));
+                    singlePlaylistFactory.put({id: playlistId}, data).$promise.then(function (data)
                     {
-                        var playlist = playlists[i];
-                        playlist.tracks = playlist.tracks.concat(tracks);
-                        localStorageService.set(playlistsStorageName, playlists);
-                        return true;
-                    }
+                    }, function (err)
+                    {
+                    });
                 }
-            }
-            return false;
+            }, function (err)
+            {
+
+            });
+            return true;
         }
 
-        this.removeTrackFromPlaylist = function (trackIdInPlaylist, playlistId)
+        this.removeTrackFromPlaylist = function (trackId, playlistId, callback)
         {
-            for (var i = 0; i < playlists.length; ++i)
+            singlePlaylistSingleTrackFactory.remove({playlistId: playlistId, trackId: trackId}).$promise.then(function(data)
             {
-                if (i == playlistId)
+                if (callback)
                 {
-                    var playlist = playlists[playlistId];
-                    for (var j = 0; j < playlist.tracks.length; ++j)
-                    {
-                        if (j == trackIdInPlaylist)
-                        {
-                            playlist.tracks.splice(j, 1);
-                            localStorageService.set(playlistsStorageName, playlists);
-                            return true;
-                        }
-                    }
+                    callback(data);
                 }
-            }
-            return false;
+            }, function(err)
+            {
+                if (callback)
+                {
+                    callback(null);
+                }
+            });
+
+            return true;
         }
 
         this.createPlaylist = function (name, callback)

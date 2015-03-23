@@ -509,7 +509,6 @@
 
         var getPlaylistsCallback = function (playlists, isError)
         {
-            ;
             if (playlists && playlists.length > 0)
             {
                 $scope.active = playlists[0];
@@ -596,27 +595,6 @@
             return formatedStr;
         }
 
-        //$scope.$watch('sharedProperties.getPlaylists()', function (newVal, oldVal)
-        //{
-        //    $scope.playlists = sharedProperties.getPlaylists();
-        //
-        //    if (newVal)
-        //    {
-        //        for (var i = 0; i < newVal.length; ++i)
-        //        {
-        //            newVal[i].id = i;
-        //        }
-        //    }
-        //    if (!$scope.playlists || $scope.playlists.length <= 0)
-        //    {
-        //        $scope.active = $scope.defaultPlaylist;
-        //    }
-        //    else if ($scope.playlists && $scope.playlists.length > 0)
-        //    {
-        //        $scope.active = $scope.playlists[$scope.playlists.length - 1];
-        //    }
-        //});
-
         $scope.getPlaylistImg = function (playlist, size)
         {
             if (playlist && playlist.tracks && playlist.tracks.length > 0)
@@ -643,37 +621,8 @@
 
         $scope.removePlaylist = function (playlistId)
         {
-            console.log("PlaylistId: " + playlistId);
             isRemovingPlaylist = true;
             sharedProperties.removePlaylist(playlistId, removePlaylistCallback);
-            //var playlist = sharedProperties.getSinglePlaylist(playlistId);
-            //
-            //if (playlist)
-            //{
-            //    singlePlaylistFactory.delete({id: playlist.apiId}, function (data)
-            //    {
-            //        if (data)
-            //        {
-            //            console.log("RemovePlaylist: " + JSON.stringify(data))
-            //
-            //            sharedProperties.removePlaylist(playlistId);
-            //            $scope.playlists = sharedProperties.getPlaylists();
-            //
-            //            if ($scope.playlists.length > 0)
-            //            {
-            //                $scope.active = $scope.playlists[0];
-            //            }
-            //            else
-            //            {
-            //                $scope.active = $scope.defaultPlaylist;
-            //            }
-            //            //$scope.active = sharedProperties.createPlaylist(playlistName);
-            //            //$scope.playlistToAdd.name = $scope.playlistToAdd.defaultName;
-            //        }
-            //    }, function (err)
-            //    {
-            //    });
-            //}
         }
 
         $scope.switchNewPlaylistClicked = function ()
@@ -723,6 +672,16 @@
         $scope.hidePlayButton = function (track)
         {
             track.displayPlayButton = false;
+        }
+
+        var removeTrackFromPlaylistCallback = function(data)
+        {
+            sharedProperties.getPlaylists(getPlaylistsCallback);
+        }
+
+        $scope.removeTrackFromPlaylist = function(trackId, playlistId)
+        {
+            sharedProperties.removeTrackFromPlaylist(trackId, playlistId, removePlaylistCallback);
         }
 
         var confirmRenameCallback = function ()
@@ -777,8 +736,8 @@
                 {
                     if (actualPlaylists[i].id == id)
                     {
-                        console.log("Active: " + id);
                         $scope.active = actualPlaylists[i];
+                        console.log(JSON.stringify($scope.active));
                         return;
                     }
                 }
@@ -806,7 +765,7 @@
         $scope.sharedProperties = sharedProperties;
         sharedPagesStatus.setIsPageLoaded(true);
         $scope.trackToAddToNewPlaylist = null;
-        $scope.trackArrayToAddToNewPlaylist;
+        $scope.trackArrayToAddToNewPlaylist = [];
 
         $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
         {
@@ -848,7 +807,6 @@
         {
             $scope.trackToAddToNewPlaylist = track;
         }
-
 
         $scope.addTrackArrayToAdd = function (tracks)
         {
