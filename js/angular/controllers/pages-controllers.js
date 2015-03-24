@@ -111,6 +111,7 @@
 
             artistsSliderChange(0);
             sharedPagesStatus.setIsPageLoaded(true);
+            $(document).foundation();
         }
 
         $scope.$watch('artistsLoadedCount', function (newVal, oldVal)
@@ -487,7 +488,7 @@
         });
     });
 
-    controllers.controller('PlaylistsController', function ($scope, $location, $routeParams, sharedPagesStatus, sharedProperties)
+    controllers.controller('PlaylistsController', function ($scope, $location, $route, $routeParams, sharedPagesStatus, sharedProperties)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.missingImgPlaylist = './img/missing-album.png';
@@ -510,6 +511,7 @@
         var redirectToHome = function ()
         {
             $location.path("/");
+            $route.reload();
         }
 
         if (sharedProperties.isConnected() == false)
