@@ -101,6 +101,14 @@
             localStorageService.set(playQueueStorageName, playQueue);
         }
 
+        this.addTrackArrayToPlayQueue = function (trackArray)
+        {
+            playQueue = playQueue.concat(trackArray);
+            playQueue.currentTrackId = playQueue.queue.length - 1;
+
+            localStorageService.set(playQueueStorageName, playQueue);
+        }
+
         this.removeTrackFromPlayQueue = function (id)
         {
             playQueue.queue.splice(id, 1);
@@ -303,17 +311,19 @@
 
         this.addTrackToPlaylist = function (trackToAdd, playlistId)
         {
-            singlePlaylistTracksFactory.save({id: playlistId}, trackToAdd).$promise.then(function(data)
+            singlePlaylistTracksFactory.save({id: playlistId}, trackToAdd).$promise.then(function (data)
             {
 
-            }, function(err) {});
+            }, function (err)
+            {
+            });
 
             return true;
         }
 
         this.addTrackArrayToPlaylist = function (tracks, playlistId)
         {
-            singlePlaylistFactory.get({id: playlistId}).$promise.then(function(data)
+            singlePlaylistFactory.get({id: playlistId}).$promise.then(function (data)
             {
                 if (data)
                 {
@@ -334,13 +344,16 @@
 
         this.removeTrackFromPlaylist = function (trackId, playlistId, callback)
         {
-            singlePlaylistSingleTrackFactory.remove({playlistId: playlistId, trackId: trackId}).$promise.then(function(data)
+            singlePlaylistSingleTrackFactory.remove({
+                playlistId: playlistId,
+                trackId   : trackId
+            }).$promise.then(function (data)
             {
                 if (callback)
                 {
                     callback(data);
                 }
-            }, function(err)
+            }, function (err)
             {
                 if (callback)
                 {
@@ -409,7 +422,7 @@
 
         this.renamePlaylist = function (playlistId, newName, callback)
         {
-            singlePlaylistFactory.get({id: playlistId}).$promise.then(function(data)
+            singlePlaylistFactory.get({id: playlistId}).$promise.then(function (data)
             {
                 if (data)
                 {

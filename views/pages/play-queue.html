@@ -10,7 +10,7 @@
                 <div class="panel tool-bar-panel radius">
                     <div class="row collapse">
                         <div class="small-6 large-5 columns left">
-                            <div class="small-12 medium-5 columns left">
+                            <div class="small-12 medium-5 columns left" ng-show="sharedProperties.isConnected()">
 
                                 <a data-dropdown="saveQueueDrop" aria-controls="dropdown" ng-click="addTrackArrayToAdd(sharedProperties.getPlayQueue().queue)"
                                    aria-expanded="false" class="button red expand radius tiny" ng-class="{disabled: sharedProperties.getPlayQueue().queue.length <= 0}"><i
@@ -57,7 +57,7 @@
                     <thead>
                     <tr>
                         <th width="30">#</th>
-                        <th width="30"></th>
+                        <th width="30" ng-show="sharedProperties.isConnected()"></th>
                         <th width="600">Titre de la musique</th>
                         <th width="300">Album</th>
                         <th width="300">Artiste</th>
@@ -84,7 +84,7 @@
                                 <i class="fa fa-pause"></i>
                             </div>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center" ng-show="sharedProperties.isConnected()">
                             <a data-dropdown="addTrackDrop"
                                ng-click="addTrackToAdd(track)"
                                aria-controls="addTrackDrop"
