@@ -2,20 +2,26 @@
 {
   img
   {
-    display: block;
-    margin: 0 auto;
+    display : block;
+    margin  : 0 auto;
   }
-  width: 100%;
-  position: fixed;
-  top: 50%;
-  left: 50%;
+  width    : 100%;
+  position : fixed;
+  top      : 50%;
+  left     : 50%;
   @include translate(-50%, -50%);
-  z-index: -20;
+  z-index  : -20;
+}
+
+.warning
+{
+  width  : rem_calc(200px);
+  height : rem_calc(200px);
 }
 
 .error-msg
 {
-  width: 100%;
-  position: fixed;
-  top: 45%;
+  width    : 100%;
+  position : fixed;
+  top      : 45%;
 }

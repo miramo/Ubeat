@@ -19439,6 +19439,12 @@ input[type="search"].dream-search:focus {
 }
 
 /* line 16, ../scss/_errors.scss */
+.warning {
+  width: 12.5rem;
+  height: 12.5rem;
+}
+
+/* line 22, ../scss/_errors.scss */
 .error-msg {
   width: 100%;
   position: fixed;

@@ -1,6 +1,6 @@
 .type-label
 {
-  @include label($text-size : em-calc(12), $radius : 2px);
+  @include label($text-size : rem-calc(12), $radius : 2px);
 }
 
 .artist-header
