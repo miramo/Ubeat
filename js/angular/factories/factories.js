@@ -105,5 +105,15 @@
     {
         return $resource(factories.ubeatBaseSecureUrl  + 'tokenInfo');
     });
+
+    factories.factory('usersFactory', function ($resource)
+    {
+        return $resource(factories.ubeatBaseSecureUrl  + 'users');
+    })
+
+    factories.factory('singleUserFactory', function ($resource)
+    {
+        return $resource(factories.ubeatBaseSecureUrl  + 'users/:id');
+    });
 })
 ();

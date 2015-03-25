@@ -117,14 +117,14 @@
                             <a href="" data-reveal-id="addTrackModal" ng-click="addTrackToAdd(trackToAddToNewPlaylist)">Nouvelle
                                 playlist</a>
                         </li>
-                        <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index">
+                        <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index">
                             <a href=""
                                ng-click="sharedProperties.addTrackToPlaylist(trackToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
                         </li>
                     </ul>
                 </td>
-                <td>{{track.name}}</td>
-                <td><a href="#/album/{{track.albumId}}">{{track.albumName}}</a></td>
+                <td>{{track.trackName}}</td>
+                <td><a href="#/album/{{track.collectionId}}">{{track.collectionName}}</a></td>
                 <td><a href="#/artist/{{track.artistId}}">{{track.artistName}}</a></td>
                 <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
             </tr>
@@ -147,5 +147,5 @@
     <a class="close-reveal-modal">&#215;</a>
 </div>
 <div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsCriticalError()">
-    <error-msg error-nb={{errorTitle}} msg={{errorMsg}}></error-msg>
+    <error-msg error-nb="Error {{sharedPagesStatus.getErrorStatus()}}" msg="{{sharedPagesStatus.getErrorMessage()}}"></error-msg>
 </div>

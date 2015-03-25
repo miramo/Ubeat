@@ -348,18 +348,18 @@
                 playlistId: playlistId,
                 trackId   : trackId
             }).$promise.then(function (data)
-            {
-                if (callback)
                 {
-                    callback(data);
-                }
-            }, function (err)
-            {
-                if (callback)
+                    if (callback)
+                    {
+                        callback(data);
+                    }
+                }, function (err)
                 {
-                    callback(null);
-                }
-            });
+                    if (callback)
+                    {
+                        callback(null);
+                    }
+                });
 
             return true;
         }
@@ -513,6 +513,7 @@
         var isCriticalError = false;
         var isPageLoaded = false;
         var errorMessage = '';
+        var errorStatus = 0;
         var pageErrorUrl = '/notfound/';
         var pageEnum = {
             home     : 'home',
@@ -566,6 +567,16 @@
             errorMessage = msg;
         }
 
+        this.getErrorStatus = function ()
+        {
+            return errorStatus;
+        }
+
+        this.setErrorStatus = function (status)
+        {
+            errorStatus = status;
+        }
+
         this.getIsCriticalError = function ()
         {
             return isCriticalError;
@@ -574,6 +585,11 @@
         this.setIsCriticalError = function (val)
         {
             isCriticalError = val;
+
+            if (val == true)
+            {
+                this.setIsPageLoaded(true);
+            }
         }
 
         this.getIsPageLoaded = function ()
@@ -596,6 +612,21 @@
         {
             this.setIsCriticalError(true);
             this.setIsPageLoaded(true);
+        }
+
+        this.setCriticalError = function (status, msg)
+        {
+            if (status == 0)
+            {
+                errorStatus = 503;
+                errorMessage = "Service unavailable";
+            }
+            else
+            {
+                errorStatus = status;
+                errorMessage = msg;
+            }
+            this.setIsCriticalError(true);
         }
     });
 })();

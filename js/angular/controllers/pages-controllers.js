@@ -45,15 +45,18 @@
                                     ++$scope.artistsLoadedCount;
                                 }, function (err)
                                 {
+                                    sharedPagesStatus.setCriticalError(err.status, err.statusText);
                                 });
 
                             }, function (err)
                             {
+                                sharedPagesStatus.setCriticalError(err.status, err.statusText);
                             });
                     }
                 },
                 function (err)
                 {
+                    sharedPagesStatus.setCriticalError(err.status, err.statusText);
                 });
         });
 
@@ -67,7 +70,7 @@
                 },
                 function (err)
                 {
-                    console.log("Album Err: " + err);
+                    sharedPagesStatus.setCriticalError(err.status, err.statusText);
                 });
         });
 
@@ -190,6 +193,7 @@
 
                                     }, function (err)
                                     {
+                                        sharedPagesStatus.setCriticalError(err.status, err.statusText);
                                     });
                                 spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
                                 {
@@ -210,10 +214,12 @@
 
                                 }, function (err)
                                 {
+                                    sharedPagesStatus.setCriticalError(err.status, err.statusText);
                                 });
 
                             }, function (err)
                             {
+                                sharedPagesStatus.setCriticalError(err.status, err.statusText);
                             });
                         artistAlbumsFactory.get({id: $routeParams.id}).$promise.then(function (data)
                             {
@@ -229,6 +235,7 @@
                             },
                             function (err)
                             {
+                                sharedPagesStatus.setCriticalError(err.status, err.statusText);
                             });
                     }
                     else
@@ -238,6 +245,7 @@
                 },
                 function (err)
                 {
+                    sharedPagesStatus.setCriticalError(err.status, err.statusText);
                 });
         }
         else
@@ -895,6 +903,46 @@
         $scope.trackToAddToNewPlaylist = null;
         $scope.trackArrayToAddToNewPlaylist = null;
         $scope.elementsLoaded = 0;
+        $scope.playlists = [];
+
+        var getPlaylistsCallback = function (playlists)
+        {
+            if (playlists)
+            {
+                $scope.playlists = playlists;
+            }
+        }
+
+        if (sharedProperties.isConnected())
+        {
+            sharedProperties.getPlaylists(getPlaylistsCallback);
+        }
+
+        var createPlaylistByTrackCallback = function(data)
+        {
+            if (data)
+            {
+                sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, data.id);
+                sharedProperties.getPlaylists(getPlaylistsCallback);
+            }
+        }
+
+        $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
+        {
+            if (playlistToAdd)
+            {
+                sharedProperties.createPlaylist(playlistToAdd, createPlaylistByTrackCallback);
+
+                $scope.closeModal(modalId);
+                return true;
+            }
+            return false;
+        }
+
+        $scope.getActualPlaylists = function ()
+        {
+            return $scope.playlists;
+        }
 
         $scope.$watch('elementsLoaded', function (oldVal, newVal)
         {
@@ -908,7 +956,7 @@
                         },
                         function (err)
                         {
-                            console.log("Album Err: " + err);
+                            sharedPagesStatus.setCriticalError(err.status, err.statusText);
                         });
                 });
                 sharedPagesStatus.setIsPageLoaded(true);
@@ -966,7 +1014,6 @@
                 }
             }, function (err)
             {
-                console.log("Search Error: " + err);
                 sharedPagesStatus.setIsPageLoaded(true);
                 sharedPagesStatus.pageCriticFailure();
             });

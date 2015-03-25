@@ -1,4 +1,4 @@
-<div ng-show="sharedPagesStatus.getIsPageLoaded()">
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && !sharedPagesStatus.getIsCriticalError()">
     <div class="row">
         <div class="small-12 columns">
             <div class="panel new-artists radius">
@@ -15,4 +15,7 @@
             </div>
         </div>
     </div>
+</div>
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsCriticalError()">
+    <error-msg error-nb="Error {{sharedPagesStatus.getErrorStatus()}}" msg="{{sharedPagesStatus.getErrorMessage()}}"></error-msg>
 </div>
