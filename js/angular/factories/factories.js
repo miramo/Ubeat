@@ -20,9 +20,11 @@
         return sharedProperties.isConnected() ? factories.ubeatBaseSecureUrl : factories.ubeatBaseUnsecureUrl;
     }
 
+    factories.resolveUbeatApiURL = function(url, isOnlySecure)
     {
         if (factories.isLocal)
         {
+            return (factories.isSecure || isOnlySecure) ? factories.localSecureUbeatUrl : factories.localUnsecureUbeatUrl;
         }
         return url;
     }
@@ -43,14 +45,17 @@
 
     factories.factory('loginFactory', function ($resource)
     {
+        return $resource(factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true)  + 'login');
     });
 
     factories.factory('logoutFactory', function ($resource)
     {
+        return $resource(factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true)  + 'logout');
     });
 
     factories.factory('signupFactory', function ($resource)
     {
+        return $resource(factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true)  + 'signup');
     });
 
     factories.factory('albumFactory', function ($resource, sharedProperties)
@@ -90,30 +95,37 @@
 
     factories.factory('totalPlaylistsFactory', function($resource)
     {
+        return $resource(factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'playlists/');
     });
 
     factories.factory('singlePlaylistFactory', function($resource)
     {
+        return $resource(factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'playlists/:id', {id: '@id'}, {'put': {method:'PUT'}});
     });
 
     factories.factory('singlePlaylistTracksFactory', function($resource)
     {
+        return $resource(factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'playlists/:id/tracks', {id: '@id'});
     });
 
     factories.factory('singlePlaylistSingleTrackFactory', function($resource)
     {
+        return $resource(factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'playlists/:playlistId/tracks/:trackId');
     });
 
     factories.factory('tokenInfoFactory', function ($resource)
     {
+        return $resource(factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true)  + 'tokenInfo');
     });
 
     factories.factory('usersFactory', function ($resource)
     {
+        return $resource(factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true)  + 'users');
     })
 
     factories.factory('singleUserFactory', function ($resource)
     {
+        return $resource(factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true)  + 'users/:id');
     });
 })
 ();
