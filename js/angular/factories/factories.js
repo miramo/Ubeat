@@ -253,12 +253,24 @@
 
     factories.factory('usersFactory', function ($http, $resource, localStorageService)
     {
-        return $resource(factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'users');
+        return {
+            get: function (token, successCallback, errorCallback)
+            {
+                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'users', token, null);
+                factories.httpReq($http, req, successCallback, errorCallback);
+            }
+        }
     })
 
     factories.factory('singleUserFactory', function ($http, $resource, localStorageService)
     {
-        return $resource(factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'users/:id');
+        return {
+            get: function (token, id, successCallback, errorCallback)
+            {
+                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'users/' + id, token, null);
+                factories.httpReq($http, req, successCallback, errorCallback);
+            }
+        }
     });
 })
 ();

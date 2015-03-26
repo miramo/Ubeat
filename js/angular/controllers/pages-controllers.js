@@ -1095,7 +1095,7 @@
             fullscreen: true
         });
 
-        singleUserFactory.get({id: $routeParams.id}).$promise.then(function (data)
+        singleUserFactory.get(sharedProperties.getTokenCookie(), $routeParams.id, function (data)
             {
                 if (data.email && data.name && data.id && data.following)
                 {
