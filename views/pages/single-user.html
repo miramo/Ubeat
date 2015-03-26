@@ -4,7 +4,9 @@
             <div class="row bloc-artist-img-infos">
                 <div class="album-artist-picture">
                     <div class="show-for-medium-up">
-                        <div class="img-circular responsive-img" id="img-artist" back-img="{{gravatarImgUrl}}"></div>
+                        <a href="http://www.gravatar.com/{{userData.email | gravatar}}" target="_blank">
+                            <div class="img-circular responsive-img" id="img-artist" back-img="{{gravatarImgUrl}}"></div>
+                        </a>
                     </div>
                 </div>
                 <div class="album-artist-infos">
@@ -24,6 +26,7 @@
             <div class="small-12 columns">
                 <div class="panel radius">
                     <h2>Amis</h2>
+                    <h4 class="text-center" ng-hide="userData.following.length">Si t'a pas d'amis prend un curly !</h4>
                     <ul class="following-list no-bullet">
                         <li class="following-item" ng-repeat="follow in userData.following">
                             <a href="#/user/{{follow.id}}">

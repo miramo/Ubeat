@@ -1101,8 +1101,8 @@
                 {
                     sharedPagesStatus.setTitle(data.name);
                     $scope.userData = {email: data.email, name: data.name, id: data.id, following: data.following};
-                    if (imageExist("http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg&d=http://glo3102.github.io/team02/img/mystery-man-red.png"))
-                        $scope.gravatarImgUrl = "http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg&d=http://glo3102.github.io/team02/img/mystery-man-red.png";
+                    if (imageExist("http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg&d=404"))
+                        $scope.gravatarImgUrl = "http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg";
                     else
                         $scope.gravatarImgUrl = "http://glo3102.github.io/team02/img/mystery-man-red.png";
                     setBlur($scope.gravatarImgUrl);
