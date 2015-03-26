@@ -15,7 +15,7 @@
 
         $scope.login = function ()
         {
-            loginFactory.save({email: $scope.connectionInfo.email, password: $scope.connectionInfo.password}).$promise.then(function (data)
+            loginFactory.post(sharedProperties.getTokenCookie(), {email: $scope.connectionInfo.email, password: $scope.connectionInfo.password}, function (data)
                 {
                     if (data.email && data.name && data.token && data.id)
                     {
@@ -37,13 +37,14 @@
 
         $scope.logout = function ()
         {
-            logoutFactory.get().$promise.then(function (data)
+            logoutFactory.get(sharedProperties.getTokenCookie(), function (data)
                 {
                     localStorageService.cookie.remove('token');
                     sharedProperties.setConnected(false);
                     $location.path('/');
                     $(document).foundation('topbar', 'reflow');
                     Foundation.libs.topbar.toggle($('.top-bar'));
+                    $route.reload();
                 },
                 function (err)
                 {
@@ -53,7 +54,7 @@
 
         $scope.signup = function ()
         {
-            signupFactory.save({name: $scope.signupInfo.name, email: $scope.signupInfo.email, password: $scope.signupInfo.password}).$promise.then(function (data)
+            signupFactory.post(sharedProperties.getTokenCookie(), {name: $scope.signupInfo.name, email: $scope.signupInfo.email, password: $scope.signupInfo.password}, function (data)
                 {
                     if (data.email && data.name && data.id)
                     {

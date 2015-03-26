@@ -146,6 +146,3 @@
     <a ng-click="createPlaylistByTrackArray(playlistToAdd, '#addAlbumToPlaylistModal')" class="button red radius">Confirmer</a>
     <a class="close-reveal-modal">&#215;</a>
 </div>
-<div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsCriticalError()">
-    <error-msg error-nb="Error {{sharedPagesStatus.getErrorStatus()}}" msg="{{sharedPagesStatus.getErrorMessage()}}"></error-msg>
-</div>

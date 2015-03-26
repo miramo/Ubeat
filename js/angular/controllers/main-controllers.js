@@ -19,10 +19,11 @@
 
         $(document).ready(function ()
         {
-            if (localStorageService.cookie.get('token'))
+            var token = localStorageService.cookie.get('token');
+
+            if (token)
             {
-                $http.defaults.headers.common['Authorization']= localStorageService.cookie.get('token');
-                tokenInfoFactory.get().$promise.then(function (data)
+                tokenInfoFactory.get(token, function (data)
                     {
                         if (data.email && data.name && data.token && data.id)
                         {

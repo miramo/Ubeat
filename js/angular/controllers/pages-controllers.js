@@ -25,7 +25,7 @@
 
         angular.forEach($scope.artistIds, function (value, key)
         {
-            artistFactory.get({id: value}).$promise.then(function (data)
+            artistFactory.get(sharedProperties.getTokenCookie(), value, function (data)
                 {
                     $scope.artistsTab[key] = data.results[0];
                     //sharedProperties.setTitle($scope.artists[i].artistName);
@@ -62,7 +62,7 @@
 
         angular.forEach($scope.albumsIds, function (value, key)
         {
-            albumFactory.get({id: value}).$promise.then(function (data)
+            albumFactory.get(sharedProperties.getTokenCookie(), value, function (data)
                 {
                     $scope.albumsTab[key] = data.results[0];
                     $scope.albumsTab[key].artworkUrl300 = itunesLinkImageSizeTo($scope.albumsTab[key].artworkUrl100, 300);
@@ -165,7 +165,7 @@
 
         if (isValidArtist)
         {
-            artistFactory.get({id: $routeParams.id}).$promise.then(function (data)
+            artistFactory.get(sharedProperties.getTokenCookie(), $routeParams.id, function (data)
                 {
                     $scope.artist = data.results[0];
                     if (data && data.results.length > 0)
@@ -201,7 +201,7 @@
                                     $scope.artistPictureLoaded = true;
 
                                     var blur = new Blur({
-                                        el        : document.querySelector('body'),
+                                        el        : document.querySelector('.artist-header'),
                                         path      : '',
                                         radius    : 50,
                                         fullscreen: true
@@ -221,7 +221,7 @@
                             {
                                 sharedPagesStatus.setCriticalError(err.status, err.statusText);
                             });
-                        artistAlbumsFactory.get({id: $routeParams.id}).$promise.then(function (data)
+                        artistAlbumsFactory.get(sharedProperties.getTokenCookie(), $routeParams.id, function (data)
                             {
                                 $scope.albums = data.results;
 
@@ -342,7 +342,7 @@
             $scope.trackToAddToNewPlaylist = track;
         }
 
-        $scope.addTrackArrayToAdd = function(tracks)
+        $scope.addTrackArrayToAdd = function (tracks)
         {
             $scope.trackArrayToAddToNewPlaylist = tracks;
         }
@@ -352,7 +352,7 @@
             return $scope.playlists;
         }
 
-        var createPlaylistByTrackCallback = function(data)
+        var createPlaylistByTrackCallback = function (data)
         {
             if (data)
             {
@@ -373,7 +373,7 @@
             return false;
         }
 
-        var createPlaylistByTrackArrayCallback = function(data)
+        var createPlaylistByTrackArrayCallback = function (data)
         {
             if (data)
             {
@@ -418,7 +418,7 @@
 
         if (isAlbumIdValid)
         {
-            albumFactory.get({id: $routeParams.id}, function (data)
+            albumFactory.get(sharedProperties.getTokenCookie(), $routeParams.id, function (data)
             {
                 if (data && data.results.length > 0)
                 {
@@ -433,12 +433,12 @@
 
                     blur.init({el: document.querySelector('.artist-header'), path: $scope.album.artworkUrl300});
 
-                    artistFactory.get({id: $scope.album.artistId}, function (data)
+                    artistFactory.get(sharedProperties.getTokenCookie(), $scope.album.artistId, function (data)
                     {
                         $scope.artist = data.results[0];
                     });
 
-                    albumTracksFactory.get({id: $routeParams.id}, function (data)
+                    albumTracksFactory.get(sharedProperties.getTokenCookie(), $routeParams.id, function (data)
                     {
                         var dataTracks = data.results;
 
@@ -703,12 +703,12 @@
             track.displayPlayButton = false;
         }
 
-        var removeTrackFromPlaylistCallback = function(data)
+        var removeTrackFromPlaylistCallback = function (data)
         {
             sharedProperties.getPlaylists(getPlaylistsCallback);
         }
 
-        $scope.removeTrackFromPlaylist = function(trackId, playlistId)
+        $scope.removeTrackFromPlaylist = function (trackId, playlistId)
         {
             sharedProperties.removeTrackFromPlaylist(trackId, playlistId, removePlaylistCallback);
         }
@@ -766,7 +766,6 @@
                     if (actualPlaylists[i].id == id)
                     {
                         $scope.active = actualPlaylists[i];
-                        console.log(JSON.stringify($scope.active));
                         return;
                     }
                 }
@@ -815,7 +814,7 @@
             return $scope.playlists;
         }
 
-        var createPlaylistByTrackCallback = function(data)
+        var createPlaylistByTrackCallback = function (data)
         {
             if (data)
             {
@@ -836,7 +835,7 @@
             return false;
         }
 
-        var createPlaylistByTrackArrayCallback = function(data)
+        var createPlaylistByTrackArrayCallback = function (data)
         {
             if (data)
             {
@@ -918,7 +917,7 @@
             sharedProperties.getPlaylists(getPlaylistsCallback);
         }
 
-        var createPlaylistByTrackCallback = function(data)
+        var createPlaylistByTrackCallback = function (data)
         {
             if (data)
             {
@@ -950,7 +949,7 @@
             {
                 angular.forEach($scope.albums, function (value, key)
                 {
-                    albumFactory.get({id: value.collectionId}).$promise.then(function (data)
+                    albumFactory.get(sharedProperties.getTokenCookie(), value.collectionId, function (data)
                         {
                             $scope.albums[key].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[key].artworkUrl100, 300);
                         },
@@ -963,10 +962,10 @@
             }
         });
 
-        searchFactory.get({
-            element : encodeURIComponent($routeParams.element),
-            maxItems: 200
-        }).$promise.then(function (data)
+        searchFactory.get(sharedProperties.getTokenCookie(),
+            encodeURIComponent($routeParams.element),
+            200,
+            function (data)
             {
                 if (data && data.results.length > 0)
                 {

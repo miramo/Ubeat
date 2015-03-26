@@ -30,6 +30,16 @@
             localStorageService.set(playQueueStorageName, playQueue);
         }
 
+        var getServiceTokenCookie = function()
+        {
+            return localStorageService.cookie.get(tokenCookieName);
+        }
+
+        this.getTokenCookie = function()
+        {
+            return getServiceTokenCookie();
+        }
+
         var updateTrackStates = function ()
         {
             for (var i = 0; i < playlists.length; ++i)
@@ -210,12 +220,11 @@
 
         this.getPlaylists = function (callback)
         {
-            tokenInfoFactory.get().$promise.then(function (tokenData)
+            tokenInfoFactory.get(getServiceTokenCookie(), function (tokenData)
                 {
                     if (tokenData)
                     {
-                        console.log("Token: " + tokenData);
-                        totalPlaylistsFactory.query({}).$promise.then(function (data)
+                        totalPlaylistsFactory.get(getServiceTokenCookie(), function (data)
                             {
                                 if (data)
                                 {
@@ -277,7 +286,7 @@
 
         this.getSinglePlaylist = function (playlistId, callback)
         {
-            singlePlaylistFactory.get({id: playlistId}).$promise.then(function (data)
+            singlePlaylistFactory.get(getServiceTokenCookie(), playlistId, function (data)
             {
                 if (data && callback)
                 {
@@ -323,13 +332,13 @@
 
         this.addTrackArrayToPlaylist = function (tracks, playlistId)
         {
-            singlePlaylistFactory.get({id: playlistId}).$promise.then(function (data)
+            singlePlaylistFactory.get(getServiceTokenCookie(), playlistId, function (data)
             {
                 if (data)
                 {
                     data.tracks = data.tracks.concat(tracks);
 
-                    singlePlaylistFactory.put({id: playlistId}, data).$promise.then(function (data)
+                    singlePlaylistFactory.put(getServiceTokenCookie(), playlistId, data, function (data)
                     {
                     }, function (err)
                     {
@@ -366,11 +375,11 @@
 
         this.createPlaylist = function (name, callback)
         {
-            tokenInfoFactory.get().$promise.then(function (tokenData)
+            tokenInfoFactory.get(getServiceTokenCookie(), function (tokenData)
             {
                 if (tokenData)
                 {
-                    totalPlaylistsFactory.save({name: name, owner: tokenData}, function (data)
+                    totalPlaylistsFactory.save(getServiceTokenCookie(), {name: name, owner: tokenData}, function (data)
                     {
                         if (data && data.name == name)
                         {
@@ -405,7 +414,8 @@
         this.removePlaylist = function (id, callback)
         {
             console.log("RemovePlaylist");
-            singlePlaylistFactory.delete({id: id}, function (data)
+
+            singlePlaylistFactory.delete(getServiceTokenCookie(), id, function (data)
             {
                 if (data)
                 {
@@ -422,12 +432,12 @@
 
         this.renamePlaylist = function (playlistId, newName, callback)
         {
-            singlePlaylistFactory.get({id: playlistId}).$promise.then(function (data)
+            singlePlaylistFactory.get(getServiceTokenCookie(), playlistId, function (data)
             {
                 if (data)
                 {
                     data.name = newName;
-                    singlePlaylistFactory.put({id: playlistId, 'name': newName}).$promise.then(function (data)
+                    singlePlaylistFactory.put(getServiceTokenCookie(), playlistId, {'name': newName}, function (data)
                     {
                         if (callback)
                         {
