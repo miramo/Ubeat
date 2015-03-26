@@ -320,7 +320,7 @@
 
         this.addTrackToPlaylist = function (trackToAdd, playlistId)
         {
-            singlePlaylistTracksFactory.save({id: playlistId}, trackToAdd).$promise.then(function (data)
+            singlePlaylistTracksFactory.post(getServiceTokenCookie(), playlistId, trackToAdd, function (data)
             {
 
             }, function (err)
@@ -379,7 +379,7 @@
             {
                 if (tokenData)
                 {
-                    totalPlaylistsFactory.save(getServiceTokenCookie(), {name: name, owner: tokenData}, function (data)
+                    totalPlaylistsFactory.post(getServiceTokenCookie(), {name: name, owner: tokenData}, function (data)
                     {
                         if (data && data.name == name)
                         {

@@ -180,7 +180,7 @@
                 var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'playlists', token, null);
                 factories.httpReq($http, req, successCallback, errorCallback);
             },
-            save: function (token, data, successCallback, errorCallback)
+            post: function (token, data, successCallback, errorCallback)
             {
                 var req = factories.generateHttpReq('POST', factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'playlists', token, data);
                 factories.httpReq($http, req, successCallback, errorCallback);
