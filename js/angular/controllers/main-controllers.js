@@ -28,6 +28,7 @@
                         {
                             sharedProperties.setInfoConnection(data.email, data.name, data.token, data.id);
                             sharedProperties.setConnected(true);
+                            //console.log(data);
                         }
                     },
                     function (err)

@@ -1,7 +1,28 @@
 <div ng-show="sharedPagesStatus.getIsPageLoaded() && !sharedPagesStatus.getIsCriticalError()">
-    <div class="top-page"></div>
-
+    <div class="user">
+        <div class="user-header">
+            <div class="row bloc-artist-img-infos">
+                <div class="album-artist-picture">
+                    <div class="show-for-medium-up">
+                        <div class="img-circular responsive-img" id="img-artist" back-img="{{gravatarImgUrl}}"></div>
+                    </div>
+                </div>
+                <div class="album-artist-infos">
+                    <div class="artist-title">
+                        <h1>{{userData.name}}</h1>
+                    </div>
+                    <div class="album-artist-description">
+                        <h3>
+                            <small>{{userData.email}}</small>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsCriticalError()">
     <error-msg error-nb="Error {{sharedPagesStatus.getErrorStatus()}}" msg="{{sharedPagesStatus.getErrorMessage()}}"></error-msg>
 </div>
+<script type="text/javascript" src="js/libs/stackblur.js"></script>
+<script type="text/javascript" src="bower_components/md5/build/md5.min.js"></script>

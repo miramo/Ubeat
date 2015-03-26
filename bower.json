@@ -18,7 +18,8 @@
     "angular-audio": "~1.4.1",
     "slick-carousel": "~1.4.1",
     "headroom.js": "~0.7.0",
-    "angular-md5": "~0.1.7"
+    "angular-md5": "~0.1.7",
+    "md5": "~0.3.0"
   },
   "resolutions": {
     "slick-carousel": "~1.4.1",
