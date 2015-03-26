@@ -67,3 +67,18 @@ function getSentencesNb(str, nb)
 
     return finalStr;
 }
+
+function urlExist(url)
+{
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    return http.status == 200;
+}
+
+function imageExist(url)
+{
+    var img = new Image();
+    img.src = url;
+    return img.height != 0;
+}

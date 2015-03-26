@@ -1080,11 +1080,46 @@
         });
     });
 
-    controllers.controller('SingleUserController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties)
+    controllers.controller('SingleUserController', function ($scope, $http, $routeParams, sharedPagesStatus, sharedProperties, singleUserFactory)
     {
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().user);
-        // sharedPagesStatus.setIsPageLoaded(true);
+        sharedPagesStatus.setIsPageLoaded(true);
         $scope.sharedPagesStatus = sharedPagesStatus;
         $scope.sharedProperties = sharedProperties;
+        $scope.userData = {email: "", name: "", id: "", following: []};
+        $scope.gravatarImgUrl = "http://glo3102.github.io/team02/img/mystery-man-red.png";
+        var blur = new Blur({
+            el        : document.querySelector('.user-header'),
+            path      : '',
+            radius    : 50,
+            fullscreen: true
+        });
+
+        singleUserFactory.get({id: $routeParams.id}).$promise.then(function (data)
+            {
+                if (data.email && data.name && data.id && data.following)
+                {
+                    sharedPagesStatus.setTitle(data.name);
+                    $scope.userData = {email: data.email, name: data.name, id: data.id, following: data.following};
+                    if (imageExist("http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg&d=http://glo3102.github.io/team02/img/mystery-man-red.png"))
+                        $scope.gravatarImgUrl = "http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg&d=http://glo3102.github.io/team02/img/mystery-man-red.png";
+                    else
+                        $scope.gravatarImgUrl = "http://glo3102.github.io/team02/img/mystery-man-red.png";
+                    setBlur($scope.gravatarImgUrl);
+                    console.log($scope.userData);
+                }
+            },
+            function (err)
+            {
+                console.log(err);
+            });
+
+        var setBlur = function(path)
+        {
+            blur.init({
+                el  : document.querySelector('.user-header'),
+                path: path
+            });
+        };
     });
 })();
