@@ -908,6 +908,8 @@
         $scope.trackArrayToAddToNewPlaylist = null;
         $scope.elementsLoaded = 0;
         $scope.playlists = [];
+        $scope.artistDisplayLimit = 5;
+        $scope.albumDisplayLimit = 5;
 
         var getPlaylistsCallback = function (playlists)
         {

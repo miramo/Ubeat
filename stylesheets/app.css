@@ -19627,3 +19627,15 @@ input[type="search"].dream-search:focus {
   position: fixed;
   top: 45%;
 }
+
+/* line 1, ../scss/_search.scss */
+.search-card-item {
+  transition: transform 200ms linear;
+}
+/* line 4, ../scss/_search.scss */
+.search-card-item:hover {
+  -moz-transform: scale(1.08);
+  -ms-transform: scale(1.08);
+  -webkit-transform: scale(1.08);
+  transform: scale(1.08);
+}
