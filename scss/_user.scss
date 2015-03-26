@@ -6,5 +6,39 @@
     position      : relative;
     margin-bottom : rem-calc(15);
     overflow      : hidden;
+    button
+    {
+      @media #{$small-only}
+      {
+        margin: 0 auto;
+      }
+    }
+  }
+  .following-list
+  {
+    @media #{$small-only} and (orientation : landscape)
+    {
+      @include block-grid(4);
+    }
+    @media #{$small-only} and (orientation : portrait)
+    {
+      @include block-grid(3);
+    }
+    @media #{$medium}
+    {
+      @include block-grid(5);
+    }
+    @media #{$large-up}
+    {
+      @include block-grid(6);
+    }
+    .following-item
+    {
+      @include single-transition(transform, 200ms, linear);
+      &:hover
+      {
+        @include transform2d(scale(1.08));
+      }
+    }
   }
 }

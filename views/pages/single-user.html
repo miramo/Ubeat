@@ -16,6 +16,32 @@
                             <small>{{userData.email}}</small>
                         </h3>
                     </div>
+                    <button ng-click="" class="red small radius"><i class="md-add md-lg"></i> Suivre</button>
+                </div>
+            </div>
+        </div>
+        <div class="row" data-equalizer>
+            <div class="small-12 columns">
+                <div class="panel radius">
+                    <h2>Amis</h2>
+                    <ul class="following-list no-bullet">
+                        <li class="following-item" ng-repeat="follow in userData.following">
+                            <a href="#/user/{{follow.id}}">
+                                <div class="row bump">
+                                    <div class="row">
+                                        <div class="card-shadow">
+                                            <div class="responsive-img" back-img="http://www.gravatar.com/avatar/{{follow.email | gravatar}}?s=300&r=pg&d=http://glo3102.github.io/team02/img/mystery-man-red.png"></div>
+                                            <div class="row collapse text-card">
+                                                <div class="text-center">
+                                                    <p class="first-text-card ellipsis">{{follow.name}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
