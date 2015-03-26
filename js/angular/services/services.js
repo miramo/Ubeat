@@ -594,6 +594,7 @@
 
         this.setIsCriticalError = function (val)
         {
+            console.log("SetIsCritical");
             isCriticalError = val;
 
             if (val == true)
@@ -618,14 +619,9 @@
             isPageLoaded = false;
         }
 
-        this.pageCriticFailure = function ()
-        {
-            this.setIsCriticalError(true);
-            this.setIsPageLoaded(true);
-        }
-
         this.setCriticalError = function (status, msg)
         {
+            console.log("SetCriticalError");
             if (status == 0)
             {
                 errorStatus = 503;

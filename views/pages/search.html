@@ -9,14 +9,10 @@
         <div class="small-12 columns">
             <div class="panel new-artists radius">
                 <h2 class="text-center"><i class="md-recent-actors md-lg left"></i> Artistes: </h2>
-                <div id="artists-slider" class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
-                    <slick class="slider-index" ng-switch-when="true"
-                           speed="300" center-mode="true" infinite="true" focus-on-select="true" dots="true"
-                           slides-to-show="3" slides-to-scroll="1" swipe-to-slide="true" autoplay="true"
-                           autoplay-speed="10000"
-                           responsive="[{breakpoint: 1280,settings  : {autoplay    : false,slidesToShow: 5}},{breakpoint: 700,settings  : {autoplay    : false,slidesToShow: 3}},{breakpoint: 580,settings  : {autoplay    : false,dots        : false,slidesToShow: 1}}]">
-                        <div class="slider-index-element"
-                             ng-repeat="artist in artists track by $index">
+                <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
+
+                    <ul class="small-block-grid-5">
+                        <li ng-repeat="artist in artists track by $index">
                             <a href="#/artist/{{artist.artistId}}">
                                 <div class="row bump">
                                     <div class="row">
@@ -31,8 +27,8 @@
                                     </div>
                                 </div>
                             </a>
-                        </div>
-                    </slick>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -41,13 +37,9 @@
         <div class="small-12 columns">
             <div class="panel new-albums radius">
                 <h2 class="text-center"><i class="md-album md-lg left"></i> Albums :</h2>
-                <div id="albums-slider" class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
-                    <slick class="slider-index" ng-switch-when="true"
-                           speed="300" center-mode="true" infinite="true" focus-on-select="true" dots="true"
-                           slides-to-show="5" slides-to-scroll="1" swipe-to-slide="true" autoplay="false"
-                           responsive="[{breakpoint: 1280,settings  : {autoplay    : false,slidesToShow: 5}},{breakpoint: 700,settings  : {autoplay    : false,slidesToShow: 3}},{breakpoint: 580,settings  : {autoplay    : false,dots        : false,slidesToShow: 1}}]">
-                        <div class="slider-index-element"
-                             ng-repeat="album in albums track by $index">
+                <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
+                <ul class="small-block-grid-5">
+                    <li ng-repeat="album in albums track by $index">
                             <div load-progress="{{$index}}" data-callback="albumLoad" }>
                                 <a href="#/album/{{album.collectionId}}">
                                     <div class="row bump">
@@ -67,8 +59,8 @@
                                     </div>
                                 </a>
                             </div>
-                        </div>
-                    </slick>
+                </li>
+                    </ul>
                 </div>
             </div>
         </div>

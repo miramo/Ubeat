@@ -72,7 +72,7 @@
     factories.factory('searchFactory', function ($http, $resource, sharedProperties, localStorageService)
     {
         return {
-            get: function (token, element, maxItems, data, successCallback, errorCallback)
+            get: function (token, element, maxItems, successCallback, errorCallback)
             {
                 var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(sharedProperties)) + 'search/?q=' + element + '&limit=' + maxItems, token, null);
                 factories.httpReq($http, req, successCallback, errorCallback);

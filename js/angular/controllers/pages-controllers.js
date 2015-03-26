@@ -407,6 +407,28 @@
             return false;
         }
 
+        var setTracksData = function(dataTracks)
+        {
+            for (var i = 0; i < dataTracks.length; ++i)
+            {
+                $scope.tracks[i] = dataTracks[i];
+
+                var currentTrack = sharedProperties.getCurrentTrack();
+
+                if (currentTrack && currentTrack.trackId == $scope.tracks[i].trackId)
+                {
+                    $scope.tracks[i].playState = currentTrack.playState;
+                }
+                else
+                {
+                    $scope.tracks[i].playState = sharedProperties.getPlayStates().idle;
+                }
+                $scope.tracks[i].filter = $scope.filter;
+                $scope.tracks[i].time = millisToTime($scope.tracks[i].trackTimeMillis);
+                $scope.tracks[i].displayPlayButton = false;
+            }
+        }
+
         var blur = new Blur({
             el        : document.querySelector('body'),
             path      : '',
@@ -442,24 +464,7 @@
                     {
                         var dataTracks = data.results;
 
-                        for (var i = 0; i < dataTracks.length; ++i)
-                        {
-                            $scope.tracks[i] = dataTracks[i];
-
-                            var currentTrack = sharedProperties.getCurrentTrack();
-
-                            if (currentTrack && currentTrack.trackId == $scope.tracks[i].trackId)
-                            {
-                                $scope.tracks[i].playState = currentTrack.playState;
-                            }
-                            else
-                            {
-                                $scope.tracks[i].playState = sharedProperties.getPlayStates().idle;
-                            }
-                            $scope.tracks[i].filter = $scope.filter;
-                            $scope.tracks[i].time = millisToTime($scope.tracks[i].trackTimeMillis);
-                            $scope.tracks[i].displayPlayButton = false;
-                        }
+                        setTracksData(dataTracks);
 
                         pageIsLoaded();
                     });
@@ -979,6 +984,19 @@
                                 var newElem = data.results[i];
                                 $scope.tracks[$scope.tracks.length] = newElem;
                                 ++$scope.elementsLoaded;
+                                var currentTrack = sharedProperties.getCurrentTrack();
+
+                                if (currentTrack && currentTrack.trackId == newElem.trackId)
+                                {
+                                    newElem.playState = currentTrack.playState;
+                                }
+                                else
+                                {
+                                    newElem.playState = sharedProperties.getPlayStates().idle;
+                                }
+                                newElem.filter = $scope.filter;
+                                newElem.time = millisToTime(newElem.trackTimeMillis);
+                                newElem.displayPlayButton = false;
                                 break;
                             case "collection":
                                 $scope.albums[$scope.albums.length] = data.results[i];
@@ -991,17 +1009,26 @@
                                     type: 'artist'
                                 }).$promise.then(function (data)
                                     {
-                                        spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
+                                        if (data && data.artists && data.artists.items.length > 0)
                                         {
-                                            newArtist.image = data.images[0];
-                                            $scope.artists[$scope.artists.length] = newArtist;
+                                            spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
+                                            {
+                                                newArtist.image = data.images[0];
+                                                $scope.artists[$scope.artists.length] = newArtist;
+                                                ++$scope.elementsLoaded;
+                                            }, function (err)
+                                            {
+                                                sharedPagesStatus.setCriticalError(err.status, err.statusText);
+                                            });
+                                        }
+                                        else
+                                        {
                                             ++$scope.elementsLoaded;
-                                        }, function (err)
-                                        {
-                                        });
+                                        }
 
                                     }, function (err)
                                     {
+                                        sharedPagesStatus.setCriticalError(err.status, err.statusText);
                                     });
                                 break;
                         }
@@ -1013,8 +1040,8 @@
                 }
             }, function (err)
             {
-                sharedPagesStatus.setIsPageLoaded(true);
-                sharedPagesStatus.pageCriticFailure();
+                console.log(err);
+                sharedPagesStatus.setCriticalError(err.status, err.statusText);
             });
 
         $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
