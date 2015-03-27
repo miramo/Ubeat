@@ -240,7 +240,7 @@
                     }
                     else
                     {
-                        sharedPagesStatus.setCriticalError(0, "");
+                        sharedPagesStatus.setCriticalError(404, "Artist not found");
                     }
                 },
                 function (err)
@@ -250,7 +250,7 @@
         }
         else
         {
-            sharedPagesStatus.setCriticalError(0, "");
+            sharedPagesStatus.setCriticalError(404, "Artist not found");
         }
 
 
@@ -481,7 +481,7 @@
                 }
                 else
                 {
-                    sharedPagesStatus.setCriticalError(0, "");
+                    sharedPagesStatus.setCriticalError(404, "Album not found");
                 }
 
             }, function(err)
@@ -491,7 +491,7 @@
         }
         else
         {
-            sharedPagesStatus.setCriticalError(0, "");
+            sharedPagesStatus.setCriticalError(404, "Album not found");
         }
 
         $scope.$on('$routeChangeSuccess', function (next, current)
@@ -980,7 +980,6 @@
                 if (data && data.results.length > 0)
                 {
                     $scope.results = data.results;
-                    console.log(data.results.length);
                     for (var i = 0; i < data.results.length; ++i)
                     {
                         switch (data.results[i].wrapperType)
@@ -1045,7 +1044,6 @@
                 }
             }, function (err)
             {
-                console.log(err);
                 sharedPagesStatus.setCriticalError(err.status, err.statusText);
             });
 
@@ -1141,7 +1139,7 @@
             },
             function (err)
             {
-                sharedPagesStatus.setCriticalError(err.errorCode, "User was not found");
+                sharedPagesStatus.setCriticalError(err.errorCode, err.message);
             });
 
         var setBlur = function(path)
