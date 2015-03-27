@@ -19433,8 +19433,30 @@ input[type="search"].dream-search:focus {
     margin: 0 auto;
   }
 }
+/* line 18, ../scss/_user.scss */
+.user .user-header #img-user:after {
+  border-radius: 50%;
+  content: 'Changer votre Gravatar';
+  color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  top: 0;
+  left: 0;
+  padding-top: 50%;
+  vertical-align: middle;
+  background-color: black;
+  opacity: 0;
+  transition: opacity 0.3s linear;
+}
+/* line 35, ../scss/_user.scss */
+.user .user-header #img-user:hover:after {
+  border-radius: 50%;
+  opacity: 0.5;
+}
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 17, ../scss/_user.scss */
+  /* line 42, ../scss/_user.scss */
   .user .following-list {
     display: block;
     padding: 0;
@@ -19472,7 +19494,7 @@ input[type="search"].dream-search:focus {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 17, ../scss/_user.scss */
+  /* line 42, ../scss/_user.scss */
   .user .following-list {
     display: block;
     padding: 0;
@@ -19510,7 +19532,7 @@ input[type="search"].dream-search:focus {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 17, ../scss/_user.scss */
+  /* line 42, ../scss/_user.scss */
   .user .following-list {
     display: block;
     padding: 0;
@@ -19548,7 +19570,7 @@ input[type="search"].dream-search:focus {
   }
 }
 @media only screen and (min-width: 64.063em) {
-  /* line 17, ../scss/_user.scss */
+  /* line 42, ../scss/_user.scss */
   .user .following-list {
     display: block;
     padding: 0;
@@ -19585,11 +19607,11 @@ input[type="search"].dream-search:focus {
     clear: both;
   }
 }
-/* line 35, ../scss/_user.scss */
+/* line 60, ../scss/_user.scss */
 .user .following-list .following-item {
   transition: transform 200ms linear;
 }
-/* line 38, ../scss/_user.scss */
+/* line 63, ../scss/_user.scss */
 .user .following-list .following-item:hover {
   -moz-transform: scale(1.08);
   -ms-transform: scale(1.08);
