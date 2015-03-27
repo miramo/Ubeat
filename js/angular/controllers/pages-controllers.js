@@ -1141,7 +1141,7 @@
             },
             function (err)
             {
-                console.log(err);
+                sharedPagesStatus.setCriticalError(err.errorCode, "User was not found");
             });
 
         var setBlur = function(path)
