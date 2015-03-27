@@ -19434,9 +19434,9 @@ input[type="search"].dream-search:focus {
   }
 }
 /* line 18, ../scss/_user.scss */
-.user .user-header .me#img-user:after {
+.user .user-header #img-user:after {
   border-radius: 50%;
-  content: 'Changer votre Gravatar';
+  content: 'Acceder au profil Gravatar';
   color: white;
   position: absolute;
   width: 100%;
@@ -19451,16 +19451,20 @@ input[type="search"].dream-search:focus {
   transition: opacity 0.3s linear;
 }
 /* line 35, ../scss/_user.scss */
-.user .user-header .me#img-user:hover:after {
+.user .user-header #img-user.me:after {
+  content: 'Changer votre Gravatar';
+}
+/* line 39, ../scss/_user.scss */
+.user .user-header #img-user:hover:after {
   border-radius: 50%;
   opacity: 0.5;
 }
-/* line 44, ../scss/_user.scss */
+/* line 48, ../scss/_user.scss */
 .user .panel-following .title {
   margin-bottom: 1.5625rem;
 }
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 48, ../scss/_user.scss */
+  /* line 52, ../scss/_user.scss */
   .user .panel-following .following-list {
     display: block;
     padding: 0;
@@ -19498,7 +19502,7 @@ input[type="search"].dream-search:focus {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 48, ../scss/_user.scss */
+  /* line 52, ../scss/_user.scss */
   .user .panel-following .following-list {
     display: block;
     padding: 0;
@@ -19536,7 +19540,7 @@ input[type="search"].dream-search:focus {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 48, ../scss/_user.scss */
+  /* line 52, ../scss/_user.scss */
   .user .panel-following .following-list {
     display: block;
     padding: 0;
@@ -19574,7 +19578,7 @@ input[type="search"].dream-search:focus {
   }
 }
 @media only screen and (min-width: 64.063em) {
-  /* line 48, ../scss/_user.scss */
+  /* line 52, ../scss/_user.scss */
   .user .panel-following .following-list {
     display: block;
     padding: 0;
@@ -19611,11 +19615,11 @@ input[type="search"].dream-search:focus {
     clear: both;
   }
 }
-/* line 66, ../scss/_user.scss */
+/* line 70, ../scss/_user.scss */
 .user .panel-following .following-list .following-item {
   transition: transform 200ms linear;
 }
-/* line 69, ../scss/_user.scss */
+/* line 73, ../scss/_user.scss */
 .user .panel-following .following-list .following-item:hover {
   -moz-transform: scale(1.08);
   -ms-transform: scale(1.08);

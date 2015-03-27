@@ -13,12 +13,12 @@
         margin: 0 auto;
       }
     }
-    .me#img-user
+    #img-user
     {
       &:after
       {
         border-radius           : 50%;
-        content                 : 'Changer votre Gravatar';
+        content                 : 'Acceder au profil Gravatar';
         color                   : white;
         position                : absolute;
         width                   : 100%;
@@ -31,6 +31,10 @@
         background-color        : black;
         opacity                 : 0;
         @include single-transition(opacity, .3s, linear);
+      }
+      &.me:after
+      {
+        content: 'Changer votre Gravatar';
       }
       &:hover:after
       {
