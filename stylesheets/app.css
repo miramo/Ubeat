@@ -18408,36 +18408,44 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   position: relative;
   width: 100px;
 }
+/* line 49, ../scss/_navbar.scss */
+.nav-bar .top-bar-section .dropdown i {
+  width: 1.5625rem;
+}
 @media only screen and (min-width: 40.063em) {
-  /* line 49, ../scss/_navbar.scss */
+  /* line 56, ../scss/_navbar.scss */
   .nav-bar .top-bar-section .dropdown {
     transition: all 300ms ease-out;
     opacity: 0;
     transform: translateY(-5%);
   }
-  /* line 55, ../scss/_navbar.scss */
+  /* line 58, ../scss/_navbar.scss */
+  .nav-bar .top-bar-section .dropdown i {
+    width: 1.5625rem;
+  }
+  /* line 66, ../scss/_navbar.scss */
   .nav-bar .top-bar-section .has-dropdown.hover > .dropdown, .nav-bar .top-bar-section .has-dropdown.not-click:hover > .dropdown {
     opacity: 1;
     transform: translateY(0%);
   }
 }
-/* line 62, ../scss/_navbar.scss */
+/* line 73, ../scss/_navbar.scss */
 .nav-bar .top-bar-section #connection-button-large {
   display: flex;
 }
-/* line 65, ../scss/_navbar.scss */
+/* line 76, ../scss/_navbar.scss */
 .nav-bar .top-bar-section #connection-button-large li:first-child {
   margin-left: 0.9375rem;
 }
-/* line 70, ../scss/_navbar.scss */
+/* line 81, ../scss/_navbar.scss */
 .nav-bar .top-bar-section #connection-button-mobile {
   display: block;
 }
-/* line 75, ../scss/_navbar.scss */
+/* line 86, ../scss/_navbar.scss */
 .nav-bar .top-bar-section #profile-topbar {
   display: inline-block;
 }
-/* line 78, ../scss/_navbar.scss */
+/* line 89, ../scss/_navbar.scss */
 .nav-bar .top-bar-section #profile-topbar #profile-picture {
   width: 2rem;
   height: 2rem;
@@ -18448,27 +18456,27 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   background-repeat: no-repeat;
   background-position: center center;
 }
-/* line 89, ../scss/_navbar.scss */
+/* line 100, ../scss/_navbar.scss */
 .nav-bar .top-bar-section #profile-topbar #profile-name {
   padding-left: 0.3125rem;
 }
-/* line 95, ../scss/_navbar.scss */
+/* line 106, ../scss/_navbar.scss */
 .nav-bar .top-bar-section input[type="search"].dream-search {
   opacity: .5;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 95, ../scss/_navbar.scss */
+  /* line 106, ../scss/_navbar.scss */
   .nav-bar .top-bar-section input[type="search"].dream-search {
     width: 75%;
     margin-left: 25%;
   }
 }
-/* line 103, ../scss/_navbar.scss */
+/* line 114, ../scss/_navbar.scss */
 .nav-bar .top-bar-section input[type="search"].dream-search:focus {
   opacity: 1;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 103, ../scss/_navbar.scss */
+  /* line 114, ../scss/_navbar.scss */
   .nav-bar .top-bar-section input[type="search"].dream-search:focus {
     width: 100%;
     margin-left: 0%;
@@ -18488,7 +18496,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 121, ../scss/_navbar.scss */
+  /* line 132, ../scss/_navbar.scss */
   .top-bar-section .has-dropdown > a:after {
     content: "";
     display: block;
@@ -18504,7 +18512,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
     right: 0;
   }
 
-  /* line 136, ../scss/_navbar.scss */
+  /* line 147, ../scss/_navbar.scss */
   .button-search {
     margin-top: 0.0625rem;
   }
