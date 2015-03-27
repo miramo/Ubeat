@@ -1116,7 +1116,7 @@
         $scope.sharedPagesStatus = sharedPagesStatus;
         $scope.sharedProperties = sharedProperties;
         $scope.userData = {email: "", name: "", id: "", following: []};
-        $scope.gravatarImgUrl = "http://glo3102.github.io/team02/img/mystery-man-red.png";
+        $scope.gravatarImgUrl = "img/mystery-man-red.png";
         var blur = new Blur({
             el        : document.querySelector('.user-header'),
             path      : '',
@@ -1130,12 +1130,10 @@
                 {
                     sharedPagesStatus.setTitle(data.name);
                     $scope.userData = {email: data.email, name: data.name, id: data.id, following: data.following};
-                    if (imageExist("http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg&d=404"))
+                    if (urlExist("http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg&d=404"))
                         $scope.gravatarImgUrl = "http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg";
-                    else
-                        $scope.gravatarImgUrl = "http://glo3102.github.io/team02/img/mystery-man-red.png";
                     setBlur($scope.gravatarImgUrl);
-                    console.log($scope.userData);
+                    //console.log($scope.userData);
                 }
             },
             function (err)
