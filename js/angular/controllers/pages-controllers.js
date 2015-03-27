@@ -458,7 +458,7 @@
                     artistFactory.get(sharedProperties.getTokenCookie(), $scope.album.artistId, function (data)
                     {
                         $scope.artist = data.results[0];
-                    });
+                    }, function(err) { sharedPagesStatus.setCriticalError(err.status, err.statusText); });
 
                     albumTracksFactory.get(sharedProperties.getTokenCookie(), $routeParams.id, function (data)
                     {
@@ -467,7 +467,7 @@
                         setTracksData(dataTracks);
 
                         pageIsLoaded();
-                    });
+                    }, function(err){ sharedPagesStatus.setCriticalError(err.status, err.statusText); });
 
                     $scope.displayPlayButton = function (track)
                     {
@@ -481,14 +481,17 @@
                 }
                 else
                 {
-                    sharedPagesStatus.pageCriticFailure();
+                    sharedPagesStatus.setCriticalError(0, "");
                 }
 
+            }, function(err)
+            {
+                sharedPagesStatus.setCriticalError(err.status, err.statusText);
             });
         }
         else
         {
-            sharedPagesStatus.pageCriticFailure();
+            sharedPagesStatus.setCriticalError(0, "");
         }
 
         $scope.$on('$routeChangeSuccess', function (next, current)
