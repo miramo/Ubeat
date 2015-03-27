@@ -1110,7 +1110,7 @@
         });
     });
 
-    controllers.controller('SingleUserController', function ($scope, $http, $routeParams, sharedPagesStatus, sharedProperties, singleUserFactory)
+    controllers.controller('SingleUserController', function ($location, $scope, $http, $routeParams, sharedPagesStatus, sharedProperties, singleUserFactory)
     {
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().user);
         sharedPagesStatus.setIsPageLoaded(true);
@@ -1118,6 +1118,18 @@
         $scope.sharedProperties = sharedProperties;
         $scope.userData = {email: "", name: "", id: "", following: []};
         $scope.gravatarImgUrl = "img/mystery-man-red.png";
+
+        var redirectToHome = function ()
+        {
+            $location.path("/");
+            $route.reload();
+        }
+
+        if (sharedProperties.isConnected() == false)
+        {
+            redirectToHome();
+        }
+
         var blur = new Blur({
             el        : document.querySelector('.user-header'),
             path      : '',
