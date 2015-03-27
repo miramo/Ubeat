@@ -18371,10 +18371,16 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
 @media only screen and (max-width: 40em), only screen and (min-width: 40.063em) and (max-width: 64em) {
   /* line 8, ../scss/_navbar.scss */
   .headroom.headroom--pinned {
+    -moz-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -webkit-transform: translateY(0%);
     transform: translateY(0%);
   }
   /* line 12, ../scss/_navbar.scss */
   .headroom.headroom--unpinned {
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
     transform: translateY(-100%);
   }
 }
@@ -18385,7 +18391,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   background: rgba(0, 0, 0, 0.7);
   transition: all 300ms linear;
 }
-/* line 24, ../scss/_navbar.scss */
+/* line 25, ../scss/_navbar.scss */
 .nav-bar:hover {
   background: rgba(0, 0, 0, 0.9);
   -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
@@ -18393,9 +18399,8 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   border-bottom: solid 0.1875rem rgba(198, 0, 0, 0.9);
 }
-
-/* line 32, ../scss/_navbar.scss */
-.top-bar .name h1 a:before {
+/* line 34, ../scss/_navbar.scss */
+.nav-bar .top-bar .name h1 a:before {
   background: url(../img/logo/logo-topbar.png) no-repeat center center;
   content: "";
   display: inline-block;
@@ -18403,13 +18408,37 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   position: relative;
   width: 100px;
 }
-
-/* line 42, ../scss/_navbar.scss */
-#profile-topbar {
+@media only screen and (min-width: 40.063em) {
+  /* line 49, ../scss/_navbar.scss */
+  .nav-bar .top-bar-section .dropdown {
+    transition: all 300ms ease-out;
+    opacity: 0;
+    transform: translateY(-5%);
+  }
+  /* line 55, ../scss/_navbar.scss */
+  .nav-bar .top-bar-section .has-dropdown.hover > .dropdown, .nav-bar .top-bar-section .has-dropdown.not-click:hover > .dropdown {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+/* line 62, ../scss/_navbar.scss */
+.nav-bar .top-bar-section #connection-button-large {
+  display: flex;
+}
+/* line 65, ../scss/_navbar.scss */
+.nav-bar .top-bar-section #connection-button-large li:first-child {
+  margin-left: 0.9375rem;
+}
+/* line 70, ../scss/_navbar.scss */
+.nav-bar .top-bar-section #connection-button-mobile {
+  display: block;
+}
+/* line 75, ../scss/_navbar.scss */
+.nav-bar .top-bar-section #profile-topbar {
   display: inline-block;
 }
-/* line 45, ../scss/_navbar.scss */
-#profile-topbar #profile-picture {
+/* line 78, ../scss/_navbar.scss */
+.nav-bar .top-bar-section #profile-topbar #profile-picture {
   width: 2rem;
   height: 2rem;
   border: 0.125rem solid #C60000;
@@ -18419,30 +18448,28 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   background-repeat: no-repeat;
   background-position: center center;
 }
-/* line 56, ../scss/_navbar.scss */
-#profile-topbar #profile-name {
+/* line 89, ../scss/_navbar.scss */
+.nav-bar .top-bar-section #profile-topbar #profile-name {
   padding-left: 0.3125rem;
 }
-
-/* line 62, ../scss/_navbar.scss */
-input[type="search"].dream-search {
+/* line 95, ../scss/_navbar.scss */
+.nav-bar .top-bar-section input[type="search"].dream-search {
   opacity: .5;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 62, ../scss/_navbar.scss */
-  input[type="search"].dream-search {
+  /* line 95, ../scss/_navbar.scss */
+  .nav-bar .top-bar-section input[type="search"].dream-search {
     width: 75%;
     margin-left: 25%;
   }
 }
-
-/* line 72, ../scss/_navbar.scss */
-input[type="search"].dream-search:focus {
+/* line 105, ../scss/_navbar.scss */
+.nav-bar .top-bar-section input[type="search"].dream-search:focus {
   opacity: 1;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 72, ../scss/_navbar.scss */
-  input[type="search"].dream-search:focus {
+  /* line 105, ../scss/_navbar.scss */
+  .nav-bar .top-bar-section input[type="search"].dream-search:focus {
     width: 100%;
     margin-left: 0%;
     -moz-transition-property: width, margin-left;
@@ -18461,7 +18488,7 @@ input[type="search"].dream-search:focus {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 87, ../scss/_navbar.scss */
+  /* line 122, ../scss/_navbar.scss */
   .top-bar-section .has-dropdown > a:after {
     content: "";
     display: block;
@@ -18477,24 +18504,11 @@ input[type="search"].dream-search:focus {
     right: 0;
   }
 
-  /* line 102, ../scss/_navbar.scss */
+  /* line 137, ../scss/_navbar.scss */
   .button-search {
     margin-top: 0.0625rem;
   }
 }
-/* line 109, ../scss/_navbar.scss */
-.top-bar-section #connection-button-large {
-  display: flex;
-}
-/* line 112, ../scss/_navbar.scss */
-.top-bar-section #connection-button-large li:first-child {
-  margin-left: 0.9375rem;
-}
-/* line 117, ../scss/_navbar.scss */
-.top-bar-section #connection-button-mobile {
-  display: block;
-}
-
 /* line 1, ../scss/_artist.scss */
 .type-label {
   font-weight: normal;
