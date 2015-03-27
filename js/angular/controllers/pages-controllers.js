@@ -45,17 +45,20 @@
                                     ++$scope.artistsLoadedCount;
                                 }, function (err)
                                 {
+                                    console.log(err);
                                     sharedPagesStatus.setCriticalError(err.status, err.statusText);
                                 });
 
                             }, function (err)
                             {
+                                console.log(err);
                                 sharedPagesStatus.setCriticalError(err.status, err.statusText);
                             });
                     }
                 },
                 function (err)
                 {
+                    console.log(err);
                     sharedPagesStatus.setCriticalError(err.status, err.statusText);
                 });
         });
@@ -548,7 +551,7 @@
         {
             if (playlists && playlists.length > 0)
             {
-                $scope.active = playlists[0];
+                $scope.active = playlists[playlists.length - 1];
                 $scope.playlists = playlists;
 
                 for (var i = 0; i < playlists.length; ++i)
