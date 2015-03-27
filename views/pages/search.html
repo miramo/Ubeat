@@ -8,15 +8,15 @@
     <div class="row" ng-show="artists.length > 0">
         <div class="small-12 columns">
             <div class="panel new-artists radius">
-                <h2 class="text-center"><i class="md-recent-actors md-lg left"></i> Artistes: </h2>
+                <h2 class="text-center"><i class="md-recent-actors md-lg left"></i> Artistes </h2>
                 <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
 
-                    <ul class="small-block-grid-5">
-                        <li ng-repeat="artist in artists track by $index">
+                    <ul class="small-block-grid-6">
+                        <li class="following-item" ng-if="$index < artistDisplayLimit" ng-repeat="artist in artists track by $index">
                             <a href="#/artist/{{artist.artistId}}">
                                 <div class="row bump">
                                     <div class="row">
-                                        <div class="card">
+                                        <div class="card-shadow search-card-item">
                                             <div class="responsive-img" back-img="{{artist.image.url}}"></div>
                                             <div class="row collapse text-card">
                                                 <div class="text-center">
@@ -36,30 +36,28 @@
     <div class="row" ng-show="albums.length > 0">
         <div class="small-12 columns">
             <div class="panel new-albums radius">
-                <h2 class="text-center"><i class="md-album md-lg left"></i> Albums :</h2>
+                <h2 class="text-center"><i class="md-album md-lg left"></i> Albums</h2>
                 <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
-                <ul class="small-block-grid-5">
-                    <li ng-repeat="album in albums track by $index">
-                            <div load-progress="{{$index}}" data-callback="albumLoad" }>
-                                <a href="#/album/{{album.collectionId}}">
-                                    <div class="row bump">
-                                        <div class="row">
-                                            <div class="card">
-                                                <div class="responsive-img" back-img="{{album.artworkUrl300}}"></div>
-                                                <div class="row collapse text-card">
-                                                    <div class="text-center">
-                                                        <p class="first-text-card ellipsis">{{album.collectionName}}</p>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <p class="second-text-card ellipsis">{{album.artistName}}</p>
-                                                    </div>
+                    <ul class="small-block-grid-6">
+                        <li class="following-item" ng-if="$index < albumDisplayLimit" ng-repeat="album in albums track by $index">
+                            <a href="#/album/{{album.collectionId}}">
+                                <div class="row bump">
+                                    <div class="row">
+                                        <div class="card-shadow search-card-item">
+                                            <div class="responsive-img" back-img="{{album.artworkUrl300}}"></div>
+                                            <div class="row collapse text-card">
+                                                <div class="text-center">
+                                                    <p class="first-text-card ellipsis">{{album.collectionName}}</p>
+                                                </div>
+                                                <div class="text-center">
+                                                    <p class="second-text-card ellipsis">{{album.artistName}}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
-                </li>
+                                </div>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

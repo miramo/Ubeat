@@ -240,7 +240,7 @@
                     }
                     else
                     {
-                        sharedPagesStatus.pageCriticFailure();
+                        sharedPagesStatus.setCriticalError(0, "");
                     }
                 },
                 function (err)
@@ -250,7 +250,7 @@
         }
         else
         {
-            sharedPagesStatus.pageCriticFailure();
+            sharedPagesStatus.setCriticalError(0, "");
         }
 
 
