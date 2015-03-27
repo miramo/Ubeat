@@ -19434,7 +19434,7 @@ input[type="search"].dream-search:focus {
   }
 }
 /* line 18, ../scss/_user.scss */
-.user .user-header #img-user:after {
+.user .user-header .me#img-user:after {
   border-radius: 50%;
   content: 'Changer votre Gravatar';
   color: white;
@@ -19451,7 +19451,7 @@ input[type="search"].dream-search:focus {
   transition: opacity 0.3s linear;
 }
 /* line 35, ../scss/_user.scss */
-.user .user-header #img-user:hover:after {
+.user .user-header .me#img-user:hover:after {
   border-radius: 50%;
   opacity: 0.5;
 }

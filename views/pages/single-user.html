@@ -5,7 +5,7 @@
                 <div class="album-artist-picture">
                     <div class="show-for-medium-up">
                         <a href="http://www.gravatar.com/{{userData.email | gravatar}}" target="_blank">
-                            <div class="img-circular responsive-img" id="img-user" back-img="{{gravatarImgUrl}}"></div>
+                            <div class="img-circular responsive-img" id="img-user" ng-class="{me: (userData.id == sharedProperties.getInfoConnection().id)}" back-img="{{gravatarImgUrl}}"></div>
                         </a>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                             <small>{{userData.email}}</small>
                         </h3>
                     </div>
-                    <button ng-click="" class="red small radius"><i class="md-add md-lg"></i> Suivre</button>
+                    <button ng-show="userData.id != sharedProperties.getInfoConnection().id" ng-click="" class="red small radius"><i class="md-add md-lg"></i> Suivre</button>
                 </div>
             </div>
         </div>
@@ -50,8 +50,3 @@
         </div>
     </div>
 </div>
-<div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsCriticalError()">
-    <error-msg error-nb="Error {{sharedPagesStatus.getErrorStatus()}}" msg="{{sharedPagesStatus.getErrorMessage()}}"></error-msg>
-</div>
-<script type="text/javascript" src="js/libs/stackblur.js"></script>
-<script type="text/javascript" src="bower_components/md5/build/md5.min.js"></script>
