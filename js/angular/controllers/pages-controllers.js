@@ -969,7 +969,6 @@
                         });
                 });
                 sharedPagesStatus.setIsPageLoaded(true);
-                $(document).foundation();
                 $(document).foundation('reveal', 'reflow');
                 $(document).foundation('dropdown', 'reflow');
             }
