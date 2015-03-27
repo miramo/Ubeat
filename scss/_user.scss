@@ -39,30 +39,37 @@
       }
     }
   }
-  .following-list
+  .panel-following
   {
-    @media #{$small-only} and (orientation : landscape)
+    .title
     {
-      @include block-grid(4);
+      margin-bottom: rem-calc(25);
     }
-    @media #{$small-only} and (orientation : portrait)
+    .following-list
     {
-      @include block-grid(3);
-    }
-    @media #{$medium}
-    {
-      @include block-grid(5);
-    }
-    @media #{$large-up}
-    {
-      @include block-grid(6);
-    }
-    .following-item
-    {
-      @include single-transition(transform, 200ms, linear);
-      &:hover
+      @media #{$small-only} and (orientation : landscape)
       {
-        @include transform2d(scale(1.08));
+        @include block-grid(5);
+      }
+      @media #{$small-only} and (orientation : portrait)
+      {
+        @include block-grid(4);
+      }
+      @media #{$medium}
+      {
+        @include block-grid(7);
+      }
+      @media #{$large-up}
+      {
+        @include block-grid(8);
+      }
+      .following-item
+      {
+        @include single-transition(transform, 200ms, linear);
+        &:hover
+        {
+          @include transform2d(scale(1.08));
+        }
       }
     }
   }
