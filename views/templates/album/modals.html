@@ -5,7 +5,7 @@
     </h2>
     <div class="row collapse">
         <div class="small-10 columns">
-            <input class="pre-radius" ng-keydown="$event.which == 13 && createPlaylistByTrack(playlistToAdd, '#addTrackToPlaylist')"
+            <input class="pre-radius" ng-keydown="$event.which == 13 && createPlaylistByTrack(playlistToAdd, '#addTrackToPlaylistModal')"
                    ng-model="playlistToAdd" type="text" placeholder="Nom de la playlist"/>
         </div>
         <div class="small-2 columns">
@@ -21,7 +21,7 @@
     </h2>
     <div class="row collapse">
         <div class="small-10 columns">
-            <input class="pre-radius" ng-model="playlistToAdd" ng-keydown="$event.which == 13 && createPlaylistByTrackArray(playlistToAdd, '#addAlbumToPlaylist')"
+            <input class="pre-radius" ng-model="playlistToAdd" ng-keydown="$event.which == 13 && createPlaylistByTrackArray(playlistToAdd, '#addAlbumToPlaylistModal')"
                    type="text" placeholder="Nom de la playlist"/>
         </div>
         <div class="small-2 columns">

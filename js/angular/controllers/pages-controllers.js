@@ -969,6 +969,9 @@
                         });
                 });
                 sharedPagesStatus.setIsPageLoaded(true);
+                $(document).foundation();
+                $(document).foundation('reveal', 'reflow');
+                $(document).foundation('dropdown', 'reflow');
             }
         });
 
@@ -1047,26 +1050,21 @@
                 sharedPagesStatus.setCriticalError(err.status, err.statusText);
             });
 
+        var createPlaylistByTrackCallback = function (data)
+        {
+            if (data)
+            {
+                sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, data.id);
+                sharedProperties.getPlaylists(getPlaylistsCallback);
+            }
+        }
+
         $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
         {
             if (playlistToAdd)
             {
-                var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
+                sharedProperties.createPlaylist(playlistToAdd, createPlaylistByTrackCallback);
 
-                sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, newPlaylist.id);
-                $scope.closeModal(modalId);
-                return true;
-            }
-            return false;
-        }
-
-        $scope.createPlaylistByTrackArray = function (playlistToAdd, modalId)
-        {
-            if (playlistToAdd)
-            {
-                var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
-
-                sharedProperties.addTrackArrayToPlaylist($scope.trackArrayToAddToNewPlaylist, newPlaylist.id);
                 $scope.closeModal(modalId);
                 return true;
             }
@@ -1107,6 +1105,8 @@
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
             $(document).foundation();
+            $(document).foundation('reveal', 'reflow');
+            $(document).foundation('dropdown', 'reflow');
         });
     });
 
