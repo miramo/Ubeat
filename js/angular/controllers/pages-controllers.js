@@ -1141,6 +1141,7 @@
                 if (data.email && data.name && data.id && data.following)
                 {
                     sharedPagesStatus.setTitle(data.name);
+                    sharedPagesStatus.setCurrentIdUser(data.id);
                     $scope.userData = {email: data.email, name: data.name, id: data.id, following: data.following};
                     if (urlExist("http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg&d=404"))
                         $scope.gravatarImgUrl = "http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg";

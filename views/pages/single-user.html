@@ -33,7 +33,7 @@
                                 <div class="row bump">
                                     <div class="row">
                                         <div class="card-shadow">
-                                            <div class="responsive-img" back-img="http://www.gravatar.com/avatar/{{follow.email | gravatar}}?s=300&r=pg&d=http://glo3102.github.io/team02/img/mystery-man-red.png"></div>
+                                            <div class="responsive-img" back-img="{{sharedProperties.getGravatar(follow.email, 150)}}"></div>
                                             <div class="row collapse text-card">
                                                 <div class="text-center">
                                                     <p class="first-text-card ellipsis">{{follow.name}}</p>

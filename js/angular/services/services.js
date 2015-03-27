@@ -515,6 +515,11 @@
                 //factories.isSecure = val;
             }
         }
+
+        this.getGravatar = function (email, size)
+        {
+            return "http://www.gravatar.com/avatar/" + md5(email) + "?s=" + size + "&r=pg&d=http://glo3102.github.io/team02/img/mystery-man-red.png";
+        }
     });
 
     services.service('sharedPagesStatus', function ($location)
@@ -536,6 +541,17 @@
             user     : 'user'
         };
         var currentPage = pageEnum.home;
+        var currentIdUser;
+
+        this.setCurrentIdUser = function (id)
+        {
+            currentIdUser = id;
+        }
+
+        this.getCurrentIdUser = function ()
+        {
+            return currentIdUser;
+        }
 
         this.isCurrentPage = function (page)
         {

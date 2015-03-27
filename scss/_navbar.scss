@@ -83,8 +83,8 @@
         display: inline-block;
         vertical-align: middle;
         background-size: cover;
-        background-repeat : no-repeat;
-        background-position : center center;
+        background-repeat: no-repeat;
+        background-position: center center;
       }
       #profile-name
       {
@@ -100,19 +100,18 @@
         margin-left: 25%;
       }
       opacity: .5;
-    }
-
-    input[type="search"].dream-search:focus
-    {
-      @media #{$medium-up}
+      &:focus
       {
-        width: 100%;
-        margin-left: 0%;
-        @include transition-property(width, margin-left);
-        @include transition-duration(.35s);
-        @include transition-timing-function(ease-in);
+        @media #{$medium-up}
+        {
+          width: 100%;
+          margin-left: 0%;
+          @include transition-property(width, margin-left);
+          @include transition-duration(.35s);
+          @include transition-timing-function(ease-in);
+        }
+        opacity: 1;
       }
-      opacity: 1;
     }
   }
 }

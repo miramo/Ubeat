@@ -18463,12 +18463,12 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
     margin-left: 25%;
   }
 }
-/* line 105, ../scss/_navbar.scss */
+/* line 103, ../scss/_navbar.scss */
 .nav-bar .top-bar-section input[type="search"].dream-search:focus {
   opacity: 1;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 105, ../scss/_navbar.scss */
+  /* line 103, ../scss/_navbar.scss */
   .nav-bar .top-bar-section input[type="search"].dream-search:focus {
     width: 100%;
     margin-left: 0%;
@@ -18488,7 +18488,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 122, ../scss/_navbar.scss */
+  /* line 121, ../scss/_navbar.scss */
   .top-bar-section .has-dropdown > a:after {
     content: "";
     display: block;
@@ -18504,7 +18504,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
     right: 0;
   }
 
-  /* line 137, ../scss/_navbar.scss */
+  /* line 136, ../scss/_navbar.scss */
   .button-search {
     margin-top: 0.0625rem;
   }
