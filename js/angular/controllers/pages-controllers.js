@@ -45,21 +45,18 @@
                                     ++$scope.artistsLoadedCount;
                                 }, function (err)
                                 {
-                                    console.log(err);
-                                    sharedPagesStatus.setCriticalError(err.status, err.statusText);
+                                    sharedPagesStatus.setDefaultCriticalError(err);
                                 });
 
                             }, function (err)
                             {
-                                console.log(err);
-                                sharedPagesStatus.setCriticalError(err.status, err.statusText);
+                                sharedPagesStatus.setDefaultCriticalError(err);
                             });
                     }
                 },
                 function (err)
                 {
-                    console.log(err);
-                    sharedPagesStatus.setCriticalError(err.status, err.statusText);
+                    sharedPagesStatus.setDefaultCriticalError(err);
                 });
         });
 
@@ -73,7 +70,7 @@
                 },
                 function (err)
                 {
-                    sharedPagesStatus.setCriticalError(err.status, err.statusText);
+                    sharedPagesStatus.setDefaultCriticalError(err);
                 });
         });
 
@@ -196,7 +193,7 @@
 
                                     }, function (err)
                                     {
-                                        sharedPagesStatus.setCriticalError(err.status, err.statusText);
+                                        sharedPagesStatus.setDefaultCriticalError(err);
                                     });
                                 spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
                                 {
@@ -217,12 +214,12 @@
 
                                 }, function (err)
                                 {
-                                    sharedPagesStatus.setCriticalError(err.status, err.statusText);
+                                    sharedPagesStatus.setDefaultCriticalError(err);
                                 });
 
                             }, function (err)
                             {
-                                sharedPagesStatus.setCriticalError(err.status, err.statusText);
+                                sharedPagesStatus.setDefaultCriticalError(err);
                             });
                         artistAlbumsFactory.get(sharedProperties.getTokenCookie(), $routeParams.id, function (data)
                             {
@@ -238,7 +235,7 @@
                             },
                             function (err)
                             {
-                                sharedPagesStatus.setCriticalError(err.status, err.statusText);
+                                sharedPagesStatus.setDefaultCriticalError(err);
                             });
                     }
                     else
@@ -248,7 +245,7 @@
                 },
                 function (err)
                 {
-                    sharedPagesStatus.setCriticalError(err.status, err.statusText);
+                    sharedPagesStatus.setDefaultCriticalError(err);
                 });
         }
         else
@@ -461,7 +458,7 @@
                     artistFactory.get(sharedProperties.getTokenCookie(), $scope.album.artistId, function (data)
                     {
                         $scope.artist = data.results[0];
-                    }, function(err) { sharedPagesStatus.setCriticalError(err.status, err.statusText); });
+                    }, function(err) { sharedPagesStatus.setDefaultCriticalError(err); });
 
                     albumTracksFactory.get(sharedProperties.getTokenCookie(), $routeParams.id, function (data)
                     {
@@ -470,7 +467,7 @@
                         setTracksData(dataTracks);
 
                         pageIsLoaded();
-                    }, function(err){ sharedPagesStatus.setCriticalError(err.status, err.statusText); });
+                    }, function(err){ sharedPagesStatus.setDefaultCriticalError(err); });
 
                     $scope.displayPlayButton = function (track)
                     {
@@ -489,7 +486,7 @@
 
             }, function(err)
             {
-                sharedPagesStatus.setCriticalError(err.status, err.statusText);
+                sharedPagesStatus.setDefaultCriticalError(err);
             });
         }
         else
@@ -968,7 +965,7 @@
                         },
                         function (err)
                         {
-                            sharedPagesStatus.setCriticalError(err.status, err.statusText);
+                            sharedPagesStatus.setDefaultCriticalError(err);
                         });
                 });
                 sharedPagesStatus.setIsPageLoaded(true);
@@ -1027,7 +1024,7 @@
                                                 ++$scope.elementsLoaded;
                                             }, function (err)
                                             {
-                                                sharedPagesStatus.setCriticalError(err.status, err.statusText);
+                                                sharedPagesStatus.setDefaultCriticalError(err);
                                             });
                                         }
                                         else
@@ -1037,7 +1034,7 @@
 
                                     }, function (err)
                                     {
-                                        sharedPagesStatus.setCriticalError(err.status, err.statusText);
+                                        sharedPagesStatus.setDefaultCriticalError(err);
                                     });
                                 break;
                         }
@@ -1049,7 +1046,7 @@
                 }
             }, function (err)
             {
-                sharedPagesStatus.setCriticalError(err.status, err.statusText);
+                sharedPagesStatus.setDefaultCriticalError(err);
             });
 
         var createPlaylistByTrackCallback = function (data)
