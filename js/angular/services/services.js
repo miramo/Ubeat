@@ -23,6 +23,7 @@
         var playQueueStorageName = 'playQueue';
         var playQueue = localStorageService.get(playQueueStorageName);
         var tokenCookieName = 'token';
+        var saveQueuePreviousUrl = '';
 
         if (playQueue == null)
         {
@@ -33,6 +34,16 @@
         var getServiceTokenCookie = function()
         {
             return localStorageService.cookie.get(tokenCookieName);
+        }
+
+        this.setSaveQueuePreviousUrl = function(url)
+        {
+            saveQueuePreviousUrl = url;
+        }
+
+        this.getSaveQueuePreviousUrl = function()
+        {
+            return saveQueuePreviousUrl;
         }
 
         this.getTokenCookie = function()
@@ -637,7 +648,7 @@
 
         this.setCriticalError = function (status, msg)
         {
-            console.log("SetCriticalError");
+            console.log("SetCriticalError[" + status + "]: " + msg);
             if (status == 0)
             {
                 errorStatus = 503;
@@ -649,6 +660,19 @@
                 errorMessage = msg;
             }
             this.setIsCriticalError(true);
+        }
+
+        this.setDefaultCriticalError = function(err)
+        {
+            console.log("SetDefaultCriticalError: " + err);
+            if (err)
+            {
+                this.setCriticalError(err.status, err.statusText);
+            }
+            else
+            {
+                this.setCriticalError(0, "");
+            }
         }
     });
 })();

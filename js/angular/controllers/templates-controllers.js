@@ -78,14 +78,22 @@
         });
     });
 
-    controllers.controller('PlaybarController', function ($scope, sharedPagesStatus, sharedProperties)
+    controllers.controller('PlaybarController', function ($scope, $route, $location, sharedPagesStatus, sharedProperties)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.sharedProperties = sharedProperties;
+        sharedProperties.setSaveQueuePreviousUrl("#/queue/");
+        $scope.queueUrl = sharedProperties.getSaveQueuePreviousUrl();
 
         $scope.next = function()
         {
             $scope.myAudio.stop();
+
+            var track = null;
+            if (track = sharedProperties.getPlayQueueNextTrack(true))
+            {
+                $scope.myAudio.load([{"src": track.previewUrl, "type": "audio/m4a"}]);
+            }
             //$scope.myAudio.load([{"src": "http://upload.wikimedia.org/wikipedia/en/7/79/Korn_-_Predictable_%28demo%29.ogg",  "type": "audio/ogg"}]);
             $scope.myAudio.playPause();
         }
@@ -93,8 +101,27 @@
         $scope.prev = function()
         {
             $scope.myAudio.stop();
+            var track = null;
+            if (track = sharedProperties.getPlayQueuePreviousTrack(true))
+            {
+                $scope.myAudio.load([{"src": track.previewUrl, "type": "audio/m4a"}]);
+            }
             //$scope.myAudio.load([{"src": "http://upload.wikimedia.org/wikipedia/en/7/79/Korn_-_Predictable_%28demo%29.ogg",  "type": "audio/ogg"}]);
             $scope.myAudio.playPause();
+        }
+
+        $scope.clickOnPlayQueue = function()
+        {
+            var queuePreviousUrl = sharedProperties.getSaveQueuePreviousUrl();
+            console.log("#" + $location.url() + " | " + queuePreviousUrl);
+            if (("#" + $location.url()) === $scope.queueUrl && queuePreviousUrl != "" && queuePreviousUrl != ("#" + $location.url()))
+            {
+                sharedProperties.setSaveQueuePreviousUrl("# " + queuePreviousUrl);
+            }
+            else if (("#" + $location.url()) != queuePreviousUrl)
+            {
+                sharedProperties.setSaveQueuePreviousUrl("#" + $location.url());
+            }
         }
 
         $scope.play = function()
