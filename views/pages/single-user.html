@@ -54,14 +54,14 @@
                     <h2 class="text-center title"><i class="md md-my-library-music md-lg left"></i> Playlist</h2>
                     <h4 class="text-center" ng-hide="playlists.length" ng-if="(userData.id == sharedProperties.getInfoConnection().id)">Vous n'avez pas de playlist.</h4>
                     <h4 class="text-center" ng-hide="playlists.length" ng-if="(userData.id != sharedProperties.getInfoConnection().id)">Cet utilisateur n'a pas de playlist.</h4>
-                    <ul class="accordion">
-                        <li class="accordion-navigation" ng-repeat="playlist in playlists | orderBy:'-id' track by $index">
-                            <a href id="link-{{playlist.id}}" class="playlist-name clearfix" ng-click="setActive(playlist.id)">
-                                <div class="img" back-img="{{sharedProperties.getPlaylistImg(playlist, 50)}}"></div>
-                                <span class="left">{{playlist.name}}</span>
-                                <span class="right">{{playlist.tracks.length}} pistes</span>
+                    <dl class="accordion">
+                        <dd class="accordion-navigation" ng-repeat="playlist in playlists | orderBy:'-id' track by $index">
+                            <a href id="link-{{playlist.id}}" class="playlist-item clearfix" ng-click="setActive(playlist.id)">
+                                <div class="img left" back-img="{{sharedProperties.getPlaylistImg(playlist, 50)}}"></div>
+                                <span class="playlist-name ellipsis left">{{playlist.name}}</span>
+                                <span class="playlist-nb-songs right">{{playlist.tracks.length}} pistes</span>
                             </a>
-                            <div id="panel{{playlist.id}}" class="content" ng-class="{active: (activePlaylist == playlist.id)}">
+                            <div id="panel-accordion-{{playlist.id}}" class="content" ng-class="{active: (activePlaylist == playlist.id)}">
                                 <div>
                                     <table>
                                         <thead>
@@ -103,8 +103,8 @@
                                 </div>
                             </div>
                         </li>
-                    </ul>
-                </div>
+                    </dd>
+                </dl>
             </div>
         </div>
     </div>

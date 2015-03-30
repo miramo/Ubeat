@@ -84,19 +84,59 @@
   }
   .accordion
   {
-    .playlist-name span
+    .accordion-navigation
     {
-      display: inline;
-      height: rem-calc(50);
-      line-height: rem-calc(50);
+      [id^=panel-accordion-]
+      {
+        background-color: scale-color($panel-bg, $lightness: 50%) !important;
+        @include box-shadow(inset 0 8px 8px -8px #696969, inset 0 -8px 8px -8px #696969);
+      }
+      .content
+      {
+        display: block;
+        max-height: 0;
+        overflow-y: auto;
+        padding: rem-calc(0 16);
+        @include single-transition(all, 400ms, ease);
+        &.active
+        {
+          max-height: 80vh;
+          padding: rem-calc(16);
+          @include single-transition(all, 400ms, ease);
+          @include transition-delay(200ms);
+        }
+      }
+    }
+    .playlist-item
+    {
+      border-radius: rem-calc($global-radius);
+      background-color: scale-color($panel-bg, $lightness: -5%);
+      @include material-shadow(1);
+      &:hover
+      {
+        background-color: scale-color($panel-bg, $lightness: -15%);
+        @include material-shadow(2);
+      }
+      span
+      {
+        height: rem-calc(50);
+        line-height: rem-calc(50);
+        &.playlist-name
+        {
+          width: calc(100% - 140px);
+        }
+        &.playlist-nb-songs
+        {
+          width: rem-calc(80);
+          text-align: right;
+        }
+      }
     }
     .img
     {
       width: rem-calc(50);
       height: rem-calc(50);
-      display: inline;
       margin-right: rem-calc(5);
-      float: left;
     }
   }
 }
