@@ -87,7 +87,6 @@
     .playlist-name span
     {
       display: inline;
-      width: 100%;
       height: rem-calc(50);
       line-height: rem-calc(50);
     }
@@ -96,8 +95,6 @@
       width: rem-calc(50);
       height: rem-calc(50);
       display: inline;
-//      margin-top: rem-calc(3);
-//      margin-left: rem-calc(5);
       margin-right: rem-calc(5);
       float: left;
     }

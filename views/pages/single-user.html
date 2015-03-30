@@ -56,10 +56,10 @@
                     <h4 class="text-center" ng-hide="playlists.length" ng-if="(userData.id != sharedProperties.getInfoConnection().id)">Cet utilisateur n'a pas de playlist.</h4>
                     <ul class="accordion">
                         <li class="accordion-navigation" ng-repeat="playlist in playlists | orderBy:'-id' track by $index">
-                            <!--<a href id="link-{{playlist.id}}" class="playlist-item" ng-click="setActive(playlist.id)" before-img="{{sharedProperties.getPlaylistImg(playlist, 50)}}">{{playlist.name}}</a>-->
-                            <a href id="link-{{playlist.id}}" class="playlist-name" ng-click="setActive(playlist.id)">
+                            <a href id="link-{{playlist.id}}" class="playlist-name clearfix" ng-click="setActive(playlist.id)">
                                 <div class="img" back-img="{{sharedProperties.getPlaylistImg(playlist, 50)}}"></div>
-                                <span>{{playlist.name}}</span>
+                                <span class="left">{{playlist.name}}</span>
+                                <span class="right">{{playlist.tracks.length}} pistes</span>
                             </a>
                             <div id="panel{{playlist.id}}" class="content" ng-class="{active: (activePlaylist == playlist.id)}">
                                 <div>
