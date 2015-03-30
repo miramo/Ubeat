@@ -430,7 +430,7 @@
         }
 
         var blur = new Blur({
-            el        : document.querySelector('body'),
+            el        : document.querySelector('.artist-header'),
             path      : '',
             radius    : 50,
             fullscreen: true
