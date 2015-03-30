@@ -430,7 +430,14 @@
                 $scope.tracks[i].displayPlayButton = false;
             }
         }
-        
+
+        var blur = new Blur({
+            el        : document.querySelector('.artist-header'),
+            path      : '',
+            radius    : 50,
+            fullscreen: true
+        });
+
         var isAlbumIdValid = /^\d+$/.test($routeParams.id);
 
         if (isAlbumIdValid)
@@ -1100,6 +1107,7 @@
         $scope.sharedProperties = sharedProperties;
         $scope.userData = {email: "", name: "", id: "", following: []};
         $scope.gravatarImgUrl = "img/mystery-man-red.png";
+        $scope.activePlaylist = 0;
 
         if (sharedProperties.isConnected() == false)
         {
@@ -1122,6 +1130,7 @@
                     $scope.userData = {email: data.email, name: data.name, id: data.id, following: data.following};
                     if (urlExist("http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg&d=404"))
                         $scope.gravatarImgUrl = "http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg";
+                    sharedProperties.getPlaylists(getPlaylistsCallback, data.id);
                     setBlur($scope.gravatarImgUrl);
                     sharedPagesStatus.setIsPageLoaded(true);
                     //console.log($scope.userData);
@@ -1132,12 +1141,39 @@
                 sharedPagesStatus.setCriticalError(err.errorCode, err.message);
             });
 
-        var setBlur = function(path)
+        var getPlaylistsCallback = function (playlists, isError)
+        {
+            if (playlists && playlists.length > 0)
+            {
+                $scope.playlists = playlists;
+            }
+            else
+            {
+                $scope.playlists = [];
+            }
+        }
+
+        var setBlur = function (path)
         {
             blur.init({
                 el  : document.querySelector('.user-header'),
                 path: path
             });
-        };
+        }
+
+        $scope.setActive = function (id)
+        {
+            $scope.activePlaylist = (id != $scope.activePlaylist) ? id : 0;
+        }
+
+        $scope.displayPlayButton = function (track)
+        {
+            track.displayPlayButton = true;
+        }
+
+        $scope.hidePlayButton = function (track)
+        {
+            track.displayPlayButton = false;
+        }
     });
 })();

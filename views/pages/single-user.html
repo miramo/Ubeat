@@ -52,7 +52,52 @@
             <div class="small-12 columns">
                 <div class="panel radius panel-playlist">
                     <h2 class="text-center title"><i class="md md-my-library-music md-lg left"></i> Playlists</h2>
-
+                    <ul class="accordion">
+                        <li class="accordion-navigation" ng-repeat="playlist in playlists | orderBy:'-id' track by $index">
+                            <a href="" ng-click="setActive(playlist.id)">{{playlist.name}}</a>
+                            <div id="panel{{playlist.id}}" class="content" ng-class="{active: (activePlaylist == playlist.id)}">
+                                <div>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th width="30">#</th>
+                                                <th width="500">Titre de la musique</th>
+                                                <th width="400">Album</th>
+                                                <th width="300" class="hide-for-small-only">Artiste</th>
+                                                <th width="50" class="text-center hide-for-small-only"><i class="fa fa-clock-o fa-lg"></i></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="music-row" ng-repeat="track in playlist.tracks track by $index"
+                                                ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
+                                                <td class="disable-select text-center">
+                                                    <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
+                                                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter">
+                                                        <i ng-click="sharedProperties.setCurrentTrack(track)" class="fa fa-play fa-lg"></i>
+                                                    </span>
+                                                    </div>
+                                                    <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
+                                                        {{track.trackNumber}}
+                                                    </div>
+                                                    <div ng-show="track.playState == sharedProperties.getPlayStates().play">
+                                                        <i class="fa fa-circle-o-notch fa-spin"></i>
+                                                    </div>
+                                                    <div ng-show="track.playState == sharedProperties.getPlayStates().pause">
+                                                        <i class="fa fa-pause"></i>
+                                                    </div>
+                                                </td>
+                                                <td>{{track.trackName}}</td>
+                                                <td><a href="#/album/{{track.collectionId}}">{{track.collectionName}}</a></td>
+                                                <td class="hide-for-small-only"><a href="#/artist/{{track.artistId}}">{{track.artistName}}</a></td>
+                                                <td class="text-center hide-for-small-only">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <h4 class="text-center" ng-hide="playlist.tracks.length">Cette playlist ne contient aucun titre.</h4>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
