@@ -431,13 +431,6 @@
             }
         }
 
-        var blur = new Blur({
-            el        : document.querySelector('.artist-header'),
-            path      : '',
-            radius    : 50,
-            fullscreen: true
-        });
-
         var isAlbumIdValid = /^\d+$/.test($routeParams.id);
 
         if (isAlbumIdValid)
