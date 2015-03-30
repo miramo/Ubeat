@@ -50,7 +50,10 @@
     {
         $http(req).success(function (data)
         {
-            successCallback(data);
+            if (successCallback)
+            {
+                successCallback(data);
+            }
         }).error(function (err)
         {
             if (errorCallback)

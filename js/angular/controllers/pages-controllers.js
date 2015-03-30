@@ -272,7 +272,8 @@
         $scope.tracks = [];
         $scope.album = null;
         $scope.playlits = [];
-        $scope.isPageFailedLoad = false;
+        $scope.isPageFailedLoad = false
+        $scope.isConnected = false;
         $scope.errorTitle = "Erreur 503";
         $scope.errorMsg = "Service temporairement indisponible.";
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().album);
@@ -288,6 +289,7 @@
         if (sharedProperties.isConnected())
         {
             sharedProperties.getPlaylists(getPlaylistsCallback);
+            $scope.isConnected = true;
         }
 
         var updateTracks = function ()
@@ -428,14 +430,7 @@
                 $scope.tracks[i].displayPlayButton = false;
             }
         }
-
-        var blur = new Blur({
-            el        : document.querySelector('body'),
-            path      : '',
-            radius    : 50,
-            fullscreen: true
-        });
-
+        
         var isAlbumIdValid = /^\d+$/.test($routeParams.id);
 
         if (isAlbumIdValid)
@@ -452,6 +447,13 @@
                     $scope.filtersNames = ['Numéro de piste', 'Chanson', 'Artiste', 'Durée'];
                     $scope.currentFilterName = $scope.filtersNames[0];
                     $scope.filter = $scope.filtersValues[0];
+
+                    var blur = new Blur({
+                        el        : document.querySelector('.artist-header'),
+                        path      : '',
+                        radius    : 50,
+                        fullscreen: true
+                    });
 
                     blur.init({el: document.querySelector('.artist-header'), path: $scope.album.artworkUrl300});
 

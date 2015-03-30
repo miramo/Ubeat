@@ -98,7 +98,7 @@
             }
         }
 
-        this.isConnected = function (successCallback, errorCallback)
+        this.isConnected = function ()
         {
             var token = localStorageService.cookie.get(tokenCookieName);
 
@@ -106,10 +106,8 @@
             {
                 tokenInfoFactory.get(token, function (data)
                 {
-                    console.log(data);
                 }, function (err)
                 {
-                    console.log(err);
                     localStorageService.cookie.remove(tokenCookieName);
                     sharedPagesStatus.redirectToHome();
                 });
