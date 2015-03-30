@@ -468,14 +468,14 @@
             });
         }
 
-        this.renamePlaylist = function (playlistId, newName, callback)
+        this.renamePlaylist = function (id, playlist, newName, callback)
         {
-            singlePlaylistFactory.get(getServiceTokenCookie(), playlistId, function (data)
+            singlePlaylistFactory.get(getServiceTokenCookie(), id, function (data)
             {
                 if (data)
                 {
                     data.name = newName;
-                    singlePlaylistFactory.put(getServiceTokenCookie(), playlistId, {'name': newName}, function (data)
+                    singlePlaylistFactory.put(getServiceTokenCookie(), id, data, function (data)
                     {
                         if (callback)
                         {

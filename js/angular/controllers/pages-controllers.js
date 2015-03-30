@@ -712,7 +712,7 @@
         {
             playlist.isEdit = false;
             playlist.isHover = false;
-            sharedProperties.renamePlaylist(id, newName, confirmRenameCallback);
+            sharedProperties.renamePlaylist(id, playlist, newName, confirmRenameCallback);
             $scope.setPlaylistCurrentRename(newName);
             $scope.active = playlist;
         }
