@@ -1112,7 +1112,7 @@
     controllers.controller('SingleUserController', function ($location, $scope, $http, $routeParams, sharedPagesStatus, sharedProperties, singleUserFactory)
     {
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().user);
-        sharedPagesStatus.setIsPageLoaded(true);
+        sharedPagesStatus.resetPageStatus();
         $scope.sharedPagesStatus = sharedPagesStatus;
         $scope.sharedProperties = sharedProperties;
         $scope.userData = {email: "", name: "", id: "", following: []};
@@ -1146,6 +1146,7 @@
                     if (urlExist("http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg&d=404"))
                         $scope.gravatarImgUrl = "http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg";
                     setBlur($scope.gravatarImgUrl);
+                    sharedPagesStatus.setIsPageLoaded(true);
                     //console.log($scope.userData);
                 }
             },
