@@ -524,15 +524,9 @@
 
         var isRemovingPlaylist = false;
 
-        var redirectToHome = function ()
-        {
-            $location.path("/");
-            $route.reload();
-        }
-
         if (sharedProperties.isConnected() == false)
         {
-            redirectToHome();
+            sharedPagesStatus.redirectToHome();
         }
 
         $scope.getActualPlaylists = function ()
@@ -563,7 +557,7 @@
             sharedPagesStatus.setIsPageLoaded(true);
             if (isError)
             {
-                redirectToHome();
+                sharedPagesStatus.redirectToHome();
             }
         }
 
@@ -1118,15 +1112,9 @@
         $scope.userData = {email: "", name: "", id: "", following: []};
         $scope.gravatarImgUrl = "img/mystery-man-red.png";
 
-        var redirectToHome = function ()
-        {
-            $location.path("/");
-            $route.reload();
-        }
-
         if (sharedProperties.isConnected() == false)
         {
-            redirectToHome();
+            sharedPagesStatus.redirectToHome();
         }
 
         var blur = new Blur({

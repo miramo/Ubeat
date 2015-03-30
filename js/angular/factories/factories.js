@@ -11,7 +11,7 @@
     factories.localSecureUbeatUrl = "http://localhost:3000/";
     factories.localUnsecureUbeatUrl = "http://localhost:3000/unsecure/";
     factories.isSecure = false;
-    factories.isLocal = false;
+    factories.isLocal = true;
     factories.ubeatBaseUrl = factories.isSecure ? factories.ubeatBaseSecureUrl : factories.ubeatBaseUnsecureUrl;
     factories.spotifyUrl = 'https://api.spotify.com/v1/';
 
@@ -85,7 +85,7 @@
         return {
             post: function (token, data, successCallback, errorCallback)
             {
-                var req = factories.generateHttpReq('POST', factories.resolveUbeatApiURL(factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true)) + 'login', token, data);
+                var req = factories.generateHttpReq('POST', factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'login', token, data);
                 factories.httpReq($http, req, successCallback, errorCallback);
             }
         }
@@ -96,7 +96,7 @@
          return {
             get: function (token, successCallback, errorCallback)
             {
-                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true)) + 'logout', token, null);
+                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'logout', token, null);
                 factories.httpReq($http, req, successCallback, errorCallback);
             }
         }
@@ -107,7 +107,7 @@
         return {
             post: function (token, data, successCallback, errorCallback)
             {
-                var req = factories.generateHttpReq('POST', factories.resolveUbeatApiURL(factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true)) + 'signup', token, data);
+                var req = factories.generateHttpReq('POST', factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'signup', token, data);
                 factories.httpReq($http, req, successCallback, errorCallback);
             }
         }

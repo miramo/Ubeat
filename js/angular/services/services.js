@@ -98,12 +98,21 @@
             }
         }
 
-        this.isConnected = function ()
+        this.isConnected = function (successCallback, errorCallback)
         {
             var token = localStorageService.cookie.get(tokenCookieName);
 
             if (token)
             {
+                tokenInfoFactory.get(token, function (data)
+                {
+                    console.log(data);
+                }, function (err)
+                {
+                    console.log(err);
+                    localStorageService.cookie.remove(tokenCookieName);
+                    sharedPagesStatus.redirectToHome();
+                });
                 return true;
             }
             return false;
@@ -229,7 +238,7 @@
             angular.copy(albums, homeAlbums);
         }
 
-        this.getPlaylists = function (callback)
+        this.getPlaylists = function (callback, userId)
         {
             tokenInfoFactory.get(getServiceTokenCookie(), function (tokenData)
                 {
@@ -242,7 +251,8 @@
                                     playlists = [];
                                     for (var i = 0; i < data.length; ++i)
                                     {
-                                        if (data[i].owner && data[i].owner.email == tokenData.email)
+                                        var idToCheck = userId ? userId : tokenData.id;
+                                        if (data[i].owner && data[i].owner.id == idToCheck)
                                         {
                                             var dataPlaylist = data[i];
                                             dataPlaylist.arrayId = i;
@@ -553,6 +563,12 @@
         };
         var currentPage = pageEnum.home;
         var currentIdUser;
+
+        this.redirectToHome = function ()
+        {
+            $location.path("/");
+            $route.reload();
+        }
 
         this.setCurrentIdUser = function (id)
         {
