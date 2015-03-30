@@ -18419,33 +18419,29 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
     opacity: 0;
     transform: translateY(-5%);
   }
-  /* line 58, ../scss/_navbar.scss */
-  .nav-bar .top-bar-section .dropdown i {
-    width: 1.5625rem;
-  }
-  /* line 66, ../scss/_navbar.scss */
+  /* line 62, ../scss/_navbar.scss */
   .nav-bar .top-bar-section .has-dropdown.hover > .dropdown, .nav-bar .top-bar-section .has-dropdown.not-click:hover > .dropdown {
     opacity: 1;
     transform: translateY(0%);
   }
 }
-/* line 73, ../scss/_navbar.scss */
+/* line 69, ../scss/_navbar.scss */
 .nav-bar .top-bar-section #connection-button-large {
   display: flex;
 }
-/* line 76, ../scss/_navbar.scss */
+/* line 72, ../scss/_navbar.scss */
 .nav-bar .top-bar-section #connection-button-large li:first-child {
   margin-left: 0.9375rem;
 }
-/* line 81, ../scss/_navbar.scss */
+/* line 77, ../scss/_navbar.scss */
 .nav-bar .top-bar-section #connection-button-mobile {
   display: block;
 }
-/* line 86, ../scss/_navbar.scss */
+/* line 82, ../scss/_navbar.scss */
 .nav-bar .top-bar-section #profile-topbar {
   display: inline-block;
 }
-/* line 89, ../scss/_navbar.scss */
+/* line 85, ../scss/_navbar.scss */
 .nav-bar .top-bar-section #profile-topbar #profile-picture {
   width: 2rem;
   height: 2rem;
@@ -18456,27 +18452,27 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   background-repeat: no-repeat;
   background-position: center center;
 }
-/* line 100, ../scss/_navbar.scss */
+/* line 96, ../scss/_navbar.scss */
 .nav-bar .top-bar-section #profile-topbar #profile-name {
   padding-left: 0.3125rem;
 }
-/* line 106, ../scss/_navbar.scss */
+/* line 102, ../scss/_navbar.scss */
 .nav-bar .top-bar-section input[type="search"].dream-search {
   opacity: .5;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 106, ../scss/_navbar.scss */
+  /* line 102, ../scss/_navbar.scss */
   .nav-bar .top-bar-section input[type="search"].dream-search {
     width: 75%;
     margin-left: 25%;
   }
 }
-/* line 114, ../scss/_navbar.scss */
+/* line 110, ../scss/_navbar.scss */
 .nav-bar .top-bar-section input[type="search"].dream-search:focus {
   opacity: 1;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 114, ../scss/_navbar.scss */
+  /* line 110, ../scss/_navbar.scss */
   .nav-bar .top-bar-section input[type="search"].dream-search:focus {
     width: 100%;
     margin-left: 0%;
@@ -18496,7 +18492,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 132, ../scss/_navbar.scss */
+  /* line 128, ../scss/_navbar.scss */
   .top-bar-section .has-dropdown > a:after {
     content: "";
     display: block;
@@ -18512,7 +18508,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
     right: 0;
   }
 
-  /* line 147, ../scss/_navbar.scss */
+  /* line 143, ../scss/_navbar.scss */
   .button-search {
     margin-top: 0.0625rem;
   }
@@ -19647,6 +19643,10 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -ms-transform: scale(1.08);
   -webkit-transform: scale(1.08);
   transform: scale(1.08);
+}
+/* line 82, ../scss/_user.scss */
+.user .panel-playlist .title {
+  margin-bottom: 1.5625rem;
 }
 
 /* line 1, ../scss/_errors.scss */
