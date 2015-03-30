@@ -24,6 +24,7 @@
         var playQueue = localStorageService.get(playQueueStorageName);
         var tokenCookieName = 'token';
         var saveQueuePreviousUrl = '';
+        var missingImgPlaylist = './img/missing-album.png';
 
         if (playQueue == null)
         {
@@ -250,7 +251,7 @@
             }
             else
             {
-                return $scope.missingImgPlaylist;
+                return missingImgPlaylist;
             }
         }
 

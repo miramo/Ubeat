@@ -509,7 +509,6 @@
     controllers.controller('PlaylistsController', function ($scope, $location, $route, $routeParams, sharedPagesStatus, sharedProperties)
     {
         sharedPagesStatus.resetPageStatus();
-        $scope.missingImgPlaylist = './img/missing-album.png';
         $scope.sharedProperties = sharedProperties;
         $scope.playlistToAdd = {};
         $scope.playlistToAdd.defaultName = "Nouvelle playlist";
