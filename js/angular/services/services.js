@@ -238,6 +238,24 @@
             angular.copy(albums, homeAlbums);
         }
 
+        this.getPlaylistImg = function(playlist, size)
+        {
+            if (playlist && playlist.tracks && playlist.tracks.length > 0)
+            {
+                var firstTrack = playlist.tracks[0];
+                var artwork = firstTrack.artworkUrl100;
+                if (size && size != 100)
+                {
+                    artwork = itunesLinkImageSizeTo(firstTrack.artworkUrl100, size);
+                }
+                return artwork;
+            }
+            else
+            {
+                return $scope.missingImgPlaylist;
+            }
+        }
+
         this.getPlaylists = function (callback, userId)
         {
             tokenInfoFactory.get(getServiceTokenCookie(), function (tokenData)
