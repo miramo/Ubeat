@@ -7,7 +7,7 @@
     var services = angular.module('services', ['factories']);
 
 
-    services.service('sharedProperties', function (localStorageService,
+    services.service('sharedProperties', function (localStorageService, sharedPagesStatus,
                                                    totalPlaylistsFactory, singlePlaylistFactory, singlePlaylistTracksFactory,
                                                    singlePlaylistSingleTrackFactory, tokenInfoFactory)
     {
