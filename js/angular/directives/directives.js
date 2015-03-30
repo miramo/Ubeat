@@ -74,4 +74,16 @@
             });
         };
     });
+
+    ubeatApp.directive('beforeImg', function ()
+    {
+        return function (scope, element, attrs)
+        {
+            attrs.$observe('beforeImg', function (value)
+            {
+                var style = "<style>#"+element[0].id+":before{background-image:url("+value+")}</style>";
+                angular.element("head").append(style);
+            });
+        };
+    });
 })();
