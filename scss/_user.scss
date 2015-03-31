@@ -6,15 +6,20 @@
     position: relative;
     margin-bottom: rem-calc(15);
     overflow: hidden;
-    button
+    .button-follow
     {
-      @media #{$small-only}
+      button
       {
-        margin: 0 auto;
+        @include material-shadow(1);
+        @media #{$small-only}
+        {
+          margin: 0 auto;
+        }
       }
     }
     #img-user
     {
+      @include material-shadow(1);
       &:after
       {
         border-radius: 50%;

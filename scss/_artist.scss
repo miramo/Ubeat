@@ -9,6 +9,10 @@
   position      : relative;
   margin-bottom : rem-calc(15);
   overflow      : hidden;
+  #img-artist
+  {
+    @include material-shadow(1);
+  }
 }
 
 .bloc-artist-img-infos

@@ -18197,12 +18197,12 @@ body {
   scrollbar-track-color: #e27f7f;
 }
 
-/* line 53, ../../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_selection.scss */
+/* line 53, C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_selection.scss */
 *::-moz-selection {
   color: #FFFFFF;
   background-color: #f50000;
 }
-/* line 53, ../../../../../../Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_selection.scss */
+/* line 53, C:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/compass-core-1.0.3/stylesheets/compass/css3/_selection.scss */
 *::selection {
   color: #FFFFFF;
   background-color: #f50000;
@@ -18538,14 +18538,20 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   margin-bottom: 0.9375rem;
   overflow: hidden;
 }
+/* line 12, ../scss/_artist.scss */
+.artist-header #img-artist {
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
 
-/* line 14, ../scss/_artist.scss */
+/* line 18, ../scss/_artist.scss */
 .bloc-artist-img-infos {
   margin-top: 2.8125rem;
 }
 
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 19, ../scss/_artist.scss */
+  /* line 23, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -18583,7 +18589,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 19, ../scss/_artist.scss */
+  /* line 23, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -18621,7 +18627,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 19, ../scss/_artist.scss */
+  /* line 23, ../scss/_artist.scss */
   .artist-albums-list {
     display: block;
     padding: 0;
@@ -18659,11 +18665,11 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   }
 }
 
-/* line 39, ../scss/_artist.scss */
+/* line 43, ../scss/_artist.scss */
 .bump .artist-albums-img {
   cursor: pointer;
 }
-/* line 43, ../scss/_artist.scss */
+/* line 47, ../scss/_artist.scss */
 .bump .artist-albums-img:after {
   border-top-left-radius: 0.3125rem;
   border-top-right-radius: 0.3125rem;
@@ -18680,15 +18686,15 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   opacity: 0;
   transition: all 0.3s linear;
 }
-/* line 60, ../scss/_artist.scss */
+/* line 64, ../scss/_artist.scss */
 .bump .artist-albums-img:hover:after {
   opacity: 0.5;
 }
-/* line 65, ../scss/_artist.scss */
+/* line 69, ../scss/_artist.scss */
 .bump .text-card-artist-album {
   transition: all 0.3s linear;
 }
-/* line 69, ../scss/_artist.scss */
+/* line 73, ../scss/_artist.scss */
 .bump .text-card-artist-album:hover {
   background: #9e0000 !important;
 }
@@ -18791,9 +18797,12 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
 .img-album {
   width: 100%;
   height: 100%;
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-/* line 64, ../scss/_albums.scss */
+/* line 65, ../scss/_albums.scss */
 .type-label {
   font-weight: normal;
   font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
@@ -18810,7 +18819,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   color: #FFFFFF;
 }
 
-/* line 72, ../scss/_albums.scss */
+/* line 73, ../scss/_albums.scss */
 #tool-bar .button, button {
   overflow: hidden;
   white-space: nowrap;
@@ -18821,14 +18830,14 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   margin-bottom: 0.1875rem;
 }
 
-/* line 83, ../scss/_albums.scss */
+/* line 84, ../scss/_albums.scss */
 #tool-bar input {
   margin-top: 0.1875rem;
   margin-bottom: 0.1875rem;
   height: 1.75rem;
 }
 
-/* line 90, ../scss/_albums.scss */
+/* line 91, ../scss/_albums.scss */
 .tool-bar-panel {
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
@@ -19445,13 +19454,25 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   margin-bottom: 0.9375rem;
   overflow: hidden;
 }
+/* line 11, ../scss/_user.scss */
+.user .user-header .button-follow button {
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
 @media only screen and (max-width: 40em) {
-  /* line 9, ../scss/_user.scss */
-  .user .user-header button {
+  /* line 11, ../scss/_user.scss */
+  .user .user-header .button-follow button {
     margin: 0 auto;
   }
 }
-/* line 18, ../scss/_user.scss */
+/* line 20, ../scss/_user.scss */
+.user .user-header #img-user {
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+/* line 23, ../scss/_user.scss */
 .user .user-header #img-user:after {
   border-radius: 50%;
   content: 'Acceder au profil Gravatar';
@@ -19468,21 +19489,21 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   opacity: 0;
   transition: opacity 0.3s linear;
 }
-/* line 35, ../scss/_user.scss */
+/* line 40, ../scss/_user.scss */
 .user .user-header #img-user.me:after {
   content: 'Changer votre Gravatar';
 }
-/* line 39, ../scss/_user.scss */
+/* line 44, ../scss/_user.scss */
 .user .user-header #img-user:hover:after {
   border-radius: 50%;
   opacity: 0.5;
 }
-/* line 48, ../scss/_user.scss */
+/* line 53, ../scss/_user.scss */
 .user .panel-following .title {
   margin-bottom: 1.5625rem;
 }
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 52, ../scss/_user.scss */
+  /* line 57, ../scss/_user.scss */
   .user .panel-following .following-list {
     display: block;
     padding: 0;
@@ -19520,7 +19541,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 52, ../scss/_user.scss */
+  /* line 57, ../scss/_user.scss */
   .user .panel-following .following-list {
     display: block;
     padding: 0;
@@ -19558,7 +19579,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 52, ../scss/_user.scss */
+  /* line 57, ../scss/_user.scss */
   .user .panel-following .following-list {
     display: block;
     padding: 0;
@@ -19596,7 +19617,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   }
 }
 @media only screen and (min-width: 64.063em) {
-  /* line 52, ../scss/_user.scss */
+  /* line 57, ../scss/_user.scss */
   .user .panel-following .following-list {
     display: block;
     padding: 0;
@@ -19633,29 +19654,29 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
     clear: both;
   }
 }
-/* line 68, ../scss/_user.scss */
+/* line 73, ../scss/_user.scss */
 .user .panel-following .following-list .following-item {
   transition: transform 200ms linear;
 }
-/* line 71, ../scss/_user.scss */
+/* line 76, ../scss/_user.scss */
 .user .panel-following .following-list .following-item:hover {
   -moz-transform: scale(1.08);
   -ms-transform: scale(1.08);
   -webkit-transform: scale(1.08);
   transform: scale(1.08);
 }
-/* line 80, ../scss/_user.scss */
+/* line 85, ../scss/_user.scss */
 .user .panel-playlist .title {
   margin-bottom: 1.5625rem;
 }
-/* line 89, ../scss/_user.scss */
+/* line 94, ../scss/_user.scss */
 .user .accordion .accordion-navigation [id^=panel-accordion-] {
   background-color: #f9f9f9 !important;
   -moz-box-shadow: inset 0 8px 8px -8px #696969, inset 0 -8px 8px -8px #696969;
   -webkit-box-shadow: inset 0 8px 8px -8px #696969, inset 0 -8px 8px -8px #696969;
   box-shadow: inset 0 8px 8px -8px #696969, inset 0 -8px 8px -8px #696969;
 }
-/* line 94, ../scss/_user.scss */
+/* line 99, ../scss/_user.scss */
 .user .accordion .accordion-navigation .content {
   display: block;
   max-height: 0;
@@ -19663,7 +19684,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   padding: 0 1rem;
   transition: all 400ms ease;
 }
-/* line 101, ../scss/_user.scss */
+/* line 106, ../scss/_user.scss */
 .user .accordion .accordion-navigation .content.active {
   max-height: 80vh;
   padding: 1rem;
@@ -19673,7 +19694,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-transition-delay: 200ms;
   transition-delay: 200ms;
 }
-/* line 110, ../scss/_user.scss */
+/* line 115, ../scss/_user.scss */
 .user .accordion .playlist-item {
   border-radius: 0.1875rem;
   background-color: #e6e6e6;
@@ -19681,27 +19702,27 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
-/* line 115, ../scss/_user.scss */
+/* line 120, ../scss/_user.scss */
 .user .accordion .playlist-item:hover {
   background-color: #cecece;
   -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-/* line 120, ../scss/_user.scss */
+/* line 125, ../scss/_user.scss */
 .user .accordion .playlist-item span {
   height: 3.125rem;
   line-height: 3.125rem;
 }
-/* line 124, ../scss/_user.scss */
+/* line 129, ../scss/_user.scss */
 .user .accordion .playlist-item span.playlist-name {
   width: calc(100% - 140px);
 }
-/* line 128, ../scss/_user.scss */
+/* line 133, ../scss/_user.scss */
 .user .accordion .playlist-item span.playlist-nb-songs {
   width: 5rem;
 }
-/* line 134, ../scss/_user.scss */
+/* line 139, ../scss/_user.scss */
 .user .accordion .img {
   width: 3.125rem;
   height: 3.125rem;
