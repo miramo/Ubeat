@@ -91,7 +91,7 @@
                                                     </span>
                                                     </div>
                                                     <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
-                                                        {{track.trackNumber}}
+                                                        {{$index + 1}}
                                                     </div>
                                                     <div ng-show="track.playState == sharedProperties.getPlayStates().play">
                                                         <i class="fa fa-circle-o-notch fa-spin"></i>
