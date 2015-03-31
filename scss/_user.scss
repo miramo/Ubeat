@@ -91,6 +91,14 @@
   {
     .accordion-navigation
     {
+      &:first-child > a
+      {
+        @include border-top-radius(5px);
+      }
+      &:last-child > a
+      {
+        @include border-bottom-radius(5px);
+      }
       [id^=panel-accordion-]
       {
         background-color: scale-color($panel-bg, $lightness: 50%) !important;
@@ -111,36 +119,35 @@
           @include transition-delay(200ms);
         }
       }
-    }
-    .playlist-item
-    {
-      border-radius: rem-calc($global-radius);
-      background-color: scale-color($panel-bg, $lightness: -5%);
-      @include material-shadow(1);
-      &:hover
+      .playlist-item
       {
-        background-color: scale-color($panel-bg, $lightness: -15%);
-        @include material-shadow(2);
-      }
-      span
-      {
-        height: rem-calc(50);
-        line-height: rem-calc(50);
-        &.playlist-name
+        background-color: scale-color($panel-bg, $lightness: -5%);
+        @include material-shadow(1);
+        &:hover
         {
-          width: calc(100% - 140px);
+          background-color: scale-color($panel-bg, $lightness: -15%);
+          @include material-shadow(2);
         }
-        &.playlist-nb-songs
+        span
         {
-          width: rem-calc(80);
+          height: rem-calc(50);
+          line-height: rem-calc(50);
+          &.playlist-name
+          {
+            width: calc(100% - 140px);
+          }
+          &.playlist-nb-songs
+          {
+            width: rem-calc(80);
+          }
+        }
+        .img
+        {
+          width: rem-calc(50);
+          height: rem-calc(50);
+          margin-right: rem-calc(5);
         }
       }
-    }
-    .img
-    {
-      width: rem-calc(50);
-      height: rem-calc(50);
-      margin-right: rem-calc(5);
     }
   }
 }
