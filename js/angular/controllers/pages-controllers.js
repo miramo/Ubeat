@@ -745,6 +745,7 @@
         $scope.trackToAddToNewPlaylist = null;
         $scope.trackArrayToAddToNewPlaylist = [];
         $scope.playlists = [];
+        $scope.isConnected = false;
 
         var getPlaylistsCallback = function (playlists)
         {
@@ -757,6 +758,7 @@
         if (sharedProperties.isConnected())
         {
             sharedProperties.getPlaylists(getPlaylistsCallback);
+            $scope.isConnected = true;
         }
 
         $scope.getActualPlaylists = function ()
