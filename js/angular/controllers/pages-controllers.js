@@ -855,6 +855,7 @@
         $scope.playlists = [];
         $scope.artistDisplayLimit = 5;
         $scope.albumDisplayLimit = 5;
+        $scope.isConnected = false;
 
         var getPlaylistsCallback = function (playlists)
         {
@@ -867,6 +868,7 @@
         if (sharedProperties.isConnected())
         {
             sharedProperties.getPlaylists(getPlaylistsCallback);
+            $scope.isConnected = true;
         }
 
         var createPlaylistByTrackCallback = function (data)

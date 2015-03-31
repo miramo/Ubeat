@@ -68,7 +68,7 @@
             <thead>
             <tr>
                 <th width="30">#</th>
-                <th width="30" ng-show="sharedProperties.isConnected()"></th>
+                <th width="30" ng-show="isConnected"></th>
                 <th width="600">Titre de la musique</th>
                 <th width="300">Album</th>
                 <th width="300">Artiste</th>
@@ -95,7 +95,7 @@
                         <i class="fa fa-pause"></i>
                     </div>
                 </td>
-                <td class="text-center" ng-show="sharedProperties.isConnected()">
+                <td class="text-center" ng-show="isConnected">
                     <a data-dropdown="addTrackDrop" ng-click="addTrackToAdd(track)" aria-controls="addTrackDrop"
                        aria-expanded="false">
                     <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
