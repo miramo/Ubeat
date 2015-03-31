@@ -92,7 +92,7 @@
                                     <td class="disable-select text-center">
                                         <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
                                             <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter">
-                                                <i ng-click="sharedProperties.setCurrentTrack(track)" class="fa fa-play fa-lg"></i>
+                                                <i ng-click="sharedProperties.setCurrentTrack(track, true)" class="fa fa-play fa-lg"></i>
                                             </span>
                                         </div>
                                         <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
