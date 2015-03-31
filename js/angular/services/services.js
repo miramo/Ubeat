@@ -32,22 +32,22 @@
             localStorageService.set(playQueueStorageName, playQueue);
         }
 
-        var getServiceTokenCookie = function()
+        var getServiceTokenCookie = function ()
         {
             return localStorageService.cookie.get(tokenCookieName);
         }
 
-        this.setSaveQueuePreviousUrl = function(url)
+        this.setSaveQueuePreviousUrl = function (url)
         {
             saveQueuePreviousUrl = url;
         }
 
-        this.getSaveQueuePreviousUrl = function()
+        this.getSaveQueuePreviousUrl = function ()
         {
             return saveQueuePreviousUrl;
         }
 
-        this.getTokenCookie = function()
+        this.getTokenCookie = function ()
         {
             return getServiceTokenCookie();
         }
@@ -237,7 +237,7 @@
             angular.copy(albums, homeAlbums);
         }
 
-        this.getPlaylistImg = function(playlist, size)
+        this.getPlaylistImg = function (playlist, size)
         {
             if (playlist && playlist.tracks && playlist.tracks.length > 0)
             {
@@ -391,10 +391,8 @@
 
         this.removeTrackFromPlaylist = function (trackId, playlistId, callback)
         {
-            singlePlaylistSingleTrackFactory.remove({
-                playlistId: playlistId,
-                trackId   : trackId
-            }).$promise.then(function (data)
+            singlePlaylistSingleTrackFactory.delete(getServiceTokenCookie(), playlistId, trackId,
+                function (data)
                 {
                     if (callback)
                     {
@@ -695,7 +693,7 @@
             this.setIsCriticalError(true);
         }
 
-        this.setDefaultCriticalError = function(err)
+        this.setDefaultCriticalError = function (err)
         {
             console.log("SetDefaultCriticalError: " + err);
             if (err)

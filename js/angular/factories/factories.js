@@ -39,10 +39,10 @@
     factories.generateHttpReq = function (method, url, header, data)
     {
         return {
-            method: method,
-            url: url,
+            method : method,
+            url    : url,
             headers: {'Authorization': header},
-            data: data
+            data   : data
         }
     }
 
@@ -96,7 +96,7 @@
 
     factories.factory('logoutFactory', function ($http, $resource, localStorageService)
     {
-         return {
+        return {
             get: function (token, successCallback, errorCallback)
             {
                 var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'logout', token, null);
@@ -140,7 +140,7 @@
 
     factories.factory('artistFactory', function ($http, $resource, sharedProperties, localStorageService)
     {
-         return {
+        return {
             get: function (token, id, successCallback, errorCallback)
             {
                 var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(sharedProperties)) + 'artists/' + id, token, null);
@@ -154,7 +154,7 @@
         return {
             get: function (token, id, successCallback, errorCallback)
             {
-                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(sharedProperties)) + 'artists/' + id +'/albums', token, null);
+                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(sharedProperties)) + 'artists/' + id + '/albums', token, null);
                 factories.httpReq($http, req, successCallback, errorCallback);
             }
         }
@@ -178,7 +178,7 @@
     factories.factory('totalPlaylistsFactory', function ($http, $resource, localStorageService)
     {
         return {
-            get: function (token, successCallback, errorCallback)
+            get : function (token, successCallback, errorCallback)
             {
                 var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'playlists', token, null);
                 factories.httpReq($http, req, successCallback, errorCallback);
@@ -207,7 +207,7 @@
                 factories.httpReq($http, req, successCallback, errorCallback);
             },
 
-            delete: function(token, id, successCallback, errorCallback)
+            delete: function (token, id, successCallback, errorCallback)
             {
                 var req = factories.generateHttpReq('DELETE', factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'playlists/' + id, token, null);
                 factories.httpReq($http, req, successCallback, errorCallback);
@@ -239,13 +239,19 @@
             {
                 var req = factories.generateHttpReq('PUT', factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'playlists/' + id + "/tracks/" + trackId, token, data);
                 factories.httpReq($http, req, successCallback, errorCallback);
+            },
+
+            delete: function (token, playlistId, trackId, successCallback, errorCallback)
+            {
+                var req = factories.generateHttpReq('DELETE', factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'playlists/' + playlistId + "/tracks/" + trackId, token, null);
+                factories.httpReq($http, req, successCallback, errorCallback);
             }
         }
     });
 
     factories.factory('tokenInfoFactory', function ($http, $resource, localStorageService, localStorageService)
     {
-         return {
+        return {
             get: function (token, successCallback, errorCallback)
             {
                 var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'tokenInfo', token, null);
