@@ -59,9 +59,17 @@
                             <a href id="link-{{playlist.id}}" class="playlist-item clearfix" ng-click="setActive(playlist.id)">
                                 <div class="img left" back-img="{{sharedProperties.getPlaylistImg(playlist, 50)}}"></div>
                                 <span class="playlist-name ellipsis left">{{playlist.name}}</span>
-                                <span class="playlist-nb-songs right">{{playlist.tracks.length}} pistes</span>
+                                <span class="playlist-nb-songs ellipsis right text-right">{{playlist.tracks.length}} pistes</span>
                             </a>
                             <div id="panel-accordion-{{playlist.id}}" class="content" ng-class="{active: (activePlaylist == playlist.id)}">
+                                <div class="row">
+                                    <div class="small-12 columns">
+                                        <div class="header-description">
+                                            <button ng-click="" ng-disabled="!playlist.tracks.length" ng-class="{disabled: !playlist.tracks.length}" class="red small radius right"><i class="md-play-arrow md-lg"></i> Lire</button>
+                                            <p>{{playlist.tracks.length}} titres, {{sharedProperties.getFormatedTotalTime(playlist)}}</p>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div>
                                     <table>
                                         <thead>

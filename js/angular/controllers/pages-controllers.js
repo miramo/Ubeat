@@ -587,46 +587,6 @@
             return false;
         }
 
-        var getTotalTime = function (playlist)
-        {
-            var totalTime = 0;
-
-            if (playlist && playlist.tracks)
-            {
-                playlist.tracks.forEach(function (entry)
-                {
-                    if (entry && entry.trackTimeMillis)
-                    {
-                        totalTime += entry.trackTimeMillis;
-                    }
-                });
-            }
-
-            return millisToTime(totalTime);
-        }
-
-        $scope.getFormatedTotalTime = function (playlist)
-        {
-            var totalTime = getTotalTime(playlist);
-            var formatedStr = "";
-
-            if ((totalTime.Hours + totalTime.Minutes + totalTime.Seconds) <= 0)
-            {
-                formatedStr += "0 s";
-            }
-            else
-            {
-                if (totalTime.Hours > 0)
-                    formatedStr += totalTime.Hours + " h ";
-                if (totalTime.Minutes > 0)
-                    formatedStr += totalTime.Minutes + " min ";
-                else if (totalTime.Seconds > 0)
-                    formatedStr += totalTime.Seconds + " s ";
-            }
-
-            return formatedStr;
-        }
-
         $scope.getPlaylistImg = function (playlist, size)
         {
             return sharedProperties.getPlaylistImg(playlist, size);
