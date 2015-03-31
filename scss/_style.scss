@@ -103,9 +103,13 @@ slick
   .card
   {
     padding-bottom: rem-calc(0);
-    @include border-radius(rem-calc(5));
     overflow: hidden;
+    @include border-radius(rem-calc(5));
     @include box-shadow(none);
+    .responsive-img
+    {
+      @include border-top-radius(rem-calc(5));
+    }
     .text-card
     {
       background: $primary-color;
