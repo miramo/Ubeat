@@ -23,7 +23,7 @@
         var playQueueStorageName = 'playQueue';
         var playQueue = localStorageService.get(playQueueStorageName);
         var tokenCookieName = 'token';
-        var saveQueuePreviousUrl = '';
+        var saveQueuePreviousPage = {pageEnum : sharedPagesStatus.getPageEnum().home, pageUrl : "#/"};
         var missingImgPlaylist = './img/missing-album.png';
 
         if (playQueue == null)
@@ -37,14 +37,15 @@
             return localStorageService.cookie.get(tokenCookieName);
         }
 
-        this.setSaveQueuePreviousUrl = function (url)
+        this.setSaveQueuePreviousPage = function (pageEnum, url)
         {
-            saveQueuePreviousUrl = url;
+            saveQueuePreviousPage.pageEnum = pageEnum;
+            saveQueuePreviousPage.pageUrl = url;
         }
 
-        this.getSaveQueuePreviousUrl = function ()
+        this.getSaveQueuePreviousPage = function ()
         {
-            return saveQueuePreviousUrl;
+            return saveQueuePreviousPage;
         }
 
         this.getTokenCookie = function ()

@@ -739,7 +739,7 @@
     {
         sharedPagesStatus.setTitle("File d'attente");
         sharedPagesStatus.resetPageStatus();
-        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().queue);
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().playQueue);
         $scope.sharedProperties = sharedProperties;
         sharedPagesStatus.setIsPageLoaded(true);
         $scope.trackToAddToNewPlaylist = null;

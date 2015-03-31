@@ -82,8 +82,8 @@
     {
         sharedPagesStatus.resetPageStatus();
         $scope.sharedProperties = sharedProperties;
-        sharedProperties.setSaveQueuePreviousUrl("#/queue/");
-        $scope.queueUrl = sharedProperties.getSaveQueuePreviousUrl();
+        var queuePage = sharedPagesStatus.getPageEnum().playQueue;
+        var queuePageUrl = "/queue/";
 
         $scope.next = function()
         {
@@ -112,15 +112,20 @@
 
         $scope.clickOnPlayQueue = function()
         {
-            var queuePreviousUrl = sharedProperties.getSaveQueuePreviousUrl();
-            console.log("#" + $location.url() + " | " + queuePreviousUrl);
-            if (("#" + $location.url()) === $scope.queueUrl && queuePreviousUrl != "" && queuePreviousUrl != ("#" + $location.url()))
+            var queuePreviousPage = sharedProperties.getSaveQueuePreviousPage();
+            var currentPage = sharedPagesStatus.getCurrentPage();
+
+            if (currentPage != queuePage)
             {
-                sharedProperties.setSaveQueuePreviousUrl("# " + queuePreviousUrl);
+                sharedProperties.setSaveQueuePreviousPage(currentPage, $location.url());
+                $location.path(queuePageUrl);
+                $route.reload();
             }
-            else if (("#" + $location.url()) != queuePreviousUrl)
+            else
             {
-                sharedProperties.setSaveQueuePreviousUrl("#" + $location.url());
+                $location.path(queuePreviousPage.pageUrl);
+                $route.reload();
+                sharedProperties.setSaveQueuePreviousPage(sharedPagesStatus.getCurrentPage(), $location.url());
             }
         }
 
