@@ -281,5 +281,28 @@
             }
         }
     });
+
+    factories.factory('followFactory', function ($http, $resource, localStorageService)
+    {
+        return {
+            post: function (token, data, successCallback, errorCallback)
+            {
+                var req = factories.generateHttpReq('POST', factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'follow', token, data);
+                factories.httpReq($http, req, successCallback, errorCallback);
+            }
+        }
+    });
+
+    factories.factory('unfollowFactory', function ($http, $resource, localStorageService)
+    {
+        return {
+            delete: function (token, id, successCallback, errorCallback)
+            {
+                var req = factories.generateHttpReq('DELETE', factories.resolveUbeatApiURL(factories.ubeatBaseSecureUrl, true) + 'follow/' + id, token, null);
+                factories.httpReq($http, req, successCallback, errorCallback);
+            }
+        }
+    });
+
 })
 ();

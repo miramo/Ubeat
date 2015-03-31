@@ -18,7 +18,10 @@
                             <small>{{userData.email}}</small>
                         </h3>
                     </div>
-                    <button ng-show="userData.id != sharedProperties.getInfoConnection().id" ng-click="" class="red small radius"><i class="md-add md-lg"></i> Suivre</button>
+                    <div ng-if="userData.id != sharedProperties.getInfoConnection().id">
+                        <button ng-if="!isFollowing" ng-click="follow()" class="red small radius"><i class="md-add md-lg"></i> Suivre</button>
+                        <button ng-if="isFollowing" ng-click="unfollow()" class="red small radius"><i class="md-remove md-lg"></i> Ne plus suivre</button>
+                    </div>
                 </div>
             </div>
         </div>

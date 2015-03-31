@@ -1053,7 +1053,7 @@
         });
     });
 
-    controllers.controller('SingleUserController', function ($location, $scope, $http, $routeParams, sharedPagesStatus, sharedProperties, singleUserFactory)
+    controllers.controller('SingleUserController', function ($location, $scope, $http, $routeParams, sharedPagesStatus, sharedProperties, singleUserFactory, followFactory, unfollowFactory)
     {
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().user);
         sharedPagesStatus.resetPageStatus();
@@ -1062,6 +1062,7 @@
         $scope.userData = {email: "", name: "", id: "", following: []};
         $scope.gravatarImgUrl = "img/mystery-man-red.png";
         $scope.activePlaylist = 0;
+        $scope.isFollowing = false;
 
         if (sharedProperties.isConnected() == false)
         {
@@ -1087,13 +1088,38 @@
                     sharedProperties.getPlaylists(getPlaylistsCallback, data.id);
                     setBlur($scope.gravatarImgUrl);
                     sharedPagesStatus.setIsPageLoaded(true);
+                    setIsFollowing();
                     //console.log($scope.userData);
                 }
             },
             function (err)
             {
-                sharedPagesStatus.setCriticalError(err.errorCode, err.message);
+                if (err && err.errorCode && err.message)
+                    sharedPagesStatus.setCriticalError(err.errorCode, err.message);
             });
+
+        var setIsFollowing = function()
+        {
+            singleUserFactory.get(sharedProperties.getTokenCookie(), sharedProperties.getInfoConnection().id, function (data)
+                {
+                    if (data.following)
+                    {
+                        $scope.isFollowing = false;
+                        data.following.forEach(function(entry)
+                        {
+                            if (entry.id == $routeParams.id)
+                            {
+                                $scope.isFollowing = true;
+                            }
+                        });
+                    }
+                },
+                function (err)
+                {
+                    if (err && err.errorCode && err.message)
+                        sharedPagesStatus.setCriticalError(err.errorCode, err.message);
+                });
+        }
 
         var getPlaylistsCallback = function (playlists, isError)
         {
@@ -1105,7 +1131,7 @@
             {
                 $scope.playlists = [];
             }
-        }
+        };
 
         var setBlur = function (path)
         {
@@ -1113,21 +1139,53 @@
                 el  : document.querySelector('.user-header'),
                 path: path
             });
-        }
+        };
 
         $scope.setActive = function (id)
         {
             $scope.activePlaylist = (id != $scope.activePlaylist) ? id : 0;
-        }
+        };
 
         $scope.displayPlayButton = function (track)
         {
             track.displayPlayButton = true;
-        }
+        };
 
         $scope.hidePlayButton = function (track)
         {
             track.displayPlayButton = false;
-        }
+        };
+
+        $scope.follow = function ()
+        {
+            followFactory.post(sharedProperties.getTokenCookie(), {id: $routeParams.id}, function (data)
+                {
+                    if (data.email && data.name && data.id && data.following)
+                    {
+                        setIsFollowing();
+                    }
+                },
+                function (err)
+                {
+                    if (err && err.errorCode && err.message)
+                        sharedPagesStatus.setCriticalError(err.errorCode, err.message);
+                });
+        };
+
+        $scope.unfollow = function ()
+        {
+            unfollowFactory.delete(sharedProperties.getTokenCookie(), $routeParams.id, function (data)
+                {
+                    if (data.email && data.name && data.id && data.following)
+                    {
+                        setIsFollowing();
+                    }
+                },
+                function (err)
+                {
+                    if (err && err.errorCode && err.message)
+                        sharedPagesStatus.setCriticalError(err.errorCode, err.message);
+                });
+        };
     });
 })();
