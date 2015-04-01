@@ -688,7 +688,10 @@
 
         $scope.createPlaylist = function (playlistName)
         {
-            sharedProperties.createPlaylist(playlistName, createPlaylistCallback);
+            if (playlistName && playlistName.length > 0)
+            {
+                sharedProperties.createPlaylist(playlistName, createPlaylistCallback);
+            }
         }
 
         $scope.createPlaylistUI = function (playlistName)
