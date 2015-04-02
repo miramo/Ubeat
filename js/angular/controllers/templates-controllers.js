@@ -15,7 +15,10 @@
 
         $scope.login = function ()
         {
-            loginFactory.post(sharedProperties.getTokenCookie(), {email: $scope.connectionInfo.email, password: $scope.connectionInfo.password}, function (data)
+            loginFactory.post(sharedProperties.getTokenCookie(), {
+                    email   : $scope.connectionInfo.email,
+                    password: $scope.connectionInfo.password
+                }, function (data)
                 {
                     if (data.email && data.name && data.token && data.id)
                     {
@@ -54,7 +57,11 @@
 
         $scope.signup = function ()
         {
-            signupFactory.post(sharedProperties.getTokenCookie(), {name: $scope.signupInfo.name, email: $scope.signupInfo.email, password: $scope.signupInfo.password}, function (data)
+            signupFactory.post(sharedProperties.getTokenCookie(), {
+                    name    : $scope.signupInfo.name,
+                    email   : $scope.signupInfo.email,
+                    password: $scope.signupInfo.password
+                }, function (data)
                 {
                     if (data.email && data.name && data.id)
                     {
@@ -67,7 +74,7 @@
                 });
         }
 
-        $scope.search = function(str)
+        $scope.search = function (str)
         {
             $location.path('search/' + str);
         }
@@ -85,7 +92,7 @@
         var queuePage = sharedPagesStatus.getPageEnum().playQueue;
         var queuePageUrl = "/queue/";
 
-        $scope.next = function()
+        $scope.next = function ()
         {
             $scope.myAudio.stop();
 
@@ -98,7 +105,7 @@
             $scope.myAudio.playPause();
         }
 
-        $scope.prev = function()
+        $scope.prev = function ()
         {
             $scope.myAudio.stop();
             var track = null;
@@ -110,7 +117,7 @@
             $scope.myAudio.playPause();
         }
 
-        $scope.clickOnPlayQueue = function()
+        $scope.clickOnPlayQueue = function ()
         {
             var queuePreviousPage = sharedProperties.getSaveQueuePreviousPage();
             var currentPage = sharedPagesStatus.getCurrentPage();
@@ -123,13 +130,20 @@
             }
             else
             {
-                $location.path(queuePreviousPage.pageUrl);
+                if (queuePreviousPage.pageUrl == "#/")
+                {
+                    $location.path("/");
+                }
+                else
+                {
+                    $location.path(queuePreviousPage.pageUrl);
+                }
                 $route.reload();
                 sharedProperties.setSaveQueuePreviousPage(sharedPagesStatus.getCurrentPage(), $location.url());
             }
         }
 
-        $scope.play = function()
+        $scope.play = function ()
         {
             $scope.myAudio.playPause();
         }
@@ -141,7 +155,7 @@
             if ($scope.myAudio && newVal)
             {
                 $scope.myAudio.stop();
-                $scope.myAudio.load([{"src": newVal.previewUrl,  "type": "audio/mp4"}]);
+                $scope.myAudio.load([{"src": newVal.previewUrl, "type": "audio/mp4"}]);
                 $scope.myAudio.playPause();
                 newVal.playState = sharedProperties.getPlayStates().play;
             }

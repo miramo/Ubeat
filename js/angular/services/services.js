@@ -96,6 +96,7 @@
                 {
                     playQueue.queue[n].playState = playStates.idle;
                 }
+                playQueue.queue[n].time = millisToTime(playQueue.queue[n].trackTimeMillis);
                 localStorageService.set(playQueueStorageName, playQueue);
             }
         }
@@ -131,10 +132,17 @@
             localStorageService.set(playQueueStorageName, playQueue);
         }
 
-        this.addTrackArrayToPlayQueue = function (trackArray)
+        this.addTrackArrayToPlayQueue = function (trackArray, setCurrentTrack)
         {
-            playQueue = playQueue.concat(trackArray);
+            playQueue.queue = playQueue.queue.concat(trackArray);
             playQueue.currentTrackId = playQueue.queue.length - 1;
+
+            updateTrackStates();
+
+            if (setCurrentTrack && playQueue.queue.length > 0)
+            {
+                this.setCurrentTrack(playQueue.queue[0], false, playStates.play);
+            }
 
             localStorageService.set(playQueueStorageName, playQueue);
         }

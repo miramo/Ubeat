@@ -68,7 +68,7 @@
                                 <div class="row">
                                     <div class="small-12 columns">
                                         <div class="header-description">
-                                            <button ng-click="" ng-disabled="!playlist.tracks.length" ng-class="{disabled: !playlist.tracks.length}" class="red small radius right"><i class="md-play-arrow md-lg"></i> Lire</button>
+                                            <button ng-click="sharedProperties.addTrackArrayToPlayQueue(playlist.tracks, true)" ng-disabled="!playlist.tracks.length" ng-class="{disabled: !playlist.tracks.length}" class="red small radius right"><i class="md-play-arrow md-lg"></i> Lire</button>
                                             <p>{{sharedProperties.getFormatedTotalTime(playlist)}}</p>
                                         </div>
                                     </div>

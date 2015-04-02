@@ -153,7 +153,7 @@
         });
     });
 
-    controllers.controller('ArtistController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties,
+    controllers.controller('ArtistController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties, albumTracksFactory,
                                                          artistFactory, artistAlbumsFactory, artistBiographiesFactory, spotifyArtistFactory, spotifySearchFactory)
     {
         sharedPagesStatus.resetPageStatus();
@@ -253,12 +253,33 @@
             sharedPagesStatus.setCriticalError(404, "Artist not found");
         }
 
-
-        $scope.$on('$routeChangeSuccess', function (next, current)
+        $scope.addAlbumToPlayQueue = function (album)
         {
-            $(document).foundation('interchange', 'reflow');
-        });
+            var isAlbumIdValid = /^\d+$/.test(album.collectionId);
+
+            if (isAlbumIdValid)
+            {
+                albumTracksFactory.get(sharedProperties.getTokenCookie(), album.collectionId, function (data)
+                {
+                    var dataTracks = data.results;
+
+                    if (dataTracks)
+                    {
+                        sharedProperties.addTrackArrayToPlayQueue(dataTracks, true);
+                    }
+                }, function (err)
+                {
+                    sharedPagesStatus.setDefaultCriticalError(err);
+                });
+            }
+
+            $scope.$on('$routeChangeSuccess', function (next, current)
+            {
+                $(document).foundation('interchange', 'reflow');
+            });
+        }
     });
+
 
     controllers.controller('AlbumController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties,
                                                         albumFactory, artistFactory, albumTracksFactory)
@@ -409,7 +430,7 @@
             return false;
         }
 
-        var setTracksData = function(dataTracks)
+        var setTracksData = function (dataTracks)
         {
             for (var i = 0; i < dataTracks.length; ++i)
             {
@@ -460,7 +481,10 @@
                     artistFactory.get(sharedProperties.getTokenCookie(), $scope.album.artistId, function (data)
                     {
                         $scope.artist = data.results[0];
-                    }, function(err) { sharedPagesStatus.setDefaultCriticalError(err); });
+                    }, function (err)
+                    {
+                        sharedPagesStatus.setDefaultCriticalError(err);
+                    });
 
                     albumTracksFactory.get(sharedProperties.getTokenCookie(), $routeParams.id, function (data)
                     {
@@ -469,7 +493,10 @@
                         setTracksData(dataTracks);
 
                         pageIsLoaded();
-                    }, function(err){ sharedPagesStatus.setDefaultCriticalError(err); });
+                    }, function (err)
+                    {
+                        sharedPagesStatus.setDefaultCriticalError(err);
+                    });
 
                     $scope.displayPlayButton = function (track)
                     {
@@ -486,7 +513,7 @@
                     sharedPagesStatus.setCriticalError(404, "Album not found");
                 }
 
-            }, function(err)
+            }, function (err)
             {
                 sharedPagesStatus.setDefaultCriticalError(err);
             });
@@ -1103,14 +1130,14 @@
                     sharedPagesStatus.setCriticalError(err.errorCode, err.message);
             });
 
-        var setIsFollowing = function()
+        var setIsFollowing = function ()
         {
             singleUserFactory.get(sharedProperties.getTokenCookie(), sharedProperties.getInfoConnection().id, function (data)
                 {
                     if (data.following)
                     {
                         $scope.isFollowing = false;
-                        data.following.forEach(function(entry)
+                        data.following.forEach(function (entry)
                         {
                             if (entry.id == $routeParams.id)
                             {
