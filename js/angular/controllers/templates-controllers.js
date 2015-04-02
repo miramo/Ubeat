@@ -37,7 +37,7 @@
                     $('#sign-in-modal').addClass('animated shake').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
                       $(this).removeClass('animated shake');
                     });
-                    $scope.errorMsg = "Nom d'utilisateur ou mot de passe incorrect.";
+                    $scope.errorMsg = "Adresse e-mail ou mot de passe incorrect.";
                     $('#error-msg-sign-in').removeClass('hide');
                     sharedProperties.setConnected(false);
                     //console.log(err);
