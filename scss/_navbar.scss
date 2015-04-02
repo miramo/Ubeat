@@ -123,6 +123,14 @@
   }
 }
 
+#sign-in-modal, #sign-up-modal
+{
+  .error-msg-sign
+  {
+    color: red;
+  }
+}
+
 @media only screen and (max-width: 40em)
 {
   .top-bar-section .has-dropdown > a:after

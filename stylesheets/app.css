@@ -18500,8 +18500,13 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   }
 }
 
+/* line 128, ../scss/_navbar.scss */
+#sign-in-modal .error-msg-sign, #sign-up-modal .error-msg-sign {
+  color: red;
+}
+
 @media only screen and (max-width: 40em) {
-  /* line 128, ../scss/_navbar.scss */
+  /* line 136, ../scss/_navbar.scss */
   .top-bar-section .has-dropdown > a:after {
     content: "";
     display: block;
@@ -18517,7 +18522,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
     right: 0;
   }
 
-  /* line 143, ../scss/_navbar.scss */
+  /* line 151, ../scss/_navbar.scss */
   .button-search {
     margin-top: 0.0625rem;
   }
@@ -19663,22 +19668,22 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
     clear: both;
   }
 }
-/* line 73, ../scss/_user.scss */
+/* line 75, ../scss/_user.scss */
 .user .panel-following .following-list .following-item {
   transition: transform 200ms linear;
 }
-/* line 76, ../scss/_user.scss */
+/* line 78, ../scss/_user.scss */
 .user .panel-following .following-list .following-item:hover {
   -moz-transform: scale(1.08);
   -ms-transform: scale(1.08);
   -webkit-transform: scale(1.08);
   transform: scale(1.08);
 }
-/* line 85, ../scss/_user.scss */
+/* line 87, ../scss/_user.scss */
 .user .panel-playlist .title {
   margin-bottom: 1.5625rem;
 }
-/* line 94, ../scss/_user.scss */
+/* line 96, ../scss/_user.scss */
 .user .accordion .accordion-navigation:first-child > a {
   -moz-border-radius-topleft: 5px;
   -webkit-border-top-left-radius: 5px;
@@ -19687,7 +19692,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-border-top-right-radius: 5px;
   border-top-right-radius: 5px;
 }
-/* line 98, ../scss/_user.scss */
+/* line 100, ../scss/_user.scss */
 .user .accordion .accordion-navigation:last-child > a {
   -moz-border-radius-bottomleft: 5px;
   -webkit-border-bottom-left-radius: 5px;
@@ -19696,14 +19701,14 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-border-bottom-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-/* line 102, ../scss/_user.scss */
+/* line 104, ../scss/_user.scss */
 .user .accordion .accordion-navigation [id^=panel-accordion-] {
   background-color: #f9f9f9 !important;
   -moz-box-shadow: inset 0 8px 8px -8px #696969, inset 0 -8px 8px -8px #696969;
   -webkit-box-shadow: inset 0 8px 8px -8px #696969, inset 0 -8px 8px -8px #696969;
   box-shadow: inset 0 8px 8px -8px #696969, inset 0 -8px 8px -8px #696969;
 }
-/* line 107, ../scss/_user.scss */
+/* line 109, ../scss/_user.scss */
 .user .accordion .accordion-navigation .content {
   display: block;
   max-height: 0;
@@ -19711,7 +19716,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   padding: 0 1rem;
   transition: all 400ms ease;
 }
-/* line 114, ../scss/_user.scss */
+/* line 116, ../scss/_user.scss */
 .user .accordion .accordion-navigation .content.active {
   max-height: 80vh;
   padding: 1rem;
@@ -19721,34 +19726,34 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-transition-delay: 200ms;
   transition-delay: 200ms;
 }
-/* line 122, ../scss/_user.scss */
+/* line 124, ../scss/_user.scss */
 .user .accordion .accordion-navigation .playlist-item {
   background-color: #e6e6e6;
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
-/* line 126, ../scss/_user.scss */
+/* line 128, ../scss/_user.scss */
 .user .accordion .accordion-navigation .playlist-item:hover {
   background-color: #cecece;
   -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-/* line 131, ../scss/_user.scss */
+/* line 133, ../scss/_user.scss */
 .user .accordion .accordion-navigation .playlist-item span {
   height: 3.125rem;
   line-height: 3.125rem;
 }
-/* line 135, ../scss/_user.scss */
+/* line 137, ../scss/_user.scss */
 .user .accordion .accordion-navigation .playlist-item span.playlist-name {
   width: calc(100% - 140px);
 }
-/* line 139, ../scss/_user.scss */
+/* line 141, ../scss/_user.scss */
 .user .accordion .accordion-navigation .playlist-item span.playlist-nb-songs {
   width: 5rem;
 }
-/* line 144, ../scss/_user.scss */
+/* line 146, ../scss/_user.scss */
 .user .accordion .accordion-navigation .playlist-item .img {
   width: 3.125rem;
   height: 3.125rem;

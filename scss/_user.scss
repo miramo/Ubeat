@@ -56,10 +56,12 @@
     }
     .following-list
     {
-      @media #{$small-only} and (orientation: landscape) {
+      @media #{$small-only} and (orientation: landscape)
+      {
         @include block-grid(5);
       }
-      @media #{$small-only} and (orientation: portrait) {
+      @media #{$small-only} and (orientation: portrait)
+      {
         @include block-grid(4);
       }
       @media #{$medium}

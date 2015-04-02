@@ -12,6 +12,7 @@
         $scope.sharedProperties = sharedProperties;
         $scope.connectionInfo = {email: "", password: ""};
         $scope.signupInfo = {name: "", email: "", password: "", confirmPassword: ""};
+        $scope.errorMsg = "";
 
         $scope.login = function ()
         {
@@ -33,8 +34,13 @@
                 },
                 function (err)
                 {
+                    $('#sign-in-modal').addClass('animated shake').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                      $(this).removeClass('animated shake');
+                    });
+                    $scope.errorMsg = "Nom d'utilisateur ou mot de passe incorrect.";
+                    $('#error-msg-sign-in').removeClass('hide');
                     sharedProperties.setConnected(false);
-                    console.log(err);
+                    //console.log(err);
                 });
         }
 
@@ -65,12 +71,37 @@
                 {
                     if (data.email && data.name && data.id)
                     {
-                        console.log(data);
+                        loginFactory.post(sharedProperties.getTokenCookie(), {email: $scope.signupInfo.email, password: $scope.signupInfo.password}, function (data)
+                            {
+                                if (data.email && data.name && data.token && data.id)
+                                {
+                                    sharedProperties.setInfoConnection(data.email, data.name, data.token, data.id);
+                                    sharedProperties.setConnected(true);
+                                    localStorageService.cookie.set(sharedProperties.getTokenCookieName(), data.token);
+                                    $('#sign-up-modal').foundation('reveal', 'close');
+                                    $(document).foundation('topbar', 'reflow');
+                                    Foundation.libs.topbar.toggle($('.top-bar'));
+                                    $route.reload();
+                                }
+                            },
+                            function (err)
+                            {
+                                sharedProperties.setConnected(false);
+                                //console.log(err);
+                            });
                     }
                 },
                 function (err)
                 {
-                    console.log(err);
+                    $('#sign-up-modal').addClass('animated shake').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                        $(this).removeClass('animated shake');
+                    });
+                    $scope.errorMsg = "Cette adresse de courriel est deja utilisee.";
+                    $('#error-msg-sign-up').removeClass('hide');
+                    $scope.signupInfo.email = "";
+                    $scope.signupInfo.password = "";
+                    $scope.signupInfo.confirmPassword = "";
+                    //console.log(err);
                 });
         }
 
