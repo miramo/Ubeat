@@ -18502,7 +18502,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
 
 /* line 128, ../scss/_navbar.scss */
 #sign-in-modal .error-msg-sign, #sign-up-modal .error-msg-sign {
-  color: red;
+  color: #d9534f;
 }
 
 @media only screen and (max-width: 40em) {
