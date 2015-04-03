@@ -15,7 +15,8 @@
                     </div>
                     <div class="album-artist-description">
                         <h3>
-                            <small>{{userData.email}}</small>
+                            <!--<small>{{userData.email}}</small>-->
+                            <small><a href="mailto:{{userData.email}}">{{userData.email}}</a></small>
                         </h3>
                     </div>
                     <div class="button-follow" ng-if="userData.id != sharedProperties.getInfoConnection().id">
