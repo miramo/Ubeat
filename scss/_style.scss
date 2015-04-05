@@ -3,6 +3,15 @@
 
 $footer-height: rem-calc(60);
 
+@mixin sticky-bottom-footer($height)
+{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: $height;
+  width: 100%;
+}
+
 *
 {
   @include selection(scale-color($primary-color, $lightness: 15%), $white);

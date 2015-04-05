@@ -122,29 +122,30 @@
         $scope.sharedProperties = sharedProperties;
         var queuePage = sharedPagesStatus.getPageEnum().playQueue;
         var queuePageUrl = "/queue/";
+        $scope.myAudio = {};
+        //$scope.disabled = !sharedProperties.getCurrentTrack();
 
         $scope.next = function ()
         {
-            $scope.myAudio.stop();
-
             var track = null;
+
+            $scope.myAudio.stop();
             if (track = sharedProperties.getPlayQueueNextTrack(true))
             {
                 $scope.myAudio.load([{"src": track.previewUrl, "type": "audio/m4a"}]);
             }
-            //$scope.myAudio.load([{"src": "http://upload.wikimedia.org/wikipedia/en/7/79/Korn_-_Predictable_%28demo%29.ogg",  "type": "audio/ogg"}]);
             $scope.myAudio.playPause();
         }
 
         $scope.prev = function ()
         {
-            $scope.myAudio.stop();
             var track = null;
+
+            $scope.myAudio.stop();
             if (track = sharedProperties.getPlayQueuePreviousTrack(true))
             {
                 $scope.myAudio.load([{"src": track.previewUrl, "type": "audio/m4a"}]);
             }
-            //$scope.myAudio.load([{"src": "http://upload.wikimedia.org/wikipedia/en/7/79/Korn_-_Predictable_%28demo%29.ogg",  "type": "audio/ogg"}]);
             $scope.myAudio.playPause();
         }
 
@@ -210,7 +211,6 @@
         {
             $scope.myAudio.toggleMute();
         }
-
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
