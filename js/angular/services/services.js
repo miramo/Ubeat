@@ -23,7 +23,7 @@
         var playQueueStorageName = 'playQueue';
         var playQueue = localStorageService.get(playQueueStorageName);
         var tokenCookieName = 'token';
-        var saveQueuePreviousPage = {pageEnum : sharedPagesStatus.getPageEnum().home, pageUrl : "#/"};
+        var saveQueuePreviousPage = {pageEnum: sharedPagesStatus.getPageEnum().home, pageUrl: "#/"};
         var missingImgPlaylist = './img/missing-album.png';
 
         if (playQueue == null)
@@ -149,7 +149,12 @@
 
         this.removeTrackFromPlayQueue = function (id)
         {
+            if (id == playQueue.queue.currentTrackId)
+            {
+                setCurrentTrack(playQueue.queue[0], false, playStates.idle);
+            }
             playQueue.queue.splice(id, 1);
+
             localStorageService.set(playQueueStorageName, playQueue);
         }
 
@@ -190,6 +195,11 @@
                     playQueue.currentTrackId += 1;
             }
 
+            if (track != null)
+            {
+                this.setCurrentTrack(track, false, track.playState);
+            }
+
             localStorageService.set(playQueueStorageName, playQueue);
             return track;
         }
@@ -208,6 +218,11 @@
                 track = playQueue.queue[playQueue.currentTrackId - 1];
                 if (setCurrentTrackId)
                     playQueue.currentTrackId -= 1;
+            }
+
+            if (track != null)
+            {
+                this.setCurrentTrack(track, false, track.playState);
             }
 
             localStorageService.set(playQueueStorageName, playQueue);
@@ -286,7 +301,7 @@
             return formatedStr;
         }
 
-        this.getPlaylistImg = function(playlist, size)
+        this.getPlaylistImg = function (playlist, size)
         {
             if (playlist && playlist.tracks && playlist.tracks.length > 0)
             {
@@ -544,9 +559,44 @@
             updateTrackStates();
         }
 
+        var getTrackInPlayQueue = function (track)
+        {
+            if (track != null)
+            {
+                for (var i = 0; i < playQueue.queue.length; ++i)
+                {
+                    var currentTrackInQueue = playQueue.queue[i];
+
+                    if (currentTrackInQueue.trackId == track.trackId)
+                    {
+                        return currentTrackInQueue;
+                    }
+                }
+            }
+            return null;
+        }
+
+        var getTrackIdInPlayQueue = function (track)
+        {
+            if (track != null)
+            {
+                for (var i = 0; i < playQueue.queue.length; ++i)
+                {
+                    var currentTrackInQueue = playQueue.queue[i];
+
+                    if (currentTrackInQueue.trackId == track.trackId)
+                    {
+                        return i;
+                    }
+                }
+            }
+            return -1;
+        }
+
         this.setCurrentTrack = function (track, addToPlayQueue, state)
         {
             currentTrack = track;
+            var trackIdInQueue = -1;
             if (state)
             {
                 currentTrack.playState = state;
@@ -555,6 +605,10 @@
             if (addToPlayQueue)
             {
                 this.addTrackToPlayQueue(currentTrack);
+            }
+            else if ((trackIdInQueue = getTrackIdInPlayQueue(track)) > -1)
+            {
+                playQueue.currentTrackId = trackIdInQueue;
             }
 
             updateTrackStates();
