@@ -4,7 +4,9 @@
         <audio media-player="myAudio">
         </audio>
         <div class="player-top">
+            <div id="time-container-current" ng-show="myAudio.currentTrack != 0">{{myAudio.formatTime}}</div>
             <div ui-slider="slider.options" min="0" max="{{currentTrack.duration * speed}}" ng-model="currentTrack.currentTime" ng-disabled="myAudio.currentTrack == 0"></div>
+            <div id="time-container-duration" ng-show="myAudio.currentTrack != 0">{{myAudio.formatDuration}}</div>
         </div>
         <div class="player-center">
             <a class="player-button" ng-click=""><i class="fa fa-repeat fa-lg"></i></a>
@@ -18,7 +20,9 @@
         </div>
         <div class="player-left left hide-for-small-only" ng-show="sharedProperties.getCurrentTrack()">
             <div class="image-wrapper">
-                <div class="img" back-img="{{sharedProperties.getCurrentTrack().artworkUrl60}}"></div>
+                <a ng-href="#/album/{{sharedProperties.getCurrentTrack().collectionId}}">
+                    <div class="img" back-img="{{sharedProperties.getCurrentTrack().artworkUrl60}}"></div>
+                </a>
             </div>
             <div class="text-wrapper">
                 <div id="player-song-title">{{sharedProperties.getCurrentTrack().trackName}}</div>

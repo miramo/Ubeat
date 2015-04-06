@@ -17,6 +17,11 @@
   background: rgba(0, 0, 0, .7);
   @include single-transition(all, 300ms, linear);
   @include sticky-bottom-footer($footer-height);
+  &:hover .player-top #time-container-current, &:hover .player-top #time-container-duration
+  {
+    opacity: 1;
+    visibility: visible;
+  }
   &:hover
   {
     background: rgba(0, 0, 0, .9);
@@ -55,6 +60,35 @@
   }
   .player-top
   {
+    #time-container-current, #time-container-duration
+    {
+      z-index: 3;
+      font-size: rem-calc(10);
+      font-weight: bold;
+      position: absolute;
+      top: 0;
+      line-height: rem-calc(13);
+      padding: rem-calc(4);
+      opacity: 0;
+      visibility: hidden;
+      cursor: default;
+      @include single-transition(opacity, 300ms, linear);
+      @include translateY(-30%);
+    }
+    #time-container-current
+    {
+      left: 0;
+      background: $primary-color;
+      color: $white;
+      @include border-right-radius(rem-calc(4));
+    }
+    #time-container-duration
+    {
+      right: 0;
+      background: $gainsboro;
+      color: $aluminum;
+      @include border-left-radius(rem-calc(4));
+    }
     .ui-slider
     {
       background: $base;
