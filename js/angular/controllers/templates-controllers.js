@@ -6,6 +6,12 @@
 {
     var controllers = angular.module('templatesControllers', ['directives', 'mediaPlayer', 'services', 'truncate']);
 
+    angular.module('templatesControllers')
+        .value('mp.throttleSettings', {
+            enabled: true,
+            time:1
+        });
+
     controllers.controller('NavbarController', function ($scope, $route, $location, sharedPagesStatus, sharedProperties, loginFactory, logoutFactory, signupFactory, localStorageService)
     {
         sharedPagesStatus.resetPageStatus();
@@ -123,6 +129,8 @@
         var queuePage = sharedPagesStatus.getPageEnum().playQueue;
         var queuePageUrl = "/queue/";
         $scope.myAudio = {};
+        $scope.currentTime = 0;
+        $scope.speed = 1000000;
         //$scope.disabled = !sharedProperties.getCurrentTrack();
 
         $scope.next = function ()
@@ -178,7 +186,13 @@
         $scope.play = function ()
         {
             $scope.myAudio.playPause();
+            //console.log($scope.myAudio);
         }
+
+        $scope.$watch('myAudio.currentTime', function (value)
+        {
+            $scope.currentTime = value * $scope.speed;
+        });
 
         $scope.$watch('sharedProperties.getCurrentTrack()', function (newVal, oldVal)
         {
@@ -186,6 +200,7 @@
                 oldVal.playState = sharedProperties.getPlayStates().idle;
             if ($scope.myAudio && newVal)
             {
+                //console.log(newVal);
                 $scope.myAudio.stop();
                 $scope.myAudio.load([{"src": newVal.previewUrl, "type": "audio/mp4"}]);
                 $scope.myAudio.playPause();

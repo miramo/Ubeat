@@ -6,7 +6,7 @@
     $(document).foundation();
 
     var ubeatApp = angular.module('ubeat', ['ngRoute', 'mainControllers', 'pagesControllers', 'templatesControllers',
-        'ngIncludeResp', 'slick', 'LocalStorageModule', 'headroom', 'angular-md5']);
+        'ngIncludeResp', 'slick', 'LocalStorageModule', 'headroom', 'angular-md5', 'ui.slider']);
 
     ubeatApp.config(['$routeProvider',
         function ($routeProvider)

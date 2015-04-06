@@ -2,9 +2,12 @@
     <div class="play-bar clearfix">
         <div class="background"></div>
         <audio media-player="myAudio">
-            <source src="http://upload.wikimedia.org/wikipedia/en/d/d0/Rick_Astley_-_Never_Gonna_Give_You_Up.ogg" type="audio/ogg">
         </audio>
         <div class="player-top">
+            <!--<div style="color: #FFF">-->
+                <!--{{myAudio.currentTime}}-->
+            <!--</div>-->
+            <div class="" ui-slider="{orientation: 'horizontal', range: 'min'}" min="0" max="{{30 * speed}}" ng-model="currentTime"></div>
         </div>
         <div class="player-center">
             <a class="player-button" ng-click=""><i class="fa fa-repeat fa-lg"></i></a>

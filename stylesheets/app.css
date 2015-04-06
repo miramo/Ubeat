@@ -18220,7 +18220,7 @@ a {
 
 /* line 30, ../scss/_style.scss */
 main {
-  margin-bottom: 3.75rem;
+  margin-bottom: 4.0625rem;
 }
 
 /* line 35, ../scss/_style.scss */
@@ -19001,10 +19001,10 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 3.75rem;
+  height: 4.0625rem;
   width: 100%;
 }
-/* line 3, ../scss/_playbar.scss */
+/* line 9, ../scss/_playbar.scss */
 .play-bar .background {
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
   background-size: 100%;
@@ -19015,37 +19015,37 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 3.75rem;
+  height: 4.0625rem;
   width: 100%;
   z-index: -1;
 }
-/* line 12, ../scss/_playbar.scss */
+/* line 18, ../scss/_playbar.scss */
 .play-bar:hover {
   background: rgba(0, 0, 0, 0.9);
   -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 -4px 8px rgba(0, 0, 0, 0.28);
   -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 -4px 8px rgba(0, 0, 0, 0.28);
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 -4px 8px rgba(0, 0, 0, 0.28);
 }
-/* line 20, ../scss/_playbar.scss */
+/* line 26, ../scss/_playbar.scss */
 .play-bar .player-button.disabled {
   cursor: not-allowed;
   pointer-events: none;
   opacity: .65;
   filter: alpha(opacity=65);
 }
-/* line 27, ../scss/_playbar.scss */
+/* line 33, ../scss/_playbar.scss */
 .play-bar .player-button.play > i {
   width: 1.6875rem;
 }
-/* line 31, ../scss/_playbar.scss */
+/* line 37, ../scss/_playbar.scss */
 .play-bar .player-button i {
   color: #FFFFFF;
-  height: 3.75rem;
-  line-height: 3.75rem;
+  height: 4.0625rem;
+  line-height: 4.0625rem;
   vertical-align: middle;
   margin: 0 0.9375rem;
 }
-/* line 41, ../scss/_playbar.scss */
+/* line 47, ../scss/_playbar.scss */
 .play-bar .player-center {
   position: absolute;
   display: flex;
@@ -19055,23 +19055,64 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 48, ../scss/_playbar.scss */
+/* line 56, ../scss/_playbar.scss */
+.play-bar .player-top .ui-slider {
+  background: #AAAAAA;
+  border: none;
+  z-index: 1;
+  height: 0.3125rem;
+  width: 100%;
+  border-radius: 0;
+  cursor: pointer;
+}
+/* line 65, ../scss/_playbar.scss */
+.play-bar .player-top .ui-slider .ui-slider-range {
+  background: #ef2929;
+  height: 0.3125rem;
+  border-radius: 0;
+}
+/* line 71, ../scss/_playbar.scss */
+.play-bar .player-top .ui-slider .ui-slider-handle {
+  z-index: 2;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  height: 0.9375rem;
+  width: 0.9375rem;
+  background: #ef2929;
+  border: 0.0625rem solid #bc0000;
+  outline: 0;
+  -moz-border-radius: 3.125rem;
+  -webkit-border-radius: 3.125rem;
+  border-radius: 3.125rem;
+  -moz-transform: translate(-50%, -30%);
+  -ms-transform: translate(-50%, -30%);
+  -webkit-transform: translate(-50%, -30%);
+  transform: translate(-50%, -30%);
+}
+/* line 84, ../scss/_playbar.scss */
+.play-bar .player-top .ui-slider .ui-slider-handle:hover, .play-bar .player-top .ui-slider .ui-slider-handle.ui-state-active {
+  height: 1.25rem;
+  width: 1.25rem;
+  border-width: 0.1875rem;
+}
+/* line 93, ../scss/_playbar.scss */
 .play-bar .player-left {
-  height: 3.75rem;
+  height: 4.0625rem;
   width: 30%;
 }
-/* line 52, ../scss/_playbar.scss */
+/* line 97, ../scss/_playbar.scss */
 .play-bar .player-left .image-wrapper {
   position: relative;
   top: 0;
   left: 0;
   display: inline-block;
   margin-right: 0.625rem;
-  height: 3.75rem;
-  width: 3.75rem;
+  height: 4.0625rem;
+  width: 4.0625rem;
   border: 0;
 }
-/* line 62, ../scss/_playbar.scss */
+/* line 107, ../scss/_playbar.scss */
 .play-bar .player-left .image-wrapper .img {
   position: absolute;
   top: 0;
@@ -19080,23 +19121,23 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   height: 100%;
   width: 100%;
 }
-/* line 72, ../scss/_playbar.scss */
+/* line 117, ../scss/_playbar.scss */
 .play-bar .player-left .text-wrapper {
   color: #FFFFFF;
   display: inline-block;
-  height: 3.75rem;
+  height: 4.0625rem;
   width: calc(100% - 80px);
   overflow: hidden;
   white-space: nowrap;
 }
-/* line 80, ../scss/_playbar.scss */
+/* line 125, ../scss/_playbar.scss */
 .play-bar .player-left .text-wrapper #player-song-title {
   height: 1.875rem;
   line-height: 1.875rem;
   font-weight: bold;
   font-size: 1.125rem;
 }
-/* line 89, ../scss/_playbar.scss */
+/* line 134, ../scss/_playbar.scss */
 .play-bar .player-left .text-wrapper .player-artist-album-wrapper #player-artist, .play-bar .player-left .text-wrapper .player-artist-album-wrapper .player-dash, .play-bar .player-left .text-wrapper .player-artist-album-wrapper #player-album {
   color: #EEEEEE;
   height: 1.875rem;

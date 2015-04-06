@@ -1,7 +1,7 @@
 @import "compass/css3/selection";
 @include scrollbar(.5em, $primary-color);
 
-$footer-height: rem-calc(60);
+$footer-height: rem-calc(65);
 
 @mixin sticky-bottom-footer($height)
 {
