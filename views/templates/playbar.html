@@ -7,7 +7,7 @@
             <!--<div style="color: #FFF">-->
                 <!--{{myAudio.currentTime}}-->
             <!--</div>-->
-            <div class="" ui-slider="{orientation: 'horizontal', range: 'min'}" min="0" max="{{30 * speed}}" ng-model="currentTime"></div>
+            <div class="" ui-slider="slider.options" min="0" max="{{30 * speed}}" ng-model="currentTime"></div>
         </div>
         <div class="player-center">
             <a class="player-button" ng-click=""><i class="fa fa-repeat fa-lg"></i></a>

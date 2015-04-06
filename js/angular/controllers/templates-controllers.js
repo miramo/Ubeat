@@ -124,14 +124,36 @@
 
     controllers.controller('PlaybarController', function ($scope, $route, $location, sharedPagesStatus, sharedProperties)
     {
-        sharedPagesStatus.resetPageStatus();
-        $scope.sharedProperties = sharedProperties;
         var queuePage = sharedPagesStatus.getPageEnum().playQueue;
         var queuePageUrl = "/queue/";
+        var slideMove = false;
+        sharedPagesStatus.resetPageStatus();
+        $scope.sharedProperties = sharedProperties;
         $scope.myAudio = {};
         $scope.currentTime = 0;
         $scope.speed = 1000000;
         //$scope.disabled = !sharedProperties.getCurrentTrack();
+        $scope.slider =
+        {
+            'options':
+            {
+                orientation: 'horizontal',
+                range: 'min',
+                start: function (event, ui) { sliderStart(); },
+                stop: function (event, ui) { sliderStop(); }
+            }
+        };
+
+        var sliderStart = function()
+        {
+            slideMove = true;
+        }
+
+        var sliderStop = function()
+        {
+            $scope.myAudio.seek($scope.currentTime / $scope.speed);
+            slideMove = false;
+        }
 
         $scope.next = function ()
         {
@@ -191,7 +213,8 @@
 
         $scope.$watch('myAudio.currentTime', function (value)
         {
-            $scope.currentTime = value * $scope.speed;
+            if (!slideMove)
+                $scope.currentTime = value * $scope.speed;
         });
 
         $scope.$watch('sharedProperties.getCurrentTrack()', function (newVal, oldVal)
