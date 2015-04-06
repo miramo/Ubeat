@@ -4,10 +4,7 @@
         <audio media-player="myAudio">
         </audio>
         <div class="player-top">
-            <!--<div style="color: #FFF">-->
-                <!--{{myAudio.currentTime}}-->
-            <!--</div>-->
-            <div class="" ui-slider="slider.options" min="0" max="{{currentTrack.duration * speed}}" ng-model="currentTrack.currentTime"></div>
+            <div ui-slider="slider.options" min="0" max="{{currentTrack.duration * speed}}" ng-model="currentTrack.currentTime" ng-disabled="myAudio.currentTrack == 0"></div>
         </div>
         <div class="player-center">
             <a class="player-button" ng-click=""><i class="fa fa-repeat fa-lg"></i></a>

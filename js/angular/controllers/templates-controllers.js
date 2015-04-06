@@ -208,6 +208,7 @@
 
         $scope.play = function ()
         {
+            //console.log($scope.myAudio);
             $scope.myAudio.playPause();
         }
 
