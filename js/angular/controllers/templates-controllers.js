@@ -127,12 +127,17 @@
         var queuePage = sharedPagesStatus.getPageEnum().playQueue;
         var queuePageUrl = "/queue/";
         var slideMove = false;
+        var audioType = "audio/mp4";
         sharedPagesStatus.resetPageStatus();
         $scope.sharedProperties = sharedProperties;
         $scope.myAudio = {};
-        $scope.currentTime = 0;
         $scope.speed = 1000000;
         //$scope.disabled = !sharedProperties.getCurrentTrack();
+        $scope.currentTrack =
+        {
+            currentTime: 0,
+            duration: 30
+        };
         $scope.slider =
         {
             'options':
@@ -151,7 +156,7 @@
 
         var sliderStop = function()
         {
-            $scope.myAudio.seek($scope.currentTime / $scope.speed);
+            $scope.myAudio.seek($scope.currentTrack.currentTime / $scope.speed);
             slideMove = false;
         }
 
@@ -161,9 +166,7 @@
 
             $scope.myAudio.stop();
             if (track = sharedProperties.getPlayQueueNextTrack(true))
-            {
-                $scope.myAudio.load([{"src": track.previewUrl, "type": "audio/m4a"}]);
-            }
+                $scope.myAudio.load([{"src": track.previewUrl, "type": audioType}]);
             $scope.myAudio.playPause();
         }
 
@@ -173,9 +176,7 @@
 
             $scope.myAudio.stop();
             if (track = sharedProperties.getPlayQueuePreviousTrack(true))
-            {
-                $scope.myAudio.load([{"src": track.previewUrl, "type": "audio/m4a"}]);
-            }
+                $scope.myAudio.load([{"src": track.previewUrl, "type": audioType}]);
             $scope.myAudio.playPause();
         }
 
@@ -208,13 +209,17 @@
         $scope.play = function ()
         {
             $scope.myAudio.playPause();
-            //console.log($scope.myAudio);
         }
 
         $scope.$watch('myAudio.currentTime', function (value)
         {
             if (!slideMove)
-                $scope.currentTime = value * $scope.speed;
+                $scope.currentTrack.currentTime = value * $scope.speed;
+        });
+
+        $scope.$watch('myAudio.duration', function (value)
+        {
+            $scope.currentTrack.duration = value;
         });
 
         $scope.$watch('sharedProperties.getCurrentTrack()', function (newVal, oldVal)
@@ -223,9 +228,8 @@
                 oldVal.playState = sharedProperties.getPlayStates().idle;
             if ($scope.myAudio && newVal)
             {
-                //console.log(newVal);
                 $scope.myAudio.stop();
-                $scope.myAudio.load([{"src": newVal.previewUrl, "type": "audio/mp4"}]);
+                $scope.myAudio.load([{"src": newVal.previewUrl, "type": audioType}]);
                 $scope.myAudio.playPause();
                 newVal.playState = sharedProperties.getPlayStates().play;
             }
@@ -235,9 +239,7 @@
         {
             var track = sharedProperties.getCurrentTrack();
             if (track)
-            {
                 track.playState = (newVal == true ? sharedProperties.getPlayStates().pause : sharedProperties.getPlayStates().play);
-            }
         });
 
         $scope.$watch('sharedProperties.getCurrentTrack().playState', function (newVal, oldVal)
