@@ -3,8 +3,10 @@
   $slider-handle-size: rem-calc(15);
   $slider-handle-size-hover: $slider-handle-size + rem-calc(5);
   $slider-handle-radius: rem-calc(50);
-  $slider-handle-color: $primary-color;
-  $slider-handle-color-border: scale-color($slider-handle-color, $lightness: -5%);
+  $slider-handle-color: $base;
+  $slider-handle-color-border: $vapor;
+  $slider-handle-border-width: rem-calc(5);
+  $slider-handle-border-width-hover: $slider-handle-border-width + rem-calc(1);
 
   .background
   {
@@ -64,7 +66,7 @@
       cursor: pointer;
       .ui-slider-range
       {
-        background: #ef2929;
+        background: $primary-color;
         height: rem-calc(5);
         border-radius: 0;
       }
@@ -76,8 +78,8 @@
         top: 0;
         height: $slider-handle-size;
         width: $slider-handle-size;
-        background: #ef2929;
-        border: rem-calc(1) solid $slider-handle-color-border;
+        background: $slider-handle-color;
+        border: $slider-handle-border-width solid $slider-handle-color-border;
         outline: 0;
         @include border-radius($slider-handle-radius);
         @include translate(-50%, -30%);
@@ -85,7 +87,8 @@
         {
           height: $slider-handle-size-hover;
           width: $slider-handle-size-hover;
-          border-width: rem-calc(3);
+          border-width: $slider-handle-border-width-hover;
+          background: $primary-color;
         }
       }
     }
