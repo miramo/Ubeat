@@ -1,11 +1,10 @@
 <div ng-controller="PlaybarController as playbarCtrl">
     <div class="play-bar clearfix">
         <div class="background"></div>
-        <audio media-player="myAudio">
-        </audio>
+        <audio media-player="myAudio"></audio>
         <div class="player-top">
             <div id="time-container-current" ng-show="myAudio.currentTrack != 0">{{myAudio.formatTime}}</div>
-            <div ui-slider="slider.options" min="0" max="{{currentTrack.duration * speed}}" ng-model="currentTrack.currentTime" ng-disabled="myAudio.currentTrack == 0"></div>
+            <div ui-slider="sliderPlayer.options" min="0" max="{{currentTrack.duration * speed}}" ng-model="currentTrack.currentTime" ng-disabled="myAudio.currentTrack == 0"></div>
             <div id="time-container-duration" ng-show="myAudio.currentTrack != 0">{{myAudio.formatDuration}}</div>
         </div>
         <div class="player-center">
@@ -16,7 +15,16 @@
             <a class="player-button" ng-click=""><i class="fa fa-random fa-lg"></i></a>
         </div>
         <div class="player-right right hide-for-small-only">
-            <a class="player-button" ng-click="clickOnPlayQueue()" ng-href="{{queueUrl}}"><i class="md md-queue-music md-2x bottom-music-list"></i></a>
+            <div id="player-right-wrapper">
+                <a class="player-button player-button-queue" ng-click="clickOnPlayQueue()" ng-href="{{queueUrl}}"><i class="md md-queue-music md-2x bottom-music-list"></i></a>
+                <a class="player-button player-button-volume show-for-large-up" ng-click="switchMute()">
+                    <i class="md md-2x" ng-class="{'md-volume-up': !myAudio.muted, 'md-volume-off': myAudio.muted}"></i>
+                </a>
+                <span id="slider-wrapper">
+                    <i class="player-button player-button-volume-down fa fa-volume-down"></i>
+                    <div ui-slider="{orientation: 'horizontal', range: 'min'}" min="0" max="100" ng-model="volume"></div>
+                </span>
+            </div>
         </div>
         <div class="player-left left hide-for-small-only" ng-show="sharedProperties.getCurrentTrack()">
             <div class="image-wrapper">
@@ -26,7 +34,7 @@
             </div>
             <div class="text-wrapper">
                 <div id="player-song-title">{{sharedProperties.getCurrentTrack().trackName}}</div>
-                <div class="player-artist-album-wrapper show-for-large-up">
+                <div class="player-artist-album-wrapper">
                     <a id="player-artist" ng-href="#/artist/{{sharedProperties.getCurrentTrack().artistId}}">{{sharedProperties.getCurrentTrack().artistName}}</a>
                     <div class="player-dash">&nbsp;-&nbsp;</div>
                     <a id="player-album" ng-href="#/album/{{sharedProperties.getCurrentTrack().collectionId}}">{{sharedProperties.getCurrentTrack().collectionName}}</a>

@@ -18245,7 +18245,7 @@ main {
 }
 
 /* line 54, ../scss/_style.scss */
-.disable-select, .play-bar .player-button {
+.disable-select, .play-bar i.player-button, .play-bar .player-button {
   -moz-user-select: -moz-none;
   -ms-user-select: none;
   -webkit-user-select: none;
@@ -19004,7 +19004,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   height: 4.0625rem;
   width: 100%;
 }
-/* line 11, ../scss/_playbar.scss */
+/* line 16, ../scss/_playbar.scss */
 .play-bar .background {
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC45Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
   background-size: 100%;
@@ -19019,38 +19019,46 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   width: 100%;
   z-index: -1;
 }
-/* line 20, ../scss/_playbar.scss */
+/* line 25, ../scss/_playbar.scss */
 .play-bar:hover .player-top #time-container-current, .play-bar:hover .player-top #time-container-duration {
   opacity: 1;
   visibility: visible;
 }
-/* line 25, ../scss/_playbar.scss */
+/* line 30, ../scss/_playbar.scss */
 .play-bar:hover {
   background: rgba(0, 0, 0, 0.9);
   -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 -4px 8px rgba(0, 0, 0, 0.28);
   -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 -4px 8px rgba(0, 0, 0, 0.28);
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 -4px 8px rgba(0, 0, 0, 0.28);
 }
-/* line 33, ../scss/_playbar.scss */
+/* line 35, ../scss/_playbar.scss */
+.play-bar i.player-button {
+  color: #FFFFFF;
+  height: 3.75rem;
+  line-height: 3.75rem;
+  vertical-align: middle;
+  margin: 0 0.9375rem;
+}
+/* line 47, ../scss/_playbar.scss */
 .play-bar .player-button.disabled {
   cursor: not-allowed;
   pointer-events: none;
   opacity: .65;
   filter: alpha(opacity=65);
 }
-/* line 40, ../scss/_playbar.scss */
+/* line 54, ../scss/_playbar.scss */
 .play-bar .player-button.play > i {
   width: 1.6875rem;
 }
-/* line 44, ../scss/_playbar.scss */
+/* line 58, ../scss/_playbar.scss */
 .play-bar .player-button i {
   color: #FFFFFF;
-  height: 4.0625rem;
-  line-height: 4.0625rem;
+  height: 3.75rem;
+  line-height: 3.75rem;
   vertical-align: middle;
   margin: 0 0.9375rem;
 }
-/* line 54, ../scss/_playbar.scss */
+/* line 68, ../scss/_playbar.scss */
 .play-bar .player-center {
   position: absolute;
   display: flex;
@@ -19060,7 +19068,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 63, ../scss/_playbar.scss */
+/* line 77, ../scss/_playbar.scss */
 .play-bar .player-top #time-container-current, .play-bar .player-top #time-container-duration {
   z-index: 3;
   font-size: 0.625rem;
@@ -19078,7 +19086,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-transform: translateY(-30%);
   transform: translateY(-30%);
 }
-/* line 78, ../scss/_playbar.scss */
+/* line 92, ../scss/_playbar.scss */
 .play-bar .player-top #time-container-current {
   left: 0;
   background: #C60000;
@@ -19090,7 +19098,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-border-bottom-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
-/* line 85, ../scss/_playbar.scss */
+/* line 99, ../scss/_playbar.scss */
 .play-bar .player-top #time-container-duration {
   right: 0;
   background: #DDDDDD;
@@ -19102,8 +19110,10 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-border-bottom-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
 }
-/* line 92, ../scss/_playbar.scss */
+/* line 4, ../scss/_ui-slider.scss */
 .play-bar .player-top .ui-slider {
+  position: relative;
+  display: block;
   background: #AAAAAA;
   border: none;
   z-index: 1;
@@ -19112,13 +19122,13 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   border-radius: 0;
   cursor: pointer;
 }
-/* line 101, ../scss/_playbar.scss */
+/* line 15, ../scss/_ui-slider.scss */
 .play-bar .player-top .ui-slider .ui-slider-range {
   background: #C60000;
   height: 0.3125rem;
   border-radius: 0;
 }
-/* line 107, ../scss/_playbar.scss */
+/* line 21, ../scss/_ui-slider.scss */
 .play-bar .player-top .ui-slider .ui-slider-handle {
   z-index: 2;
   position: absolute;
@@ -19137,19 +19147,19 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-transform: translate(-50%, -30%);
   transform: translate(-50%, -30%);
 }
-/* line 120, ../scss/_playbar.scss */
+/* line 34, ../scss/_ui-slider.scss */
 .play-bar .player-top .ui-slider .ui-slider-handle:hover, .play-bar .player-top .ui-slider .ui-slider-handle.ui-state-active {
   height: 1.25rem;
   width: 1.25rem;
   border-width: 0.375rem;
   background: #C60000;
 }
-/* line 130, ../scss/_playbar.scss */
+/* line 111, ../scss/_playbar.scss */
 .play-bar .player-left {
   height: 4.0625rem;
   width: 30%;
 }
-/* line 134, ../scss/_playbar.scss */
+/* line 115, ../scss/_playbar.scss */
 .play-bar .player-left .image-wrapper {
   position: relative;
   top: 0;
@@ -19160,7 +19170,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   width: 4.0625rem;
   border: 0;
 }
-/* line 144, ../scss/_playbar.scss */
+/* line 125, ../scss/_playbar.scss */
 .play-bar .player-left .image-wrapper .img {
   position: absolute;
   top: 0;
@@ -19169,7 +19179,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   height: 100%;
   width: 100%;
 }
-/* line 154, ../scss/_playbar.scss */
+/* line 135, ../scss/_playbar.scss */
 .play-bar .player-left .text-wrapper {
   color: #FFFFFF;
   display: inline-block;
@@ -19178,14 +19188,14 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   overflow: hidden;
   white-space: nowrap;
 }
-/* line 162, ../scss/_playbar.scss */
+/* line 143, ../scss/_playbar.scss */
 .play-bar .player-left .text-wrapper #player-song-title {
   height: 1.875rem;
   line-height: 1.875rem;
   font-weight: bold;
   font-size: 1.125rem;
 }
-/* line 171, ../scss/_playbar.scss */
+/* line 152, ../scss/_playbar.scss */
 .play-bar .player-left .text-wrapper .player-artist-album-wrapper #player-artist, .play-bar .player-left .text-wrapper .player-artist-album-wrapper .player-dash, .play-bar .player-left .text-wrapper .player-artist-album-wrapper #player-album {
   color: #EEEEEE;
   height: 1.875rem;
@@ -19194,6 +19204,72 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   display: inline;
   overflow: hidden;
   white-space: nowrap;
+}
+/* line 167, ../scss/_playbar.scss */
+.play-bar .player-right #player-right-wrapper {
+  display: inline;
+  height: 3.75rem;
+  width: auto;
+}
+/* line 172, ../scss/_playbar.scss */
+.play-bar .player-right #player-right-wrapper .player-button-queue, .play-bar .player-right #player-right-wrapper .player-button-volume {
+  float: right;
+}
+/* line 176, ../scss/_playbar.scss */
+.play-bar .player-right #player-right-wrapper .player-button-volume:hover + #slider-wrapper, .play-bar .player-right #player-right-wrapper #slider-wrapper:hover {
+  opacity: 1;
+  visibility: visible;
+}
+/* line 181, ../scss/_playbar.scss */
+.play-bar .player-right #player-right-wrapper #slider-wrapper {
+  height: 4.0625rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 300ms linear;
+}
+/* line 4, ../scss/_ui-slider.scss */
+.play-bar .player-right #player-right-wrapper #slider-wrapper .ui-slider {
+  position: relative;
+  display: inline-block;
+  background: #AAAAAA;
+  border: none;
+  z-index: 1;
+  height: 0.3125rem;
+  width: 5.625rem;
+  border-radius: 0;
+  cursor: pointer;
+}
+/* line 15, ../scss/_ui-slider.scss */
+.play-bar .player-right #player-right-wrapper #slider-wrapper .ui-slider .ui-slider-range {
+  background: #C60000;
+  height: 0.3125rem;
+  border-radius: 0;
+}
+/* line 21, ../scss/_ui-slider.scss */
+.play-bar .player-right #player-right-wrapper #slider-wrapper .ui-slider .ui-slider-handle {
+  z-index: 2;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  height: 0.9375rem;
+  width: 0.9375rem;
+  background: #AAAAAA;
+  border: 0.3125rem solid #F6F6F6;
+  outline: 0;
+  -moz-border-radius: 3.125rem;
+  -webkit-border-radius: 3.125rem;
+  border-radius: 3.125rem;
+  -moz-transform: translate(-50%, -30%);
+  -ms-transform: translate(-50%, -30%);
+  -webkit-transform: translate(-50%, -30%);
+  transform: translate(-50%, -30%);
+}
+/* line 34, ../scss/_ui-slider.scss */
+.play-bar .player-right #player-right-wrapper #slider-wrapper .ui-slider .ui-slider-handle:hover, .play-bar .player-right #player-right-wrapper #slider-wrapper .ui-slider .ui-slider-handle.ui-state-active {
+  height: 1.25rem;
+  width: 1.25rem;
+  border-width: 0.375rem;
+  background: #C60000;
 }
 
 /* line 1, ../scss/_soundbar.scss */

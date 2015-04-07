@@ -1,12 +1,17 @@
 .play-bar
 {
-  $slider-handle-size: rem-calc(15);
-  $slider-handle-size-hover: $slider-handle-size + rem-calc(5);
-  $slider-handle-radius: rem-calc(50);
-  $slider-handle-color: $base;
-  $slider-handle-color-border: $vapor;
-  $slider-handle-border-width: rem-calc(5);
-  $slider-handle-border-width-hover: $slider-handle-border-width + rem-calc(1);
+  $slider-player-background: $base;
+  $slider-player-range-background: $primary-color;
+  $slider-player-height: rem-calc(5);
+  $slider-player-width: 100%;
+  $slider-player-handle-size: rem-calc(15);
+  $slider-player-handle-size-hover: $slider-player-handle-size + rem-calc(5);
+  $slider-player-handle-radius: rem-calc(50);
+  $slider-player-handle-color: $base;
+  $slider-player-handle-color-border: $vapor;
+  $slider-player-handle-border-width: rem-calc(5);
+  $slider-player-handle-border-width-hover: $slider-player-handle-border-width + rem-calc(1);
+  $slider-player-handle-color-hover: $primary-color;
 
   .background
   {
@@ -27,6 +32,15 @@
     background: rgba(0, 0, 0, .9);
     @include box-shadow(0 0 4px rgba(black, .14), 0 -4px 8px rgba(black, .28));
   }
+  i.player-button
+  {
+    @extend .disable-select;
+    color: $white;
+    height: ($footer-height - $slider-player-height);
+    line-height: ($footer-height - $slider-player-height);
+    vertical-align: middle;
+    margin: 0 rem-calc(15);
+  }
   .player-button
   {
     @extend .disable-select;
@@ -45,8 +59,8 @@
     {
       @extend .on-hover;
       color: $white;
-      height: $footer-height;
-      line-height: $footer-height;
+      height: ($footer-height - $slider-player-height);
+      line-height: ($footer-height - $slider-player-height);
       vertical-align: middle;
       margin: 0 rem-calc(15);
     }
@@ -89,43 +103,10 @@
       color: $aluminum;
       @include border-left-radius(rem-calc(4));
     }
-    .ui-slider
-    {
-      background: $base;
-      border: none;
-      z-index: 1;
-      height: rem-calc(5);
-      width: 100%;
-      border-radius: 0;
-      cursor: pointer;
-      .ui-slider-range
-      {
-        background: $primary-color;
-        height: rem-calc(5);
-        border-radius: 0;
-      }
-      .ui-slider-handle
-      {
-        z-index: 2;
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        height: $slider-handle-size;
-        width: $slider-handle-size;
-        background: $slider-handle-color;
-        border: $slider-handle-border-width solid $slider-handle-color-border;
-        outline: 0;
-        @include border-radius($slider-handle-radius);
-        @include translate(-50%, -30%);
-        &:hover, &.ui-state-active
-        {
-          height: $slider-handle-size-hover;
-          width: $slider-handle-size-hover;
-          border-width: $slider-handle-border-width-hover;
-          background: $primary-color;
-        }
-      }
-    }
+    @include ui-slider(block, $slider-player-background, $slider-player-height, $slider-player-width,
+            $slider-player-range-background, $slider-player-handle-size, $slider-player-handle-color,
+            $slider-player-handle-border-width, $slider-player-handle-color-border, $slider-player-handle-radius,
+            $slider-player-handle-size-hover, $slider-player-handle-border-width-hover, $slider-player-handle-color-hover);
   }
   .player-left
   {
@@ -161,8 +142,8 @@
       white-space: nowrap;
       #player-song-title
       {
-        height: ($footer-height - rem-calc(5)) / 2;
-        line-height: ($footer-height - rem-calc(5)) / 2;
+        height: ($footer-height - $slider-player-height) / 2;
+        line-height: ($footer-height - $slider-player-height) / 2;
         font-weight: bold;
         font-size: rem-calc(18);
       }
@@ -171,13 +152,42 @@
         #player-artist, .player-dash, #player-album
         {
           color: $smoke;
-          height: ($footer-height - rem-calc(5)) / 2;
-          line-height: ($footer-height - rem-calc(5)) / 2;
+          height: ($footer-height - $slider-player-height) / 2;
+          line-height: ($footer-height - $slider-player-height) / 2;
           font-size: rem-calc(14);
           display: inline;
           overflow: hidden;
           white-space: nowrap;
         }
+      }
+    }
+  }
+  .player-right
+  {
+    #player-right-wrapper
+    {
+      display: inline;
+      height: ($footer-height - $slider-player-height);
+      width: auto;
+      .player-button-queue, .player-button-volume
+      {
+        float: right;
+      }
+      .player-button-volume:hover + #slider-wrapper, #slider-wrapper:hover
+      {
+        opacity: 1;
+        visibility: visible;
+      }
+      #slider-wrapper
+      {
+        height: $footer-height;
+        opacity: 0;
+        visibility: hidden;
+        @include single-transition(opacity, 300ms, linear);
+        @include ui-slider(inline-block, $slider-player-background, $slider-player-height, rem-calc(90),
+                $slider-player-range-background, $slider-player-handle-size, $slider-player-handle-color,
+                $slider-player-handle-border-width, $slider-player-handle-color-border, $slider-player-handle-radius,
+                $slider-player-handle-size-hover, $slider-player-handle-border-width-hover, $slider-player-handle-color-hover);
       }
     }
   }

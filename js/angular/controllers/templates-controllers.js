@@ -132,13 +132,14 @@
         $scope.sharedProperties = sharedProperties;
         $scope.myAudio = {};
         $scope.speed = 1000000;
+        $scope.volume = 100;
         //$scope.disabled = !sharedProperties.getCurrentTrack();
         $scope.currentTrack =
         {
             currentTime: 0,
             duration: 30
         };
-        $scope.slider =
+        $scope.sliderPlayer =
         {
             'options':
             {
@@ -212,6 +213,16 @@
             $scope.myAudio.playPause();
         }
 
+        $scope.switchMute = function ()
+        {
+            $scope.myAudio.toggleMute();
+        }
+
+        $scope.$watch('volume', function (value)
+        {
+            $scope.myAudio.setVolume(value / 100);
+        });
+
         $scope.$watch('myAudio.currentTime', function (value)
         {
             if (!slideMove)
@@ -247,11 +258,6 @@
         {
             sharedProperties.updateTrackStates();
         });
-
-        $scope.switchMute = function ()
-        {
-            $scope.myAudio.toggleMute();
-        }
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
