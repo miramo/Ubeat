@@ -51,6 +51,10 @@
       opacity: .65;
       filter: alpha(opacity=65);
     }
+    &.active > i
+    {
+      color: $primary-color !important;
+    }
     &.play > i
     {
       width: rem-calc(27);

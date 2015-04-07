@@ -19047,10 +19047,14 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   filter: alpha(opacity=65);
 }
 /* line 54, ../scss/_playbar.scss */
+.play-bar .player-button.active > i {
+  color: #C60000 !important;
+}
+/* line 58, ../scss/_playbar.scss */
 .play-bar .player-button.play > i {
   width: 1.6875rem;
 }
-/* line 58, ../scss/_playbar.scss */
+/* line 62, ../scss/_playbar.scss */
 .play-bar .player-button i {
   color: #FFFFFF;
   height: 3.75rem;
@@ -19058,7 +19062,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   vertical-align: middle;
   margin: 0 0.9375rem;
 }
-/* line 68, ../scss/_playbar.scss */
+/* line 72, ../scss/_playbar.scss */
 .play-bar .player-center {
   position: absolute;
   display: flex;
@@ -19068,7 +19072,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 77, ../scss/_playbar.scss */
+/* line 81, ../scss/_playbar.scss */
 .play-bar .player-top #time-container-current, .play-bar .player-top #time-container-duration {
   z-index: 3;
   font-size: 0.625rem;
@@ -19086,7 +19090,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-transform: translateY(-30%);
   transform: translateY(-30%);
 }
-/* line 92, ../scss/_playbar.scss */
+/* line 96, ../scss/_playbar.scss */
 .play-bar .player-top #time-container-current {
   left: 0;
   background: #C60000;
@@ -19098,7 +19102,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-border-bottom-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
-/* line 99, ../scss/_playbar.scss */
+/* line 103, ../scss/_playbar.scss */
 .play-bar .player-top #time-container-duration {
   right: 0;
   background: #DDDDDD;
@@ -19154,12 +19158,12 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   border-width: 0.375rem;
   background: #C60000;
 }
-/* line 111, ../scss/_playbar.scss */
+/* line 115, ../scss/_playbar.scss */
 .play-bar .player-left {
   height: 4.0625rem;
   width: 30%;
 }
-/* line 115, ../scss/_playbar.scss */
+/* line 119, ../scss/_playbar.scss */
 .play-bar .player-left .image-wrapper {
   position: relative;
   top: 0;
@@ -19170,7 +19174,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   width: 4.0625rem;
   border: 0;
 }
-/* line 125, ../scss/_playbar.scss */
+/* line 129, ../scss/_playbar.scss */
 .play-bar .player-left .image-wrapper .img {
   position: absolute;
   top: 0;
@@ -19179,7 +19183,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   height: 100%;
   width: 100%;
 }
-/* line 135, ../scss/_playbar.scss */
+/* line 139, ../scss/_playbar.scss */
 .play-bar .player-left .text-wrapper {
   color: #FFFFFF;
   display: inline-block;
@@ -19188,14 +19192,14 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   overflow: hidden;
   white-space: nowrap;
 }
-/* line 143, ../scss/_playbar.scss */
+/* line 147, ../scss/_playbar.scss */
 .play-bar .player-left .text-wrapper #player-song-title {
   height: 1.875rem;
   line-height: 1.875rem;
   font-weight: bold;
   font-size: 1.125rem;
 }
-/* line 152, ../scss/_playbar.scss */
+/* line 156, ../scss/_playbar.scss */
 .play-bar .player-left .text-wrapper .player-artist-album-wrapper #player-artist, .play-bar .player-left .text-wrapper .player-artist-album-wrapper .player-dash, .play-bar .player-left .text-wrapper .player-artist-album-wrapper #player-album {
   color: #EEEEEE;
   height: 1.875rem;
@@ -19205,22 +19209,22 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   overflow: hidden;
   white-space: nowrap;
 }
-/* line 167, ../scss/_playbar.scss */
+/* line 171, ../scss/_playbar.scss */
 .play-bar .player-right #player-right-wrapper {
   display: inline;
   height: 3.75rem;
   width: auto;
 }
-/* line 172, ../scss/_playbar.scss */
+/* line 176, ../scss/_playbar.scss */
 .play-bar .player-right #player-right-wrapper .player-button-queue, .play-bar .player-right #player-right-wrapper .player-button-volume {
   float: right;
 }
-/* line 176, ../scss/_playbar.scss */
+/* line 180, ../scss/_playbar.scss */
 .play-bar .player-right #player-right-wrapper .player-button-volume:hover + #slider-wrapper, .play-bar .player-right #player-right-wrapper #slider-wrapper:hover {
   opacity: 1;
   visibility: visible;
 }
-/* line 181, ../scss/_playbar.scss */
+/* line 185, ../scss/_playbar.scss */
 .play-bar .player-right #player-right-wrapper #slider-wrapper {
   height: 4.0625rem;
   opacity: 0;
