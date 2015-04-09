@@ -16,7 +16,7 @@
         </div>
         <div class="player-right right hide-for-small-only">
             <div id="player-right-wrapper">
-                <a class="player-button player-button-queue" ng-click="clickOnPlayQueue()" ng-href="{{queueUrl}}"><i class="md md-queue-music md-2x bottom-music-list"></i></a>
+                <a class="player-button player-button-queue" ng-click="clickOnPlayQueue()" ng-href="{{queueUrl}}" ng-class="isPlayQueue ? 'active' : ''"><i class="md md-queue-music md-2x bottom-music-list"></i></a>
                 <a class="player-button player-button-volume show-for-large-up" ng-click="switchMute()">
                     <i class="md md-2x" ng-class="{'md-volume-up': !myAudio.muted, 'md-volume-off': myAudio.muted}"></i>
                 </a>
