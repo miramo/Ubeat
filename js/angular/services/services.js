@@ -361,7 +361,6 @@
                 },
                 function (err)
                 {
-                    console.log("Token Fail: " + err);
                     if (callback)
                     {
                         callback(null, true);
@@ -513,14 +512,8 @@
 
         this.removePlaylist = function (id, callback)
         {
-            console.log("RemovePlaylist");
-
             singlePlaylistFactory.delete(getServiceTokenCookie(), id, function (data)
             {
-                if (data)
-                {
-                    console.log("DeletePlaylist[" + id + "]:" + JSON.stringify(data));
-                }
                 if (callback)
                 {
                     callback();
@@ -755,7 +748,6 @@
 
         this.setIsCriticalError = function (val)
         {
-            console.log("SetIsCritical");
             isCriticalError = val;
 
             if (val == true)
@@ -782,7 +774,6 @@
 
         this.setCriticalError = function (status, msg)
         {
-            console.log("SetCriticalError[" + status + "]: " + msg);
             if (status == 0)
             {
                 errorStatus = 503;
@@ -798,7 +789,6 @@
 
         this.setDefaultCriticalError = function (err)
         {
-            console.log("SetDefaultCriticalError: " + err);
             if (err)
             {
                 this.setCriticalError(err.status, err.statusText);
