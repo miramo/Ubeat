@@ -46,7 +46,6 @@
                     $scope.errorMsg = "Adresse e-mail ou mot de passe incorrect.";
                     $('#error-msg-sign-in').removeClass('hide');
                     sharedProperties.setConnected(false);
-                    //console.log(err);
                 });
         }
 
@@ -218,7 +217,6 @@
 
         $scope.play = function ()
         {
-            //console.log($scope.myAudio);
             $scope.myAudio.playPause();
         }
 
