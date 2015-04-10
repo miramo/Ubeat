@@ -50,7 +50,7 @@
 
                             }, function (err)
                             {
-                                sharedPagesStatus.setCriticalError(0, '');
+                               // sharedPagesStatus.setCriticalError(0, '');
                             });
                     }
                 },
@@ -70,7 +70,7 @@
                 },
                 function (err)
                 {
-                    sharedPagesStatus.setDefaultCriticalError(err);
+                    //sharedPagesStatus.setDefaultCriticalError(err);
                 });
         });
 

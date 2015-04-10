@@ -163,6 +163,11 @@
             return playQueue;
         }
 
+        this.getPlayQueueLength = function()
+        {
+            return playQueue.queue.length;
+        }
+
         this.resetPlayQueue = function ()
         {
             playQueue.queue = [];
