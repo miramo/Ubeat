@@ -888,7 +888,7 @@
         $scope.playlists = [];
         $scope.artistDisplayLimit = 5;
         $scope.albumDisplayLimit = 5;
-        $scope.isConnected = false;
+        $scope.isConnected = sharedProperties.isConnected();
 
         var getPlaylistsCallback = function (playlists)
         {
