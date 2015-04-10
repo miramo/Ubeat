@@ -52,6 +52,11 @@
                     templateUrl: 'views/pages/search.html',
                     controller : 'SearchController'
                 })
+                .when('/search/',
+                {
+                    templateUrl: 'views/pages/search.html',
+                    controller : 'SearchController'
+                })
                 .otherwise({
                     redirectTo: '/error/',
                     controller: 'ErrorPageController'
