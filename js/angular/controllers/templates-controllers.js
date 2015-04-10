@@ -134,6 +134,20 @@
         $scope.volume = 100;
         $scope.isPlayQueue = false;
         $scope.isLooping = false;
+        $scope.isRandom = false;
+
+        $scope.switchIsLooping = function()
+        {
+            $scope.isLooping = !$scope.isLooping;
+            $scope.isRandom = !$scope.isLooping;
+        }
+
+        $scope.switchIsRandom = function()
+        {
+            $scope.isRandom = !$scope.isRandom;
+            $scope.isLooping = !$scope.isRandom;
+        }
+
         //$scope.disabled = !sharedProperties.getCurrentTrack();
         $scope.currentTrack =
         {

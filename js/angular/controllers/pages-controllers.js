@@ -50,7 +50,7 @@
 
                             }, function (err)
                             {
-                                sharedPagesStatus.setDefaultCriticalError(err);
+                                sharedPagesStatus.setCriticalError(0, '');
                             });
                     }
                 },
