@@ -133,6 +133,7 @@
         $scope.speed = 1000000;
         $scope.volume = 100;
         $scope.isPlayQueue = false;
+        $scope.isLooping = false;
         //$scope.disabled = !sharedProperties.getCurrentTrack();
         $scope.currentTrack =
         {
@@ -180,6 +181,16 @@
                 $scope.myAudio.load([{"src": track.previewUrl, "type": audioType}]);
             $scope.myAudio.playPause();
         }
+
+        $scope.$watch('myAudio.ended', function(value)
+        {
+            if (value == true
+            && ($scope.isLooping == false && sharedProperties.isLastSongInQueue() == false))
+            {
+                $scope.next();
+            }
+        });
+
 
         $scope.$watch('sharedPagesStatus.getCurrentPage()', function (value)
         {

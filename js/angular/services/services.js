@@ -204,6 +204,13 @@
             return track;
         }
 
+        this.isLastSongInQueue = function()
+        {
+            if (playQueue.currentTrackId >= playQueue.queue.length - 1)
+                return true;
+            return false;
+        }
+
         this.getPlayQueuePreviousTrack = function (setCurrentTrackId)
         {
             var track = null;
