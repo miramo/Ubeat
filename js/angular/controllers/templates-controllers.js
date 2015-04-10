@@ -9,7 +9,7 @@
     angular.module('templatesControllers')
         .value('mp.throttleSettings', {
             enabled: true,
-            time:1
+            time   : 1
         });
 
     controllers.controller('NavbarController', function ($scope, $route, $location, sharedPagesStatus, sharedProperties, loginFactory, logoutFactory, signupFactory, localStorageService)
@@ -40,8 +40,9 @@
                 },
                 function (err)
                 {
-                    $('#sign-in-modal').addClass('animated shake').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-                      $(this).removeClass('animated shake');
+                    $('#sign-in-modal').addClass('animated shake').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function ()
+                    {
+                        $(this).removeClass('animated shake');
                     });
                     $scope.errorMsg = "Adresse e-mail ou mot de passe incorrect.";
                     $('#error-msg-sign-in').removeClass('hide');
@@ -76,7 +77,10 @@
                 {
                     if (data.email && data.name && data.id)
                     {
-                        loginFactory.post(sharedProperties.getTokenCookie(), {email: $scope.signupInfo.email, password: $scope.signupInfo.password}, function (data)
+                        loginFactory.post(sharedProperties.getTokenCookie(), {
+                                email   : $scope.signupInfo.email,
+                                password: $scope.signupInfo.password
+                            }, function (data)
                             {
                                 if (data.email && data.name && data.token && data.id)
                                 {
@@ -98,7 +102,8 @@
                 },
                 function (err)
                 {
-                    $('#sign-up-modal').addClass('animated shake').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                    $('#sign-up-modal').addClass('animated shake').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function ()
+                    {
                         $(this).removeClass('animated shake');
                     });
                     $scope.errorMsg = "Cette adresse de courriel est deja utilisee.";
@@ -136,15 +141,19 @@
         $scope.isLooping = false;
         $scope.isRandom = false;
 
-        $scope.switchIsLooping = function()
+        $scope.switchIsLooping = function ()
         {
             $scope.isLooping = !$scope.isLooping;
-            $scope.isRandom = !$scope.isLooping;
+
+            if ($scope.isRandom)
+                $scope.isRandom = !$scope.isLooping;
         }
 
-        $scope.switchIsRandom = function()
+        $scope.switchIsRandom = function ()
         {
             $scope.isRandom = !$scope.isRandom;
+            
+            if ($scope.isLooping)
             $scope.isLooping = !$scope.isRandom;
         }
 
@@ -152,46 +161,56 @@
         $scope.currentTrack =
         {
             currentTime: 0,
-            duration: 30
+            duration   : 30
         };
         $scope.sliderPlayer =
         {
-            'options':
-            {
+            'options': {
                 orientation: 'horizontal',
-                range: 'min',
-                start: function (event, ui) { sliderPlayerStart(); },
-                stop: function (event, ui) { sliderPlayerStop(); }
+                range      : 'min',
+                start      : function (event, ui)
+                {
+                    sliderPlayerStart();
+                },
+                stop       : function (event, ui)
+                {
+                    sliderPlayerStop();
+                }
             }
         };
         $scope.sliderVolume =
         {
-            'options':
-            {
+            'options': {
                 orientation: 'horizontal',
-                range: 'min',
-                start: function (event, ui) { sliderVolumeStart(); },
-                stop: function (event, ui) { sliderVolumeStop(); }
+                range      : 'min',
+                start      : function (event, ui)
+                {
+                    sliderVolumeStart();
+                },
+                stop       : function (event, ui)
+                {
+                    sliderVolumeStop();
+                }
             }
         };
 
-        var sliderPlayerStart = function()
+        var sliderPlayerStart = function ()
         {
             slideMove = true;
         }
 
-        var sliderPlayerStop = function()
+        var sliderPlayerStop = function ()
         {
             $scope.myAudio.seek($scope.currentTrack.currentTime / $scope.speed);
             slideMove = false;
         }
 
-        var sliderVolumeStart = function()
+        var sliderVolumeStart = function ()
         {
             $("#slider-wrapper").addClass('ui-slider-active');
         }
 
-        var sliderVolumeStop = function()
+        var sliderVolumeStop = function ()
         {
             $("#slider-wrapper").removeClass('ui-slider-active');
         }
@@ -216,10 +235,10 @@
             $scope.myAudio.playPause();
         }
 
-        $scope.$watch('myAudio.ended', function(value)
+        $scope.$watch('myAudio.ended', function (value)
         {
             if (value == true
-            && ($scope.isLooping == false && sharedProperties.isLastSongInQueue() == false))
+                && ($scope.isLooping == false && sharedProperties.isLastSongInQueue() == false))
             {
                 $scope.next();
             }
