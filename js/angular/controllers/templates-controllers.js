@@ -140,6 +140,7 @@
         $scope.isPlayQueue = false;
         $scope.isLooping = false;
         $scope.isRandom = false;
+        $scope.playQueue = sharedProperties.getPlayQueue().queue;
 
         $scope.switchIsLooping = function ()
         {
