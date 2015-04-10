@@ -661,7 +661,7 @@
         }
     });
 
-    services.service('sharedPagesStatus', function ($location)
+    services.service('sharedPagesStatus', function ($location, $route)
     {
         var pageTitle = 'Ubeat';
         var isCriticalError = false;

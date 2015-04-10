@@ -144,17 +144,11 @@
         $scope.switchIsLooping = function ()
         {
             $scope.isLooping = !$scope.isLooping;
-
-            if ($scope.isRandom)
-                $scope.isRandom = !$scope.isLooping;
         }
 
         $scope.switchIsRandom = function ()
         {
             $scope.isRandom = !$scope.isRandom;
-            
-            if ($scope.isLooping)
-            $scope.isLooping = !$scope.isRandom;
         }
 
         //$scope.disabled = !sharedProperties.getCurrentTrack();

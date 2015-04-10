@@ -83,6 +83,17 @@
         }
     });
 
+    factories.factory('searchUsersFactory', function ($http, $resource, sharedProperties, localStorageService)
+    {
+        return {
+            get: function (token, element, successCallback, errorCallback)
+            {
+                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(sharedProperties)) + 'search/users?q=' + element, token, null);
+                factories.httpReq($http, req, successCallback, errorCallback);
+            }
+        }
+    });
+
     factories.factory('loginFactory', function ($http, $resource, localStorageService)
     {
         return {

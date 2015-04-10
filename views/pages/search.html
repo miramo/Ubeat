@@ -63,6 +63,35 @@
             </div>
         </div>
     </div>
+
+    <div class="row" ng-show="albums.length > 0">
+        <div class="small-12 columns">
+            <div class="panel new-albums radius">
+                <h2 class="text-center"><i class="md-album md-lg left"></i> Utilisateurs</h2>
+                <h4 class="text-center" ng-hide="usersResults.length > 0">Aucun utilisateur trouvé.</h4>
+                <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
+                    <ul class="small-block-grid-6">
+                        <li class="following-item" ng-if="$index < albumDisplayLimit" ng-repeat="user in usersResults track by $index">
+                            <a href="#/user/{{user.id}}">
+                                <div class="row bump">
+                                    <div class="row">
+                                        <div class="card-shadow search-card-item">
+                                            <div class="responsive-img" back-img="{{sharedProperties.getGravatar(user.email, 150)}}"></div>
+                                            <div class="row collapse text-card">
+                                                <div class="text-center">
+                                                    <p class="first-text-card ellipsis">{{user.name}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row-infos-list">
         <table>
             <thead>

@@ -871,7 +871,7 @@
 
     controllers.controller('SearchController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties,
                                                          searchFactory, spotifySearchFactory, spotifyArtistFactory,
-                                                         albumFactory)
+                                                         albumFactory, searchUsersFactory)
     {
         sharedPagesStatus.setTitle("Recherche: " + $routeParams.element);
         sharedPagesStatus.resetPageStatus();
@@ -881,6 +881,7 @@
         $scope.artists = [];
         $scope.albums = [];
         $scope.results = [];
+        $scope.usersResults = [];
         $scope.trackToAddToNewPlaylist = null;
         $scope.trackArrayToAddToNewPlaylist = null;
         $scope.elementsLoaded = 0;
@@ -933,22 +934,24 @@
         {
             if (newVal > 0 && newVal >= ($scope.results.length - 1))
             {
-                angular.forEach($scope.albums, function (value, key)
-                {
-                    albumFactory.get(sharedProperties.getTokenCookie(), value.collectionId, function (data)
-                        {
-                            $scope.albums[key].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[key].artworkUrl100, 300);
-                        },
-                        function (err)
-                        {
-                            sharedPagesStatus.setDefaultCriticalError(err);
-                        });
-                });
                 sharedPagesStatus.setIsPageLoaded(true);
                 $(document).foundation('reveal', 'reflow');
                 $(document).foundation('dropdown', 'reflow');
             }
         });
+
+        searchUsersFactory.get(sharedProperties.getTokenCookie(),
+            encodeURIComponent($routeParams.element), function (data)
+            {
+                if (data && data.length > 0)
+                {
+                    $scope.usersResults = data;
+                }
+            },
+            function (err)
+            {
+
+            });
 
         searchFactory.get(sharedProperties.getTokenCookie(),
             encodeURIComponent($routeParams.element),
@@ -986,35 +989,49 @@
                                 break;
                             case "artist":
                                 var newArtist = data.results[i];
-                                spotifySearchFactory.get({
-                                    name: newArtist.artistName,
-                                    type: 'artist'
-                                }).$promise.then(function (data)
-                                    {
-                                        if (data && data.artists && data.artists.items.length > 0)
-                                        {
-                                            spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
-                                            {
-                                                newArtist.image = data.images[0];
-                                                $scope.artists[$scope.artists.length] = newArtist;
-                                                ++$scope.elementsLoaded;
-                                            }, function (err)
-                                            {
-                                                sharedPagesStatus.setDefaultCriticalError(err);
-                                            });
-                                        }
-                                        else
-                                        {
-                                            ++$scope.elementsLoaded;
-                                        }
-
-                                    }, function (err)
-                                    {
-                                        sharedPagesStatus.setDefaultCriticalError(err);
-                                    });
+                                $scope.artists[$scope.artists.length] = newArtist;
                                 break;
                         }
                     }
+
+                    angular.forEach($scope.albums, function (value, key)
+                    {
+                        albumFactory.get(sharedProperties.getTokenCookie(), value.collectionId, function (data)
+                            {
+                                $scope.albums[key].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[key].artworkUrl100, 300);
+                            },
+                            function (err)
+                            {
+                                sharedPagesStatus.setDefaultCriticalError(err);
+                            });
+                    });
+
+                    angular.forEach($scope.artists, function (value, key)
+                    {
+                        spotifySearchFactory.get({
+                            name: value.artistName,
+                            type: 'artist'
+                        }).$promise.then(function (data)
+                            {
+                                if (data && data.artists && data.artists.items.length > 0)
+                                {
+                                    spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
+                                    {
+                                        value.image = data.images[0];
+                                        ++$scope.elementsLoaded;
+                                    }, function (err)
+                                    {
+                                    });
+                                }
+                                else
+                                {
+                                    ++$scope.elementsLoaded;
+                                }
+
+                            }, function (err)
+                            {
+                            });
+                    });
                 }
                 else
                 {
@@ -1022,7 +1039,6 @@
                 }
             }, function (err)
             {
-                sharedPagesStatus.setDefaultCriticalError(err);
             });
 
         var createPlaylistByTrackCallback = function (data)
