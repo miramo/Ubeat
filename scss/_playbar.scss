@@ -53,7 +53,7 @@
     }
     &.active > i
     {
-      color: $primary-color !important;
+      color: $primary-color;
     }
     &.play > i
     {
@@ -61,7 +61,10 @@
     }
     i
     {
-      @extend .on-hover;
+      &:hover
+      {
+        color: $aluminum;
+      }
       color: $white;
       height: ($footer-height - $slider-player-height);
       line-height: ($footer-height - $slider-player-height);

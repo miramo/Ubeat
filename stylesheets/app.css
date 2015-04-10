@@ -18224,7 +18224,7 @@ main {
 }
 
 /* line 35, ../scss/_style.scss */
-.on-hover:hover, .play-bar .player-button i:hover {
+.on-hover:hover {
   color: #C60000;
 }
 
@@ -19048,7 +19048,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
 }
 /* line 54, ../scss/_playbar.scss */
 .play-bar .player-button.active > i {
-  color: #C60000 !important;
+  color: #C60000;
 }
 /* line 58, ../scss/_playbar.scss */
 .play-bar .player-button.play > i {
@@ -19062,7 +19062,11 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   vertical-align: middle;
   margin: 0 0.9375rem;
 }
-/* line 72, ../scss/_playbar.scss */
+/* line 64, ../scss/_playbar.scss */
+.play-bar .player-button i:hover {
+  color: #999999;
+}
+/* line 75, ../scss/_playbar.scss */
 .play-bar .player-center {
   position: absolute;
   display: flex;
@@ -19072,7 +19076,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 81, ../scss/_playbar.scss */
+/* line 84, ../scss/_playbar.scss */
 .play-bar .player-top #time-container-current, .play-bar .player-top #time-container-duration {
   z-index: 3;
   font-size: 0.625rem;
@@ -19090,7 +19094,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-transform: translateY(-30%);
   transform: translateY(-30%);
 }
-/* line 96, ../scss/_playbar.scss */
+/* line 99, ../scss/_playbar.scss */
 .play-bar .player-top #time-container-current {
   left: 0;
   background: #C60000;
@@ -19102,7 +19106,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-border-bottom-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
-/* line 103, ../scss/_playbar.scss */
+/* line 106, ../scss/_playbar.scss */
 .play-bar .player-top #time-container-duration {
   right: 0;
   background: #DDDDDD;
@@ -19158,12 +19162,12 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   border-width: 0.375rem;
   background: #C60000;
 }
-/* line 115, ../scss/_playbar.scss */
+/* line 118, ../scss/_playbar.scss */
 .play-bar .player-left {
   height: 4.0625rem;
   width: 30%;
 }
-/* line 119, ../scss/_playbar.scss */
+/* line 122, ../scss/_playbar.scss */
 .play-bar .player-left .image-wrapper {
   position: relative;
   top: 0;
@@ -19174,7 +19178,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   width: 4.0625rem;
   border: 0;
 }
-/* line 129, ../scss/_playbar.scss */
+/* line 132, ../scss/_playbar.scss */
 .play-bar .player-left .image-wrapper .img {
   position: absolute;
   top: 0;
@@ -19183,7 +19187,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   height: 100%;
   width: 100%;
 }
-/* line 139, ../scss/_playbar.scss */
+/* line 142, ../scss/_playbar.scss */
 .play-bar .player-left .text-wrapper {
   color: #FFFFFF;
   display: inline-block;
@@ -19192,14 +19196,14 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   overflow: hidden;
   white-space: nowrap;
 }
-/* line 147, ../scss/_playbar.scss */
+/* line 150, ../scss/_playbar.scss */
 .play-bar .player-left .text-wrapper #player-song-title {
   height: 1.875rem;
   line-height: 1.875rem;
   font-weight: bold;
   font-size: 1.125rem;
 }
-/* line 156, ../scss/_playbar.scss */
+/* line 159, ../scss/_playbar.scss */
 .play-bar .player-left .text-wrapper .player-artist-album-wrapper #player-artist, .play-bar .player-left .text-wrapper .player-artist-album-wrapper .player-dash, .play-bar .player-left .text-wrapper .player-artist-album-wrapper #player-album {
   color: #EEEEEE;
   height: 1.875rem;
@@ -19209,24 +19213,24 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   overflow: hidden;
   white-space: nowrap;
 }
-/* line 171, ../scss/_playbar.scss */
+/* line 174, ../scss/_playbar.scss */
 .play-bar .player-right #player-right-wrapper {
   display: inline;
   height: 3.75rem;
   width: auto;
 }
-/* line 176, ../scss/_playbar.scss */
+/* line 179, ../scss/_playbar.scss */
 .play-bar .player-right #player-right-wrapper .player-button-queue, .play-bar .player-right #player-right-wrapper .player-button-volume {
   float: right;
 }
-/* line 180, ../scss/_playbar.scss */
+/* line 183, ../scss/_playbar.scss */
 .play-bar .player-right #player-right-wrapper .player-button-volume:hover + #slider-wrapper,
 .play-bar .player-right #player-right-wrapper #slider-wrapper:hover,
 .play-bar .player-right #player-right-wrapper #slider-wrapper.ui-slider-active {
   opacity: 1;
   visibility: visible;
 }
-/* line 187, ../scss/_playbar.scss */
+/* line 190, ../scss/_playbar.scss */
 .play-bar .player-right #player-right-wrapper #slider-wrapper {
   display: inline-block;
   height: 4.0625rem;
