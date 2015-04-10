@@ -19220,12 +19220,15 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   float: right;
 }
 /* line 180, ../scss/_playbar.scss */
-.play-bar .player-right #player-right-wrapper .player-button-volume:hover + #slider-wrapper, .play-bar .player-right #player-right-wrapper #slider-wrapper:hover {
+.play-bar .player-right #player-right-wrapper .player-button-volume:hover + #slider-wrapper,
+.play-bar .player-right #player-right-wrapper #slider-wrapper:hover,
+.play-bar .player-right #player-right-wrapper #slider-wrapper.ui-slider-active {
   opacity: 1;
   visibility: visible;
 }
-/* line 185, ../scss/_playbar.scss */
+/* line 187, ../scss/_playbar.scss */
 .play-bar .player-right #player-right-wrapper #slider-wrapper {
+  display: inline-block;
   height: 4.0625rem;
   opacity: 0;
   visibility: hidden;

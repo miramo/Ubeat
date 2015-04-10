@@ -20,9 +20,9 @@
                 <a class="player-button player-button-volume show-for-large-up" ng-click="switchMute()">
                     <i class="md md-2x" ng-class="{'md-volume-up': !myAudio.muted, 'md-volume-off': myAudio.muted}"></i>
                 </a>
-                <span id="slider-wrapper">
+                <span id="slider-wrapper" class="">
                     <i class="player-button player-button-volume-down fa fa-volume-down"></i>
-                    <div ui-slider="{orientation: 'horizontal', range: 'min'}" min="0" max="100" ng-model="volume"></div>
+                    <div ui-slider="sliderVolume.options" min="0" max="100" ng-model="volume"></div>
                 </span>
             </div>
         </div>

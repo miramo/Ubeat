@@ -146,20 +146,40 @@
             {
                 orientation: 'horizontal',
                 range: 'min',
-                start: function (event, ui) { sliderStart(); },
-                stop: function (event, ui) { sliderStop(); }
+                start: function (event, ui) { sliderPlayerStart(); },
+                stop: function (event, ui) { sliderPlayerStop(); }
+            }
+        };
+        $scope.sliderVolume =
+        {
+            'options':
+            {
+                orientation: 'horizontal',
+                range: 'min',
+                start: function (event, ui) { sliderVolumeStart(); },
+                stop: function (event, ui) { sliderVolumeStop(); }
             }
         };
 
-        var sliderStart = function()
+        var sliderPlayerStart = function()
         {
             slideMove = true;
         }
 
-        var sliderStop = function()
+        var sliderPlayerStop = function()
         {
             $scope.myAudio.seek($scope.currentTrack.currentTime / $scope.speed);
             slideMove = false;
+        }
+
+        var sliderVolumeStart = function()
+        {
+            $("#slider-wrapper").addClass('ui-slider-active');
+        }
+
+        var sliderVolumeStop = function()
+        {
+            $("#slider-wrapper").removeClass('ui-slider-active');
         }
 
         $scope.next = function ()
