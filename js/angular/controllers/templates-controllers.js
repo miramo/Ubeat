@@ -142,6 +142,10 @@
         $scope.isLooping = localStorageService.get("isLooping");
         var currentTrackTime = localStorageService.get("currentTrackTime");
         var currentTrackId = localStorageService.get("currentTrackId");
+        //$scope.volume = localStorageService.get("volume");
+        //$scope.isLooping = localStorageService.get("isLooping");
+        //var currentTrackTime = localStorageService.get("currentTrackTime");
+        //var currentTrackId = localStorageService.get("currentTrackId");
 
         $scope.switchIsLooping = function ()
         {
@@ -156,6 +160,15 @@
         }
 
         //$scope.disabled = !sharedProperties.getCurrentTrack();
+
+        angular.element(document).keydown(function(evt)
+        {
+            evt.preventDefault();
+            if (evt.keyCode == 32 && sharedProperties.getPlayQueueLength() > 0)
+            {
+                $scope.play();
+            }
+        });
 
         $scope.currentTrack =
         {
@@ -214,13 +227,15 @@
             $("#slider-wrapper").removeClass('ui-slider-active');
         }
 
-        var playTrack = function (track)
+        var loadTrack = function (track, playTrack)
         {
             if (track != null && $scope.myAudio != null)
             {
                 $scope.myAudio.stop();
                 $scope.myAudio.load([{"src": track.previewUrl, "type": audioType}]);
-                $scope.myAudio.playPause();
+
+                if (playTrack)
+                    $scope.myAudio.playPause();
             }
         }
 
@@ -233,7 +248,7 @@
             else
                 track = sharedProperties.getPlayQueueNextTrack(true);
 
-            playTrack(track);
+            loadTrack(track, true);
         }
 
         $scope.prev = function ()
@@ -262,6 +277,16 @@
             else
                 $scope.isPlayQueue = false;
         });
+
+        //$scope.$watch('sharedProperties.addTrackArrayToPlayQueue()', function (newVal, oldVal)
+        //{
+        //    loadTrack(sharedProperties.getCurrentTrack(), true);
+        //});
+        //
+        //$scope.$watch('sharedProperties.addTrackToPlayQueue()', function (newVal, oldVal)
+        //{
+        //    loadTrack(sharedProperties.getCurrentTrack(), true);
+        //});
 
         $scope.clickOnPlayQueue = function ()
         {
@@ -319,6 +344,14 @@
             $scope.currentTrack.duration = value;
         });
 
+        $scope.$watch('sharedProperties.getPlayQueueLength()', function(val)
+        {
+           if (val <= 0)
+           {
+               $scope.myAudio.stop();
+           }
+        });
+
         $scope.$watch('sharedProperties.getCurrentTrack()', function (newVal, oldVal)
         {
             if (oldVal)
@@ -326,9 +359,9 @@
             if ($scope.myAudio && newVal)
             {
                 $scope.myAudio.stop();
-                $scope.myAudio.load([{"src": newVal.previewUrl, "type": audioType}]);
-                $scope.myAudio.playPause();
-                newVal.playState = sharedProperties.getPlayStates().play;
+                $scope.myAudio.load([{"src": newVal.previewUrl, "type": audioType}])
+               //$scope.myAudio.playPause();
+                //newVal.playState = sharedProperties.getPlayStates().play;
             }
         });
 

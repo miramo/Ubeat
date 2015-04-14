@@ -1,8 +1,6 @@
 .search-card-item
 {
-  @include single-transition(transform, 200ms, linear);
   &:hover
   {
-    @include transform2d(scale(1.08));
   }
 }

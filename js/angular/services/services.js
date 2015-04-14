@@ -83,6 +83,9 @@
             for (var n = 0; n < playQueue.queue.length; ++n)
             {
                 playQueue.displayPlayButton = false;
+
+                if (playQueue.queue[n])
+                {
                 if (currentTrack)
                 {
                     if (currentTrack.trackId == playQueue.queue[n].trackId)
@@ -99,7 +102,7 @@
                     playQueue.queue[n].playState = playStates.idle;
                 }
                 playQueue.queue[n].time = millisToTime(playQueue.queue[n].trackTimeMillis);
-                localStorageService.set(playQueueStorageName, playQueue);
+            }
             }
         }
 
@@ -136,14 +139,15 @@
 
         this.addTrackArrayToPlayQueue = function (trackArray, setCurrentTrack)
         {
+            var saveLength = playQueue.queue.length;
             playQueue.queue = playQueue.queue.concat(trackArray);
-            playQueue.currentTrackId = playQueue.queue.length - 1;
+            playQueue.currentTrackId = saveLength;
 
             updateTrackStates();
 
-            if (setCurrentTrack && playQueue.queue.length > 0)
+            if (playQueue.queue.length > 0)
             {
-                this.setCurrentTrack(playQueue.queue[0], false, playStates.play);
+                this.setCurrentTrack(playQueue.queue[playQueue.currentTrackId], false, playStates.play);
             }
 
             localStorageService.set(playQueueStorageName, playQueue);
@@ -589,6 +593,8 @@
 
         this.getCurrentTrack = function ()
         {
+            if (playQueue.queue.length <= 0)
+                return null;
             if (currentTrack == null)
                 currentTrack = playQueue.queue[playQueue.currentTrackId];
             updateTrackStates();
