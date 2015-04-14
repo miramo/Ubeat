@@ -164,7 +164,7 @@
 
         angular.element(document).keydown(function (evt)
         {
-            evt.preventDefault();
+            //evt.preventDefault();
             if (evt.keyCode == 32 && sharedProperties.getPlayQueueLength() > 0)
             {
                 $scope.play();
