@@ -26,6 +26,8 @@
         var saveQueuePreviousPage = {pageEnum: sharedPagesStatus.getPageEnum().home, pageUrl: "#/"};
         var missingImgPlaylist = './img/missing-album.png';
 
+        //localStorageServiceProvider.setStorageCookie(0.5, '/');
+
         if (playQueue == null)
         {
             playQueue = {queue: [], currentTrackId: 0};

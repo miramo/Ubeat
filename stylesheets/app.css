@@ -19217,24 +19217,24 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   overflow: hidden;
   white-space: nowrap;
 }
-/* line 178, ../scss/_playbar.scss */
+/* line 179, ../scss/_playbar.scss */
 .play-bar .player-right #player-right-wrapper {
   display: inline;
   height: 3.75rem;
   width: auto;
 }
-/* line 183, ../scss/_playbar.scss */
+/* line 184, ../scss/_playbar.scss */
 .play-bar .player-right #player-right-wrapper .player-button-queue, .play-bar .player-right #player-right-wrapper .player-button-volume {
   float: right;
 }
-/* line 187, ../scss/_playbar.scss */
+/* line 188, ../scss/_playbar.scss */
 .play-bar .player-right #player-right-wrapper .player-button-volume:hover + #slider-wrapper,
 .play-bar .player-right #player-right-wrapper #slider-wrapper:hover,
 .play-bar .player-right #player-right-wrapper #slider-wrapper.ui-slider-active {
   opacity: 1;
   visibility: visible;
 }
-/* line 194, ../scss/_playbar.scss */
+/* line 195, ../scss/_playbar.scss */
 .play-bar .player-right #player-right-wrapper #slider-wrapper {
   display: inline-block;
   height: 4.0625rem;

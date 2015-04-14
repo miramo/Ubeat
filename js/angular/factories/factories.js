@@ -11,7 +11,7 @@
     factories.localSecureUbeatUrl = "http://localhost:3000/";
     factories.localUnsecureUbeatUrl = "http://localhost:3000/unsecure/";
     factories.isSecure = false;
-    factories.isLocal = false;
+    factories.isLocal = true;
     factories.ubeatBaseUrl = factories.isSecure ? factories.ubeatBaseSecureUrl : factories.ubeatBaseUnsecureUrl;
     factories.spotifyUrl = 'https://api.spotify.com/v1/';
 

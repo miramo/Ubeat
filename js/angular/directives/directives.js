@@ -61,6 +61,22 @@
         };
     });
 
+    ubeatApp.directive('preventDefault', function ()
+    {
+        var linkFn = function (scope, element, attrs)
+        {
+            $(element).on("click", function (event)
+            {
+                event.preventDefault();
+            });
+        };
+
+        return {
+            restrict: 'A',
+            link: linkFn
+        }
+    });
+
     ubeatApp.directive('backImg', function ()
     {
         return function (scope, element, attrs)
