@@ -10,7 +10,7 @@
         <div class="player-center">
             <a class="player-button" ng-click="switchIsLooping()" ng-class="isLooping ? 'active' : ''"><i class="fa fa-repeat fa-lg"></i></a>
             <a class="player-button" ng-click="prev()" ng-class="sharedProperties.getPlayQueueLength() > 1 ? '' : 'disabled'"><i class="fa fa-fast-backward fa-2x"></i></a>
-            <a class="player-button play" ng-click='play()' ng-class="{disabled: disabled}"><i class="fa fa-2x" ng-class="{'fa-pause': myAudio.playing, 'fa-play': !myAudio.playing}"></i></a>
+            <a class="player-button play" ng-click='play()' ng-class="sharedProperties.getPlayQueueLength() > 0 ? '' : 'disabled'"><i class="fa fa-2x" ng-class="{'fa-pause': myAudio.playing, 'fa-play': !myAudio.playing}"></i></a>
             <a class="player-button" ng-click="next()" ng-class="sharedProperties.getPlayQueueLength() > 1 ? '' : 'disabled'"><i class="fa fa-fast-forward fa-2x"></i></a>
             <a class="player-button" ng-click="switchIsRandom()" ng-class="isRandom ? 'active' : ''"><i class="fa fa-random fa-lg"></i></a>
         </div>
