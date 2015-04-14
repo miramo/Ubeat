@@ -142,6 +142,7 @@
         $scope.isLooping = localStorageService.get("isLooping");
         var currentTrackTime = localStorageService.get("currentTrackTime");
         var currentTrackId = localStorageService.get("currentTrackId");
+        var isFirstLoad = true;
         //$scope.volume = localStorageService.get("volume");
         //$scope.isLooping = localStorageService.get("isLooping");
         //var currentTrackTime = localStorageService.get("currentTrackTime");
@@ -278,16 +279,6 @@
                 $scope.isPlayQueue = false;
         });
 
-        //$scope.$watch('sharedProperties.addTrackArrayToPlayQueue()', function (newVal, oldVal)
-        //{
-        //    loadTrack(sharedProperties.getCurrentTrack(), true);
-        //});
-        //
-        //$scope.$watch('sharedProperties.addTrackToPlayQueue()', function (newVal, oldVal)
-        //{
-        //    loadTrack(sharedProperties.getCurrentTrack(), true);
-        //});
-
         $scope.clickOnPlayQueue = function ()
         {
             var queuePreviousPage = sharedProperties.getSaveQueuePreviousPage();
@@ -356,11 +347,14 @@
         {
             if (oldVal)
                 oldVal.playState = sharedProperties.getPlayStates().idle;
-            if ($scope.myAudio && newVal != oldVal)
+            if ($scope.myAudio && newVal)
             {
                 $scope.myAudio.stop();
                 $scope.myAudio.load([{"src": newVal.previewUrl, "type": audioType}])
-                $scope.myAudio.playPause();
+                if (isFirstLoad)
+                    isFirstLoad = false;
+                else
+                    $scope.myAudio.playPause();
                 newVal.playState = sharedProperties.getPlayStates().play;
             }
         });
