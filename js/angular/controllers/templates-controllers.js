@@ -161,7 +161,7 @@
 
         //$scope.disabled = !sharedProperties.getCurrentTrack();
 
-        angular.element(document).keydown(function(evt)
+        angular.element(document).keydown(function (evt)
         {
             evt.preventDefault();
             if (evt.keyCode == 32 && sharedProperties.getPlayQueueLength() > 0)
@@ -344,24 +344,24 @@
             $scope.currentTrack.duration = value;
         });
 
-        $scope.$watch('sharedProperties.getPlayQueueLength()', function(val)
+        $scope.$watch('sharedProperties.getPlayQueueLength()', function (val)
         {
-           if (val <= 0)
-           {
-               $scope.myAudio.stop();
-           }
+            if (val <= 0)
+            {
+                $scope.myAudio.stop();
+            }
         });
 
         $scope.$watch('sharedProperties.getCurrentTrack()', function (newVal, oldVal)
         {
             if (oldVal)
                 oldVal.playState = sharedProperties.getPlayStates().idle;
-            if ($scope.myAudio && newVal)
+            if ($scope.myAudio && newVal != oldVal)
             {
                 $scope.myAudio.stop();
                 $scope.myAudio.load([{"src": newVal.previewUrl, "type": audioType}])
-               //$scope.myAudio.playPause();
-                //newVal.playState = sharedProperties.getPlayStates().play;
+                $scope.myAudio.playPause();
+                newVal.playState = sharedProperties.getPlayStates().play;
             }
         });
 
@@ -382,7 +382,7 @@
             $(document).foundation();
         });
 
-        angular.element(document).ready(function()
+        angular.element(document).ready(function ()
         {
             if (currentTrackTime == null)
                 currentTrackTime = 0;
