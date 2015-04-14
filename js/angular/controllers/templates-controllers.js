@@ -126,7 +126,7 @@
         });
     });
 
-    controllers.controller('PlaybarController', function ($scope, $route, $location, sharedPagesStatus, sharedProperties)
+    controllers.controller('PlaybarController', function ($scope, $route, $location, localStorageService, sharedPagesStatus, sharedProperties)
     {
         var queuePage = sharedPagesStatus.getPageEnum().playQueue;
         var queuePageUrl = "/queue/";
@@ -136,23 +136,27 @@
         $scope.sharedProperties = sharedProperties;
         $scope.myAudio = {};
         $scope.speed = 1000000;
-        $scope.volume = 100;
         $scope.isPlayQueue = false;
-        $scope.isLooping = false;
-        $scope.isRandom = false;
         $scope.playQueue = sharedProperties.getPlayQueue().queue;
+        $scope.volume = localStorageService.get("volume");
+        $scope.isLooping = localStorageService.get("isLooping");
+        var currentTrackTime = localStorageService.get("currentTrackTime");
+        var currentTrackId = localStorageService.get("currentTrackId");
 
         $scope.switchIsLooping = function ()
         {
             $scope.isLooping = !$scope.isLooping;
+            localStorageService.set("isLooping", $scope.isLooping);
         }
 
         $scope.switchIsRandom = function ()
         {
             $scope.isRandom = !$scope.isRandom;
+            localStorageService.set("isRandom", $scope.isRandom);
         }
 
         //$scope.disabled = !sharedProperties.getCurrentTrack();
+
         $scope.currentTrack =
         {
             currentTime: 0,
@@ -210,14 +214,26 @@
             $("#slider-wrapper").removeClass('ui-slider-active');
         }
 
+        var playTrack = function (track)
+        {
+            if (track != null && $scope.myAudio != null)
+            {
+                $scope.myAudio.stop();
+                $scope.myAudio.load([{"src": track.previewUrl, "type": audioType}]);
+                $scope.myAudio.playPause();
+            }
+        }
+
         $scope.next = function ()
         {
             var track = null;
 
-            $scope.myAudio.stop();
-            if (track = sharedProperties.getPlayQueueNextTrack(true))
-                $scope.myAudio.load([{"src": track.previewUrl, "type": audioType}]);
-            $scope.myAudio.playPause();
+            if ($scope.isRandom)
+                track = sharedProperties.getRandomQueueTrack($scope.isRandom && $scope.isLooping);
+            else
+                track = sharedProperties.getPlayQueueNextTrack(true);
+
+            playTrack(track);
         }
 
         $scope.prev = function ()
@@ -238,7 +254,6 @@
                 $scope.next();
             }
         });
-
 
         $scope.$watch('sharedPagesStatus.getCurrentPage()', function (value)
         {
@@ -286,6 +301,8 @@
 
         $scope.$watch('volume', function (value)
         {
+            localStorageService.set("volume", value);
+
             $scope.myAudio.setVolume(value / 100);
         });
 
@@ -293,6 +310,8 @@
         {
             if (!slideMove)
                 $scope.currentTrack.currentTime = value * $scope.speed;
+            currentTrackTime = value;
+            localStorageService.set('currentTrackTime', currentTrackTime);
         });
 
         $scope.$watch('myAudio.duration', function (value)
@@ -328,6 +347,14 @@
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
             $(document).foundation();
+        });
+
+        angular.element(document).ready(function()
+        {
+            if (currentTrackTime == null)
+                currentTrackTime = 0;
+            console.log(currentTrackTime);
+            $scope.currentTrack.currentTime = currentTrackTime * $scope.spzeed;
         });
     });
 
