@@ -65,6 +65,10 @@
       {
         color: $aluminum;
       }
+      &:active
+      {
+        color: $steel;
+      }
       color: $white;
       height: ($footer-height - $slider-player-height);
       line-height: ($footer-height - $slider-player-height);
