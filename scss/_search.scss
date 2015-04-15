@@ -5,7 +5,9 @@
     text-align: center;
     .tabs
     {
+      position: relative;
       display: inline-block;
+      vertical-align: middle;
       .tab-title
       {
         &:first-child > a
