@@ -149,6 +149,7 @@
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
+            angular.element(document).find('body').backgroundColor = 'white';
             $(document).foundation();
         });
     });
@@ -275,6 +276,7 @@
 
             $scope.$on('$routeChangeSuccess', function (next, current)
             {
+                angular.element(document).find('body').backgroundColor = 'white';
                 $(document).foundation('interchange', 'reflow');
             });
         }
@@ -525,6 +527,7 @@
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
+            angular.element(document).find('body').backgroundColor = 'white';
             $(document).foundation();
             $(document).foundation('interchange', 'reflow');
             $(document).foundation('tooltip', 'reflow');
@@ -754,6 +757,7 @@
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
+            angular.element(document).find('body').backgroundColor = 'white';
             $(document).foundation();
             $(document).foundation('dropdown', 'reflow');
         });
@@ -1107,6 +1111,7 @@
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
+            angular.element('body').backgroundColor = 'white';
             $(document).foundation();
             $(document).foundation('reveal', 'reflow');
             $(document).foundation('dropdown', 'reflow');
