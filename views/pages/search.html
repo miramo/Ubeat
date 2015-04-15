@@ -5,7 +5,7 @@
             <h2>Résultats correspondants à : {{elementToSearch}}</h2>
 
             <div id="tabs-container" ng-show="(usersResults.length + artists.length + albums.length + tracks.length) > 0">
-                <ul class="tabs radius" data-tab>
+                <ul class="tabs" data-tab>
                     <li class="tab-title active"><a id="allTab" href="#allPanel" prevent-default>Tout</a></li>
                     <li class="tab-title" ng-show="artists.length > 0"><a id="artistsTab" href="#artistsPanel" prevent-default>Artistes</a></li>
                     <li class="tab-title" ng-show="albums.length > 0"><a id="albumsTab"  href="#albumsPanel" prevent-default>Albums</a></li>
