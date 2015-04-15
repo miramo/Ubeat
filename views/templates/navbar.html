@@ -23,11 +23,11 @@
                     <li class="divider"></li>
                     <ul id="connection-button-large" ng-class="{hide: sharedProperties.getConnected()}">
                         <li class="hide-for-small-only"><a href="" class="button red sign-up" data-reveal-id="sign-up-modal">Inscription</a></li>
-                        <li class="hide-for-small-only"><a href="" class="sign-in" data-reveal-id="sign-in-modal">Connection</a></li>
+                        <li class="hide-for-small-only"><a href="" class="sign-in" data-reveal-id="sign-in-modal">Connexion</a></li>
                     </ul>
                     <ul id="connection-button-mobile" ng-class="{hide: sharedProperties.getConnected()}">
                         <li class="show-for-small-only"><a href="" class="sign-up" data-reveal-id="sign-up-modal"><i class="md md-person-add md-lg"></i>&nbsp;Inscription</a></li>
-                        <li class="show-for-small-only"><a href="" class="sign-in" data-reveal-id="sign-in-modal"><i class="fa fa-sign-in fa-lg"></i>&nbsp;Connection</a></li>
+                        <li class="show-for-small-only"><a href="" class="sign-in" data-reveal-id="sign-in-modal"><i class="fa fa-sign-in fa-lg"></i>&nbsp;Connexion</a></li>
                     </ul>
                     <li class="has-dropdown not-click" ng-class="{hide: !sharedProperties.getConnected()}">
                         <a href="">
@@ -86,7 +86,7 @@
                                 <small class="error">Vous devez entrer un mot de passe.</small>
                             </div>
                         </div>
-                        <button type="submit" class="red small radius right" ng-click="login()" ng-disabled="signInForm.$invalid" ng-class="{disabled: signInForm.$invalid}">Connection</button>
+                        <button type="submit" class="red small radius right" ng-click="login()" ng-disabled="signInForm.$invalid" ng-class="{disabled: signInForm.$invalid}">Connexion</button>
                     </form>
                 </div>
             </div>
