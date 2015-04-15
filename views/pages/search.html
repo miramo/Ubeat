@@ -26,7 +26,7 @@
                                 Voir Plus
                             </button>
                         </h2>
-                        <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
+                        <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                             <ul class="small-block-grid-6">
                                 <li class="following-item" ng-if="$index < itemsDisplayLimit" ng-repeat="artist in artists track by $index">
                                     <a href="#/artist/{{artist.artistId}}">
@@ -57,7 +57,7 @@
                                 Voir Plus
                             </button>
                         </h2>
-                        <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
+                        <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                             <ul class="small-block-grid-6">
                                 <li class="following-item" ng-if="$index < itemsDisplayLimit" ng-repeat="album in albums track by $index">
                                     <a href="#/album/{{album.collectionId}}">
@@ -92,7 +92,7 @@
                             </button>
                         </h2>
                         <h4 class="text-center" ng-hide="usersResults.length > 0">Aucun utilisateur trouvé.</h4>
-                        <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
+                        <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                             <ul class="small-block-grid-6">
                                 <li class="following-item" ng-if="$index < itemsDisplayLimit" ng-repeat="user in usersResults track by $index">
                                     <a href="#/user/{{user.id}}">
@@ -183,7 +183,7 @@
                 <div class="small-12 columns">
                     <div class="panel new-albums radius">
                         <h2 class="text-center"><i class="md-recent-actors md-lg left"></i> Artistes </h2>
-                        <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
+                        <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                             <ul class="small-block-grid-6">
                                 <li class="following-item" ng-repeat="artist in artists track by $index">
                                     <a href="#/artist/{{artist.artistId}}">
@@ -212,7 +212,7 @@
                 <div class="small-12 columns">
                     <div class="panel new-albums radius">
                         <h2 class="text-center"><i class="md-album md-lg left"></i> Albums</h2>
-                        <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
+                        <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                             <ul class="small-block-grid-6">
                                 <li class="following-item" ng-repeat="album in albums track by $index">
                                     <a href="#/album/{{album.collectionId}}">
@@ -245,7 +245,7 @@
                     <div class="panel new-albums radius">
                         <h2 class="text-center"><i class="md-album md-lg left"></i> Utilisateurs</h2>
                         <h4 class="text-center" ng-hide="usersResults.length > 0">Aucun utilisateur trouvé.</h4>
-                        <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
+                        <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                             <ul class="small-block-grid-6">
                                 <li class="following-item" ng-repeat="user in usersResults track by $index">
                                     <a href="#/user/{{user.id}}">
