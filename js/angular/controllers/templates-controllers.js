@@ -258,7 +258,6 @@
 
         $scope.$watch('myAudio.ended', function (value)
         {
-            console.log("Ended: " + value + " | isLooping: " + $scope.isLooping + " | isLastSongInQueue: " + sharedProperties.isLastSongInQueue());
             if (value == true)
             {
                 if (($scope.isLooping == false && sharedProperties.isLastSongInQueue() == false)
