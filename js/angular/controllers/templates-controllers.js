@@ -258,8 +258,13 @@
 
         $scope.$watch('myAudio.ended', function (value)
         {
-            if (value == true && ($scope.isLooping == false && sharedProperties.isLastSongInQueue() == false))
+            console.log("Ended: " + value + " | isLooping: " + $scope.isLooping + " | isLastSongInQueue: " + sharedProperties.isLastSongInQueue());
+            if (value == true)
+            {
+                if (($scope.isLooping == false && sharedProperties.isLastSongInQueue() == false)
+                || ($scope.isLooping))
                 $scope.next();
+            }
         });
 
         $scope.$watch('sharedPagesStatus.getCurrentPage()', function (value)
