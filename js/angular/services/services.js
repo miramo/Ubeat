@@ -23,7 +23,6 @@
         var playQueueStorageName = 'playQueue';
         var playQueue = localStorageService.get(playQueueStorageName);
         var tokenCookieName = 'token';
-        var saveQueuePreviousPage = {pageEnum: sharedPagesStatus.getPageEnum().home, pageUrl: "#/"};
         var missingImgPlaylist = './img/missing-album.png';
 
         //localStorageServiceProvider.setStorageCookie(0.5, '/');
@@ -37,17 +36,6 @@
         var getServiceTokenCookie = function ()
         {
             return localStorageService.cookie.get(tokenCookieName);
-        }
-
-        this.setSaveQueuePreviousPage = function (pageEnum, url)
-        {
-            saveQueuePreviousPage.pageEnum = pageEnum;
-            saveQueuePreviousPage.pageUrl = url;
-        }
-
-        this.getSaveQueuePreviousPage = function ()
-        {
-            return saveQueuePreviousPage;
         }
 
         this.getTokenCookie = function ()
@@ -723,6 +711,20 @@
         };
         var currentPage = pageEnum.home;
         var currentIdUser;
+        var queuePage = pageEnum.playQueue;
+        var queuePageUrl = "/queue/";
+        var saveQueuePreviousPage = {pageEnum: pageEnum.home, pageUrl: "#/"};
+
+        this.setSaveQueuePreviousPage = function (pageEnum, url)
+        {
+            saveQueuePreviousPage.pageEnum = pageEnum;
+            saveQueuePreviousPage.pageUrl = url;
+        }
+
+        this.getSaveQueuePreviousPage = function ()
+        {
+            return saveQueuePreviousPage;
+        }
 
         this.redirectToHome = function ()
         {
@@ -847,5 +849,32 @@
                 this.setCriticalError(0, "");
             }
         }
+
+        this.togglePlayQueue = function()
+        {
+            var queuePreviousPage = this.getSaveQueuePreviousPage();
+            var currentPage = this.getCurrentPage();
+
+            if (currentPage != queuePage)
+            {
+                this.setSaveQueuePreviousPage(currentPage, $location.url());
+                $location.path(queuePageUrl);
+                $route.reload();
+            }
+            else
+            {
+                if (queuePreviousPage.pageUrl == "#/")
+                {
+                    $location.path("/");
+                }
+                else
+                {
+                    $location.path(queuePreviousPage.pageUrl);
+                }
+                $route.reload();
+                this.setSaveQueuePreviousPage(this.getCurrentPage(), $location.url());
+            }
+        }
+
     });
 })();

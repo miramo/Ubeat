@@ -6366,20 +6366,20 @@ table tr td {
 .tabs dd > a, .tabs .tab-title > a {
   outline: none;
   display: block;
-  background-color: #EFEFEF;
-  color: #222222;
+  background-color: #222222;
+  color: #FFFFFF;
   padding: 1rem 2rem;
   font-family: "Roboto", Roboto, Helvetica, Arial, sans-serif;
   font-size: 1rem;
 }
 /* line 49, ../bower_components/foundation/scss/foundation/components/_tabs.scss */
 .tabs dd > a:hover, .tabs .tab-title > a:hover {
-  background-color: #e1e1e1;
+  background-color: #202020;
 }
 /* line 55, ../bower_components/foundation/scss/foundation/components/_tabs.scss */
 .tabs dd.active a, .tabs .tab-title.active a {
-  background-color: #FFFFFF;
-  color: #222222;
+  background-color: #C60000;
+  color: #FFFFFF;
 }
 /* line 64, ../bower_components/foundation/scss/foundation/components/_tabs.scss */
 .tabs.radius dd:first-child a, .tabs.radius .tab:first-child a {
