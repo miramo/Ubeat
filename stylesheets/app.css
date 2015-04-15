@@ -19558,7 +19558,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   width: 100%;
 }
 
-/* line 91, ../scss/_playlists.scss */
+/* line 89, ../scss/_playlists.scss */
 .header-description {
   display: block;
   width: 100%;
@@ -19566,18 +19566,18 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   padding: 0 0.625rem;
   border-radius: 0.1875rem;
 }
-/* line 98, ../scss/_playlists.scss */
+/* line 96, ../scss/_playlists.scss */
 .header-description p {
   width: 100%;
   height: 2.1875rem;
   line-height: 2.1875rem;
 }
-/* line 104, ../scss/_playlists.scss */
+/* line 102, ../scss/_playlists.scss */
 .header-description button {
   margin-top: 0.1875rem;
 }
 
-/* line 110, ../scss/_playlists.scss */
+/* line 108, ../scss/_playlists.scss */
 .delete-track {
   cursor: pointer;
 }
@@ -19946,6 +19946,49 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   width: 100%;
   position: fixed;
   top: 45%;
+}
+
+/* line 3, ../scss/_search.scss */
+.search #tabs-container {
+  text-align: center;
+}
+/* line 6, ../scss/_search.scss */
+.search #tabs-container .tabs {
+  display: inline-block;
+}
+/* line 11, ../scss/_search.scss */
+.search #tabs-container .tabs .tab-title:first-child > a {
+  -moz-border-radius-topleft: 0.3125rem;
+  -webkit-border-top-left-radius: 0.3125rem;
+  border-top-left-radius: 0.3125rem;
+  -moz-border-radius-bottomleft: 0.3125rem;
+  -webkit-border-bottom-left-radius: 0.3125rem;
+  border-bottom-left-radius: 0.3125rem;
+}
+/* line 15, ../scss/_search.scss */
+.search #tabs-container .tabs .tab-title:last-child > a {
+  -moz-border-radius-topright: 0.3125rem;
+  -webkit-border-top-right-radius: 0.3125rem;
+  border-top-right-radius: 0.3125rem;
+  -moz-border-radius-bottomright: 0.3125rem;
+  -webkit-border-bottom-right-radius: 0.3125rem;
+  border-bottom-right-radius: 0.3125rem;
+}
+/* line 19, ../scss/_search.scss */
+.search #tabs-container .tabs .tab-title.active > a {
+  border-bottom: solid thick #C60000;
+  border-bottom-width: 0.3125rem;
+}
+/* line 24, ../scss/_search.scss */
+.search #tabs-container .tabs .tab-title a {
+  background-color: #222222;
+  color: #FFFFFF;
+  border-bottom: solid thick #444444;
+  border-bottom-width: 0.3125rem;
+}
+/* line 26, ../scss/_search.scss */
+.search #tabs-container .tabs .tab-title a:hover {
+  background-color: #333333;
 }
 
                  /*!

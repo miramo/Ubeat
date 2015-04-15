@@ -1,6 +1,38 @@
-.search-card-item
+.search
 {
-  &:hover
+  #tabs-container
   {
+    text-align: center;
+    .tabs
+    {
+      display: inline-block;
+      .tab-title
+      {
+        &:first-child > a
+        {
+          @include border-left-radius(rem-calc(5));
+        }
+        &:last-child > a
+        {
+          @include border-right-radius(rem-calc(5));
+        }
+        &.active > a
+        {
+          border-bottom: solid thick $primary-color;
+          border-bottom-width: rem-calc(5);
+        }
+        a
+        {
+          &:hover
+          {
+            background-color: $oil;
+          }
+          background-color: $jet;
+          color: $white;
+          border-bottom: solid thick $tuatara;
+          border-bottom-width: rem-calc(5);
+        }
+      }
+    }
   }
 }
