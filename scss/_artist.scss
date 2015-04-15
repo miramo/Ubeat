@@ -42,14 +42,12 @@
   {
     $transition-time: .3s;
 
-    .artist-albums-img
+    .responsive-img
     {
-      @extend .responsive-img;
       cursor: pointer;
       &:after
       {
-        border-top-left-radius  : rem-calc(5);
-        border-top-right-radius : rem-calc(5);
+        @include border-top-radius(rem-calc(5));
         content                 : '\A';
         position                : absolute;
         width                   : 100%;
@@ -68,9 +66,8 @@
         opacity : 0.5;
       }
     }
-    .text-card-artist-album
+    .text-card
     {
-      @extend .text-card;
       @include single-transition(all, $transition-time, linear);
       &:hover
       {

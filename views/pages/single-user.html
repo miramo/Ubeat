@@ -32,15 +32,15 @@
                     <h2 class="text-center title"><i class="fa fa-users fa-lg left"></i>Amis</h2>
                     <h4 class="text-center" ng-hide="userData.following.length">Si t'a pas d'amis prend un curly !</h4>
                     <ul class="following-list no-bullet">
-                        <li class="following-item" ng-repeat="follow in userData.following">
+                        <li class="following-item" ng-repeat="follower in userData.following">
                             <div class="row bump">
                                 <div class="row">
                                     <div class="card-shadow">
-                                        <div class="responsive-img" ng-click="" back-img="{{sharedProperties.getGravatar(follow.email, 150)}}"></div>
+                                        <div class="responsive-img" ng-class="isFollowingId(follower.id) ? 'remove' : 'add'" ng-click="isFollowingId(follower.id) ? unfollow(follower.id) : follow(follower.id)" back-img="{{sharedProperties.getGravatar(follower.email, 150)}}"></div>
                                         <div class="row collapse text-card">
-                                            <a href="#/user/{{follow.id}}">
+                                            <a href="#/user/{{follower.id}}">
                                                 <div class="text-center">
-                                                    <p class="first-text-card ellipsis">{{follow.name}}</p>
+                                                    <p class="first-text-card ellipsis">{{follower.name}}</p>
                                                 </div>
                                             </a>
                                         </div>
