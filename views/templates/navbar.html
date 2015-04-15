@@ -26,8 +26,8 @@
                         <li class="hide-for-small-only"><a href="" class="sign-in" data-reveal-id="sign-in-modal">Connection</a></li>
                     </ul>
                     <ul id="connection-button-mobile" ng-class="{hide: sharedProperties.getConnected()}">
-                        <li class="show-for-small-only"><a href="" class="sign-up" data-reveal-id="sign-up-modal"><i class="md md-person-add md-lg"></i> Inscription</a></li>
-                        <li class="show-for-small-only"><a href="" class="sign-in" data-reveal-id="sign-in-modal"><i class="fa fa-sign-in fa-lg"></i> Connection</a></li>
+                        <li class="show-for-small-only"><a href="" class="sign-up" data-reveal-id="sign-up-modal"><i class="md md-person-add md-lg"></i>&nbsp;Inscription</a></li>
+                        <li class="show-for-small-only"><a href="" class="sign-in" data-reveal-id="sign-in-modal"><i class="fa fa-sign-in fa-lg"></i>&nbsp;Connection</a></li>
                     </ul>
                     <li class="has-dropdown not-click" ng-class="{hide: !sharedProperties.getConnected()}">
                         <a href="">
@@ -40,19 +40,21 @@
                         </a>
                         <ul class="dropdown">
                             <li ng-class="{active: sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().playlist)}">
-                                <a href="#/playlists/"><i class="md md-my-library-music md-lg"></i> Listes de lectures</a>
+                                <a href="#/playlists/"><i class="md md-my-library-music md-lg"></i>&nbsp;Listes de lectures</a>
                             </li>
                             <li ng-class="{active: (sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().user) && (sharedProperties.getInfoConnection().id == sharedPagesStatus.getCurrentIdUser()))}">
-                                <a href="#/user/{{sharedProperties.getInfoConnection().id}}"><i class="fa fa-user fa-lg"></i> Mon profil</a>
+                                <a href="#/user/{{sharedProperties.getInfoConnection().id}}"><i class="fa fa-user fa-lg"></i>&nbsp;Mon profil</a>
                             </li>
                             <li class="divider"></li>
-                            <li ng-click="logout()"><a href=""><i class="fa fa-sign-out fa-lg"></i> Se déconnecter</a></li>
+                            <li ng-click="logout()"><a href=""><i class="fa fa-sign-out fa-lg"></i>&nbsp;Se déconnecter</a></li>
                         </ul>
                     </li>
                 </ul>
                 <!-- Left Nav Section -->
                 <ul class="left">
-                    <a class="show-for-small-down" ng-click="sharedProperties.clickOnPlayQueue()" ng-href="{{sharedProperties.getQueuePageUrl()}}" ng-class="{active: sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().queue)}"><i class="md md-queue-music md-lg"></i></a>
+                            <i class="md md-queue-music md-lg"></i>&nbsp;File d'attente
+                        </a>
+                    </li>
                 </ul>
             </section>
         </nav>
