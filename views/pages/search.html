@@ -3,16 +3,16 @@
     <div class="row">
         <div class="small-12 columns">
             <h2>Résultats correspondants à : {{elementToSearch}}</h2>
+
+            <ul class="tabs" data-tab>
+                <li class="tab-title active"><a id="allTab" href="#allPanel" prevent-default>Tout</a></li>
+                <li class="tab-title"><a id="artistsTab" href="#artistsPanel" prevent-default>Artistes</a></li>
+                <li class="tab-title"><a id="albumsTab"  href="#albumsPanel" prevent-default>Albums</a></li>
+                <li class="tab-title" ng-show="usersResults.length > 0 && isConnected"><a id="usersTab" href="#usersPanel" prevent-default>Utilisateurs</a></li>
+                <li class="tab-title"><a id="tracksTab"  href="#tracksPanel" prevent-default>Titres</a></li>
+            </ul>
+
         </div>
-
-        <ul class="tabs" data-tab>
-            <li class="tab-title active"><a id="allTab" href="#allPanel" prevent-default>Tout</a></li>
-            <li class="tab-title"><a id="artistsTab" href="#artistsPanel" prevent-default>Artistes</a></li>
-            <li class="tab-title"><a id="albumsTab"  href="#albumsPanel" prevent-default>Albums</a></li>
-            <li class="tab-title" ng-show="usersResults.length > 0 && isConnected"><a id="usersTab" href="#usersPanel" prevent-default>Utilisateurs</a></li>
-            <li class="tab-title"><a id="tracksTab"  href="#tracksPanel" prevent-default>Titres</a></li>
-        </ul>
-
     </div>
 
     <div class="tabs-content">
