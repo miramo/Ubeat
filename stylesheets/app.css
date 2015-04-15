@@ -18265,7 +18265,7 @@ main {
 }
 
 /* line 66, ../scss/_style.scss */
-.responsive-img, .artist .bump .artist-albums-img {
+.responsive-img {
   position: relative;
   width: 100%;
   padding-bottom: 100%;
@@ -18323,7 +18323,7 @@ slick .slick-dots li button:before {
   box-shadow: none;
 }
 /* line 118, ../scss/_style.scss */
-.bump .card .responsive-img, .bump .card-shadow .responsive-img, .artist .bump .card .artist-albums-img, .artist .bump .card-shadow .artist-albums-img {
+.bump .card .responsive-img, .bump .card-shadow .responsive-img {
   -moz-border-radius-topleft: 0.3125rem;
   -webkit-border-top-left-radius: 0.3125rem;
   border-top-left-radius: 0.3125rem;
@@ -18332,18 +18332,18 @@ slick .slick-dots li button:before {
   border-top-right-radius: 0.3125rem;
 }
 /* line 122, ../scss/_style.scss */
-.bump .card .text-card, .bump .card-shadow .text-card, .artist .bump .card .text-card-artist-album, .artist .bump .card-shadow .text-card-artist-album {
+.bump .card .text-card, .bump .card-shadow .text-card {
   background: #C60000;
 }
 /* line 125, ../scss/_style.scss */
-.bump .card .text-card .first-text-card, .bump .card-shadow .text-card .first-text-card, .artist .bump .card .text-card-artist-album .first-text-card, .artist .bump .card-shadow .text-card-artist-album .first-text-card, .bump .card .text-card .second-text-card, .bump .card-shadow .text-card .second-text-card, .artist .bump .card .text-card-artist-album .second-text-card, .artist .bump .card-shadow .text-card-artist-album .second-text-card {
+.bump .card .text-card .first-text-card, .bump .card-shadow .text-card .first-text-card, .bump .card .text-card .second-text-card, .bump .card-shadow .text-card .second-text-card {
   font-size: 1rem;
   padding: 0 0.3125rem;
   margin-bottom: 0;
   color: #FFFFFF;
 }
 /* line 132, ../scss/_style.scss */
-.bump .card .text-card .second-text-card, .bump .card-shadow .text-card .second-text-card, .artist .bump .card .text-card-artist-album .second-text-card, .artist .bump .card-shadow .text-card-artist-album .second-text-card {
+.bump .card .text-card .second-text-card, .bump .card-shadow .text-card .second-text-card {
   font-size: 0.875rem;
 }
 /* line 139, ../scss/_style.scss */
@@ -18680,12 +18680,16 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
 }
 
 /* line 45, ../scss/_artist.scss */
-.artist .bump .artist-albums-img {
+.artist .bump .responsive-img {
   cursor: pointer;
 }
-/* line 49, ../scss/_artist.scss */
-.artist .bump .artist-albums-img:after {
+/* line 48, ../scss/_artist.scss */
+.artist .bump .responsive-img:after {
+  -moz-border-radius-topleft: 0.3125rem;
+  -webkit-border-top-left-radius: 0.3125rem;
   border-top-left-radius: 0.3125rem;
+  -moz-border-radius-topright: 0.3125rem;
+  -webkit-border-top-right-radius: 0.3125rem;
   border-top-right-radius: 0.3125rem;
   content: '\A';
   position: absolute;
@@ -18700,16 +18704,16 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   opacity: 0;
   transition: all 0.3s linear;
 }
-/* line 66, ../scss/_artist.scss */
-.artist .bump .artist-albums-img:hover:after {
+/* line 64, ../scss/_artist.scss */
+.artist .bump .responsive-img:hover:after {
   opacity: 0.5;
 }
-/* line 71, ../scss/_artist.scss */
-.artist .bump .text-card-artist-album {
+/* line 69, ../scss/_artist.scss */
+.artist .bump .text-card {
   transition: all 0.3s linear;
 }
-/* line 75, ../scss/_artist.scss */
-.artist .bump .text-card-artist-album:hover {
+/* line 72, ../scss/_artist.scss */
+.artist .bump .text-card:hover {
   background: #9e0000 !important;
 }
 
@@ -19611,6 +19615,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   position: absolute;
   width: 100%;
   height: 100%;
+  line-height: 100%;
   text-align: center;
   top: 0;
   left: 0;
@@ -19620,21 +19625,21 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   opacity: 0;
   transition: opacity 0.3s linear;
 }
-/* line 40, ../scss/_user.scss */
+/* line 41, ../scss/_user.scss */
 .user .user-header #img-user.me:after {
   content: 'Changer votre Gravatar';
 }
-/* line 44, ../scss/_user.scss */
+/* line 45, ../scss/_user.scss */
 .user .user-header #img-user:hover:after {
   border-radius: 50%;
   opacity: 0.5;
 }
-/* line 53, ../scss/_user.scss */
+/* line 54, ../scss/_user.scss */
 .user .panel-following .title {
   margin-bottom: 1.5625rem;
 }
 @media only screen and (max-width: 40em) and (orientation: landscape) {
-  /* line 57, ../scss/_user.scss */
+  /* line 58, ../scss/_user.scss */
   .user .panel-following .following-list {
     display: block;
     padding: 0;
@@ -19672,7 +19677,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   }
 }
 @media only screen and (max-width: 40em) and (orientation: portrait) {
-  /* line 57, ../scss/_user.scss */
+  /* line 58, ../scss/_user.scss */
   .user .panel-following .following-list {
     display: block;
     padding: 0;
@@ -19710,7 +19715,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   }
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 57, ../scss/_user.scss */
+  /* line 58, ../scss/_user.scss */
   .user .panel-following .following-list {
     display: block;
     padding: 0;
@@ -19748,7 +19753,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   }
 }
 @media only screen and (min-width: 64.063em) {
-  /* line 57, ../scss/_user.scss */
+  /* line 58, ../scss/_user.scss */
   .user .panel-following .following-list {
     display: block;
     padding: 0;
@@ -19785,54 +19790,11 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
     clear: both;
   }
 }
-/* line 81, ../scss/_user.scss */
-.user .panel-following .following-list .following-item .bump .responsive-img, .user .panel-following .following-list .following-item .artist .bump .artist-albums-img, .artist .user .panel-following .following-list .following-item .bump .artist-albums-img {
-  cursor: pointer;
-}
-/* line 84, ../scss/_user.scss */
-.user .panel-following .following-list .following-item .bump .responsive-img:after, .user .panel-following .following-list .following-item .artist .bump .artist-albums-img:after, .artist .user .panel-following .following-list .following-item .bump .artist-albums-img:after {
-  -moz-border-radius-topleft: 0.3125rem;
-  -webkit-border-top-left-radius: 0.3125rem;
-  border-top-left-radius: 0.3125rem;
-  -moz-border-radius-topright: 0.3125rem;
-  -webkit-border-top-right-radius: 0.3125rem;
-  border-top-right-radius: 0.3125rem;
-  content: "\f055";
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  text-decoration: inherit;
-  font-size: 28px;
-  color: white;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  top: 0;
-  left: 0;
-  padding-top: 50%;
-  vertical-align: middle;
-  background-color: black;
-  opacity: 0;
-  transition: all 0.3s linear;
-}
-/* line 121, ../scss/_user.scss */
-.user .panel-following .following-list .following-item .bump .responsive-img:hover:after, .user .panel-following .following-list .following-item .artist .bump .artist-albums-img:hover:after, .artist .user .panel-following .following-list .following-item .bump .artist-albums-img:hover:after {
-  opacity: 0.5;
-}
-/* line 126, ../scss/_user.scss */
-.user .panel-following .following-list .following-item .bump .text-card, .user .panel-following .following-list .following-item .artist .bump .text-card-artist-album, .artist .user .panel-following .following-list .following-item .bump .text-card-artist-album {
-  transition: all 0.3s linear;
-}
-/* line 129, ../scss/_user.scss */
-.user .panel-following .following-list .following-item .bump .text-card:hover, .user .panel-following .following-list .following-item .artist .bump .text-card-artist-album:hover, .artist .user .panel-following .following-list .following-item .bump .text-card-artist-album:hover {
-  background: #9e0000 !important;
-}
-/* line 145, ../scss/_user.scss */
+/* line 80, ../scss/_user.scss */
 .user .panel-playlist .title {
   margin-bottom: 1.5625rem;
 }
-/* line 154, ../scss/_user.scss */
+/* line 89, ../scss/_user.scss */
 .user .accordion .accordion-navigation:first-child > a {
   -moz-border-radius-topleft: 5px;
   -webkit-border-top-left-radius: 5px;
@@ -19841,7 +19803,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-border-top-right-radius: 5px;
   border-top-right-radius: 5px;
 }
-/* line 158, ../scss/_user.scss */
+/* line 93, ../scss/_user.scss */
 .user .accordion .accordion-navigation:last-child > a {
   -moz-border-radius-bottomleft: 5px;
   -webkit-border-bottom-left-radius: 5px;
@@ -19850,14 +19812,14 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-border-bottom-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-/* line 162, ../scss/_user.scss */
+/* line 97, ../scss/_user.scss */
 .user .accordion .accordion-navigation [id^=panel-accordion-] {
   background-color: #f9f9f9 !important;
   -moz-box-shadow: inset 0 8px 8px -8px #696969, inset 0 -8px 8px -8px #696969;
   -webkit-box-shadow: inset 0 8px 8px -8px #696969, inset 0 -8px 8px -8px #696969;
   box-shadow: inset 0 8px 8px -8px #696969, inset 0 -8px 8px -8px #696969;
 }
-/* line 167, ../scss/_user.scss */
+/* line 102, ../scss/_user.scss */
 .user .accordion .accordion-navigation .content {
   display: block;
   max-height: 0;
@@ -19865,7 +19827,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   padding: 0 1rem;
   transition: all 400ms ease;
 }
-/* line 174, ../scss/_user.scss */
+/* line 109, ../scss/_user.scss */
 .user .accordion .accordion-navigation .content.active {
   max-height: 80vh;
   padding: 1rem;
@@ -19875,38 +19837,83 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-transition-delay: 200ms;
   transition-delay: 200ms;
 }
-/* line 182, ../scss/_user.scss */
+/* line 117, ../scss/_user.scss */
 .user .accordion .accordion-navigation .playlist-item {
   background-color: #e6e6e6;
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
-/* line 186, ../scss/_user.scss */
+/* line 121, ../scss/_user.scss */
 .user .accordion .accordion-navigation .playlist-item:hover {
   background-color: #cecece;
   -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-/* line 191, ../scss/_user.scss */
+/* line 126, ../scss/_user.scss */
 .user .accordion .accordion-navigation .playlist-item span {
   height: 3.125rem;
   line-height: 3.125rem;
 }
-/* line 195, ../scss/_user.scss */
+/* line 130, ../scss/_user.scss */
 .user .accordion .accordion-navigation .playlist-item span.playlist-name {
   width: calc(100% - 140px);
 }
-/* line 199, ../scss/_user.scss */
+/* line 134, ../scss/_user.scss */
 .user .accordion .accordion-navigation .playlist-item span.playlist-nb-songs {
   width: 5rem;
 }
-/* line 204, ../scss/_user.scss */
+/* line 139, ../scss/_user.scss */
 .user .accordion .accordion-navigation .playlist-item .img {
   width: 3.125rem;
   height: 3.125rem;
   margin-right: 0.3125rem;
+}
+
+/* line 156, ../scss/_user.scss */
+.following-item .bump .responsive-img {
+  cursor: pointer;
+}
+/* line 159, ../scss/_user.scss */
+.following-item .bump .responsive-img.add:after {
+  background: url(../img/plus_white.svg) no-repeat center center;
+}
+/* line 163, ../scss/_user.scss */
+.following-item .bump .responsive-img.remove:after {
+  background: url(../img/minus_white.svg) no-repeat center center;
+}
+/* line 167, ../scss/_user.scss */
+.following-item .bump .responsive-img.add:after, .following-item .bump .responsive-img.remove:after {
+  -moz-border-radius-topleft: 0.3125rem;
+  -webkit-border-top-left-radius: 0.3125rem;
+  border-top-left-radius: 0.3125rem;
+  -moz-border-radius-topright: 0.3125rem;
+  -webkit-border-top-right-radius: 0.3125rem;
+  border-top-right-radius: 0.3125rem;
+  content: '\A';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-size: 60% 60%;
+  vertical-align: middle;
+  background-color: black;
+  opacity: 0;
+  transition: all 0.3s linear;
+}
+/* line 182, ../scss/_user.scss */
+.following-item .bump .responsive-img:hover:after {
+  opacity: 0.5;
+}
+/* line 187, ../scss/_user.scss */
+.following-item .bump .text-card {
+  transition: all 0.3s linear;
+}
+/* line 190, ../scss/_user.scss */
+.following-item .bump .text-card:hover {
+  background: #9e0000 !important;
 }
 
 /* line 1, ../scss/_errors.scss */
