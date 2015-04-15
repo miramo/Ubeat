@@ -52,6 +52,7 @@
                 </ul>
                 <!-- Left Nav Section -->
                 <ul class="left">
+                    <a class="show-for-small-down" ng-click="sharedProperties.clickOnPlayQueue()" ng-href="{{sharedProperties.getQueuePageUrl()}}" ng-class="{active: sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().queue)}"><i class="md md-queue-music md-lg"></i></a>
                 </ul>
             </section>
         </nav>

@@ -9,7 +9,7 @@
 
     services.service('sharedProperties', function (localStorageService, sharedPagesStatus,
                                                    totalPlaylistsFactory, singlePlaylistFactory, singlePlaylistTracksFactory,
-                                                   singlePlaylistSingleTrackFactory, tokenInfoFactory)
+                                                   singlePlaylistSingleTrackFactory, tokenInfoFactory, $route, $location)
     {
         var title = 'Ubeat';
         var homeArtists = [];
@@ -22,6 +22,8 @@
         var connected = false;
         var playQueueStorageName = 'playQueue';
         var playQueue = localStorageService.get(playQueueStorageName);
+        var queuePage = sharedPagesStatus.getPageEnum().playQueue;
+        var queuePageUrl = "#/queue/";
         var tokenCookieName = 'token';
         var saveQueuePreviousPage = {pageEnum: sharedPagesStatus.getPageEnum().home, pageUrl: "#/"};
         var missingImgPlaylist = './img/missing-album.png';
@@ -32,6 +34,33 @@
         {
             playQueue = {queue: [], currentTrackId: 0};
             localStorageService.set(playQueueStorageName, playQueue);
+        }
+
+        this.clickOnPlayQueue = function ()
+        {
+            var queuePreviousPage = this.getSaveQueuePreviousPage();
+            var currentPage = sharedPagesStatus.getCurrentPage();
+
+            if (currentPage != queuePage)
+            {
+                this.setSaveQueuePreviousPage(currentPage, $location.url());
+                $location.path(queuePageUrl);
+                $route.reload();
+            }
+            else
+            {
+                if (queuePreviousPage.pageUrl == "#/")
+                    $location.path("/");
+                else
+                    $location.path(queuePreviousPage.pageUrl);
+                //$route.reload();
+                this.setSaveQueuePreviousPage(sharedPagesStatus.getCurrentPage(), $location.url());
+            }
+        }
+
+        this.getQueuePageUrl = function ()
+        {
+            return queuePageUrl;
         }
 
         var getServiceTokenCookie = function ()
