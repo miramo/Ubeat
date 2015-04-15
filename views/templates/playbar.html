@@ -16,7 +16,7 @@
         </div>
         <div class="player-right right hide-for-small-only">
             <div id="player-right-wrapper">
-                <a class="player-button player-button-queue" ng-click="sharedPagesStatus.togglePlayQueue()" ng-href="{{sharedProperties.getQueuePageUrl()}}" ng-class="{active: sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().queue)}">
+                <a class="player-button player-button-queue" ng-click="sharedPagesStatus.togglePlayQueue()" ng-class="{active: sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().playQueue)}">
                     <i class="md md-queue-music md-2x bottom-music-list"></i>
                 </a>
                 <a class="player-button player-button-volume show-for-large-up" ng-click="switchMute()">

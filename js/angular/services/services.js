@@ -74,23 +74,23 @@
 
                 if (playQueue.queue[n])
                 {
-                if (currentTrack)
-                {
-                    if (currentTrack.trackId == playQueue.queue[n].trackId)
+                    if (currentTrack)
                     {
-                        playQueue.queue[n].playState = currentTrack.playState;
+                        if (currentTrack.trackId == playQueue.queue[n].trackId)
+                        {
+                            playQueue.queue[n].playState = currentTrack.playState;
+                        }
+                        else
+                        {
+                            playQueue.queue[n].playState = playStates.idle;
+                        }
                     }
                     else
                     {
                         playQueue.queue[n].playState = playStates.idle;
                     }
+                    playQueue.queue[n].time = millisToTime(playQueue.queue[n].trackTimeMillis);
                 }
-                else
-                {
-                    playQueue.queue[n].playState = playStates.idle;
-                }
-                playQueue.queue[n].time = millisToTime(playQueue.queue[n].trackTimeMillis);
-            }
             }
         }
 
@@ -702,7 +702,7 @@
         var pageEnum = {
             home     : 'home',
             artist   : 'artist',
-            albums   : 'albums',
+            album    : 'album',
             playlist : 'playlist',
             error    : 'error',
             playQueue: 'queue',
@@ -850,7 +850,7 @@
             }
         }
 
-        this.togglePlayQueue = function()
+        this.togglePlayQueue = function ()
         {
             var queuePreviousPage = this.getSaveQueuePreviousPage();
             var currentPage = this.getCurrentPage();
