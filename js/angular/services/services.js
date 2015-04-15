@@ -9,7 +9,7 @@
 
     services.service('sharedProperties', function (localStorageService, sharedPagesStatus,
                                                    totalPlaylistsFactory, singlePlaylistFactory, singlePlaylistTracksFactory,
-                                                   singlePlaylistSingleTrackFactory, tokenInfoFactory)
+                                                   singlePlaylistSingleTrackFactory, tokenInfoFactory, $route, $location)
     {
         var title = 'Ubeat';
         var homeArtists = [];

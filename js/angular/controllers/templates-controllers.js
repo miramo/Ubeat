@@ -129,25 +129,18 @@
     controllers.controller('PlaybarController', function ($scope, $route, $location,
                                                           localStorageService, sharedPagesStatus, sharedProperties)
     {
-        var queuePage = sharedPagesStatus.getPageEnum().playQueue;
-        var queuePageUrl = "/queue/";
         var slideMove = false;
         var audioType = "audio/mp4";
         sharedPagesStatus.resetPageStatus();
         $scope.sharedProperties = sharedProperties;
         $scope.myAudio = {};
         $scope.speed = 1000000;
-        $scope.isPlayQueue = false;
         $scope.playQueue = sharedProperties.getPlayQueue().queue;
         $scope.volume = localStorageService.get("volume");
         $scope.isLooping = localStorageService.get("isLooping");
         var currentTrackTime = localStorageService.get("currentTrackTime");
         var currentTrackId = localStorageService.get("currentTrackId");
         var isFirstLoad = true;
-        //$scope.volume = localStorageService.get("volume");
-        //$scope.isLooping = localStorageService.get("isLooping");
-        //var currentTrackTime = localStorageService.get("currentTrackTime");
-        //var currentTrackId = localStorageService.get("currentTrackId");
 
         $scope.switchIsLooping = function ()
         {
@@ -160,8 +153,6 @@
             $scope.isRandom = !$scope.isRandom;
             localStorageService.set("isRandom", $scope.isRandom);
         }
-
-        //$scope.disabled = !sharedProperties.getCurrentTrack();
 
         angular.element(document).keydown(function (evt)
         {
@@ -267,11 +258,8 @@
 
         $scope.$watch('myAudio.ended', function (value)
         {
-            if (value == true
-                && ($scope.isLooping == false && sharedProperties.isLastSongInQueue() == false))
-            {
+            if (value == true && ($scope.isLooping == false && sharedProperties.isLastSongInQueue() == false))
                 $scope.next();
-            }
         });
 
         $scope.$watch('sharedPagesStatus.getCurrentPage()', function (value)
