@@ -15,7 +15,6 @@
                     </div>
                     <div class="album-artist-description">
                         <h3>
-                            <!--<small>{{userData.email}}</small>-->
                             <small><a href="mailto:{{userData.email}}">{{userData.email}}</a></small>
                         </h3>
                     </div>
@@ -40,7 +39,7 @@
                                         <div class="row collapse text-card">
                                             <a href="#/user/{{follower.id}}">
                                                 <div class="text-center">
-                                                    <p class="first-text-card ellipsis">{{follower.name}}</p>
+                                                    <p class="first-text-card ellipsis">{{follower.name ? follower.name : 'Inconnu'}}</p>
                                                 </div>
                                             </a>
                                         </div>
