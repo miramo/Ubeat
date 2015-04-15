@@ -164,10 +164,12 @@
 
         angular.element(document).keydown(function (evt)
         {
-            //evt.preventDefault();
-            if (evt.keyCode == 32 && sharedProperties.getPlayQueueLength() > 0)
+            if (evt.keyCode == 32)
             {
-                $scope.play();
+                evt.preventDefault();
+
+                if (sharedProperties.getPlayQueueLength() > 0)
+                    $scope.play();
             }
         });
 

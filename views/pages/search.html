@@ -6,11 +6,11 @@
         </div>
 
         <ul class="tabs" data-tab>
-            <li class="tab-title active"><a href="#allPanel" prevent-default>Tout</a></li>
-            <li class="tab-title"><a href="#artistsPanel" prevent-default>Artistes</a></li>
-            <li class="tab-title"><a href="#albumsPanel" prevent-default>Albums</a></li>
-            <li class="tab-title" ng-show="usersResults.length > 0 && isConnected"><a href="#usersPanel" prevent-default>Utilisateurs</a></li>
-            <li class="tab-title"><a href="#tracksPanel" prevent-default>Titres</a></li>
+            <li class="tab-title active"><a id="allTab" href="#allPanel" prevent-default>Tout</a></li>
+            <li class="tab-title"><a id="artistsTab" href="#artistsPanel" prevent-default>Artistes</a></li>
+            <li class="tab-title"><a id="albumsTab"  href="#albumsPanel" prevent-default>Albums</a></li>
+            <li class="tab-title" ng-show="usersResults.length > 0 && isConnected"><a id="usersTab" href="#usersPanel" prevent-default>Utilisateurs</a></li>
+            <li class="tab-title"><a id="tracksTab"  href="#tracksPanel" prevent-default>Titres</a></li>
         </ul>
 
     </div>
@@ -21,10 +21,14 @@
             <div class="row" ng-show="artists.length > 0">
                 <div class="small-12 columns">
                     <div class="panel new-albums radius">
-                        <h2 class="text-center"><i class="md-recent-actors md-lg left"></i> Artistes </h2>
+                        <h2 class="text-center"><i class="md-recent-actors md-lg left"></i> Artistes
+                            <button ng-show="artists.length > itemsDisplayLimit" ng-click="activeTab('#artistsTab')" class="red small radius right">
+                                Voir Plus
+                            </button>
+                        </h2>
                         <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                             <ul class="small-block-grid-6">
-                                <li class="following-item" ng-if="$index < artistDisplayLimit" ng-repeat="artist in artists track by $index">
+                                <li class="following-item" ng-if="$index < itemsDisplayLimit" ng-repeat="artist in artists track by $index">
                                     <a href="#/artist/{{artist.artistId}}">
                                         <div class="row bump">
                                             <div class="row">
@@ -48,10 +52,14 @@
             <div class="row" ng-show="albums.length > 0">
                 <div class="small-12 columns">
                     <div class="panel new-albums radius">
-                        <h2 class="text-center"><i class="md-album md-lg left"></i> Albums</h2>
+                        <h2 class="text-center"><i class="md-album md-lg left"></i> Albums
+                            <button ng-show="albums.length > itemsDisplayLimit" ng-click="activeTab('#albumsTab')" class="red small radius right">
+                                Voir Plus
+                            </button>
+                        </h2>
                         <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                             <ul class="small-block-grid-6">
-                                <li class="following-item" ng-if="$index < albumDisplayLimit" ng-repeat="album in albums track by $index">
+                                <li class="following-item" ng-if="$index < itemsDisplayLimit" ng-repeat="album in albums track by $index">
                                     <a href="#/album/{{album.collectionId}}">
                                         <div class="row bump">
                                             <div class="row">
@@ -78,11 +86,15 @@
             <div class="row" ng-show="usersResults.length > 0 && isConnected">
                 <div class="small-12 columns">
                     <div class="panel new-albums radius">
-                        <h2 class="text-center"><i class="md-album md-lg left"></i> Utilisateurs</h2>
+                        <h2 class="text-center"><i class="md-album md-lg left"></i> Utilisateurs
+                            <button ng-show="usersResults.length > itemsDisplayLimit" ng-click="activeTab('#usersTab')" class="red small radius right">
+                                Voir Plus
+                            </button>
+                        </h2>
                         <h4 class="text-center" ng-hide="usersResults.length > 0">Aucun utilisateur trouvé.</h4>
                         <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                             <ul class="small-block-grid-6">
-                                <li class="following-item" ng-if="$index < albumDisplayLimit" ng-repeat="user in usersResults track by $index">
+                                <li class="following-item" ng-if="$index < itemsDisplayLimit" ng-repeat="user in usersResults track by $index">
                                     <a href="#/user/{{user.id}}">
                                         <div class="row bump">
                                             <div class="row">
@@ -173,7 +185,7 @@
                         <h2 class="text-center"><i class="md-recent-actors md-lg left"></i> Artistes </h2>
                         <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                             <ul class="small-block-grid-6">
-                                <li class="following-item" ng-if="$index < artistDisplayLimit" ng-repeat="artist in artists track by $index">
+                                <li class="following-item" ng-repeat="artist in artists track by $index">
                                     <a href="#/artist/{{artist.artistId}}">
                                         <div class="row bump">
                                             <div class="row">
@@ -202,7 +214,7 @@
                         <h2 class="text-center"><i class="md-album md-lg left"></i> Albums</h2>
                         <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                             <ul class="small-block-grid-6">
-                                <li class="following-item" ng-if="$index < albumDisplayLimit" ng-repeat="album in albums track by $index">
+                                <li class="following-item" ng-repeat="album in albums track by $index">
                                     <a href="#/album/{{album.collectionId}}">
                                         <div class="row bump">
                                             <div class="row">
@@ -235,7 +247,7 @@
                         <h4 class="text-center" ng-hide="usersResults.length > 0">Aucun utilisateur trouvé.</h4>
                         <div class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                             <ul class="small-block-grid-6">
-                                <li class="following-item" ng-if="$index < albumDisplayLimit" ng-repeat="user in usersResults track by $index">
+                                <li class="following-item" ng-repeat="user in usersResults track by $index">
                                     <a href="#/user/{{user.id}}">
                                         <div class="row bump">
                                             <div class="row">

@@ -886,9 +886,13 @@
         $scope.trackArrayToAddToNewPlaylist = null;
         $scope.elementsLoaded = 0;
         $scope.playlists = [];
-        $scope.artistDisplayLimit = 5;
-        $scope.albumDisplayLimit = 5;
+        $scope.itemsDisplayLimit = 6;
         $scope.isConnected = sharedProperties.isConnected();
+
+        $scope.activeTab = function(tabName)
+        {
+            angular.element(tabName).click();
+        }
 
         var getPlaylistsCallback = function (playlists)
         {
@@ -937,6 +941,7 @@
                 sharedPagesStatus.setIsPageLoaded(true);
                 $(document).foundation('reveal', 'reflow');
                 $(document).foundation('dropdown', 'reflow');
+                $(document).foundation('tab', 'reflow');
             }
         });
 
