@@ -52,6 +52,8 @@
                 </ul>
                 <!-- Left Nav Section -->
                 <ul class="left">
+                    <li class="show-for-small-only" ng-class="{active: sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().playQueue)}">
+                        <a ng-click="sharedPagesStatus.togglePlayQueue()" ng-href="{{sharedProperties.getQueuePageUrl()}}">
                             <i class="md md-queue-music md-lg"></i>&nbsp;File d'attente
                         </a>
                     </li>
