@@ -50,7 +50,7 @@
 
                             }, function (err)
                             {
-                               // sharedPagesStatus.setCriticalError(0, '');
+                                // sharedPagesStatus.setCriticalError(0, '');
                             });
                     }
                 },
@@ -299,6 +299,7 @@
         $scope.isConnected = false;
         $scope.errorTitle = "Erreur 503";
         $scope.errorMsg = "Service temporairement indisponible.";
+        var executeSplit = true;
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().album);
 
         var getPlaylistsCallback = function (playlists)
@@ -350,6 +351,37 @@
         {
             updateTracks();
         });
+
+        $scope.executePlayAll = function (isSpan)
+        {
+            if (isSpan)
+            {
+                executeSplit = false;
+            }
+            else if (executeSplit)
+            {
+                sharedProperties.addTrackArrayToPlayQueue($scope.tracks, true);
+                executeSplit = true;
+            }
+            else if (!executeSplit)
+                executeSplit = true;
+        }
+
+        $scope.playAfter = function()
+        {
+            sharedProperties.addToPlayQueueAtCurrentTrack($scope.tracks);
+        }
+
+        $scope.playInLast = function()
+        {
+            sharedProperties.addTrackArrayToPlayQueue($scope.tracks, true);
+        }
+
+        $scope.replacePlayQueue = function()
+        {
+            sharedProperties.resetPlayQueue();
+            sharedProperties.addTrackArrayToPlayQueue($scope.tracks, true);
+        }
 
         $scope.modifyFilter = function (id)
         {
@@ -893,7 +925,7 @@
         $scope.itemsDisplayLimit = 6;
         $scope.isConnected = sharedProperties.isConnected();
 
-        $scope.activeTab = function(tabName)
+        $scope.activeTab = function (tabName)
         {
             angular.element(tabName).click();
         }
@@ -1171,7 +1203,12 @@
                 {
                     if (data.email && data.name && data.id && data.following)
                     {
-                        $scope.userDataConnection = {email: data.email, name: data.name, id: data.id, following: data.following};
+                        $scope.userDataConnection = {
+                            email    : data.email,
+                            name     : data.name,
+                            id       : data.id,
+                            following: data.following
+                        };
                     }
                 },
                 function (err)

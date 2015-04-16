@@ -443,6 +443,19 @@
             localStorageService.set(playQueueStorageName, playQueue);
         }
 
+        this.addToPlayQueueAtCurrentTrack = function(trackArray)
+        {
+            if (playQueue.currentTrackId < (playQueue.queue.length - 1))
+            {
+                var leftTracks = playQueue.queue.splice(playQueue.currentTrackId + 1, (playQueue.queue.length - (playQueue.currentTrackId + 1)))
+
+                playQueue.queue = playQueue.queue.concat(trackArray);
+                playQueue.queue = playQueue.queue.concat(leftTracks);
+            }
+            else if (playQueue.currentTrackId >= (playQueue.queue.length - 1))
+                this.addTrackArrayToPlayQueue(trackArray, true);
+        }
+
         this.addTrackArrayToPlayQueue = function (trackArray, setCurrentTrack)
         {
             var saveLength = playQueue.queue.length;
