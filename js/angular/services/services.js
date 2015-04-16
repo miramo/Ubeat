@@ -76,7 +76,7 @@
                 {
                     if (currentTrack)
                     {
-                        if (currentTrack.trackId == playQueue.queue[n].trackId)
+                        if (playQueue.currentTrackId == n)
                         {
                             playQueue.queue[n].playState = currentTrack.playState;
                         }
@@ -626,7 +626,21 @@
             return -1;
         }
 
-        this.setCurrentTrack = function (track, addToPlayQueue, state, setCurrentTrackId)
+        this.setCurrentTrackById = function(id, state)
+        {
+            if (id < playQueue.queue.length)
+            {
+                var track = playQueue.queue[id];
+
+                currentTrack = track;
+
+                if (state)
+                currentTrack.playState = state;
+                playQueue.currentTrackId = id;
+            }
+        }
+
+        this.setCurrentTrack = function (track, addToPlayQueue, state, setCurrentTrackId )
         {
             currentTrack = track;
             var trackIdInQueue = -1;
