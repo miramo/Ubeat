@@ -10,14 +10,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="music-row" ng-repeat="track in tracks | orderBy:filter track by $index"
-            ng-mouseover="displayPlayButton(track)"
-            ng-mouseleave="hidePlayButton(track)">
+        <tr class="music-row" ng-repeat="track in tracks | filter:filterText | orderBy:filter track by $index" ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
             <td class="text-center">
                 <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
-                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
-                                ng-click="sharedProperties.setCurrentTrack(track, true, 'play', true)"
-                                class="fa fa-play fa-lg"></i></span>
+                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter">
+                        <i ng-click="sharedProperties.setCurrentTrack(track, true, 'play', true)" class="fa fa-play fa-lg"></i>
+                    </span>
                 </div>
                 <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
                     {{track.trackNumber}}
@@ -38,8 +36,9 @@
                 </a>
                 <ul id="addTrackDrop" class="f-dropdown" data-dropdown-content>
                     <li class="bottom-border">
-                        <a href="" data-reveal-id="addTrackToPlaylistModal" ng-click="addTrackToAdd(trackToAddToNewPlaylist)"><i class="md md-add-box md-lg"></i>Nouvelle
-                            playlist</a>
+                        <a href="" data-reveal-id="addTrackToPlaylistModal" ng-click="addTrackToAdd(trackToAddToNewPlaylist)">
+                            <i class="md md-add-box md-lg"></i>&nbsp;Nouvelle playlist
+                        </a>
                     </li>
                     <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index">
                         <a href=""
