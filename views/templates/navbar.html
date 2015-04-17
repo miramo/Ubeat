@@ -29,7 +29,6 @@
                                                 <div ng-repeat="artist in searchesResult.artists track by $index" ng-if="$index < itemLimit">
                                                     <a href="#/artist/{{artist.artistId}}">{{artist.artistName}}</a>
                                                 </div>
-                                                <a href="#/search/{{searchElement}}" ng-show="searchesResult.artists.length > itemLimit">Voir plus</a>
                                                 <p ng-show="searchesResult.artists.length <= 0">Pas de résultats</p>
                                             </div>
 
@@ -38,7 +37,6 @@
                                                 <div ng-repeat="album in searchesResult.albums track by $index" ng-if="$index < itemLimit">
                                                     <a href="#/album/{{album.collectionId}}">{{album.collectionName}}</a>
                                                 </div>
-                                                <a href="#/search/{{searchElement}}" ng-show="searchesResult.albums.length > itemLimit">Voir plus</a>
                                                 <p ng-show="searchesResult.albums.length <= 0">Pas de résultats</p>
                                             </div>
 
@@ -47,9 +45,9 @@
                                                 <div ng-repeat="user in searches.users track by $index" ng-if="$index < itemLimit">
                                                     <a href="#/user/{{user.id}}">{{user.name}}</a>
                                                 </div>
-                                                <a href="#/search/{{searchElement}}" ng-show="searchesResult.users.length > itemLimit">Voir plus</a>
                                                 <p ng-show="searchesResult.users.length <= 0">Pas de résultats</p>
                                             </div>
+                                            <a href="#/search/{{searchElement}}" ng-show="searchesResult.total > itemLimit">Voir tous les résultats</a>
                                         </div>
                                     </div>
 

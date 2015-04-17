@@ -367,17 +367,17 @@
                 executeSplit = true;
         }
 
-        $scope.playAfter = function()
+        $scope.playAfter = function ()
         {
             sharedProperties.addToPlayQueueAtCurrentTrack($scope.tracks);
         }
 
-        $scope.playInLast = function()
+        $scope.playInLast = function ()
         {
             sharedProperties.addTrackArrayToPlayQueue($scope.tracks, true);
         }
 
-        $scope.replacePlayQueue = function()
+        $scope.replacePlayQueue = function ()
         {
             sharedProperties.resetPlayQueue();
             sharedProperties.addTrackArrayToPlayQueue($scope.tracks, true);
@@ -981,108 +981,74 @@
             }
         });
 
-        searchUsersFactory.get(sharedProperties.getTokenCookie(),
-            encodeURIComponent($routeParams.element), function (data)
-            {
-                if (data && data.length > 0)
-                {
-                    $scope.usersResults = data;
-                }
-            },
-            function (err)
-            {
+        //searchUsersFactory.get(sharedProperties.getTokenCookie(),
+        //    encodeURIComponent($routeParams.element), function (data)
+        //    {
+        //        if (data && data.length > 0)
+        //        {
+        //            $scope.usersResults = data;
+        //        }
+        //    },
+        //    function (err)
+        //    {
+        //
+        //    });
 
-            });
-
-        if ($routeParams.element != null && $routeParams.element != "")
+        var searchCallback = function (searchResult)
         {
-            searchFactory.get(sharedProperties.getTokenCookie(),
-                encodeURIComponent($routeParams.element),
-                200,
-                function (data)
+            if (searchResult)
+            {
+                $scope.elementsLoaded = searchResult.total;
+                $scope.albums = searchResult.albums;
+                $scope.artists = searchResult.artists;
+                $scope.usersResults = searchResult.users;
+                $scope.tracks = searchResult.tracks;
+
+                angular.forEach($scope.albums, function (value, key)
                 {
-                    if (data && data.results.length > 0)
-                    {
-                        $scope.results = data.results;
-                        for (var i = 0; i < data.results.length; ++i)
+                    albumFactory.get(sharedProperties.getTokenCookie(), value.collectionId, function (data)
                         {
-                            switch (data.results[i].wrapperType)
-                            {
-                                case "track":
-                                    var newElem = data.results[i];
-                                    $scope.tracks[$scope.tracks.length] = newElem;
-                                    ++$scope.elementsLoaded;
-                                    var currentTrack = sharedProperties.getCurrentTrack();
-
-                                    if (currentTrack && currentTrack.trackId == newElem.trackId)
-                                    {
-                                        newElem.playState = currentTrack.playState;
-                                    }
-                                    else
-                                    {
-                                        newElem.playState = sharedProperties.getPlayStates().idle;
-                                    }
-                                    newElem.filter = $scope.filter;
-                                    newElem.time = millisToTime(newElem.trackTimeMillis);
-                                    newElem.displayPlayButton = false;
-                                    break;
-                                case "collection":
-                                    $scope.albums[$scope.albums.length] = data.results[i];
-                                    ++$scope.elementsLoaded;
-                                    break;
-                                case "artist":
-                                    var newArtist = data.results[i];
-                                    $scope.artists[$scope.artists.length] = newArtist;
-                                    break;
-                            }
-                        }
-
-                        angular.forEach($scope.albums, function (value, key)
+                            $scope.albums[key].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[key].artworkUrl100, 300);
+                        },
+                        function (err)
                         {
-                            albumFactory.get(sharedProperties.getTokenCookie(), value.collectionId, function (data)
-                                {
-                                    $scope.albums[key].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[key].artworkUrl100, 300);
-                                },
-                                function (err)
-                                {
-                                    sharedPagesStatus.setDefaultCriticalError(err);
-                                });
+                            sharedPagesStatus.setDefaultCriticalError(err);
                         });
+                });
 
-                        angular.forEach($scope.artists, function (value, key)
+                angular.forEach($scope.artists, function (value, key)
+                {
+                    spotifySearchFactory.get({
+                        name: value.artistName,
+                        type: 'artist'
+                    }).$promise.then(function (data)
                         {
-                            spotifySearchFactory.get({
-                                name: value.artistName,
-                                type: 'artist'
-                            }).$promise.then(function (data)
+                            if (data && data.artists && data.artists.items.length > 0)
+                            {
+                                spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
                                 {
-                                    if (data && data.artists && data.artists.items.length > 0)
-                                    {
-                                        spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
-                                        {
-                                            value.image = data.images[0];
-                                            ++$scope.elementsLoaded;
-                                        }, function (err)
-                                        {
-                                        });
-                                    }
-                                    else
-                                    {
-                                        ++$scope.elementsLoaded;
-                                    }
-
+                                    value.image = data.images[0];
+                                    ++$scope.elementsLoaded;
                                 }, function (err)
                                 {
                                 });
+                            }
+                            else
+                            {
+                                ++$scope.elementsLoaded;
+                            }
+
+                        }, function (err)
+                        {
                         });
-                    }
-                    else
-                    {
-                        sharedPagesStatus.setIsPageLoaded(true);
-                    }
-                }, function (err)
-                {
                 });
+                sharedPagesStatus.setIsPageLoaded(true);
+            }
+        }
+
+        if ($routeParams.element != null && $routeParams.element != "")
+        {
+            sharedProperties.executeSearch(searchFactory, searchUsersFactory, searchCallback, 200, $routeParams.element);
         }
         else
         {
