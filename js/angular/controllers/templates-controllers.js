@@ -23,6 +23,7 @@
         $scope.searchesResult = sharedProperties.getSearchResultObj();
         $scope.itemLimit = 3;
         $scope.isSearching = false;
+        var searchValue = "";
         var searches = [];
         var currentSearchDone = true;
 
@@ -75,47 +76,51 @@
 
         var searchCallback = function (searchResult)
         {
-            $scope.searchesResult = searchResult;
-
-            angular.forEach($scope.artists, function (value, key)
+            if (searchValue && searchValue != "")
             {
-                spotifySearchFactory.get({
-                    name: value.artistName,
-                    type: 'artist'
-                }).$promise.then(function (data)
-                    {
-                        if (data && data.artists && data.artists.items.length > 0)
+                $scope.searchesResult = searchResult;
+
+                angular.forEach($scope.artists, function (value, key)
+                {
+                    spotifySearchFactory.get({
+                        name: value.artistName,
+                        type: 'artist'
+                    }).$promise.then(function (data)
                         {
-                            spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
+                            if (data && data.artists && data.artists.items.length > 0)
                             {
-                                value.image = data.images[0];
+                                spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
+                                {
+                                    value.image = data.images[0];
+                                    ++$scope.elementsLoaded;
+                                }, function (err)
+                                {
+                                });
+                            }
+                            else
+                            {
                                 ++$scope.elementsLoaded;
-                            }, function (err)
-                            {
-                            });
-                        }
-                        else
+                            }
+
+                        }, function (err)
                         {
-                            ++$scope.elementsLoaded;
-                        }
+                        });
+                });
+                $scope.isSearching = false;
+                currentSearchDone = true;
 
-                    }, function (err)
-                    {
-                    });
-            });
-            $scope.isSearching = false;
-            currentSearchDone = true;
-
-            if (searches.length > 0)
-            {
-                sharedProperties.executeSearch(searchFactory, searchUsersFactory, searchCallback, 20, searches[searches.length - 1]);
+                if (searches.length > 0)
+                {
+                    sharedProperties.executeSearch(searchFactory, searchUsersFactory, searchCallback, 20, searches[searches.length - 1]);
+                }
+                searches = [];
             }
-            searches = [];
         }
 
         $scope.$watch('searchElement', function (value)
         {
-            if (value)
+            searchValue = value;
+            if (value && value != "")
             {
                 if (!$scope.isSearching && currentSearchDone)
                 {
@@ -130,7 +135,11 @@
             }
             else
             {
+                searches = [];
+                $scope.searchesResult = {};
                 $scope.searchesResult = sharedProperties.getSearchResultObj();
+                $scope.isSearching = false;
+                currentSearchDone = true;
             }
         });
 
@@ -183,6 +192,9 @@
 
         $scope.search = function (str)
         {
+            $scope.searchesResult = sharedProperties.getSearchResultObj();
+            $scope.isSearching = false;
+            currentSearchDone = true;
             $location.path('search/' + str);
         }
 
@@ -442,7 +454,6 @@
         {
             if (currentTrackTime == null)
                 currentTrackTime = 0;
-            console.log(currentTrackTime);
             $scope.currentTrack.currentTime = currentTrackTime * $scope.spzeed;
         });
     });

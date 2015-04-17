@@ -731,7 +731,7 @@
 
             var localSharedProperties = this;
 
-            console.log("ExecuteSearch: " + searchStr);
+            //console.log("ExecuteSearch: " + searchStr);
             searchFactory.get(this.getTokenCookie(),
                 encodeURIComponent(searchStr),
                 maxLimit,
