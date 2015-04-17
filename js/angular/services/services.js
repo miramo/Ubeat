@@ -726,11 +726,12 @@
 
         this.executeSearch = function(searchFactory, searchUsersFactory, callback, maxLimit, searchStr)
         {
-            var results;
+            var results = [];
             var searchResult = this.getSearchResultObj();
 
             var localSharedProperties = this;
 
+            console.log("ExecuteSearch: " + searchStr);
             searchFactory.get(this.getTokenCookie(),
                 encodeURIComponent(searchStr),
                 maxLimit,
