@@ -15,7 +15,7 @@
                 <i class="md-album md-lg left"></i>
             </td>
             <td>
-                CD {{$index + 1}}
+                {{$index + 1}}
             </td>
         </tr>
         <tr class="music-row" ng-repeat="track in cd | filter:filterText | orderBy:filter track by $index" ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
