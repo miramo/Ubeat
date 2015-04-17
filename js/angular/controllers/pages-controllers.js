@@ -292,7 +292,7 @@
         $scope.playStates = sharedProperties.getPlayStates();
         $scope.trackToAddToNewPlaylist = null;
         $scope.trackArrayToAddToNewPlaylist = [];
-        $scope.tracks = [];
+        $scope.tracks = [[]];
         $scope.album = null;
         $scope.playlits = [];
         $scope.isPageFailedLoad = false
@@ -324,13 +324,14 @@
             {
                 for (var i = 0; i < $scope.tracks.length; ++i)
                 {
-                    if (currentTrack.trackId == $scope.tracks[i].trackId)
+                    for (var j = 0; j < $scope.tracks[i].length; ++j)
                     {
-                        $scope.tracks[i].playState = currentTrack.playState;
-                    }
-                    else
-                    {
-                        $scope.tracks[i].playState = $scope.playStates.idle;
+                        if (currentTrack.trackId == $scope.tracks[i][j].trackId) {
+                            $scope.tracks[i][j].playState = currentTrack.playState;
+                        }
+                        else {
+                            $scope.tracks[i][j].playState = $scope.playStates.idle;
+                        }
                     }
                 }
             }
@@ -466,23 +467,30 @@
 
         var setTracksData = function (dataTracks)
         {
+            var j;
+            var index;
+
             for (var i = 0; i < dataTracks.length; ++i)
             {
-                $scope.tracks[i] = dataTracks[i];
+                j = dataTracks[i].discNumber - 1;
+                if (!$scope.tracks[j])
+                    $scope.tracks[j] = [];
+                index = $scope.tracks[j].length;
+                $scope.tracks[j][index] = dataTracks[i];
 
                 var currentTrack = sharedProperties.getCurrentTrack();
 
-                if (currentTrack && currentTrack.trackId == $scope.tracks[i].trackId)
+                if (currentTrack && currentTrack.trackId == $scope.tracks[j][index].trackId)
                 {
-                    $scope.tracks[i].playState = currentTrack.playState;
+                    $scope.tracks[j][index].playState = currentTrack.playState;
                 }
                 else
                 {
-                    $scope.tracks[i].playState = sharedProperties.getPlayStates().idle;
+                    $scope.tracks[j][index].playState = sharedProperties.getPlayStates().idle;
                 }
-                $scope.tracks[i].filter = $scope.filter;
-                $scope.tracks[i].time = millisToTime($scope.tracks[i].trackTimeMillis);
-                $scope.tracks[i].displayPlayButton = false;
+                $scope.tracks[j][index].filter = $scope.filter;
+                $scope.tracks[j][index].time = millisToTime($scope.tracks[j][index].trackTimeMillis);
+                $scope.tracks[j][index].displayPlayButton = false;
             }
         }
 

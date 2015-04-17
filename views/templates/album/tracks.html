@@ -9,8 +9,14 @@
             <th width="50" class="text-center"><i class="fa fa-clock-o fa-lg"></i></th>
         </tr>
         </thead>
-        <tbody>
-        <tr class="music-row" ng-repeat="track in tracks | filter:filterText | orderBy:filter track by $index" ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
+        <tbody ng-repeat="cd in tracks">
+        <tr>
+            <td class="text-center" ><i class="md-album md-lg left"></i></td>
+            <td>
+                CD {{$index + 1}}
+            </td>
+        </tr>
+        <tr class="music-row" ng-repeat="track in cd | filter:filterText | orderBy:filter track by $index" ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
             <td class="text-center">
                 <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
                     <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter">
