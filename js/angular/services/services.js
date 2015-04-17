@@ -9,7 +9,7 @@
 
     services.service('sharedProperties', function (localStorageService, sharedPagesStatus,
                                                    totalPlaylistsFactory, singlePlaylistFactory, singlePlaylistTracksFactory,
-                                                   singlePlaylistSingleTrackFactory, tokenInfoFactory, $route, $location)
+                                                   singlePlaylistSingleTrackFactory, tokenInfoFactory)
     {
         var title = 'Ubeat';
         var homeArtists = [];
@@ -434,6 +434,10 @@
             });
         }
 
+        this.getSearchResultObj = function()
+        {
+            return {total: 0, artists: [], albums: [], tracks: [], users: []};
+        }
 
         this.addTrackToPlayQueue = function (track)
         {
@@ -719,6 +723,86 @@
         {
             return "http://www.gravatar.com/avatar/" + md5(email) + "?s=" + size + "&r=pg&d=http://glo3102.github.io/team02/img/mystery-man-red.png";
         }
+
+        this.executeSearch = function(searchFactory, searchUsersFactory, callback, maxLimit, searchStr)
+        {
+            var results;
+            var searchResult = this.getSearchResultObj();
+
+            var localSharedProperties = this;
+
+            searchFactory.get(this.getTokenCookie(),
+                encodeURIComponent(searchStr),
+                maxLimit,
+                function (data)
+                {
+                    if (data && data.results.length > 0)
+                    {
+                        results = data.results;
+                        for (var i = 0; i < data.results.length; ++i)
+                        {
+                            switch (data.results[i].wrapperType)
+                            {
+                                case "track":
+                                    var newElem = data.results[i];
+                                    searchResult.tracks[searchResult.tracks.length] = newElem;
+                                    ++searchResult.total;
+                                    var currentTrack = localSharedProperties.getCurrentTrack();
+
+                                    if (currentTrack && currentTrack.trackId == newElem.trackId)
+                                    {
+                                        newElem.playState = currentTrack.playState;
+                                    }
+                                    else
+                                    {
+                                        newElem.playState = localSharedProperties.getPlayStates().idle;
+                                    }
+                                    newElem.time = millisToTime(newElem.trackTimeMillis);
+                                    newElem.displayPlayButton = false;
+                                    break;
+                                case "collection":
+                                    searchResult.albums[searchResult.albums.length] = data.results[i];
+                                    ++searchResult.total;
+                                    break;
+                                case "artist":
+                                    var newArtist = data.results[i];
+                                    ++searchResult.total;
+                                    searchResult.artists[searchResult.artists.length] = newArtist;
+                                    break;
+                            }
+                        }
+
+                        if (localSharedProperties.isConnected())
+                        {
+                            searchUsersFactory.get(localSharedProperties.getTokenCookie(),
+                                encodeURIComponent(searchStr), function (data)
+                                {
+                                    if (data && data.length > 0)
+                                    {
+                                        searchResult.users = data;
+                                        callback(searchResult);
+                                    }
+                                },
+                                function (err)
+                                {
+                                    callback(searchResult);
+                                });
+                        }
+                        else
+                        {
+                            callback(searchResult);
+                        }
+                    }
+                    else
+                    {
+                        sharedPagesStatus.setIsPageLoaded(true);
+                        callback(searchResult);
+                    }
+                }, function (err)
+                {
+                });
+        }
+
     });
 
     services.service('sharedPagesStatus', function ($location, $route)

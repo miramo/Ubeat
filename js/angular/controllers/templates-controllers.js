@@ -12,13 +12,19 @@
             time   : 1
         });
 
-    controllers.controller('NavbarController', function ($scope, $route, $location, sharedPagesStatus, sharedProperties, loginFactory, logoutFactory, signupFactory, localStorageService)
+    controllers.controller('NavbarController', function ($scope, $route, $location, sharedPagesStatus, sharedProperties, loginFactory,
+                                                         logoutFactory, signupFactory, localStorageService, searchFactory, searchUsersFactory)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.sharedProperties = sharedProperties;
         $scope.connectionInfo = {email: "", password: ""};
         $scope.signupInfo = {name: "", email: "", password: "", confirmPassword: ""};
         $scope.errorMsg = "";
+        $scope.searchesResult = sharedProperties.getSearchResultObj();
+        $scope.itemLimit = 3;
+        $scope.isSearching = false;
+        var searches = [];
+        var currentSearchDone = true;
 
         $scope.login = function ()
         {
@@ -67,6 +73,67 @@
                 });
         }
 
+        var searchCallback = function (searchResult)
+        {
+            $scope.searchesResult = searchResult;
+
+            angular.forEach($scope.artists, function (value, key)
+            {
+                spotifySearchFactory.get({
+                    name: value.artistName,
+                    type: 'artist'
+                }).$promise.then(function (data)
+                    {
+                        if (data && data.artists && data.artists.items.length > 0)
+                        {
+                            spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
+                            {
+                                value.image = data.images[0];
+                                ++$scope.elementsLoaded;
+                            }, function (err)
+                            {
+                            });
+                        }
+                        else
+                        {
+                            ++$scope.elementsLoaded;
+                        }
+
+                    }, function (err)
+                    {
+                    });
+            });
+            $scope.isSearching = false;
+            currentSearchDone = true;
+
+            if (searches.length > 0)
+            {
+                sharedProperties.executeSearch(searchFactory, searchUsersFactory, searchCallback, 20, searches[searches.length - 1]);
+            }
+            searches = [];
+        }
+
+        $scope.$watch('searchElement', function (value)
+        {
+            if (value)
+            {
+                if (!$scope.isSearching && currentSearchDone)
+                {
+                    $scope.isSearching = true;
+                    currentSearchDone = false;
+                    sharedProperties.executeSearch(searchFactory, searchUsersFactory, searchCallback, 20, value);
+                }
+                else if ($scope.isSearching)
+                {
+                    searches[searches.length] = value;
+                }
+            }
+            else
+            {
+                $scope.searchesResult = sharedProperties.getSearchResultObj();
+            }
+        });
+
         $scope.signup = function ()
         {
             signupFactory.post(sharedProperties.getTokenCookie(), {
@@ -96,7 +163,6 @@
                             function (err)
                             {
                                 sharedProperties.setConnected(false);
-                                //console.log(err);
                             });
                     }
                 },
@@ -154,16 +220,16 @@
             localStorageService.set("isRandom", $scope.isRandom);
         }
 
-        angular.element(document).keydown(function (evt)
-        {
-            if (evt.keyCode == 32)
-            {
-                evt.preventDefault();
-
-                if (sharedProperties.getPlayQueueLength() > 0)
-                    $scope.play();
-            }
-        });
+        //angular.element(document).keydown(function (evt)
+        //{
+        //    if (evt.keyCode == 32)
+        //    {
+        //        evt.preventDefault();
+        //
+        //        if (sharedProperties.getPlayQueueLength() > 0)
+        //            $scope.play();
+        //    }
+        //});
 
         $scope.currentTrack =
         {
@@ -261,8 +327,8 @@
             if (value == true)
             {
                 if (($scope.isLooping == false && sharedProperties.isLastSongInQueue() == false)
-                || ($scope.isLooping))
-                $scope.next();
+                    || ($scope.isLooping))
+                    $scope.next();
             }
         });
 

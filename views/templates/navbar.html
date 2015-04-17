@@ -13,7 +13,56 @@
                     <li class="has-form">
                         <div class="row collapse">
                             <div class="large-10 small-10 columns">
-                                <input type="search" ng-model='searchElement' class="dream-search pre-radius" placeholder="Rechercher" ng-keydown="$event.which == 13 && search(searchElement)">
+                                <input data-dropdown="hover1" data-options="is_hover:true" type="search" ng-model='searchElement' class="dream-search pre-radius active" placeholder="Rechercher" ng-keydown="$event.which == 13 && search(searchElement)">
+
+                                <div id="hover1" data-dropdown-content class="f-dropdown content" aria-hidden="false" tabindex="-1">
+                                    <div ng-show="isSearching">
+                                        <i class="text-center fa fa-circle-o-notch fa-spin"></i>
+                                    </div>
+                                    <div ng-show="!isSearching">
+                                        <div ng-show="searchesResult.total <= 0">
+                                            <p>Pas de résultats</p>
+                                        </div>
+                                        <div ng-show="searchesResult.total > 0">
+                                            <div>
+                                                <p class="text-center">Artistes</p>
+                                                <div ng-repeat="artist in searchesResult.artists track by $index" ng-if="$index < itemLimit">
+                                                    <a href="#/artist/{{artist.artistId}}">{{artist.artistName}}</a>
+                                                </div>
+                                                <a href="#/search/{{searchElement}}" ng-show="searchesResult.artists.length > itemLimit">Voir plus</a>
+                                                <p ng-show="searchesResult.artists.length <= 0">Pas de résultats</p>
+                                            </div>
+
+                                            <div>
+                                                <p class="text-center">Albums</p>
+                                                <div ng-repeat="album in searchesResult.albums track by $index" ng-if="$index < itemLimit">
+                                                    <a href="#/album/{{album.collectionId}}">{{album.collectionName}}</a>
+                                                </div>
+                                                <a href="#/search/{{searchElement}}" ng-show="searchesResult.albums.length > itemLimit">Voir plus</a>
+                                                <p ng-show="searchesResult.albums.length <= 0">Pas de résultats</p>
+                                            </div>
+
+                                            <div ng-show="searchesResult.users.length > 0">
+                                                <p class="text-center">Utilisateurs</p>
+                                                <div ng-repeat="user in searches.users track by $index" ng-if="$index < itemLimit">
+                                                    <a href="#/user/{{user.id}}">{{user.name}}</a>
+                                                </div>
+                                                <a href="#/search/{{searchElement}}" ng-show="searchesResult.users.length > itemLimit">Voir plus</a>
+                                                <p ng-show="searchesResult.users.length <= 0">Pas de résultats</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--<div>-->
+                                    <!--<p class="text-center">Albums</p>-->
+                                    <!--<div ng-repeat="album in searches.albums track by $index" ng-if="$index < itemLimit">-->
+                                    <!--<a href="#/album/{{album.collectionId}}">{{album.collectionName}}</a>-->
+                                    <!--</div>-->
+                                    <!--<a href="#/search/{{searchElement}}" ng-show="searches.albums.length > itemLimit">Voir plus</a>-->
+                                    <!--<p ng-show="searches.albums.length <= 0">Pas de résultats</p>-->
+                                    <!--</div>-->
+                                    <!--<p class="text-center">Pas de résultat</p>-->
+                                </div>
                             </div>
                             <div class="small-2 columns">
                                 <a href="#/search/{{searchElement}}" class="button-search button expand red post-radius"><i class="fi-magnifying-glass"></i></a>
