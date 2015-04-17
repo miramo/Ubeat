@@ -10,8 +10,10 @@
         </tr>
         </thead>
         <tbody ng-repeat="cd in tracks">
-        <tr>
-            <td class="text-center" ><i class="md-album md-lg left"></i></td>
+        <tr ng-show="tracks.length > 1">
+            <td class="text-center" >
+                <i class="md-album md-lg left"></i>
+            </td>
             <td>
                 CD {{$index + 1}}
             </td>
