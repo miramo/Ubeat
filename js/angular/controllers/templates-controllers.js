@@ -355,28 +355,6 @@
         $scope.clickOnPlayQueue = function ()
         {
             sharedPagesStatus.togglePlayQueue();
-            //var queuePreviousPage = sharedProperties.getSaveQueuePreviousPage();
-            //var currentPage = sharedPagesStatus.getCurrentPage();
-            //
-            //if (currentPage != queuePage)
-            //{
-            //    sharedProperties.setSaveQueuePreviousPage(currentPage, $location.url());
-            //    $location.path(queuePageUrl);
-            //    $route.reload();
-            //}
-            //else
-            //{
-            //    if (queuePreviousPage.pageUrl == "#/")
-            //    {
-            //        $location.path("/");
-            //    }
-            //    else
-            //    {
-            //        $location.path(queuePreviousPage.pageUrl);
-            //    }
-            //    $route.reload();
-            //    sharedProperties.setSaveQueuePreviousPage(sharedPagesStatus.getCurrentPage(), $location.url());
-            //}
         }
 
         $scope.play = function ()
