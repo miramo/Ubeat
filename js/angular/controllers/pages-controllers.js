@@ -941,15 +941,18 @@
         var updateUserDataConnectionCallback = function(userDataConnection)
         {
             if (userDataConnection)
+            {
                 $scope.userDataConnection = userDataConnection;
+            }
         }
 
         var updateUserDataConnection = function ()
         {
-            sharedProperties.getUserDataConnection(updateUserDataConnectionCallback);
+            if (sharedProperties.isConnected())
+            {
+                sharedProperties.getUserDataConnection(updateUserDataConnectionCallback);
+            }
         }
-
-        updateUserDataConnection();
 
         var updateFollowStatus = function(id)
         {
@@ -961,17 +964,7 @@
             angular.element(tabName).click();
         }
 
-        var getUserDataConnectionCallback = function(userDataConnection)
-        {
-            $scope.userDataConnection = userDataConnection;
-        }
-
-        var getUserDataConnection = function()
-        {
-            sharedProperties.getUserDataConnection(getUserDataConnectionCallback);
-        }
-
-        getUserDataConnection();
+        updateUserDataConnection();
 
         var getPlaylistsCallback = function (playlists)
         {
