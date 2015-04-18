@@ -919,6 +919,7 @@
         sharedPagesStatus.setTitle("Recherche: " + $routeParams.element);
         sharedPagesStatus.resetPageStatus();
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().search);
+        $scope.userDataConnection = sharedProperties.userDataConnectionObj();
         $scope.elementToSearch = $routeParams.element;
         $scope.tracks = [];
         $scope.artists = [];
@@ -932,10 +933,40 @@
         $scope.itemsDisplayLimit = 6;
         $scope.isConnected = sharedProperties.isConnected();
 
+        var updateUserDataConnectionCallback = function(userDataConnection)
+        {
+            if (userDataConnection)
+                $scope.userDataConnection = userDataConnection;
+        }
+
+        var updateUserDataConnection = function ()
+        {
+            sharedProperties.getUserDataConnection(updateUserDataConnectionCallback);
+        }
+
+        updateUserDataConnection();
+
+        var updateFollowStatus = function(id)
+        {
+            updateUserDataConnection();
+        }
+
         $scope.activeTab = function (tabName)
         {
             angular.element(tabName).click();
         }
+
+        var getUserDataConnectionCallback = function(userDataConnection)
+        {
+            $scope.userDataConnection = userDataConnection;
+        }
+
+        var getUserDataConnection = function()
+        {
+            sharedProperties.getUserDataConnection(getUserDataConnectionCallback);
+        }
+
+        getUserDataConnection();
 
         var getPlaylistsCallback = function (playlists)
         {
@@ -1114,6 +1145,22 @@
             $(id).foundation('reveal', 'close');
         }
 
+        var followCallback = function(id, data)
+        {
+            if (data)
+                updateFollowStatus(id);
+        }
+
+        $scope.follow = function (id)
+        {
+            sharedProperties.follow(id ? id : $routeParams.id, followCallback);
+        };
+
+        $scope.unfollow = function (id)
+        {
+            sharedProperties.unfollow(id ? id : $routeParams.id, followCallback);
+        };
+
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
             angular.element('body').backgroundColor = 'white';
@@ -1129,8 +1176,8 @@
         sharedPagesStatus.resetPageStatus();
         $scope.sharedPagesStatus = sharedPagesStatus;
         $scope.sharedProperties = sharedProperties;
-        $scope.userData = {email: "", name: "", id: "", following: []};
-        $scope.userDataConnection = {email: "", name: "", id: "", following: []};
+        $scope.userData = sharedProperties.userDataConnectionObj();
+        $scope.userDataConnection = sharedProperties.userDataConnectionObj();
         $scope.gravatarImgUrl = "img/mystery-man-red.png";
         $scope.activePlaylist = 0;
         $scope.isFollowing = false;
@@ -1170,25 +1217,15 @@
                     sharedPagesStatus.setCriticalError(err.errorCode, err.message);
             });
 
+        var updateUserDataConnectionCallback = function(userDataConnection)
+        {
+            if (userDataConnection)
+                $scope.userDataConnection = userDataConnection;
+        }
+
         var updateUserDataConnection = function ()
         {
-            singleUserFactory.get(sharedProperties.getTokenCookie(), sharedProperties.getInfoConnection().id, function (data)
-                {
-                    if (data.email && data.name && data.id && data.following)
-                    {
-                        $scope.userDataConnection = {
-                            email    : data.email,
-                            name     : data.name,
-                            id       : data.id,
-                            following: data.following
-                        };
-                    }
-                },
-                function (err)
-                {
-                    if (err && err.errorCode && err.message)
-                        sharedPagesStatus.setCriticalError(err.errorCode, err.message);
-                });
+            sharedProperties.getUserDataConnection(updateUserDataConnectionCallback);
         }
 
         var updateUserData = function ()
@@ -1259,59 +1296,36 @@
             track.displayPlayButton = false;
         };
 
+        var updateFollowStatus = function(id)
+        {
+            if (id)
+            {
+                updateUserData();
+                updateUserDataConnection();
+            }
+            else
+                setIsFollowing();
+        }
+
+        var followCallback = function(id, data)
+        {
+            if (data)
+                updateFollowStatus(id);
+        }
+
         $scope.follow = function (id)
         {
-            followFactory.post(sharedProperties.getTokenCookie(), {id: id ? id : $routeParams.id}, function (data)
-                {
-                    if (data.email && data.name && data.id && data.following)
-                    {
-                        if (id)
-                        {
-                            updateUserData();
-                            updateUserDataConnection();
-                        }
-                        else
-                            setIsFollowing();
-                    }
-                },
-                function (err)
-                {
-                    if (err && err.errorCode && err.message)
-                        sharedPagesStatus.setCriticalError(err.errorCode, err.message);
-                });
+            sharedProperties.follow(id ? id : $routeParams.id, followCallback);
         };
 
         $scope.unfollow = function (id)
         {
-            unfollowFactory.delete(sharedProperties.getTokenCookie(), id ? id : $routeParams.id, function (data)
-                {
-                    if (data.email && data.name && data.id && data.following)
-                    {
-                        if (id)
-                        {
-                            updateUserData();
-                            updateUserDataConnection();
-                        }
-                        else
-                            setIsFollowing();
-                    }
-                },
-                function (err)
-                {
-                    if (err && err.errorCode && err.message)
-                        sharedPagesStatus.setCriticalError(err.errorCode, err.message);
-                });
+           sharedProperties.unfollow(id ? id : $routeParams.id, followCallback);
         };
 
         $scope.isFollowingId = function (id)
         {
-            var ret = false;
-            $scope.userDataConnection.following.forEach(function (entry)
-            {
-                if (entry.id === id)
-                    ret = true;
-            });
-            return ret;
+            return sharedProperties.isFollowingUserId($scope.userDataConnection.following, id);
         };
     });
 })();

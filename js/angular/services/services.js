@@ -7,9 +7,9 @@
     var services = angular.module('services', ['factories']);
 
 
-    services.service('sharedProperties', function (localStorageService, sharedPagesStatus,
+    services.service('sharedProperties', function (localStorageService, sharedPagesStatus, followFactory, unfollowFactory,
                                                    totalPlaylistsFactory, singlePlaylistFactory, singlePlaylistTracksFactory,
-                                                   singlePlaylistSingleTrackFactory, tokenInfoFactory)
+                                                   singlePlaylistSingleTrackFactory, tokenInfoFactory, singleUserFactory)
     {
         var title = 'Ubeat';
         var homeArtists = [];
@@ -434,7 +434,7 @@
             });
         }
 
-        this.getSearchResultObj = function()
+        this.getSearchResultObj = function ()
         {
             return {total: 0, artists: [], albums: [], tracks: [], users: []};
         }
@@ -447,7 +447,7 @@
             localStorageService.set(playQueueStorageName, playQueue);
         }
 
-        this.addToPlayQueueAtCurrentTrack = function(trackArray)
+        this.addToPlayQueueAtCurrentTrack = function (trackArray)
         {
             if (playQueue.currentTrackId < (playQueue.queue.length - 1))
             {
@@ -476,7 +476,7 @@
             localStorageService.set(playQueueStorageName, playQueue);
         }
 
-        this.replacePlayQueue = function(tracks)
+        this.replacePlayQueue = function (tracks)
         {
             this.resetPlayQueue();
             this.addTrackArrayToPlayQueue(tracks, true);
@@ -649,7 +649,7 @@
             return -1;
         }
 
-        this.setCurrentTrackById = function(id, state)
+        this.setCurrentTrackById = function (id, state)
         {
             if (id < playQueue.queue.length)
             {
@@ -658,12 +658,12 @@
                 currentTrack = track;
 
                 if (state)
-                currentTrack.playState = state;
+                    currentTrack.playState = state;
                 playQueue.currentTrackId = id;
             }
         }
 
-        this.setCurrentTrack = function (track, addToPlayQueue, state, setCurrentTrackId )
+        this.setCurrentTrack = function (track, addToPlayQueue, state, setCurrentTrackId)
         {
             currentTrack = track;
             var trackIdInQueue = -1;
@@ -730,14 +730,113 @@
             return "http://www.gravatar.com/avatar/" + md5(email) + "?s=" + size + "&r=pg&d=http://glo3102.github.io/team02/img/mystery-man-red.png";
         }
 
-        this.executeSearch = function(searchFactory, searchUsersFactory, callback, maxLimit, searchStr)
+        this.isFollowingUserId = function(users, id)
+        {
+            var ret = false;
+
+            if (users)
+            {
+                users.forEach(function (entry)
+                {
+                    if (entry.id == id)
+                    {
+                        ret = true;
+                    }
+                })
+            }
+
+            return ret;
+        }
+
+        this.userDataConnectionObj = function()
+        {
+            return {
+                email    : '',
+                name     : '',
+                id       : '',
+                following: []
+            };
+        }
+
+        this.getUserDataConnection = function(callback)
+        {
+            if (!callback)
+                return null;
+            singleUserFactory.get(this.getTokenCookie(), this.getInfoConnection().id, function (data)
+                {
+                    if (data.email && data.name && data.id && data.following)
+                    {
+                        var userDataConnection = {
+                            email    : data.email,
+                            name     : data.name,
+                            id       : data.id,
+                            following: data.following
+                        };
+                        callback(userDataConnection);
+                    }
+                    callback(null);
+                },
+                function (err)
+                {
+                    if (err && err.errorCode && err.message)
+                    {
+                        sharedPagesStatus.setCriticalError(err.errorCode, err.message);
+                        callback(null);
+                    }
+                });
+        }
+
+        this.follow = function(id, callback)
+        {
+            if (!callback)
+                return null;
+            followFactory.post(this.getTokenCookie(), {id: id ? id : $routeParams.id}, function (data)
+                {
+                    if (data.email && data.name && data.id && data.following)
+                    {
+                        callback(id, data);
+                    }
+                    callback(id, null);
+                },
+                function (err)
+                {
+                    if (err && err.errorCode && err.message)
+                    {
+                        sharedPagesStatus.setCriticalError(err.errorCode, err.message);
+                        callback(id, null);
+                    }
+                });
+        }
+
+        this.unfollow = function(id, callback)
+        {
+            if (!callback)
+                return null;
+            unfollowFactory.delete(this.getTokenCookie(), id ? id : $routeParams.id, function (data)
+                {
+                    if (data.email && data.name && data.id && data.following)
+                    {
+                        callback(id, data);
+                    }
+                    callback(id, null);
+                },
+                function (err)
+                {
+                    if (err && err.errorCode && err.message)
+                    {
+                        sharedPagesStatus.setCriticalError(err.errorCode, err.message);
+                        callback(id, null);
+                    }
+                });
+        }
+
+        this.executeSearch = function (searchFactory, searchUsersFactory, callback, maxLimit, searchStr)
         {
             var results = [];
             var searchResult = this.getSearchResultObj();
 
             var localSharedProperties = this;
 
-            //console.log("ExecuteSearch: " + searchStr);
             searchFactory.get(this.getTokenCookie(),
                 encodeURIComponent(searchStr),
                 maxLimit,
@@ -787,8 +886,8 @@
                                     if (data && data.length > 0)
                                     {
                                         searchResult.users = data;
-                                        callback(searchResult);
                                     }
+                                    callback(searchResult);
                                 },
                                 function (err)
                                 {
