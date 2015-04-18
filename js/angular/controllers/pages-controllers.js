@@ -266,7 +266,7 @@
 
                     if (dataTracks)
                     {
-                        sharedProperties.addTrackArrayToPlayQueue(dataTracks, true);
+                        sharedProperties.replacePlayQueue(dataTracks);
                     }
                 }, function (err)
                 {
@@ -361,7 +361,13 @@
             }
             else if (executeSplit)
             {
-                sharedProperties.addTrackArrayToPlayQueue($scope.tracks, true);
+                var concatTracks = [];
+
+                for (var i = 0; i < $scope.tracks.length; ++i)
+                {
+                    concatTracks = concatTracks.concat($scope.tracks[i]);
+                }
+                sharedProperties.replacePlayQueue(concatTracks, true);
                 executeSplit = true;
             }
             else if (!executeSplit)
@@ -566,7 +572,6 @@
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
-            angular.element(document).find('body').backgroundColor = 'white';
             $(document).foundation();
             $(document).foundation('interchange', 'reflow');
             $(document).foundation('tooltip', 'reflow');

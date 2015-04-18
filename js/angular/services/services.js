@@ -24,6 +24,7 @@
         var playQueue = localStorageService.get(playQueueStorageName);
         var tokenCookieName = 'token';
         var missingImgPlaylist = './img/missing-album.png';
+        var playCallback = null;
 
         //localStorageServiceProvider.setStorageCookie(0.5, '/');
 
@@ -36,6 +37,12 @@
         var getServiceTokenCookie = function ()
         {
             return localStorageService.cookie.get(tokenCookieName);
+        }
+
+        this.setPlayCallback = function(callback)
+        {
+            console.log("SetPlayCallback");
+            playCallback = callback;
         }
 
         this.getTokenCookie = function ()
@@ -445,6 +452,8 @@
             playQueue.currentTrackId = playQueue.queue.length - 1;
 
             localStorageService.set(playQueueStorageName, playQueue);
+            if (playCallback)
+                playCallback();
         }
 
         this.addToPlayQueueAtCurrentTrack = function (trackArray)
@@ -455,6 +464,8 @@
 
                 playQueue.queue = playQueue.queue.concat(trackArray);
                 playQueue.queue = playQueue.queue.concat(leftTracks);
+                if (playCallback)
+                    playCallback();
             }
             else if (playQueue.currentTrackId >= (playQueue.queue.length - 1))
                 this.addTrackArrayToPlayQueue(trackArray, true);
@@ -463,6 +474,7 @@
         this.addTrackArrayToPlayQueue = function (trackArray, setCurrentTrack)
         {
             var saveLength = playQueue.queue.length;
+
             playQueue.queue = playQueue.queue.concat(trackArray);
             playQueue.currentTrackId = saveLength;
 
@@ -471,6 +483,9 @@
             if (playQueue.queue.length > 0)
             {
                 this.setCurrentTrack(playQueue.queue[playQueue.currentTrackId], false, playStates.play);
+
+                if (playCallback)
+                    playCallback();
             }
 
             localStorageService.set(playQueueStorageName, playQueue);
@@ -480,6 +495,9 @@
         {
             this.resetPlayQueue();
             this.addTrackArrayToPlayQueue(tracks, true);
+
+            if (playCallback)
+                playCallback();
         }
 
         this.removeTrackFromPlayQueue = function (id)
@@ -730,7 +748,7 @@
             return "http://www.gravatar.com/avatar/" + md5(email) + "?s=" + size + "&r=pg&d=http://glo3102.github.io/team02/img/mystery-man-red.png";
         }
 
-        this.isFollowingUserId = function(users, id)
+        this.isFollowingUserId = function (users, id)
         {
             var ret = false;
 
@@ -748,7 +766,7 @@
             return ret;
         }
 
-        this.userDataConnectionObj = function()
+        this.userDataConnectionObj = function ()
         {
             return {
                 email    : '',
@@ -758,7 +776,7 @@
             };
         }
 
-        this.getUserDataConnection = function(callback)
+        this.getUserDataConnection = function (callback)
         {
             if (!callback)
                 return null;
@@ -786,7 +804,7 @@
                 });
         }
 
-        this.follow = function(id, callback)
+        this.follow = function (id, callback)
         {
             if (!callback)
                 return null;
@@ -808,7 +826,7 @@
                 });
         }
 
-        this.unfollow = function(id, callback)
+        this.unfollow = function (id, callback)
         {
             if (!callback)
                 return null;

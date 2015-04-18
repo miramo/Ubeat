@@ -94,22 +94,23 @@
                         </h2>
                         <h4 class="text-center" ng-hide="usersResults.length > 0">Aucun utilisateur trouvé.</h4>
                         <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
-                            <ul class="small-block-grid-6">
-                                <li class="following-item" ng-if="$index < itemsDisplayLimit" ng-repeat="user in usersResults track by $index">
-                                    <a href="#/user/{{user.id}}">
-                                        <div class="row bump">
-                                            <div class="row">
-                                                <div class="card-shadow search-card-item">
-                                                    <div class="responsive-img" back-img="{{sharedProperties.getGravatar(user.email, 150)}}"></div>
-                                                    <div class="row collapse text-card">
+                            <ul class="small-block-grid-6 following-list no-bullet">
+                                <li class="following-item" ng-repeat="follower in usersResults">
+                                    <div class="row bump">
+                                        <div class="row">
+                                            <div class="card-shadow ">
+                                                <div class="responsive-img" ng-class="sharedProperties.isFollowingUserId(userDataConnection.following, follower.id) ? 'remove' : 'add'"
+                                                     ng-click="sharedProperties.isFollowingUserId(userDataConnection.following, follower.id) ? unfollow(follower.id) : follow(follower.id)" back-img="{{sharedProperties.getGravatar(follower.email, 150)}}"></div>
+                                                <div class="row collapse text-card">
+                                                    <a href="#/user/{{follower.id}}">
                                                         <div class="text-center">
-                                                            <p class="first-text-card ellipsis">{{user.name}}</p>
+                                                            <p class="first-text-card ellipsis">{{follower.name ? follower.name : 'Inconnu'}}</p>
                                                         </div>
-                                                    </div>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -266,25 +267,6 @@
                                         </div>
                                     </li>
                                 </ul>
-
-                            <!--<ul class="small-block-grid-6">-->
-                                <!--<li class="following-item" ng-repeat="user in usersResults track by $index">-->
-                                    <!--<div class="row bump">-->
-                                        <!--<div class="row">-->
-                                            <!--<div class="card-shadow search-card-item">-->
-                                                <!--<div class="responsive-img" back-img="{{sharedProperties.getGravatar(user.email, 150)}}"></div>-->
-                                                <!--<div class="row collapse text-card">-->
-                                                    <!--<a href="#/user/{{user.id}}">-->
-                                                        <!--<div class="text-center">-->
-                                                            <!--<p class="first-text-card ellipsis">{{user.name}}</p>-->
-                                                        <!--</div>-->
-                                                    <!--</a>-->
-                                                <!--</div>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                <!--</li>-->
-                            <!--</ul>-->
                         </div>
                     </div>
                 </div>

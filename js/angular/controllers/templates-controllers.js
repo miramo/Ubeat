@@ -344,7 +344,7 @@
             }
         });
 
-        $scope.$watch('sharedPagesStatus.getCurrentPage()', function (value)
+        $scope.$watch('sharedPagesStatus.getCurrentPage', function (value)
         {
             if (value == 'queue')
                 $scope.isPlayQueue = true;
@@ -383,6 +383,8 @@
         {
             $scope.myAudio.playPause();
         }
+
+        sharedProperties.setPlayCallback($scope.play);
 
         $scope.switchMute = function ()
         {
