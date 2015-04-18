@@ -380,8 +380,7 @@
 
         $scope.replacePlayQueue = function ()
         {
-            sharedProperties.resetPlayQueue();
-            sharedProperties.addTrackArrayToPlayQueue($scope.tracks, true);
+            sharedProperties.replacePlayQueue();
         }
 
         $scope.modifyFilter = function (id)

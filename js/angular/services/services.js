@@ -476,6 +476,12 @@
             localStorageService.set(playQueueStorageName, playQueue);
         }
 
+        this.replacePlayQueue = function(tracks)
+        {
+            this.resetPlayQueue();
+            this.addTrackArrayToPlayQueue(tracks, true);
+        }
+
         this.removeTrackFromPlayQueue = function (id)
         {
             if (id == playQueue.queue.currentTrackId)
