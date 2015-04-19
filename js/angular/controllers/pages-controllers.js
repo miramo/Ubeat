@@ -936,9 +936,9 @@
         $scope.elementsLoaded = 0;
         $scope.playlists = [];
         $scope.itemsDisplayLimit = 6;
-        $scope.isConnected = false;
-
         $scope.isConnected = sharedProperties.isConnected();
+
+        console.log("Search controller");
 
         var updateUserDataConnectionCallback = function (userDataConnection)
         {
@@ -946,6 +946,8 @@
             {
                 $scope.userDataConnection = userDataConnection;
             }
+
+            sharedPagesStatus.setIsPageLoaded(true);
         }
 
         var updateUserDataConnection = function ()
@@ -966,20 +968,14 @@
             angular.element(tabName).click();
         }
 
-        updateUserDataConnection();
-
         var getPlaylistsCallback = function (playlists)
         {
             if (playlists)
             {
                 $scope.playlists = playlists;
             }
-        }
 
-        if (sharedProperties.isConnected())
-        {
-            sharedProperties.getPlaylists(getPlaylistsCallback);
-            $scope.isConnected = true;
+            updateUserDataConnection();
         }
 
         var createPlaylistByTrackCallback = function (data)
@@ -1010,27 +1006,27 @@
 
         $scope.$watch('elementsLoaded', function (oldVal, newVal)
         {
-            if (newVal > 0 && newVal >= ($scope.results.length - 1))
-            {
-                sharedPagesStatus.setIsPageLoaded(true);
-                $(document).foundation('reveal', 'reflow');
-                $(document).foundation('dropdown', 'reflow');
-                $(document).foundation('tab', 'reflow');
-            }
+            //if (newVal > 0 && newVal >= ($scope.results.length - 1))
+            //{
+            //    sharedPagesStatus.setIsPageLoaded(true);
+            //    $(document).foundation('reveal', 'reflow');
+            //    $(document).foundation('dropdown', 'reflow');
+            //    $(document).foundation('tab', 'reflow');
+            //}
         });
 
-        //searchUsersFactory.get(sharedProperties.getTokenCookie(),
-        //    encodeURIComponent($routeParams.element), function (data)
-        //    {
-        //        if (data && data.length > 0)
-        //        {
-        //            $scope.usersResults = data;
-        //        }
-        //    },
-        //    function (err)
-        //    {
-        //
-        //    });
+        searchUsersFactory.get(sharedProperties.getTokenCookie(),
+            encodeURIComponent($routeParams.element), function (data)
+            {
+                if (data && data.length > 0)
+                {
+                    $scope.usersResults = data;
+                }
+            },
+            function (err)
+            {
+
+            });
 
         var computeIsLengthNull = function()
         {
@@ -1098,7 +1094,7 @@
                         {
                         });
                 });
-                sharedPagesStatus.setIsPageLoaded(true);
+                sharedProperties.getPlaylists(getPlaylistsCallback);
             }
         }
 
@@ -1120,7 +1116,7 @@
             }
         }
 
-        $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
+        $scope.createPlaylistByTrack = function (zzToAdd, modalId)
         {
             if (playlistToAdd)
             {

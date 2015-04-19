@@ -135,7 +135,8 @@
                             <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
                         <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
                                 ng-click="sharedProperties.setCurrentTrack(track, true)"
-                                class="fa fa-play fa-lg"></i></span>
+                                class="fa fa-play fa-lg"></i>
+                        </span>
                             </div>
                             <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
                                 {{$index + 1}}
@@ -149,7 +150,7 @@
                         </td>
                         <td class="text-center" ng-show="isConnected">
                             <a data-dropdown="addTrackDrop" ng-click="addTrackToAdd(track)" aria-controls="addTrackDrop"
-                               aria-expanded="false">
+                               aria-expanded="true">
                     <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
                         <i class="fa fa-plus"></i>
                     </span>
