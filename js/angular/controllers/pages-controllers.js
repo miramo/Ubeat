@@ -936,6 +936,8 @@
         $scope.elementsLoaded = 0;
         $scope.playlists = [];
         $scope.itemsDisplayLimit = 6;
+        $scope.isConnected = false;
+
         $scope.isConnected = sharedProperties.isConnected();
 
         var updateUserDataConnectionCallback = function (userDataConnection)
@@ -950,7 +952,7 @@
         {
             if (sharedProperties.isConnected())
             {
-                sharedProperties.getUserDataConnection(updateUserDataConnectionCallback);
+               sharedProperties.getUserDataConnection(updateUserDataConnectionCallback);
             }
         }
 
@@ -1095,7 +1097,7 @@
 
         if ($routeParams.element != null && $routeParams.element != "")
         {
-            sharedProperties.executeSearch(searchFactory, searchUsersFactory, searchCallback, 200, $routeParams.element);
+            sharedProperties.executeSearch(searchFactory, searchUsersFactory, searchCallback, 100, $routeParams.element);
         }
         else
         {

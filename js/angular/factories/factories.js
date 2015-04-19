@@ -72,7 +72,7 @@
         };
     });
 
-    factories.factory('searchFactory', function ($http, $resource, sharedProperties, localStorageService)
+    factories.factory('searchFactory', function ($http, $resource, sharedProperties)
     {
         return {
             get: function (token, element, maxItems, successCallback, errorCallback)
@@ -83,7 +83,7 @@
         }
     });
 
-    factories.factory('searchUsersFactory', function ($http, $resource, sharedProperties, localStorageService)
+    factories.factory('searchUsersFactory', function ($http, $resource, sharedProperties)
     {
         return {
             get: function (token, element, successCallback, errorCallback)
@@ -94,7 +94,7 @@
         }
     });
 
-    factories.factory('loginFactory', function ($http, $resource, localStorageService)
+    factories.factory('loginFactory', function ($http)
     {
         return {
             post: function (token, data, successCallback, errorCallback)
@@ -105,7 +105,7 @@
         }
     });
 
-    factories.factory('logoutFactory', function ($http, $resource, localStorageService)
+    factories.factory('logoutFactory', function ($http)
     {
         return {
             get: function (token, successCallback, errorCallback)
@@ -116,7 +116,7 @@
         }
     });
 
-    factories.factory('signupFactory', function ($http, $resource, localStorageService)
+    factories.factory('signupFactory', function ($http)
     {
         return {
             post: function (token, data, successCallback, errorCallback)
@@ -127,7 +127,7 @@
         }
     });
 
-    factories.factory('albumFactory', function ($http, $resource, sharedProperties, localStorageService)
+    factories.factory('albumFactory', function ($http, $resource, sharedProperties)
     {
         return {
             get: function (token, id, successCallback, errorCallback)
@@ -138,7 +138,7 @@
         }
     });
 
-    factories.factory('albumTracksFactory', function ($http, $resource, sharedProperties, localStorageService)
+    factories.factory('albumTracksFactory', function ($http, $resource, sharedProperties)
     {
         return {
             get: function (token, id, successCallback, errorCallback)
@@ -149,7 +149,7 @@
         }
     });
 
-    factories.factory('artistFactory', function ($http, $resource, sharedProperties, localStorageService)
+    factories.factory('artistFactory', function ($http, $resource, sharedProperties)
     {
         return {
             get: function (token, id, successCallback, errorCallback)
@@ -160,7 +160,7 @@
         }
     });
 
-    factories.factory('artistAlbumsFactory', function ($http, $resource, sharedProperties, localStorageService)
+    factories.factory('artistAlbumsFactory', function ($http, $resource, sharedProperties)
     {
         return {
             get: function (token, id, successCallback, errorCallback)
@@ -171,22 +171,22 @@
         }
     });
 
-    factories.factory('artistBiographiesFactory', function ($http, $resource, localStorageService)
+    factories.factory('artistBiographiesFactory', function ($http, $resource)
     {
         return $resource('http://developer.echonest.com/api/v4/artist/biographies?api_key=ATWBC2GU7RT2GCRTE&id=spotify:artist:id&format=json&results=1&start=0&license=cc-by-sa');
     });
 
-    factories.factory('spotifyArtistFactory', function ($http, $resource, localStorageService)
+    factories.factory('spotifyArtistFactory', function ($http, $resource)
     {
         return $resource(factories.spotifyUrl + 'artists/:id');
     });
 
-    factories.factory('spotifySearchFactory', function ($http, $resource, localStorageService)
+    factories.factory('spotifySearchFactory', function ($http, $resource)
     {
         return $resource(factories.spotifyUrl + 'search?query=:name&type=:type');
     });
 
-    factories.factory('totalPlaylistsFactory', function ($http, $resource, localStorageService)
+    factories.factory('totalPlaylistsFactory', function ($http)
     {
         return {
             get : function (token, successCallback, errorCallback)
@@ -202,7 +202,7 @@
         }
     });
 
-    factories.factory('singlePlaylistFactory', function ($http, $resource, localStorageService)
+    factories.factory('singlePlaylistFactory', function ($http)
     {
         return {
 
@@ -226,7 +226,7 @@
         }
     });
 
-    factories.factory('singlePlaylistTracksFactory', function ($http, $resource, localStorageService)
+    factories.factory('singlePlaylistTracksFactory', function ($http)
     {
         return {
             post: function (token, id, data, successCallback, errorCallback)
@@ -237,7 +237,7 @@
         }
     });
 
-    factories.factory('singlePlaylistSingleTrackFactory', function ($http, $resource, localStorageService)
+    factories.factory('singlePlaylistSingleTrackFactory', function ($http)
     {
         return {
             get: function (token, id, trackId, successCallback, errorCallback)
@@ -260,7 +260,7 @@
         }
     });
 
-    factories.factory('tokenInfoFactory', function ($http, $resource, localStorageService, localStorageService)
+    factories.factory('tokenInfoFactory', function ($http)
     {
         return {
             get: function (token, successCallback, errorCallback)
@@ -271,7 +271,7 @@
         }
     });
 
-    factories.factory('usersFactory', function ($http, $resource, localStorageService)
+    factories.factory('usersFactory', function ($http)
     {
         return {
             get: function (token, successCallback, errorCallback)
@@ -282,7 +282,7 @@
         }
     })
 
-    factories.factory('singleUserFactory', function ($http, $resource, localStorageService)
+    factories.factory('singleUserFactory', function ($http)
     {
         return {
             get: function (token, id, successCallback, errorCallback)
@@ -293,7 +293,7 @@
         }
     });
 
-    factories.factory('followFactory', function ($http, $resource, localStorageService)
+    factories.factory('followFactory', function ($http)
     {
         return {
             post: function (token, data, successCallback, errorCallback)
@@ -304,7 +304,7 @@
         }
     });
 
-    factories.factory('unfollowFactory', function ($http, $resource, localStorageService)
+    factories.factory('unfollowFactory', function ($http)
     {
         return {
             delete: function (token, id, successCallback, errorCallback)
