@@ -8,6 +8,10 @@
       position: relative;
       display: inline-block;
       vertical-align: middle;
+      @media #{$small-only}
+      {
+        width: 100%;
+      }
       .tab-title
       {
         &:first-child > a
@@ -28,6 +32,11 @@
           &:hover
           {
             background-color: $oil;
+          }
+          padding: rem-calc(16) rem-calc(32);
+          @media #{$small-only}
+          {
+            padding: rem-calc(10) 0;
           }
           background-color: $jet;
           color: $white;

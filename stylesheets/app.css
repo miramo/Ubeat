@@ -19958,7 +19958,13 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 13, ../scss/_search.scss */
+@media only screen and (max-width: 40em) {
+  /* line 6, ../scss/_search.scss */
+  .search #tabs-container .tabs {
+    width: 100%;
+  }
+}
+/* line 17, ../scss/_search.scss */
 .search #tabs-container .tabs .tab-title:first-child > a {
   -moz-border-radius-topleft: 0.3125rem;
   -webkit-border-top-left-radius: 0.3125rem;
@@ -19967,7 +19973,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-border-bottom-left-radius: 0.3125rem;
   border-bottom-left-radius: 0.3125rem;
 }
-/* line 17, ../scss/_search.scss */
+/* line 21, ../scss/_search.scss */
 .search #tabs-container .tabs .tab-title:last-child > a {
   -moz-border-radius-topright: 0.3125rem;
   -webkit-border-top-right-radius: 0.3125rem;
@@ -19976,21 +19982,28 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-border-bottom-right-radius: 0.3125rem;
   border-bottom-right-radius: 0.3125rem;
 }
-/* line 21, ../scss/_search.scss */
+/* line 25, ../scss/_search.scss */
 .search #tabs-container .tabs .tab-title.active > a {
   border-bottom: solid thick #C60000;
   border-bottom-width: 0.3125rem;
 }
-/* line 26, ../scss/_search.scss */
+/* line 30, ../scss/_search.scss */
 .search #tabs-container .tabs .tab-title a {
+  padding: 1rem 2rem;
   background-color: #222222;
   color: #FFFFFF;
   border-bottom: solid thick #444444;
   border-bottom-width: 0.3125rem;
 }
-/* line 28, ../scss/_search.scss */
+/* line 32, ../scss/_search.scss */
 .search #tabs-container .tabs .tab-title a:hover {
   background-color: #333333;
+}
+@media only screen and (max-width: 40em) {
+  /* line 30, ../scss/_search.scss */
+  .search #tabs-container .tabs .tab-title a {
+    padding: 0.625rem 0;
+  }
 }
 
                  /*!

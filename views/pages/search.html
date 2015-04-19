@@ -3,7 +3,6 @@
     <div class="row">
         <div class="small-12 columns">
             <h2>Résultats correspondants à : {{elementToSearch}}</h2>
-
             <div id="tabs-container" ng-show="(usersResults.length + artists.length + albums.length + tracks.length) > 0">
                 <ul class="tabs" data-tab>
                     <li class="tab-title active"><a id="allTab" href="#allPanel" prevent-default>Tout</a></li>
@@ -17,7 +16,6 @@
     </div>
 
     <div class="tabs-content">
-
         <div class="content active" id="allPanel">
             <div class="row" ng-show="artists.length > 0">
                 <div class="small-12 columns">

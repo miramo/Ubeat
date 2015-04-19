@@ -938,7 +938,7 @@
         $scope.itemsDisplayLimit = 6;
         $scope.isConnected = sharedProperties.isConnected();
 
-        var updateUserDataConnectionCallback = function(userDataConnection)
+        var updateUserDataConnectionCallback = function (userDataConnection)
         {
             if (userDataConnection)
             {
@@ -954,7 +954,7 @@
             }
         }
 
-        var updateFollowStatus = function(id)
+        var updateFollowStatus = function (id)
         {
             updateUserDataConnection();
         }
@@ -1030,6 +1030,16 @@
         //
         //    });
 
+        var setWidthTabs = function (artists, albums, usersResults, tracks)
+        {
+            var nbShow = 1;
+            nbShow += artists.length ? 1 : 0;
+            nbShow += albums.length ? 1 : 0;
+            nbShow += usersResults.length ? 1 : 0;
+            nbShow += tracks.length ? 1 : 0;
+            $('.tab-title').width((1 / nbShow) * 100 + '%');
+        }
+
         var searchCallback = function (searchResult)
         {
             if (searchResult)
@@ -1040,6 +1050,7 @@
                 $scope.usersResults = searchResult.users;
                 $scope.tracks = searchResult.tracks;
 
+                setWidthTabs($scope.artists, $scope.albums, $scope.usersResults, $scope.tracks);
                 angular.forEach($scope.albums, function (value, key)
                 {
                     albumFactory.get(sharedProperties.getTokenCookie(), value.collectionId, function (data)
