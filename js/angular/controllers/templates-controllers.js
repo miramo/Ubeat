@@ -20,7 +20,7 @@
         $scope.connectionInfo = {email: "", password: ""};
         $scope.signupInfo = {name: "", email: "", password: "", confirmPassword: ""};
         $scope.errorMsg = "";
-        $scope.searchesResult = {};
+        $scope.searchesResult = sharedProperties.getSearchResultObj();
         $scope.itemLimit = 3;
         $scope.isSearching = false;
         var searchValue = "";
@@ -124,9 +124,9 @@
             {
                 if (!$scope.isSearching && currentSearchDone)
                 {
-                    //$scope.isSearching = true;
-                    //currentSearchDone = false;
-                    //sharedProperties.executeSearch(searchFactory, searchUsersFactory, searchCallback, 20, value);
+                    $scope.isSearching = true;
+                    currentSearchDone = false;
+                    sharedProperties.executeSearch(searchFactory, searchUsersFactory, searchCallback, 20, value);
                 }
                 else if ($scope.isSearching)
                 {
