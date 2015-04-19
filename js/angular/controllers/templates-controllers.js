@@ -200,7 +200,9 @@
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
+            console.log("1");
             $(document).foundation();
+            $(document).foundation('dropdown', 'reflow');
         });
     });
 

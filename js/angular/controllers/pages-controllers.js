@@ -1032,13 +1032,20 @@
         //
         //    });
 
+        var computeIsLengthNull = function()
+        {
+            var total = 0;
+            for (var i = 0; i < arguments.length; ++i)
+            {
+                total += arguments[i].length ? 1 : 0;
+            }
+            return total;
+        }
+
         var setWidthTabs = function (artists, albums, usersResults, tracks)
         {
             var nbShow = 1;
-            nbShow += artists.length ? 1 : 0;
-            nbShow += albums.length ? 1 : 0;
-            nbShow += usersResults.length ? 1 : 0;
-            nbShow += tracks.length ? 1 : 0;
+            nbShow += computeIsLengthNull(artists, albums, usersResults, tracks);
             $('.tab-title').width((1 / nbShow) * 100 + '%');
         }
 
