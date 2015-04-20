@@ -307,7 +307,6 @@
             {
                 $scope.myAudio.stop();
                 $scope.myAudio.load([{"src": track.previewUrl, "type": audioType}]);
-
                 if (playTrack)
                     $scope.myAudio.playPause();
             }

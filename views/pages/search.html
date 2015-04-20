@@ -99,7 +99,7 @@
                         <h4 class="text-center" ng-hide="usersResults.length > 0">Aucun utilisateur trouvé.</h4>
                         <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                             <ul class="users-limit-list no-bullet">
-                                <li ng-if="$index < 6" ng-repeat="follower in usersResults track by $index" ng-class="{'hide-for-small': ($index >= 3), 'hide-for-medium': ($index >= 4)}">
+                                <li class="following-item" ng-if="$index < 6" ng-repeat="follower in usersResults track by $index" ng-class="{'hide-for-small': ($index >= 3), 'hide-for-medium': ($index >= 4)}">
                                     <div class="row bump">
                                         <div class="row">
                                             <div class="card-shadow">
@@ -258,7 +258,7 @@
                         <h4 class="text-center" ng-hide="usersResults.length > 0">Aucun utilisateur trouvé.</h4>
                         <div>
                             <ul class="users-list no-bullet">
-                                <li ng-repeat="follower in usersResults">
+                                <li class="following-item" ng-repeat="follower in usersResults">
                                     <div class="row bump">
                                         <div class="row">
                                             <div class="card-shadow">
