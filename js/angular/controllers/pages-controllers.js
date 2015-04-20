@@ -938,19 +938,23 @@
         $scope.itemsDisplayLimit = 6;
         $scope.isConnected = sharedProperties.isConnected();
 
+        console.log("Search controller");
+
         var updateUserDataConnectionCallback = function (userDataConnection)
         {
             if (userDataConnection)
             {
                 $scope.userDataConnection = userDataConnection;
             }
+
+            sharedPagesStatus.setIsPageLoaded(true);
         }
 
         var updateUserDataConnection = function ()
         {
             if (sharedProperties.isConnected())
             {
-                sharedProperties.getUserDataConnection(updateUserDataConnectionCallback);
+               sharedProperties.getUserDataConnection(updateUserDataConnectionCallback);
             }
         }
 
@@ -964,20 +968,14 @@
             angular.element(tabName).click();
         }
 
-        updateUserDataConnection();
-
         var getPlaylistsCallback = function (playlists)
         {
             if (playlists)
             {
                 $scope.playlists = playlists;
             }
-        }
 
-        if (sharedProperties.isConnected())
-        {
-            sharedProperties.getPlaylists(getPlaylistsCallback);
-            $scope.isConnected = true;
+            updateUserDataConnection();
         }
 
         var createPlaylistByTrackCallback = function (data)
@@ -1008,35 +1006,42 @@
 
         $scope.$watch('elementsLoaded', function (oldVal, newVal)
         {
-            if (newVal > 0 && newVal >= ($scope.results.length - 1))
-            {
-                sharedPagesStatus.setIsPageLoaded(true);
-                $(document).foundation('reveal', 'reflow');
-                $(document).foundation('dropdown', 'reflow');
-                $(document).foundation('tab', 'reflow');
-            }
+            //if (newVal > 0 && newVal >= ($scope.results.length - 1))
+            //{
+            //    sharedPagesStatus.setIsPageLoaded(true);
+            //    $(document).foundation('reveal', 'reflow');
+            //    $(document).foundation('dropdown', 'reflow');
+            //    $(document).foundation('tab', 'reflow');
+            //}
         });
 
-        //searchUsersFactory.get(sharedProperties.getTokenCookie(),
-        //    encodeURIComponent($routeParams.element), function (data)
-        //    {
-        //        if (data && data.length > 0)
-        //        {
-        //            $scope.usersResults = data;
-        //        }
-        //    },
-        //    function (err)
-        //    {
-        //
-        //    });
+        searchUsersFactory.get(sharedProperties.getTokenCookie(),
+            encodeURIComponent($routeParams.element), function (data)
+            {
+                if (data && data.length > 0)
+                {
+                    $scope.usersResults = data;
+                }
+            },
+            function (err)
+            {
+
+            });
+
+        var computeIsLengthNull = function()
+        {
+            var total = 0;
+            for (var i = 0; i < arguments.length; ++i)
+            {
+                total += arguments[i].length ? 1 : 0;
+            }
+            return total;
+        }
 
         var setWidthTabs = function (artists, albums, usersResults, tracks)
         {
             var nbShow = 1;
-            nbShow += artists.length ? 1 : 0;
-            nbShow += albums.length ? 1 : 0;
-            nbShow += usersResults.length ? 1 : 0;
-            nbShow += tracks.length ? 1 : 0;
+            nbShow += computeIsLengthNull(artists, albums, usersResults, tracks);
             $('.tab-title').width((1 / nbShow) * 100 + '%');
         }
 
@@ -1089,13 +1094,13 @@
                         {
                         });
                 });
-                sharedPagesStatus.setIsPageLoaded(true);
+                sharedProperties.getPlaylists(getPlaylistsCallback);
             }
         }
 
         if ($routeParams.element != null && $routeParams.element != "")
         {
-            sharedProperties.executeSearch(searchFactory, searchUsersFactory, searchCallback, 200, $routeParams.element);
+            sharedProperties.executeSearch(searchFactory, searchUsersFactory, searchCallback, 100, $routeParams.element);
         }
         else
         {
@@ -1111,7 +1116,7 @@
             }
         }
 
-        $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
+        $scope.createPlaylistByTrack = function (zzToAdd, modalId)
         {
             if (playlistToAdd)
             {

@@ -25,14 +25,37 @@
         var tokenCookieName = 'token';
         var missingImgPlaylist = './img/missing-album.png';
         var playCallback = null;
-
-        //localStorageServiceProvider.setStorageCookie(0.5, '/');
+        var token = localStorageService.cookie.get(tokenCookieName);
 
         if (playQueue == null)
         {
             playQueue = {queue: [], currentTrackId: 0};
             localStorageService.set(playQueueStorageName, playQueue);
         }
+
+        var checkToken = function()
+        {
+            tokenInfoFactory.get(token, function (data)
+            {
+            }, function (err)
+            {
+                token = null;
+                localStorageService.cookie.remove(tokenCookieName);
+                sharedPagesStatus.redirectToHome();
+            });
+        }
+
+        var pageChangedCallback = function(page)
+        {
+            token = localStorageService.cookie.get(tokenCookieName);
+
+            if (token)
+            {
+                checkToken();
+            }
+        }
+
+        sharedPagesStatus.pageChangedCallback = pageChangedCallback;
 
         var getServiceTokenCookie = function ()
         {
@@ -41,7 +64,6 @@
 
         this.setPlayCallback = function(callback)
         {
-            console.log("SetPlayCallback");
             playCallback = callback;
         }
 
@@ -103,17 +125,15 @@
 
         this.isConnected = function ()
         {
-            var token = localStorageService.cookie.get(tokenCookieName);
-
             if (token)
             {
-                tokenInfoFactory.get(token, function (data)
-                {
-                }, function (err)
-                {
-                    localStorageService.cookie.remove(tokenCookieName);
-                    sharedPagesStatus.redirectToHome();
-                });
+                //tokenInfoFactory.get(token, function (data)
+                //{
+                //}, function (err)
+                //{
+                //    localStorageService.cookie.remove(tokenCookieName);
+                //    sharedPagesStatus.redirectToHome();
+                //});
                 return true;
             }
             return false;
@@ -468,7 +488,11 @@
                     playCallback();
             }
             else if (playQueue.currentTrackId >= (playQueue.queue.length - 1))
+            {
                 this.addTrackArrayToPlayQueue(trackArray, true);
+                if (playCallback)
+                    playCallback();
+            }
         }
 
         this.addTrackArrayToPlayQueue = function (trackArray, setCurrentTrack)
@@ -699,6 +723,8 @@
                 playQueue.currentTrackId = trackIdInQueue;
             }
 
+            if (playCallback)
+                playCallback();
             updateTrackStates();
         }
 
@@ -952,6 +978,7 @@
         var queuePage = pageEnum.playQueue;
         var queuePageUrl = "/queue/";
         var saveQueuePreviousPage = {pageEnum: pageEnum.home, pageUrl: "#/"};
+        this.pageChangedCallback = null;
 
         this.setSaveQueuePreviousPage = function (pageEnum, url)
         {
@@ -992,6 +1019,8 @@
 
         this.setCurrentPage = function (page)
         {
+            if (this.pageChangedCallback)
+                this.pageChangedCallback();
             currentPage = page;
         }
 
