@@ -29,7 +29,7 @@
             <div class="small-12 columns">
                 <div class="panel radius panel-following">
                     <h2 class="text-center title"><i class="fa fa-users fa-lg left"></i>Amis</h2>
-                    <h4 class="text-center" ng-hide="userData.following.length">Vous ne suivez personne actuellement.</h4>
+                    <h4 class="text-center" ng-hide="userData.following.length">{{(userData.id == sharedProperties.getInfoConnection().id) ? "Vous ne suivez personne actuellement." : "Cet utilisateur ne suis personne."}}</h4>
                     <ul class="following-list no-bullet">
                         <li class="following-item" ng-repeat="follower in userData.following">
                             <div class="row bump">
@@ -54,15 +54,14 @@
         <div class="row" data-equalizer>
             <div class="small-12 columns">
                 <div class="panel radius panel-playlist">
-                    <h2 class="text-center title"><i class="md md-my-library-music md-lg left"></i> Playlist</h2>
-                    <h4 class="text-center" ng-hide="playlists.length" ng-if="(userData.id == sharedProperties.getInfoConnection().id)">Vous n'avez pas de playlist.</h4>
-                    <h4 class="text-center" ng-hide="playlists.length" ng-if="(userData.id != sharedProperties.getInfoConnection().id)">Cet utilisateur n'a pas de playlist.</h4>
+                    <h2 class="text-center title"><i class="md md-my-library-music md-lg left"></i>&nbsp;Playlist</h2>
+                    <h4 class="text-center" ng-hide="playlists.length">{{(userData.id == sharedProperties.getInfoConnection().id) ? "Vous n'avez pas de playlist." : "Cet utilisateur n'a pas de playlist."}}</h4>
                     <dl class="accordion">
                         <dd class="accordion-navigation" ng-repeat="playlist in playlists | orderBy:'-id' track by $index">
                             <a href id="link-{{playlist.id}}" class="playlist-item clearfix" ng-click="setActive(playlist.id)">
                                 <div class="img left" back-img="{{sharedProperties.getPlaylistImg(playlist, 50)}}"></div>
                                 <span class="playlist-name ellipsis left">{{playlist.name}}</span>
-                                <span class="playlist-nb-songs ellipsis right text-right">{{playlist.tracks.length}} pistes</span>
+                                <span class="playlist-nb-songs ellipsis right text-right">{{playlist.tracks.length}}&nbsp;pistes</span>
                             </a>
                             <div id="panel-accordion-{{playlist.id}}" class="content" ng-class="{active: (activePlaylist == playlist.id)}">
                                 <div class="row">

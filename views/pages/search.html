@@ -19,19 +19,21 @@
         <div class="content active" id="allPanel">
             <div class="row" ng-show="artists.length > 0">
                 <div class="small-12 columns">
-                    <div class="panel new-albums radius">
-                        <h2 class="text-center"><i class="md-recent-actors md-lg left"></i> Artistes
-                            <button ng-show="artists.length > itemsDisplayLimit" ng-click="activeTab('#artistsTab')" class="red small radius right">
+                    <div class="panel radius">
+                        <h2 class="text-center">
+                            <i class="md-recent-actors md-lg left"></i>&nbsp;Artistes
+                            <button ng-click="activeTab('#artistsTab')" class="red small radius right"
+                                    ng-class="{'hide-for-small': (artists.length <= 3), 'hide-for-medium': (artists.length <= 4), 'hide-for-large-up': (artists.length <= 6)}">
                                 Voir Plus
                             </button>
                         </h2>
                         <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
-                            <ul class="small-block-grid-6">
-                                <li class="following-item" ng-if="$index < itemsDisplayLimit" ng-repeat="artist in artists track by $index">
+                            <ul class="artists-limit-list no-bullet">
+                                <li ng-if="$index < 6" ng-repeat="artist in artists track by $index" ng-class="{'hide-for-small': ($index >= 3), 'hide-for-medium': ($index >= 4)}">
                                     <a href="#/artist/{{artist.artistId}}">
                                         <div class="row bump">
                                             <div class="row">
-                                                <div class="card-shadow search-card-item">
+                                                <div class="card-shadow">
                                                     <div class="responsive-img" back-img="{{artist.image.url}}"></div>
                                                     <div class="row collapse text-card">
                                                         <div class="text-center">
@@ -50,19 +52,21 @@
             </div>
             <div class="row" ng-show="albums.length > 0">
                 <div class="small-12 columns">
-                    <div class="panel new-albums radius">
-                        <h2 class="text-center"><i class="md-album md-lg left"></i> Albums
-                            <button ng-show="albums.length > itemsDisplayLimit" ng-click="activeTab('#albumsTab')" class="red small radius right">
+                    <div class="panel radius">
+                        <h2 class="text-center">
+                            <i class="md-album md-lg left"></i>&nbsp;Albums
+                            <button ng-click="activeTab('#albumsTab')" class="red small radius right"
+                                    ng-class="{'hide-for-small': (albums.length <= 3), 'hide-for-medium': (albums.length <= 4), 'hide-for-large-up': (albums.length <= 6)}">
                                 Voir Plus
                             </button>
                         </h2>
                         <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
-                            <ul class="small-block-grid-6">
-                                <li class="following-item" ng-if="$index < itemsDisplayLimit" ng-repeat="album in albums track by $index">
+                            <ul class="albums-limit-list no-bullet">
+                                <li ng-if="$index < 6" ng-repeat="album in albums track by $index" ng-class="{'hide-for-small': ($index >= 3), 'hide-for-medium': ($index >= 4)}">
                                     <a href="#/album/{{album.collectionId}}">
                                         <div class="row bump">
                                             <div class="row">
-                                                <div class="card-shadow search-card-item">
+                                                <div class="card-shadow">
                                                     <div class="responsive-img" back-img="{{album.artworkUrl300}}"></div>
                                                     <div class="row collapse text-card">
                                                         <div class="text-center">
@@ -84,21 +88,24 @@
             </div>
             <div class="row" ng-show="usersResults.length > 0 && isConnected">
                 <div class="small-12 columns">
-                    <div class="panel new-albums radius">
-                        <h2 class="text-center"><i class="fa fa-users fa-lg left"></i> Utilisateurs
-                            <button ng-show="usersResults.length > itemsDisplayLimit" ng-click="activeTab('#usersTab')" class="red small radius right">
+                    <div class="panel radius">
+                        <h2 class="text-center">
+                            <i class="fa fa-users fa-lg left"></i>&nbsp;Utilisateurs
+                            <button ng-click="activeTab('#usersTab')" class="red small radius right"
+                                    ng-class="{'hide-for-small': (usersResults.length <= 3), 'hide-for-medium': (usersResults.length <= 4), 'hide-for-large-up': (usersResults.length <= 6)}">
                                 Voir Plus
                             </button>
                         </h2>
                         <h4 class="text-center" ng-hide="usersResults.length > 0">Aucun utilisateur trouvé.</h4>
                         <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
-                            <ul class="small-block-grid-6 following-list no-bullet">
-                                <li class="following-item" ng-if="$index < itemsDisplayLimit" ng-repeat="follower in usersResults">
+                            <ul class="users-limit-list no-bullet">
+                                <li ng-if="$index < 6" ng-repeat="follower in usersResults track by $index" ng-class="{'hide-for-small': ($index >= 3), 'hide-for-medium': ($index >= 4)}">
                                     <div class="row bump">
                                         <div class="row">
-                                            <div class="card-shadow ">
+                                            <div class="card-shadow">
                                                 <div class="responsive-img" ng-class="sharedProperties.isFollowingUserId(userDataConnection.following, follower.id) ? 'remove' : 'add'"
-                                                     ng-click="sharedProperties.isFollowingUserId(userDataConnection.following, follower.id) ? unfollow(follower.id) : follow(follower.id)" back-img="{{sharedProperties.getGravatar(follower.email, 150)}}"></div>
+                                                     ng-click="sharedProperties.isFollowingUserId(userDataConnection.following, follower.id) ? unfollow(follower.id) : follow(follower.id)"
+                                                     back-img="{{sharedProperties.getGravatar(follower.email, 150)}}"></div>
                                                 <div class="row collapse text-card">
                                                     <a href="#/user/{{follower.id}}">
                                                         <div class="text-center">
@@ -118,58 +125,56 @@
             <div class="row-infos-list">
                 <table>
                     <thead>
-                    <tr>
-                        <th width="30">#</th>
-                        <th width="30" ng-show="isConnected"></th>
-                        <th width="600">Titre de la musique</th>
-                        <th width="300">Album</th>
-                        <th width="300">Artiste</th>
-                        <th width="50" class="text-center"><i class="fa fa-clock-o fa-lg"></i></th>
-                    </tr>
+                        <tr>
+                            <th width="30">#</th>
+                            <th width="30" ng-show="isConnected"></th>
+                            <th width="600">Titre de la musique</th>
+                            <th width="300">Album</th>
+                            <th width="300" class="hide-for-small-only">Artiste</th>
+                            <th width="50" class="text-center"><i class="fa fa-clock-o fa-lg"></i></th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr class="music-row" ng-repeat="track in tracks | orderBy:filter track by $index"
-                        ng-mouseover="displayPlayButton(track)"
-                        ng-mouseleave="hidePlayButton(track)">
-                        <td class="text-center">
-                            <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
-                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
-                                ng-click="sharedProperties.setCurrentTrack(track, true)"
-                                class="fa fa-play fa-lg"></i></span>
-                            </div>
-                            <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
-                                {{$index + 1}}
-                            </div>
-                            <div ng-show="track.playState == sharedProperties.getPlayStates().play">
-                                <i class="fa fa-circle-o-notch fa-spin"></i>
-                            </div>
-                            <div ng-show="track.playState == sharedProperties.getPlayStates().pause">
-                                <i class="fa fa-pause"></i>
-                            </div>
-                        </td>
-                        <td class="text-center" ng-show="isConnected">
-                            <a data-dropdown="addTrackDrop" ng-click="addTrackToAdd(track)" aria-controls="addTrackDrop"
-                               aria-expanded="false">
-                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
-                        <i class="fa fa-plus"></i>
-                    </span>
-                            </a>
-                            <ul id="addTrackDrop" class="f-dropdown" data-dropdown-content>
-                                <li class="bottom-border">
-                                    <a href="" data-reveal-id="addTrackModal" ng-click="addTrackToAdd(trackToAddToNewPlaylist)"><i class="md md-add-box md-lg"></i>Nouvelle
-                                        playlist</a>
-                                </li>
-                                <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index">
-                                    <a href=""
-                                       ng-click="sharedProperties.addTrackToPlaylist(trackToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
-                                </li>
-                            </ul>
-                        </td>
-                        <td>{{track.trackName}}</td>
-                        <td><a href="#/album/{{track.collectionId}}">{{track.collectionName}}</a></td>
-                        <td><a href="#/artist/{{track.artistId}}">{{track.artistName}}</a></td>
-                        <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
-                    </tr>
+                        <tr class="music-row" ng-repeat="track in tracks | orderBy:filter track by $index" ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
+                            <td class="text-center">
+                                <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
+                                <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter">
+                                    <i ng-click="sharedProperties.setCurrentTrack(track, true)" class="fa fa-play fa-lg"></i>
+                                </span>
+                                </div>
+                                <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
+                                    {{$index + 1}}
+                                </div>
+                                <div ng-show="track.playState == sharedProperties.getPlayStates().play">
+                                    <i class="fa fa-circle-o-notch fa-spin"></i>
+                                </div>
+                                <div ng-show="track.playState == sharedProperties.getPlayStates().pause">
+                                    <i class="fa fa-pause"></i>
+                                </div>
+                            </td>
+                            <td class="text-center" ng-show="isConnected">
+                                <a data-dropdown="addTrackDrop" ng-click="addTrackToAdd(track)" aria-controls="addTrackDrop"
+                                   aria-expanded="false">
+                                <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
+                                    <i class="fa fa-plus"></i>
+                                </span>
+                                </a>
+                                <ul id="addTrackDrop" class="f-dropdown" data-dropdown-content>
+                                    <li class="bottom-border">
+                                        <a href="" data-reveal-id="addTrackModal" ng-click="addTrackToAdd(trackToAddToNewPlaylist)">
+                                            <i class="md md-add-box md-lg"></i>Nouvelle playlist
+                                        </a>
+                                    </li>
+                                    <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index">
+                                        <a href="" ng-click="sharedProperties.addTrackToPlaylist(trackToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>{{track.trackName}}</td>
+                            <td><a href="#/album/{{track.collectionId}}">{{track.collectionName}}</a></td>
+                            <td class="hide-for-small-only"><a href="#/artist/{{track.artistId}}">{{track.artistName}}</a></td>
+                            <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
+                        </tr>
                     </tbody>
                 </table>
                 <div ng-hide="tracks.length > 0 || artists.length > 0 || albums.length > 0">
@@ -181,15 +186,17 @@
         <div class="content" id="artistsPanel">
             <div class="row" ng-show="artists.length > 0">
                 <div class="small-12 columns">
-                    <div class="panel new-albums radius">
-                        <h2 class="text-center"><i class="md-recent-actors md-lg left"></i> Artistes </h2>
+                    <div class="panel radius">
+                        <h2 class="text-center">
+                            <i class="md-recent-actors md-lg left"></i>&nbsp;Artistes
+                        </h2>
                         <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
-                            <ul class="small-block-grid-6">
-                                <li class="following-item" ng-repeat="artist in artists track by $index">
+                            <ul class="artists-list no-bullet">
+                                <li ng-repeat="artist in artists track by $index">
                                     <a href="#/artist/{{artist.artistId}}">
                                         <div class="row bump">
                                             <div class="row">
-                                                <div class="card-shadow search-card-item">
+                                                <div class="card-shadow">
                                                     <div class="responsive-img" back-img="{{artist.image.url}}"></div>
                                                     <div class="row collapse text-card">
                                                         <div class="text-center">
@@ -210,16 +217,18 @@
         <div class="content" id="albumsPanel">
             <div class="row" ng-show="albums.length > 0">
                 <div class="small-12 columns">
-                    <div class="panel new-albums radius">
-                        <h2 class="text-center"><i class="md-album md-lg left"></i> Albums</h2>
+                    <div class="panel radius">
+                        <h2 class="text-center">
+                            <i class="md-album md-lg left"></i>&nbsp;Albums
+                        </h2>
                         <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
-                            <ul class="small-block-grid-6">
-                                <li class="following-item" ng-repeat="album in albums track by $index">
+                            <ul class="albums-list no-bullet">
+                                <li ng-repeat="album in albums track by $index">
                                     <a href="#/album/{{album.collectionId}}">
                                         <div class="row bump">
                                             <div class="row">
-                                                <div class="card-shadow search-card-item">
-                                                    <div class="artist responsive-img" back-img="{{album.artworkUrl300}}"></div>
+                                                <div class="card-shadow">
+                                                    <div class="responsive-img" back-img="{{album.artworkUrl300}}"></div>
                                                     <div class="row collapse text-card">
                                                         <div class="text-center">
                                                             <p class="first-text-card ellipsis">{{album.collectionName}}</p>
@@ -242,29 +251,31 @@
         <div class="content" id="usersPanel">
             <div class="row" ng-show="usersResults.length > 0 && isConnected">
                 <div class="small-12 columns">
-                    <div class="panel new-albums radius">
-                        <h2 class="text-center"><i class="fa fa-users fa-lg left"></i> Utilisateurs</h2>
+                    <div class="panel radius">
+                        <h2 class="text-center">
+                            <i class="fa fa-users fa-lg left"></i>&nbsp;Utilisateurs
+                        </h2>
                         <h4 class="text-center" ng-hide="usersResults.length > 0">Aucun utilisateur trouvé.</h4>
                         <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
-                                <ul class="small-block-grid-6 following-list no-bullet">
-                                    <li class="following-item" ng-repeat="follower in usersResults">
-                                        <div class="row bump">
-                                            <div class="row">
-                                                <div class="card-shadow ">
-                                                    <div class="responsive-img" ng-class="sharedProperties.isFollowingUserId(userDataConnection.following, follower.id) ? 'remove' : 'add'"
-                                                         ng-click="sharedProperties.isFollowingUserId(userDataConnection.following, follower.id) ? unfollow(follower.id) : follow(follower.id)" back-img="{{sharedProperties.getGravatar(follower.email, 150)}}"></div>
-                                                    <div class="row collapse text-card">
-                                                        <a href="#/user/{{follower.id}}">
-                                                            <div class="text-center">
-                                                                <p class="first-text-card ellipsis">{{follower.name ? follower.name : 'Inconnu'}}</p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
+                            <ul class="users-list no-bullet">
+                                <li ng-repeat="follower in usersResults">
+                                    <div class="row bump">
+                                        <div class="row">
+                                            <div class="card-shadow">
+                                                <div class="responsive-img" ng-class="sharedProperties.isFollowingUserId(userDataConnection.following, follower.id) ? 'remove' : 'add'"
+                                                     ng-click="sharedProperties.isFollowingUserId(userDataConnection.following, follower.id) ? unfollow(follower.id) : follow(follower.id)" back-img="{{sharedProperties.getGravatar(follower.email, 150)}}"></div>
+                                                <div class="row collapse text-card">
+                                                    <a href="#/user/{{follower.id}}">
+                                                        <div class="text-center">
+                                                            <p class="first-text-card ellipsis">{{follower.name ? follower.name : 'Inconnu'}}</p>
+                                                        </div>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
-                                </ul>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -274,58 +285,56 @@
             <div class="row-infos-list">
                 <table>
                     <thead>
-                    <tr>
-                        <th width="30">#</th>
-                        <th width="30" ng-show="isConnected"></th>
-                        <th width="600">Titre de la musique</th>
-                        <th width="300">Album</th>
-                        <th width="300">Artiste</th>
-                        <th width="50" class="text-center"><i class="fa fa-clock-o fa-lg"></i></th>
-                    </tr>
+                        <tr>
+                            <th width="30">#</th>
+                            <th width="30" ng-show="isConnected"></th>
+                            <th width="600">Titre de la musique</th>
+                            <th width="300">Album</th>
+                            <th width="300" class="hide-for-small-only">Artiste</th>
+                            <th width="50" class="text-center"><i class="fa fa-clock-o fa-lg"></i></th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr class="music-row" ng-repeat="track in tracks | orderBy:filter track by $index"
-                        ng-mouseover="displayPlayButton(track)"
-                        ng-mouseleave="hidePlayButton(track)">
-                        <td class="text-center">
-                            <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
-                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
-                                ng-click="sharedProperties.setCurrentTrack(track, true)"
-                                class="fa fa-play fa-lg"></i></span>
-                            </div>
-                            <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
-                                {{$index + 1}}
-                            </div>
-                            <div ng-show="track.playState == sharedProperties.getPlayStates().play">
-                                <i class="fa fa-circle-o-notch fa-spin"></i>
-                            </div>
-                            <div ng-show="track.playState == sharedProperties.getPlayStates().pause">
-                                <i class="fa fa-pause"></i>
-                            </div>
-                        </td>
-                        <td class="text-center" ng-show="isConnected">
-                            <a data-dropdown="addTrackPanelDrop" ng-click="addTrackToAdd(track)" aria-controls="addTrackPanelDrop"
-                               aria-expanded="false">
-                    <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
-                        <i class="fa fa-plus"></i>
-                    </span>
-                            </a>
-                            <ul id="addTrackPanelDrop" class="f-dropdown" data-dropdown-content>
-                                <li class="bottom-border">
-                                    <a href="" data-reveal-id="addTrackModal" ng-click="addTrackToAdd(trackToAddToNewPlaylist)"><i class="md md-add-box md-lg"></i>Nouvelle
-                                        playlist</a>
-                                </li>
-                                <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index">
-                                    <a href=""
-                                       ng-click="sharedProperties.addTrackToPlaylist(trackToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
-                                </li>
-                            </ul>
-                        </td>
-                        <td>{{track.trackName}}</td>
-                        <td><a href="#/album/{{track.collectionId}}">{{track.collectionName}}</a></td>
-                        <td><a href="#/artist/{{track.artistId}}">{{track.artistName}}</a></td>
-                        <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
-                    </tr>
+                        <tr class="music-row" ng-repeat="track in tracks | orderBy:filter track by $index" ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
+                            <td class="text-center">
+                                <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
+                            <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter">
+                                <i ng-click="sharedProperties.setCurrentTrack(track, true)" class="fa fa-play fa-lg"></i>
+                            </span>
+                                </div>
+                                <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
+                                    {{$index + 1}}
+                                </div>
+                                <div ng-show="track.playState == sharedProperties.getPlayStates().play">
+                                    <i class="fa fa-circle-o-notch fa-spin"></i>
+                                </div>
+                                <div ng-show="track.playState == sharedProperties.getPlayStates().pause">
+                                    <i class="fa fa-pause"></i>
+                                </div>
+                            </td>
+                            <td class="text-center" ng-show="isConnected">
+                                <a data-dropdown="addTrackPanelDrop" ng-click="addTrackToAdd(track)" aria-controls="addTrackPanelDrop"
+                                   aria-expanded="false">
+                                <span data-tooltip aria-haspopup="true" class="has-tip" title="Ajouter">
+                                    <i class="fa fa-plus"></i>
+                                </span>
+                                </a>
+                                <ul id="addTrackPanelDrop" class="f-dropdown" data-dropdown-content>
+                                    <li class="bottom-border">
+                                        <a href="" data-reveal-id="addTrackModal" ng-click="addTrackToAdd(trackToAddToNewPlaylist)">
+                                            <i class="md md-add-box md-lg"></i>Nouvelle playlist
+                                        </a>
+                                    </li>
+                                    <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index">
+                                        <a href="" ng-click="sharedProperties.addTrackToPlaylist(trackToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>{{track.trackName}}</td>
+                            <td><a href="#/album/{{track.collectionId}}">{{track.collectionName}}</a></td>
+                            <td class="hide-for-small-only"><a href="#/artist/{{track.artistId}}">{{track.artistName}}</a></td>
+                            <td class="text-center">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
+                        </tr>
                     </tbody>
                 </table>
                 <div ng-hide="tracks.length > 0 || artists.length > 0 || albums.length > 0">
@@ -337,7 +346,6 @@
 </div>
 <div id="addTrackModal" class="reveal-modal" data-reveal>
     <h2>Ajouter le titre à une nouvelle playlist</h2>
-
     <h2>
         <small>{{trackToAddToNewPlaylist.trackName}}</small>
     </h2>

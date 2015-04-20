@@ -19948,23 +19948,161 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   top: 45%;
 }
 
-/* line 3, ../scss/_search.scss */
+@media only screen and (max-width: 40em) {
+  /* line 3, ../scss/_search.scss */
+  .search .artists-limit-list, .search .albums-limit-list, .search .users-limit-list,
+  .search .artists-list, .search .albums-list, .search .users-list {
+    display: block;
+    padding: 0;
+    margin: 0 -0.625rem;
+  }
+  /* line 172, ../bower_components/foundation/scss/foundation/components/_global.scss */
+  .search .artists-limit-list:before, .search .artists-limit-list:after, .search .albums-limit-list:before, .search .albums-limit-list:after, .search .users-limit-list:before, .search .users-limit-list:after,
+  .search .artists-list:before,
+  .search .artists-list:after, .search .albums-list:before, .search .albums-list:after, .search .users-list:before, .search .users-list:after {
+    content: " ";
+    display: table;
+  }
+  /* line 173, ../bower_components/foundation/scss/foundation/components/_global.scss */
+  .search .artists-limit-list:after, .search .albums-limit-list:after, .search .users-limit-list:after,
+  .search .artists-list:after, .search .albums-list:after, .search .users-list:after {
+    clear: both;
+  }
+  /* line 50, ../bower_components/foundation/scss/foundation/components/_block-grid.scss */
+  .search .artists-limit-list > li, .search .albums-limit-list > li, .search .users-limit-list > li,
+  .search .artists-list > li, .search .albums-list > li, .search .users-list > li {
+    display: block;
+    height: auto;
+    float: left;
+    padding: 0 0.625rem 1.25rem;
+  }
+  /* line 61, ../bower_components/foundation/scss/foundation/components/_block-grid.scss */
+  .search .artists-limit-list > li, .search .albums-limit-list > li, .search .users-limit-list > li,
+  .search .artists-list > li, .search .albums-list > li, .search .users-list > li {
+    width: 33.33333%;
+    padding: 0 0.625rem 1.25rem;
+    list-style: none;
+  }
+  /* line 68, ../bower_components/foundation/scss/foundation/components/_block-grid.scss */
+  .search .artists-limit-list > li:nth-of-type(1n), .search .albums-limit-list > li:nth-of-type(1n), .search .users-limit-list > li:nth-of-type(1n),
+  .search .artists-list > li:nth-of-type(1n), .search .albums-list > li:nth-of-type(1n), .search .users-list > li:nth-of-type(1n) {
+    clear: none;
+  }
+  /* line 69, ../bower_components/foundation/scss/foundation/components/_block-grid.scss */
+  .search .artists-limit-list > li:nth-of-type(3n+1), .search .albums-limit-list > li:nth-of-type(3n+1), .search .users-limit-list > li:nth-of-type(3n+1),
+  .search .artists-list > li:nth-of-type(3n+1), .search .albums-list > li:nth-of-type(3n+1), .search .users-list > li:nth-of-type(3n+1) {
+    clear: both;
+  }
+}
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+  /* line 3, ../scss/_search.scss */
+  .search .artists-limit-list, .search .albums-limit-list, .search .users-limit-list,
+  .search .artists-list, .search .albums-list, .search .users-list {
+    display: block;
+    padding: 0;
+    margin: 0 -0.625rem;
+  }
+  /* line 172, ../bower_components/foundation/scss/foundation/components/_global.scss */
+  .search .artists-limit-list:before, .search .artists-limit-list:after, .search .albums-limit-list:before, .search .albums-limit-list:after, .search .users-limit-list:before, .search .users-limit-list:after,
+  .search .artists-list:before,
+  .search .artists-list:after, .search .albums-list:before, .search .albums-list:after, .search .users-list:before, .search .users-list:after {
+    content: " ";
+    display: table;
+  }
+  /* line 173, ../bower_components/foundation/scss/foundation/components/_global.scss */
+  .search .artists-limit-list:after, .search .albums-limit-list:after, .search .users-limit-list:after,
+  .search .artists-list:after, .search .albums-list:after, .search .users-list:after {
+    clear: both;
+  }
+  /* line 50, ../bower_components/foundation/scss/foundation/components/_block-grid.scss */
+  .search .artists-limit-list > li, .search .albums-limit-list > li, .search .users-limit-list > li,
+  .search .artists-list > li, .search .albums-list > li, .search .users-list > li {
+    display: block;
+    height: auto;
+    float: left;
+    padding: 0 0.625rem 1.25rem;
+  }
+  /* line 61, ../bower_components/foundation/scss/foundation/components/_block-grid.scss */
+  .search .artists-limit-list > li, .search .albums-limit-list > li, .search .users-limit-list > li,
+  .search .artists-list > li, .search .albums-list > li, .search .users-list > li {
+    width: 25%;
+    padding: 0 0.625rem 1.25rem;
+    list-style: none;
+  }
+  /* line 68, ../bower_components/foundation/scss/foundation/components/_block-grid.scss */
+  .search .artists-limit-list > li:nth-of-type(1n), .search .albums-limit-list > li:nth-of-type(1n), .search .users-limit-list > li:nth-of-type(1n),
+  .search .artists-list > li:nth-of-type(1n), .search .albums-list > li:nth-of-type(1n), .search .users-list > li:nth-of-type(1n) {
+    clear: none;
+  }
+  /* line 69, ../bower_components/foundation/scss/foundation/components/_block-grid.scss */
+  .search .artists-limit-list > li:nth-of-type(4n+1), .search .albums-limit-list > li:nth-of-type(4n+1), .search .users-limit-list > li:nth-of-type(4n+1),
+  .search .artists-list > li:nth-of-type(4n+1), .search .albums-list > li:nth-of-type(4n+1), .search .users-list > li:nth-of-type(4n+1) {
+    clear: both;
+  }
+}
+@media only screen and (min-width: 64.063em) {
+  /* line 3, ../scss/_search.scss */
+  .search .artists-limit-list, .search .albums-limit-list, .search .users-limit-list,
+  .search .artists-list, .search .albums-list, .search .users-list {
+    display: block;
+    padding: 0;
+    margin: 0 -0.625rem;
+  }
+  /* line 172, ../bower_components/foundation/scss/foundation/components/_global.scss */
+  .search .artists-limit-list:before, .search .artists-limit-list:after, .search .albums-limit-list:before, .search .albums-limit-list:after, .search .users-limit-list:before, .search .users-limit-list:after,
+  .search .artists-list:before,
+  .search .artists-list:after, .search .albums-list:before, .search .albums-list:after, .search .users-list:before, .search .users-list:after {
+    content: " ";
+    display: table;
+  }
+  /* line 173, ../bower_components/foundation/scss/foundation/components/_global.scss */
+  .search .artists-limit-list:after, .search .albums-limit-list:after, .search .users-limit-list:after,
+  .search .artists-list:after, .search .albums-list:after, .search .users-list:after {
+    clear: both;
+  }
+  /* line 50, ../bower_components/foundation/scss/foundation/components/_block-grid.scss */
+  .search .artists-limit-list > li, .search .albums-limit-list > li, .search .users-limit-list > li,
+  .search .artists-list > li, .search .albums-list > li, .search .users-list > li {
+    display: block;
+    height: auto;
+    float: left;
+    padding: 0 0.625rem 1.25rem;
+  }
+  /* line 61, ../bower_components/foundation/scss/foundation/components/_block-grid.scss */
+  .search .artists-limit-list > li, .search .albums-limit-list > li, .search .users-limit-list > li,
+  .search .artists-list > li, .search .albums-list > li, .search .users-list > li {
+    width: 16.66667%;
+    padding: 0 0.625rem 1.25rem;
+    list-style: none;
+  }
+  /* line 68, ../bower_components/foundation/scss/foundation/components/_block-grid.scss */
+  .search .artists-limit-list > li:nth-of-type(1n), .search .albums-limit-list > li:nth-of-type(1n), .search .users-limit-list > li:nth-of-type(1n),
+  .search .artists-list > li:nth-of-type(1n), .search .albums-list > li:nth-of-type(1n), .search .users-list > li:nth-of-type(1n) {
+    clear: none;
+  }
+  /* line 69, ../bower_components/foundation/scss/foundation/components/_block-grid.scss */
+  .search .artists-limit-list > li:nth-of-type(6n+1), .search .albums-limit-list > li:nth-of-type(6n+1), .search .users-limit-list > li:nth-of-type(6n+1),
+  .search .artists-list > li:nth-of-type(6n+1), .search .albums-list > li:nth-of-type(6n+1), .search .users-list > li:nth-of-type(6n+1) {
+    clear: both;
+  }
+}
+/* line 19, ../scss/_search.scss */
 .search #tabs-container {
   text-align: center;
 }
-/* line 6, ../scss/_search.scss */
+/* line 22, ../scss/_search.scss */
 .search #tabs-container .tabs {
   position: relative;
   display: inline-block;
   vertical-align: middle;
 }
 @media only screen and (max-width: 40em) {
-  /* line 6, ../scss/_search.scss */
+  /* line 22, ../scss/_search.scss */
   .search #tabs-container .tabs {
     width: 100%;
   }
 }
-/* line 17, ../scss/_search.scss */
+/* line 33, ../scss/_search.scss */
 .search #tabs-container .tabs .tab-title:first-child > a {
   -moz-border-radius-topleft: 0.3125rem;
   -webkit-border-top-left-radius: 0.3125rem;
@@ -19973,7 +20111,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-border-bottom-left-radius: 0.3125rem;
   border-bottom-left-radius: 0.3125rem;
 }
-/* line 21, ../scss/_search.scss */
+/* line 37, ../scss/_search.scss */
 .search #tabs-container .tabs .tab-title:last-child > a {
   -moz-border-radius-topright: 0.3125rem;
   -webkit-border-top-right-radius: 0.3125rem;
@@ -19982,12 +20120,12 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-border-bottom-right-radius: 0.3125rem;
   border-bottom-right-radius: 0.3125rem;
 }
-/* line 25, ../scss/_search.scss */
+/* line 41, ../scss/_search.scss */
 .search #tabs-container .tabs .tab-title.active > a {
   border-bottom: solid thick #C60000;
   border-bottom-width: 0.3125rem;
 }
-/* line 30, ../scss/_search.scss */
+/* line 46, ../scss/_search.scss */
 .search #tabs-container .tabs .tab-title a {
   padding: 1rem 2rem;
   background-color: #222222;
@@ -19995,12 +20133,12 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   border-bottom: solid thick #444444;
   border-bottom-width: 0.3125rem;
 }
-/* line 32, ../scss/_search.scss */
+/* line 48, ../scss/_search.scss */
 .search #tabs-container .tabs .tab-title a:hover {
   background-color: #333333;
 }
 @media only screen and (max-width: 40em) {
-  /* line 30, ../scss/_search.scss */
+  /* line 46, ../scss/_search.scss */
   .search #tabs-container .tabs .tab-title a {
     padding: 0.625rem 0;
   }

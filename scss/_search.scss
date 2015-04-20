@@ -1,5 +1,21 @@
 .search
 {
+  .artists-limit-list, .albums-limit-list, .users-limit-list,
+  .artists-list, .albums-list, .users-list
+  {
+    @media #{$small-only}
+    {
+      @include block-grid(3);
+    }
+    @media #{$medium-only}
+    {
+      @include block-grid(4);
+    }
+    @media #{$large-up}
+    {
+      @include block-grid(6);
+    }
+  }
   #tabs-container
   {
     text-align: center;
