@@ -256,7 +256,7 @@
                             <i class="fa fa-users fa-lg left"></i>&nbsp;Utilisateurs
                         </h2>
                         <h4 class="text-center" ng-hide="usersResults.length > 0">Aucun utilisateur trouvé.</h4>
-                        <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
+                        <div>
                             <ul class="users-list no-bullet">
                                 <li ng-repeat="follower in usersResults">
                                     <div class="row bump">

@@ -88,7 +88,7 @@
 
                 <div ng-show="searchesResult.users.length > 0 && sharedProperties.isConnected()">
                     <p class="text-center"><strong>Utilisateurs</strong></p>
-                    <div ng-repeat="user in searchesResult.users track by $index" ng-if="$index < itemLimit">
+                    <div class="item-row" ng-repeat="user in searchesResult.users track by $index" ng-if="$index < itemLimit">
                         <a class="item-text ellipsis" href="#/user/{{user.id}}"><img class="item-img" ng-src="{{sharedProperties.getGravatar(user.email, 50)}}"/>{{user.name}}</a>
                     </div>
                 </div>
