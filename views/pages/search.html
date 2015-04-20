@@ -62,12 +62,12 @@
                         </h2>
                         <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                             <ul class="albums-limit-list no-bullet">
-                                <li ng-if="$index < 6" ng-repeat="album in albums track by $index" ng-class="{'hide-for-small': ($index >= 3), 'hide-for-medium': ($index >= 4)}">
-                                    <a href="#/album/{{album.collectionId}}">
-                                        <div class="row bump">
-                                            <div class="row">
-                                                <div class="card-shadow">
-                                                    <div class="responsive-img" back-img="{{album.artworkUrl300}}"></div>
+                                <li class="album-card" ng-if="$index < 6" ng-repeat="album in albums track by $index" ng-class="{'hide-for-small': ($index >= 3), 'hide-for-medium': ($index >= 4)}">
+                                    <div class="row bump">
+                                        <div class="row">
+                                            <div class="card-shadow">
+                                                <div class="responsive-img" ng-click="sharedProperties.addAlbumToPlayQueue(album)" back-img="{{album.artworkUrl300}}"></div>
+                                                <a href="#/album/{{album.collectionId}}">
                                                     <div class="row collapse text-card">
                                                         <div class="text-center">
                                                             <p class="first-text-card ellipsis">{{album.collectionName}}</p>
@@ -76,10 +76,10 @@
                                                             <p class="second-text-card ellipsis">{{album.artistName}}</p>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </a>
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -223,12 +223,12 @@
                         </h2>
                         <div ng-switch on="sharedPagesStatus.getIsPageLoaded()">
                             <ul class="albums-list no-bullet">
-                                <li ng-repeat="album in albums track by $index">
-                                    <a href="#/album/{{album.collectionId}}">
-                                        <div class="row bump">
-                                            <div class="row">
-                                                <div class="card-shadow">
-                                                    <div class="responsive-img" back-img="{{album.artworkUrl300}}"></div>
+                                <li class="album-card" ng-repeat="album in albums track by $index">
+                                    <div class="row bump">
+                                        <div class="row">
+                                            <div class="card-shadow">
+                                                <div class="responsive-img" ng-click="sharedProperties.addAlbumToPlayQueue(album)" back-img="{{album.artworkUrl300}}"></div>
+                                                <a href="#/album/{{album.collectionId}}">
                                                     <div class="row collapse text-card">
                                                         <div class="text-center">
                                                             <p class="first-text-card ellipsis">{{album.collectionName}}</p>
@@ -237,10 +237,10 @@
                                                             <p class="second-text-card ellipsis">{{album.artistName}}</p>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </a>
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
                                 </li>
                             </ul>
                         </div>

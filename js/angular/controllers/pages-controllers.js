@@ -6,7 +6,7 @@
 {
     var controllers = angular.module('pagesControllers', ['factories', 'directives', 'services', 'truncate']);
 
-    controllers.controller('HomeController', function ($scope, sharedPagesStatus, sharedProperties,
+    controllers.controller('HomeController', function ($scope, sharedPagesStatus, sharedProperties, session,
                                                        artistFactory, albumFactory, spotifyArtistFactory, spotifySearchFactory)
     {
         sharedPagesStatus.resetPageStatus();
@@ -25,7 +25,7 @@
 
         angular.forEach($scope.artistIds, function (value, key)
         {
-            artistFactory.get(sharedProperties.getTokenCookie(), value, function (data)
+            artistFactory.get(session.getToken(), value, function (data)
                 {
                     $scope.artistsTab[key] = data.results[0];
                     //sharedProperties.setTitle($scope.artists[i].artistName);
@@ -62,7 +62,7 @@
 
         angular.forEach($scope.albumsIds, function (value, key)
         {
-            albumFactory.get(sharedProperties.getTokenCookie(), value, function (data)
+            albumFactory.get(session.getToken(), value, function (data)
                 {
                     $scope.albumsTab[key] = data.results[0];
                     $scope.albumsTab[key].artworkUrl300 = itunesLinkImageSizeTo($scope.albumsTab[key].artworkUrl100, 300);
@@ -154,7 +154,7 @@
         });
     });
 
-    controllers.controller('ArtistController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties, albumTracksFactory,
+    controllers.controller('ArtistController', function ($scope, $routeParams, sharedPagesStatus, session, albumTracksFactory,
                                                          artistFactory, artistAlbumsFactory, artistBiographiesFactory, spotifyArtistFactory, spotifySearchFactory)
     {
         sharedPagesStatus.resetPageStatus();
@@ -166,7 +166,7 @@
 
         if (isValidArtist)
         {
-            artistFactory.get(sharedProperties.getTokenCookie(), $routeParams.id, function (data)
+            artistFactory.get(session.getToken(), $routeParams.id, function (data)
                 {
                     $scope.artist = data.results[0];
                     if (data && data.results.length > 0)
@@ -222,7 +222,7 @@
                             {
                                 sharedPagesStatus.setDefaultCriticalError(err);
                             });
-                        artistAlbumsFactory.get(sharedProperties.getTokenCookie(), $routeParams.id, function (data)
+                        artistAlbumsFactory.get(session.getToken(), $routeParams.id, function (data)
                             {
                                 $scope.albums = data.results;
 
@@ -256,34 +256,18 @@
 
         $scope.addAlbumToPlayQueue = function (album)
         {
-            var isAlbumIdValid = /^\d+$/.test(album.collectionId);
-
-            if (isAlbumIdValid)
-            {
-                albumTracksFactory.get(sharedProperties.getTokenCookie(), album.collectionId, function (data)
-                {
-                    var dataTracks = data.results;
-
-                    if (dataTracks)
-                    {
-                        sharedProperties.replacePlayQueue(dataTracks);
-                    }
-                }, function (err)
-                {
-                    sharedPagesStatus.setDefaultCriticalError(err);
-                });
-            }
-
-            $scope.$on('$routeChangeSuccess', function (next, current)
-            {
-                angular.element(document).find('body').backgroundColor = 'white';
-                $(document).foundation('interchange', 'reflow');
-            });
+            s.addAlbumToPlayQueue(album);
         }
+
+        $scope.$on('$routeChangeSuccess', function (next, current)
+        {
+            angular.element(document).find('body').backgroundColor = 'white';
+            $(document).foundation('interchange', 'reflow');
+        });
     });
 
 
-    controllers.controller('AlbumController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties,
+    controllers.controller('AlbumController', function ($scope, $routeParams, session, sharedPagesStatus, sharedProperties,
                                                         albumFactory, artistFactory, albumTracksFactory)
     {
         sharedPagesStatus.resetPageStatus();
@@ -310,7 +294,7 @@
             }
         }
 
-        if (sharedProperties.isConnected())
+        if (session.isConnected())
         {
             sharedProperties.getPlaylists(getPlaylistsCallback);
             $scope.isConnected = true;
@@ -505,7 +489,7 @@
 
         if (isAlbumIdValid)
         {
-            albumFactory.get(sharedProperties.getTokenCookie(), $routeParams.id, function (data)
+            albumFactory.get(session.getToken(), $routeParams.id, function (data)
             {
                 if (data && data.results.length > 0)
                 {
@@ -527,7 +511,7 @@
 
                     blur.init({el: document.querySelector('.artist-header'), path: $scope.album.artworkUrl300});
 
-                    artistFactory.get(sharedProperties.getTokenCookie(), $scope.album.artistId, function (data)
+                    artistFactory.get(session.getToken(), $scope.album.artistId, function (data)
                     {
                         $scope.artist = data.results[0];
                     }, function (err)
@@ -535,7 +519,7 @@
                         sharedPagesStatus.setDefaultCriticalError(err);
                     });
 
-                    albumTracksFactory.get(sharedProperties.getTokenCookie(), $routeParams.id, function (data)
+                    albumTracksFactory.get(session.getToken(), $routeParams.id, function (data)
                     {
                         var dataTracks = data.results;
 
@@ -582,7 +566,8 @@
         });
     });
 
-    controllers.controller('PlaylistsController', function ($scope, $location, $route, $routeParams, sharedPagesStatus, sharedProperties)
+    controllers.controller('PlaylistsController', function ($scope, $location, $route, $routeParams,
+                                                            session, sharedPagesStatus, sharedProperties)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.sharedProperties = sharedProperties;
@@ -601,7 +586,7 @@
 
         var isRemovingPlaylist = false;
 
-        if (sharedProperties.isConnected() == false)
+        if (session.isConnected() == false)
         {
             sharedPagesStatus.redirectToHome();
         }
@@ -809,13 +794,13 @@
         });
     });
 
-    controllers.controller('ErrorPageController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties)
+    controllers.controller('ErrorPageController', function ($scope, $routeParams, sharedPagesStatus, session)
     {
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().error);
         sharedPagesStatus.setIsPageLoaded(true);
     })
 
-    controllers.controller('PlayQueueController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties)
+    controllers.controller('PlayQueueController', function ($scope, $routeParams, session, sharedPagesStatus, sharedProperties)
     {
         sharedPagesStatus.setTitle("File d'attente");
         sharedPagesStatus.resetPageStatus();
@@ -835,7 +820,7 @@
             }
         }
 
-        if (sharedProperties.isConnected())
+        if (session.isConnected())
         {
             sharedProperties.getPlaylists(getPlaylistsCallback);
             $scope.isConnected = true;
@@ -919,7 +904,7 @@
         }
     });
 
-    controllers.controller('SearchController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties,
+    controllers.controller('SearchController', function ($scope, $routeParams, session, sharedPagesStatus, sharedProperties,
                                                          searchFactory, spotifySearchFactory, spotifyArtistFactory,
                                                          albumFactory, searchUsersFactory)
     {
@@ -938,7 +923,7 @@
         $scope.elementsLoaded = 0;
         $scope.playlists = [];
         $scope.itemsDisplayLimit = 6;
-        $scope.isConnected = sharedProperties.isConnected();
+        $scope.isConnected = session.isConnected();
 
         var updateUserDataConnectionCallback = function (userDataConnection)
         {
@@ -952,7 +937,7 @@
 
         var updateUserDataConnection = function ()
         {
-            if (sharedProperties.isConnected())
+            if (session.isConnected())
             {
                 sharedProperties.getUserDataConnection(updateUserDataConnectionCallback);
                 //searchUsersFactory.get(sharedProperties.getTokenCookie(),
@@ -1057,7 +1042,7 @@
                 setWidthTabs($scope.artists, $scope.albums, $scope.usersResults, $scope.tracks);
                 angular.forEach($scope.albums, function (value, key)
                 {
-                    albumFactory.get(sharedProperties.getTokenCookie(), value.collectionId, function (data)
+                    albumFactory.get(session.getToken(), value.collectionId, function (data)
                         {
                             $scope.albums[key].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[key].artworkUrl100, 300);
                         },
@@ -1093,7 +1078,7 @@
                         {
                         });
                 });
-                if (sharedProperties.isConnected())
+                if (session.isConnected())
                 {
                     sharedProperties.getPlaylists(getPlaylistsCallback);
                 }
@@ -1190,7 +1175,8 @@
         });
     });
 
-    controllers.controller('SingleUserController', function ($location, $scope, $http, $routeParams, sharedPagesStatus, sharedProperties, singleUserFactory, followFactory, unfollowFactory)
+    controllers.controller('SingleUserController', function ($location, $scope, $http, $routeParams, session,
+                                                             sharedPagesStatus, sharedProperties, singleUserFactory)
     {
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().user);
         sharedPagesStatus.resetPageStatus();
@@ -1202,7 +1188,7 @@
         $scope.activePlaylist = 0;
         $scope.isFollowing = false;
 
-        if (sharedProperties.isConnected() == false)
+        if (session.isConnected() == false)
         {
             sharedPagesStatus.redirectToHome();
         }
@@ -1214,7 +1200,7 @@
             fullscreen: true
         });
 
-        singleUserFactory.get(sharedProperties.getTokenCookie(), $routeParams.id, function (data)
+        singleUserFactory.get(session.getToken(), $routeParams.id, function (data)
             {
                 if (data.email && data.name && data.id && data.following)
                 {
@@ -1249,7 +1235,7 @@
 
         var updateUserData = function ()
         {
-            singleUserFactory.get(sharedProperties.getTokenCookie(), $routeParams.id, function (data)
+            singleUserFactory.get(session.getToken(), $routeParams.id, function (data)
                 {
                     if (data.email && data.name && data.id && data.following)
                     {
@@ -1265,7 +1251,7 @@
 
         var setIsFollowing = function ()
         {
-            singleUserFactory.get(sharedProperties.getTokenCookie(), sharedProperties.getInfoConnection().id, function (data)
+            singleUserFactory.get(session.getToken(), sharedProperties.getInfoConnection().id, function (data)
                 {
                     if (data.following)
                     {

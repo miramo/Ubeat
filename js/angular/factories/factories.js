@@ -15,9 +15,9 @@
     factories.ubeatBaseUrl = factories.isSecure ? factories.ubeatBaseSecureUrl : factories.ubeatBaseUnsecureUrl;
     factories.spotifyUrl = 'https://api.spotify.com/v1/';
 
-    factories.getUbeatApiURL = function (sharedProperties)
+    factories.getUbeatApiURL = function (session)
     {
-        return sharedProperties.isConnected() ? factories.ubeatBaseSecureUrl : factories.ubeatBaseUnsecureUrl;
+        return session.isConnected() ? factories.ubeatBaseSecureUrl : factories.ubeatBaseUnsecureUrl;
     }
 
     factories.resolveUbeatApiURL = function (url, isOnlySecure)
@@ -72,23 +72,23 @@
         };
     });
 
-    factories.factory('searchFactory', function ($http, $resource, sharedProperties)
+    factories.factory('searchFactory', function ($http, $resource, session)
     {
         return {
             get: function (token, element, maxItems, successCallback, errorCallback)
             {
-                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(sharedProperties)) + 'search/?q=' + element + '&limit=' + maxItems, token, null);
+                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(session)) + 'search/?q=' + element + '&limit=' + maxItems, token, null);
                 factories.httpReq($http, req, successCallback, errorCallback);
             }
         }
     });
 
-    factories.factory('searchUsersFactory', function ($http, $resource, sharedProperties)
+    factories.factory('searchUsersFactory', function ($http, $resource, session)
     {
         return {
             get: function (token, element, successCallback, errorCallback)
             {
-                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(sharedProperties)) + 'search/users?q=' + element, token, null);
+                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(session)) + 'search/users?q=' + element, token, null);
                 factories.httpReq($http, req, successCallback, errorCallback);
             }
         }
@@ -127,45 +127,45 @@
         }
     });
 
-    factories.factory('albumFactory', function ($http, $resource, sharedProperties)
+    factories.factory('albumFactory', function ($http, $resource, session)
     {
         return {
             get: function (token, id, successCallback, errorCallback)
             {
-                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(sharedProperties)) + 'albums/' + id, token, null);
+                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(session)) + 'albums/' + id, token, null);
                 factories.httpReq($http, req, successCallback, errorCallback);
             }
         }
     });
 
-    factories.factory('albumTracksFactory', function ($http, $resource, sharedProperties)
+    factories.factory('albumTracksFactory', function ($http, $resource, session)
     {
         return {
             get: function (token, id, successCallback, errorCallback)
             {
-                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(sharedProperties)) + 'albums/' + id + '/tracks', token, null);
+                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(session)) + 'albums/' + id + '/tracks', token, null);
                 factories.httpReq($http, req, successCallback, errorCallback);
             }
         }
     });
 
-    factories.factory('artistFactory', function ($http, $resource, sharedProperties)
+    factories.factory('artistFactory', function ($http, $resource, session)
     {
         return {
             get: function (token, id, successCallback, errorCallback)
             {
-                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(sharedProperties)) + 'artists/' + id, token, null);
+                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(session)) + 'artists/' + id, token, null);
                 factories.httpReq($http, req, successCallback, errorCallback);
             }
         }
     });
 
-    factories.factory('artistAlbumsFactory', function ($http, $resource, sharedProperties)
+    factories.factory('artistAlbumsFactory', function ($http, $resource, session)
     {
         return {
             get: function (token, id, successCallback, errorCallback)
             {
-                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(sharedProperties)) + 'artists/' + id + '/albums', token, null);
+                var req = factories.generateHttpReq('GET', factories.resolveUbeatApiURL(factories.getUbeatApiURL(session)) + 'artists/' + id + '/albums', token, null);
                 factories.httpReq($http, req, successCallback, errorCallback);
             }
         }

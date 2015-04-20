@@ -6,10 +6,53 @@
 {
     var services = angular.module('services', ['factories']);
 
+    services.service('session', function (localStorageService, tokenInfoFactory, sharedPagesStatus)
+    {
+        var tokenCookieName = 'token';
 
-    services.service('sharedProperties', function (localStorageService, sharedPagesStatus, followFactory, unfollowFactory,
+        this.getTokenCookieName = function ()
+        {
+            return tokenCookieName;
+        }
+
+        this.getToken = function ()
+        {
+            return localStorageService.cookie.get(tokenCookieName);
+        }
+
+        this.setToken = function (token)
+        {
+            localStorageService.set(tokenCookieName, token);
+        }
+
+        this.removeToken = function ()
+        {
+            localStorageService.cookie.remove(tokenCookieName);
+        }
+
+        this.isConnected = function ()
+        {
+            if (this.getToken())
+                return true;
+            return false;
+        }
+
+        this.checkToken = function ()
+        {
+            tokenInfoFactory.get(this.getToken(), function (data)
+            {
+            }, function (err)
+            {
+                localStorageService.cookie.remove(tokenCookieName);
+                sharedPagesStatus.redirectToHome();
+            });
+        }
+
+    })
+
+    services.service('sharedProperties', function (localStorageService, session, sharedPagesStatus, followFactory, unfollowFactory,
                                                    totalPlaylistsFactory, singlePlaylistFactory, singlePlaylistTracksFactory,
-                                                   singlePlaylistSingleTrackFactory, tokenInfoFactory, singleUserFactory)
+                                                   singlePlaylistSingleTrackFactory, singleUserFactory, tokenInfoFactory, albumTracksFactory)
     {
         var title = 'Ubeat';
         var homeArtists = [];
@@ -22,10 +65,8 @@
         var connected = false;
         var playQueueStorageName = 'playQueue';
         var playQueue = localStorageService.get(playQueueStorageName);
-        var tokenCookieName = 'token';
         var missingImgPlaylist = './img/missing-album.png';
         var playCallback = null;
-        var token = localStorageService.cookie.get(tokenCookieName);
 
         if (playQueue == null)
         {
@@ -33,42 +74,19 @@
             localStorageService.set(playQueueStorageName, playQueue);
         }
 
-        var checkToken = function()
+        var pageChangedCallback = function (page)
         {
-            tokenInfoFactory.get(token, function (data)
+            if (session.getToken())
             {
-            }, function (err)
-            {
-                localStorageService.cookie.remove(tokenCookieName);
-                sharedPagesStatus.redirectToHome();
-            });
-        }
-
-        var pageChangedCallback = function(page)
-        {
-            token = localStorageService.cookie.get(tokenCookieName);
-
-            if (token)
-            {
-                checkToken();
+                session.checkToken();
             }
         }
 
         sharedPagesStatus.pageChangedCallback = pageChangedCallback;
 
-        var getServiceTokenCookie = function ()
-        {
-            return localStorageService.cookie.get(tokenCookieName);
-        }
-
-        this.setPlayCallback = function(callback)
+        this.setPlayCallback = function (callback)
         {
             playCallback = callback;
-        }
-
-        this.getTokenCookie = function ()
-        {
-            return getServiceTokenCookie();
         }
 
         var updateTrackStates = function ()
@@ -120,21 +138,6 @@
                     playQueue.queue[n].time = millisToTime(playQueue.queue[n].trackTimeMillis);
                 }
             }
-        }
-
-        this.isConnected = function ()
-        {
-            token = localStorageService.cookie.get(tokenCookieName);
-            if (token)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        this.getTokenCookieName = function ()
-        {
-            return tokenCookieName;
         }
 
         this.getTitle = function ()
@@ -229,11 +232,11 @@
 
         this.getPlaylists = function (callback, userId)
         {
-            tokenInfoFactory.get(getServiceTokenCookie(), function (tokenData)
+            tokenInfoFactory.get(session.getToken(), function (tokenData)
                 {
                     if (tokenData)
                     {
-                        totalPlaylistsFactory.get(getServiceTokenCookie(), function (data)
+                        totalPlaylistsFactory.get(session.getToken(), function (data)
                             {
                                 if (data)
                                 {
@@ -607,6 +610,28 @@
             return track;
         }
 
+        this.addAlbumToPlayQueue = function (album)
+        {
+            var isAlbumIdValid = /^\d+$/.test(album.collectionId);
+
+            if (isAlbumIdValid)
+            {
+                var localObj = this;
+                albumTracksFactory.get(session.getToken(), album.collectionId, function (data)
+                {
+                    var dataTracks = data.results;
+
+                    if (dataTracks)
+                    {
+                        localObj.replacePlayQueue(dataTracks);
+                    }
+                }, function (err)
+                {
+                    this.setDefaultCriticalError(err);
+                });
+            }
+        }
+
         this.isLastSongInQueue = function ()
         {
             if (playQueue.currentTrackId >= playQueue.queue.length - 1)
@@ -798,7 +823,7 @@
         {
             if (!callback)
                 return null;
-            singleUserFactory.get(this.getTokenCookie(), this.getInfoConnection().id, function (data)
+            singleUserFactory.get(session.getToken(), this.getInfoConnection().id, function (data)
                 {
                     if (data.email && data.name && data.id && data.following)
                     {
@@ -826,7 +851,7 @@
         {
             if (!callback)
                 return null;
-            followFactory.post(this.getTokenCookie(), {id: id ? id : $routeParams.id}, function (data)
+            followFactory.post(session.getToken(), {id: id ? id : $routeParams.id}, function (data)
                 {
                     if (data.email && data.name && data.id && data.following)
                     {
@@ -848,7 +873,7 @@
         {
             if (!callback)
                 return null;
-            unfollowFactory.delete(this.getTokenCookie(), id ? id : $routeParams.id, function (data)
+            unfollowFactory.delete(session.getToken(), id ? id : $routeParams.id, function (data)
                 {
                     if (data.email && data.name && data.id && data.following)
                     {
@@ -873,7 +898,7 @@
 
             var localSharedProperties = this;
 
-            searchFactory.get(this.getTokenCookie(),
+            searchFactory.get(session.getToken(),
                 encodeURIComponent(searchStr),
                 maxLimit,
                 function (data)
@@ -914,9 +939,9 @@
                             }
                         }
 
-                        if (localSharedProperties.isConnected())
+                        if (session.isConnected())
                         {
-                            searchUsersFactory.get(localSharedProperties.getTokenCookie(),
+                            searchUsersFactory.get(session.getToken(),
                                 encodeURIComponent(searchStr), function (data)
                                 {
                                     if (data && data.length > 0)

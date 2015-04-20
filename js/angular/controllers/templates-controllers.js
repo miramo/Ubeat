@@ -12,12 +12,14 @@
             time   : 1
         });
 
-    controllers.controller('NavbarController', function ($scope, $route, $location, sharedPagesStatus, sharedProperties, loginFactory,
+    controllers.controller('NavbarController', function ($scope, $route, $location, session,
+                                                         sharedPagesStatus, sharedProperties, loginFactory,
                                                          logoutFactory, signupFactory, localStorageService, searchFactory, searchUsersFactory,
                                                          spotifySearchFactory, spotifyArtistFactory)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.sharedProperties = sharedProperties;
+        $scope.session = session;
         $scope.connectionInfo = {email: "", password: ""};
         $scope.signupInfo = {name: "", email: "", password: "", confirmPassword: ""};
         $scope.errorMsg = "";
@@ -31,7 +33,7 @@
 
         $scope.login = function ()
         {
-            loginFactory.post(sharedProperties.getTokenCookie(), {
+            loginFactory.post(session.getToken(), {
                     email   : $scope.connectionInfo.email,
                     password: $scope.connectionInfo.password
                 }, function (data)
@@ -40,7 +42,7 @@
                     {
                         sharedProperties.setInfoConnection(data.email, data.name, data.token, data.id);
                         sharedProperties.setConnected(true);
-                        localStorageService.cookie.set(sharedProperties.getTokenCookieName(), data.token);
+                        localStorageService.cookie.set(session.getTokenCookieName(), data.token);
                         $('#sign-in-modal').foundation('reveal', 'close');
                         $(document).foundation('topbar', 'reflow');
                         Foundation.libs.topbar.toggle($('.top-bar'));
@@ -61,7 +63,7 @@
 
         $scope.logout = function ()
         {
-            logoutFactory.get(sharedProperties.getTokenCookie(), function (data)
+            logoutFactory.get(session.getToken(), function (data)
                 {
                     localStorageService.cookie.remove('token');
                     sharedProperties.setConnected(false);
@@ -146,7 +148,7 @@
 
         $scope.signup = function ()
         {
-            signupFactory.post(sharedProperties.getTokenCookie(), {
+            signupFactory.post(session.getToken(), {
                     name    : $scope.signupInfo.name,
                     email   : $scope.signupInfo.email,
                     password: $scope.signupInfo.password
@@ -154,7 +156,7 @@
                 {
                     if (data.email && data.name && data.id)
                     {
-                        loginFactory.post(sharedProperties.getTokenCookie(), {
+                        loginFactory.post(session.getToken(), {
                                 email   : $scope.signupInfo.email,
                                 password: $scope.signupInfo.password
                             }, function (data)
@@ -163,7 +165,7 @@
                                 {
                                     sharedProperties.setInfoConnection(data.email, data.name, data.token, data.id);
                                     sharedProperties.setConnected(true);
-                                    localStorageService.cookie.set(sharedProperties.getTokenCookieName(), data.token);
+                                    localStorageService.cookie.set(session.getToken(), data.token);
                                     $('#sign-up-modal').foundation('reveal', 'close');
                                     $(document).foundation('topbar', 'reflow');
                                     Foundation.libs.topbar.toggle($('.top-bar'));
