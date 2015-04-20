@@ -8,41 +8,39 @@
     <div id="tool-bar" class="row">
             <div class="small-12">
                 <div class="panel tool-bar-panel radius">
-                    <div class="row collapse">
-                        <div class="small-6 large-5 columns left">
-                            <div class="small-12 medium-5 columns left" ng-show="isConnected">
-                                <a data-dropdown="saveQueueDrop" aria-controls="dropdown" ng-click="addTrackArrayToAdd(sharedProperties.getPlayQueue().queue)"
-                                   aria-expanded="false" class="button red expand radius tiny" ng-class="{disabled: sharedProperties.getPlayQueue().queue.length <= 0}">
-                                    <i class="fa fa-plus fa-lg"></i>&nbsp;Enregistrer
-                                </a>
-                                <ul id="saveQueueDrop" class="f-dropdown text-center" data-dropdown-content>
-                                    <li class="bottom-border">
-                                        <a href="" data-reveal-id="addAlbumToPlaylistModal"
-                                           ng-click="addTrackArrayToAdd(trackArrayToAddToNewPlaylist)">
-                                            <i class="md md-add-box md-lg"></i>&nbsp;Nouvelle playlist
-                                        </a>
-                                    </li>
-                                    <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index">
-                                        <a href=""
-                                           ng-click="sharedProperties.addTrackArrayToPlaylist(trackArrayToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="small-12 medium-5 columns left">
-                                <a ng-click="sharedProperties.resetPlayQueue()" class="button red expand radius tiny"  ng-class="{disabled: sharedProperties.getPlayQueue().queue.length <= 0}">
-                                    <i class="md-delete md-lg" ></i>&nbsp;Effacer
-                                </a>
-                                <ul id="addTrackArrayDrop" class="f-dropdown text-center" data-dropdown-content>
-                                    <li class="bottom-border">
-                                        <a href="" data-reveal-id="addAlbumToPlaylistModal" ng-click="addTrackArrayToAdd(trackArrayToAddToNewPlaylist)">
-                                            &nbsp;Nouvelle playlist
-                                        </a>
-                                    </li>
-                                    <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index">
-                                        <a href="" ng-click="sharedProperties.addTrackArrayToPlaylist(trackArrayToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div class="row">
+                        <div class="small-6 medium-3 large-2 columns left" ng-show="isConnected">
+                            <a data-dropdown="saveQueueDrop" aria-controls="dropdown" ng-click="addTrackArrayToAdd(sharedProperties.getPlayQueue().queue)"
+                               aria-expanded="false" class="button red expand radius tiny" ng-class="{disabled: sharedProperties.getPlayQueue().queue.length <= 0}">
+                                <i class="fa fa-plus fa-lg"></i>&nbsp;Enregistrer
+                            </a>
+                            <ul id="saveQueueDrop" class="f-dropdown text-center" data-dropdown-content>
+                                <li class="bottom-border">
+                                    <a href="" data-reveal-id="addAlbumToPlaylistModal"
+                                       ng-click="addTrackArrayToAdd(trackArrayToAddToNewPlaylist)">
+                                        <i class="md md-add-box md-lg"></i>&nbsp;Nouvelle playlist
+                                    </a>
+                                </li>
+                                <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index">
+                                    <a href=""
+                                       ng-click="sharedProperties.addTrackArrayToPlaylist(trackArrayToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="small-6 medium-3 large-2 columns left">
+                            <a ng-click="sharedProperties.resetPlayQueue()" class="button red expand radius tiny"  ng-class="{disabled: sharedProperties.getPlayQueue().queue.length <= 0}">
+                                <i class="md-delete md-lg" ></i>&nbsp;Effacer
+                            </a>
+                            <ul id="addTrackArrayDrop" class="f-dropdown text-center" data-dropdown-content>
+                                <li class="bottom-border">
+                                    <a href="" data-reveal-id="addAlbumToPlaylistModal" ng-click="addTrackArrayToAdd(trackArrayToAddToNewPlaylist)">
+                                        &nbsp;Nouvelle playlist
+                                    </a>
+                                </li>
+                                <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index">
+                                    <a href="" ng-click="sharedProperties.addTrackArrayToPlaylist(trackArrayToAddToNewPlaylist, playlist.id)">{{playlist.name}}</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
