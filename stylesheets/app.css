@@ -20146,7 +20146,13 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
     width: 100%;
   }
 }
-/* line 33, ../scss/_search.scss */
+@media only screen and (min-width: 40.063em) {
+  /* line 31, ../scss/_search.scss */
+  .search #tabs-container .tabs .tab-title {
+    width: inherit !important;
+  }
+}
+/* line 37, ../scss/_search.scss */
 .search #tabs-container .tabs .tab-title:first-child > a {
   -moz-border-radius-topleft: 0.3125rem;
   -webkit-border-top-left-radius: 0.3125rem;
@@ -20155,7 +20161,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-border-bottom-left-radius: 0.3125rem;
   border-bottom-left-radius: 0.3125rem;
 }
-/* line 37, ../scss/_search.scss */
+/* line 41, ../scss/_search.scss */
 .search #tabs-container .tabs .tab-title:last-child > a {
   -moz-border-radius-topright: 0.3125rem;
   -webkit-border-top-right-radius: 0.3125rem;
@@ -20164,12 +20170,12 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   -webkit-border-bottom-right-radius: 0.3125rem;
   border-bottom-right-radius: 0.3125rem;
 }
-/* line 41, ../scss/_search.scss */
+/* line 45, ../scss/_search.scss */
 .search #tabs-container .tabs .tab-title.active > a {
   border-bottom: solid thick #C60000;
   border-bottom-width: 0.3125rem;
 }
-/* line 46, ../scss/_search.scss */
+/* line 50, ../scss/_search.scss */
 .search #tabs-container .tabs .tab-title a {
   padding: 1rem 2rem;
   background-color: #222222;
@@ -20177,12 +20183,12 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   border-bottom: solid thick #444444;
   border-bottom-width: 0.3125rem;
 }
-/* line 48, ../scss/_search.scss */
+/* line 52, ../scss/_search.scss */
 .search #tabs-container .tabs .tab-title a:hover {
   background-color: #333333;
 }
 @media only screen and (max-width: 40em) {
-  /* line 46, ../scss/_search.scss */
+  /* line 50, ../scss/_search.scss */
   .search #tabs-container .tabs .tab-title a {
     padding: 0.625rem 0;
   }

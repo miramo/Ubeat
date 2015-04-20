@@ -30,6 +30,10 @@
       }
       .tab-title
       {
+        @media #{$medium-up}
+        {
+          width: inherit !important;
+        }
         &:first-child > a
         {
           @include border-left-radius(rem-calc(5));
