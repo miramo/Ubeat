@@ -18294,6 +18294,11 @@ slick .slick-dots li button:before {
 }
 
 /* line 102, ../scss/_style.scss */
+.top-border {
+  border-top: 0.0625rem solid #bdbdbd;
+}
+
+/* line 107, ../scss/_style.scss */
 .custom-reveal-class {
   font-size: 2.5rem;
   line-height: 1;
@@ -18305,13 +18310,13 @@ slick .slick-dots li button:before {
   cursor: pointer;
 }
 
-/* line 107, ../scss/_style.scss */
+/* line 112, ../scss/_style.scss */
 .bump {
   margin-top: 3.125rem;
   padding-right: 1.875rem;
   padding-left: 1.875rem;
 }
-/* line 112, ../scss/_style.scss */
+/* line 117, ../scss/_style.scss */
 .bump .card, .bump .card-shadow {
   padding-bottom: 0;
   overflow: hidden;
@@ -18322,7 +18327,7 @@ slick .slick-dots li button:before {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-/* line 118, ../scss/_style.scss */
+/* line 123, ../scss/_style.scss */
 .bump .card .responsive-img, .bump .card-shadow .responsive-img {
   -moz-border-radius-topleft: 0.3125rem;
   -webkit-border-top-left-radius: 0.3125rem;
@@ -18331,29 +18336,29 @@ slick .slick-dots li button:before {
   -webkit-border-top-right-radius: 0.3125rem;
   border-top-right-radius: 0.3125rem;
 }
-/* line 122, ../scss/_style.scss */
+/* line 127, ../scss/_style.scss */
 .bump .card .text-card, .bump .card-shadow .text-card {
   background: #C60000;
 }
-/* line 125, ../scss/_style.scss */
+/* line 130, ../scss/_style.scss */
 .bump .card .text-card .first-text-card, .bump .card-shadow .text-card .first-text-card, .bump .card .text-card .second-text-card, .bump .card-shadow .text-card .second-text-card {
   font-size: 1rem;
   padding: 0 0.3125rem;
   margin-bottom: 0;
   color: #FFFFFF;
 }
-/* line 132, ../scss/_style.scss */
+/* line 137, ../scss/_style.scss */
 .bump .card .text-card .second-text-card, .bump .card-shadow .text-card .second-text-card {
   font-size: 0.875rem;
 }
-/* line 139, ../scss/_style.scss */
+/* line 144, ../scss/_style.scss */
 .bump .card-shadow {
   -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-/* line 146, ../scss/_style.scss */
+/* line 151, ../scss/_style.scss */
 .post-radius {
   -moz-border-radius-topright: 3px;
   -webkit-border-top-right-radius: 3px;
@@ -18363,7 +18368,7 @@ slick .slick-dots li button:before {
   border-bottom-right-radius: 3px;
 }
 
-/* line 151, ../scss/_style.scss */
+/* line 156, ../scss/_style.scss */
 input[type="search"].pre-radius, input[type="text"].pre-radius {
   -moz-border-radius-topleft: 3px;
   -webkit-border-top-left-radius: 3px;
@@ -18505,8 +18510,47 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
   color: #d9534f;
 }
 
+/* line 134, ../scss/_navbar.scss */
+#auto-completion {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+/* line 138, ../scss/_navbar.scss */
+#auto-completion.f-dropdown.content {
+  padding: 0.05rem 0.0125rem;
+}
+/* line 143, ../scss/_navbar.scss */
+#auto-completion .item-row {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  padding-bottom: 0.125rem;
+}
+/* line 146, ../scss/_navbar.scss */
+#auto-completion .item-row:hover {
+  background-color: #555555;
+  color: #FFFFFF;
+}
+/* line 152, ../scss/_navbar.scss */
+#auto-completion .item-row .item-img {
+  width: 3.125rem;
+  height: 3.125rem;
+  margin-left: 0.3125rem;
+  margin-right: 0.125rem;
+}
+/* line 160, ../scss/_navbar.scss */
+#auto-completion .item-row .item-text {
+  height: 3.75rem;
+  line-height: 3.75rem;
+}
+/* line 165, ../scss/_navbar.scss */
+#auto-completion .item-row .item-text:hover {
+  color: #FFFFFF;
+}
+
 @media only screen and (max-width: 40em) {
-  /* line 136, ../scss/_navbar.scss */
+  /* line 177, ../scss/_navbar.scss */
   .top-bar-section .has-dropdown > a:after {
     content: "";
     display: block;
@@ -18522,7 +18566,7 @@ input[type="search"].pre-radius, input[type="text"].pre-radius {
     right: 0;
   }
 
-  /* line 151, ../scss/_navbar.scss */
+  /* line 192, ../scss/_navbar.scss */
   .button-search {
     margin-top: 0.0625rem;
   }

@@ -326,10 +326,12 @@
                 {
                     for (var j = 0; j < $scope.tracks[i].length; ++j)
                     {
-                        if (currentTrack.trackId == $scope.tracks[i][j].trackId) {
+                        if (currentTrack.trackId == $scope.tracks[i][j].trackId)
+                        {
                             $scope.tracks[i][j].playState = currentTrack.playState;
                         }
-                        else {
+                        else
+                        {
                             $scope.tracks[i][j].playState = $scope.playStates.idle;
                         }
                     }
@@ -938,8 +940,6 @@
         $scope.itemsDisplayLimit = 6;
         $scope.isConnected = sharedProperties.isConnected();
 
-        console.log("Search controller");
-
         var updateUserDataConnectionCallback = function (userDataConnection)
         {
             if (userDataConnection)
@@ -954,7 +954,19 @@
         {
             if (sharedProperties.isConnected())
             {
-               sharedProperties.getUserDataConnection(updateUserDataConnectionCallback);
+                sharedProperties.getUserDataConnection(updateUserDataConnectionCallback);
+                //searchUsersFactory.get(sharedProperties.getTokenCookie(),
+                //    encodeURIComponent($routeParams.element), function (data)
+                //    {
+                //        if (data && data.length > 0)
+                //        {
+                //            $scope.usersResults = data;
+                //        }
+                //    },
+                //    function (err)
+                //    {
+                //
+                //    });
             }
         }
 
@@ -1015,20 +1027,7 @@
             //}
         });
 
-        searchUsersFactory.get(sharedProperties.getTokenCookie(),
-            encodeURIComponent($routeParams.element), function (data)
-            {
-                if (data && data.length > 0)
-                {
-                    $scope.usersResults = data;
-                }
-            },
-            function (err)
-            {
-
-            });
-
-        var computeIsLengthNull = function()
+        var computeIsLengthNull = function ()
         {
             var total = 0;
             for (var i = 0; i < arguments.length; ++i)
@@ -1094,7 +1093,14 @@
                         {
                         });
                 });
-                sharedProperties.getPlaylists(getPlaylistsCallback);
+                if (sharedProperties.isConnected())
+                {
+                    sharedProperties.getPlaylists(getPlaylistsCallback);
+                }
+                else
+                {
+                    sharedPagesStatus.setIsPageLoaded(true);
+                }
             }
         }
 
@@ -1159,7 +1165,7 @@
             $(id).foundation('reveal', 'close');
         }
 
-        var followCallback = function(id, data)
+        var followCallback = function (id, data)
         {
             if (data)
                 updateFollowStatus(id);
@@ -1222,7 +1228,6 @@
                     sharedPagesStatus.setIsPageLoaded(true);
                     setIsFollowing();
                     updateUserDataConnection();
-                    //console.log($scope.userData);
                 }
             },
             function (err)
@@ -1231,7 +1236,7 @@
                     sharedPagesStatus.setCriticalError(err.errorCode, err.message);
             });
 
-        var updateUserDataConnectionCallback = function(userDataConnection)
+        var updateUserDataConnectionCallback = function (userDataConnection)
         {
             if (userDataConnection)
                 $scope.userDataConnection = userDataConnection;
@@ -1310,7 +1315,7 @@
             track.displayPlayButton = false;
         };
 
-        var updateFollowStatus = function(id)
+        var updateFollowStatus = function (id)
         {
             if (id)
             {
@@ -1321,7 +1326,7 @@
                 setIsFollowing();
         }
 
-        var followCallback = function(id, data)
+        var followCallback = function (id, data)
         {
             if (data)
                 updateFollowStatus(id);
@@ -1334,7 +1339,7 @@
 
         $scope.unfollow = function (id)
         {
-           sharedProperties.unfollow(id ? id : $routeParams.id, followCallback);
+            sharedProperties.unfollow(id ? id : $routeParams.id, followCallback);
         };
 
         $scope.isFollowingId = function (id)

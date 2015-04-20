@@ -39,7 +39,6 @@
             {
             }, function (err)
             {
-                token = null;
                 localStorageService.cookie.remove(tokenCookieName);
                 sharedPagesStatus.redirectToHome();
             });
@@ -125,15 +124,9 @@
 
         this.isConnected = function ()
         {
+            token = localStorageService.cookie.get(tokenCookieName);
             if (token)
             {
-                //tokenInfoFactory.get(token, function (data)
-                //{
-                //}, function (err)
-                //{
-                //    localStorageService.cookie.remove(tokenCookieName);
-                //    sharedPagesStatus.redirectToHome();
-                //});
                 return true;
             }
             return false;
@@ -765,7 +758,6 @@
             {
                 connected = val;
                 services.isSecure = val;
-                //factories.isSecure = val;
             }
         }
 

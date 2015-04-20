@@ -99,6 +99,11 @@ slick
   border-bottom: rem_calc(1) solid #bdbdbd;
 }
 
+.top-border
+{
+  border-top: rem_calc(1) solid #bdbdbd;
+}
+
 .custom-reveal-class
 {
   @include reveal-close($color:$reveal-close-color);

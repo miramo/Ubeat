@@ -13,7 +13,8 @@
         });
 
     controllers.controller('NavbarController', function ($scope, $route, $location, sharedPagesStatus, sharedProperties, loginFactory,
-                                                         logoutFactory, signupFactory, localStorageService, searchFactory, searchUsersFactory)
+                                                         logoutFactory, signupFactory, localStorageService, searchFactory, searchUsersFactory,
+                                                         spotifySearchFactory, spotifyArtistFactory)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.sharedProperties = sharedProperties;
@@ -21,6 +22,7 @@
         $scope.signupInfo = {name: "", email: "", password: "", confirmPassword: ""};
         $scope.errorMsg = "";
         $scope.searchesResult = sharedProperties.getSearchResultObj();
+        $scope.sharedProperties = sharedProperties;
         $scope.itemLimit = 3;
         $scope.isSearching = false;
         var searchValue = "";
@@ -80,7 +82,7 @@
             {
                 $scope.searchesResult = searchResult;
 
-                angular.forEach($scope.artists, function (value, key)
+                angular.forEach($scope.searchesResult.artists, function (value, key)
                 {
                     spotifySearchFactory.get({
                         name: value.artistName,
@@ -186,7 +188,6 @@
                     $scope.signupInfo.email = "";
                     $scope.signupInfo.password = "";
                     $scope.signupInfo.confirmPassword = "";
-                    //console.log(err);
                 });
         }
 
@@ -200,7 +201,6 @@
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
-            console.log("1");
             $(document).foundation();
             $(document).foundation('dropdown', 'reflow');
         });

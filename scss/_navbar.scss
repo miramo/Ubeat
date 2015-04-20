@@ -131,6 +131,47 @@
   }
 }
 
+#auto-completion
+{
+  @include border-radius($global-radius);
+
+  &.f-dropdown.content
+  {
+    padding: rem-calc(0.8) rem-calc(0.2);
+  }
+
+  .item-row
+  {
+    @include border-radius($global-radius);
+    &:hover
+    {
+      background-color: $charcoal;
+      color: $white;
+    }
+
+    .item-img
+    {
+      width: rem-calc(50);
+      height : rem-calc(50);
+      margin-left: rem-calc(5);
+      margin-right: rem-calc(2);
+    }
+
+    .item-text
+    {
+      height : rem-calc(60);
+      line-height: rem-calc(60);
+
+      &:hover
+      {
+        color: $white;
+      }
+    }
+
+    padding-bottom: rem-calc(2);
+  }
+}
+
 @media only screen and (max-width: 40em)
 {
   .top-bar-section .has-dropdown > a:after

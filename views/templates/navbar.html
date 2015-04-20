@@ -13,41 +13,7 @@
                     <li class="has-form">
                         <div class="row collapse">
                             <div class="large-10 small-10 columns">
-                                <input data-dropdown="auto-completion" data-options="is_hover:true; hover_timeout:5000" type="search" ng-model='searchElement' class="dream-search pre-radius active" placeholder="Rechercher" ng-keydown="$event.which == 13 && search(searchElement)">
-
-                                <div id="auto-completion" data-dropdown-content class="f-dropdown large content"  aria-autoclose="false" aria-hidden="false" tabindex="-1">
-                                    <div ng-show="isSearching">
-                                        <i class="text-center fa fa-circle-o-notch fa-spin"></i>
-                                    </div>
-                                    <div ng-show="!isSearching">
-                                        <div ng-show="searchesResult.total <= 0">
-                                            <p>Pas de résultats</p>
-                                        </div>
-                                        <div ng-show="searchesResult.total > 0">
-                                            <div ng-show="searchesResult.artists.length > 0">
-                                                <p class="text-center">Artistes</p>
-                                                <div ng-repeat="artist in searchesResult.artists track by $index" ng-if="$index < itemLimit">
-                                                    <a href="#/artist/{{artist.artistId}}">{{artist.artistName}}</a>
-                                                </div>
-                                            </div>
-
-                                            <div ng-show="searchesResult.albums.length > 0">
-                                                <p class="text-center">Albums</p>
-                                                <div ng-repeat="album in searchesResult.albums track by $index" ng-if="$index < itemLimit">
-                                                    <a href="#/album/{{album.collectionId}}">{{album.collectionName}}</a>
-                                                </div>
-                                            </div>
-
-                                            <div ng-show="searchesResult.users.length > 0">
-                                                <p class="text-center">Utilisateurs</p>
-                                                <div ng-repeat="user in searches.users track by $index" ng-if="$index < itemLimit">
-                                                    <a href="#/user/{{user.id}}">{{user.name}}</a>
-                                                </div>
-                                            </div>
-                                            <a href="#/search/{{searchElement}}" ng-show="searchesResult.total > itemLimit">Voir tous les résultats</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <input data-dropdown="auto-completion" data-options="is_hover:true; hover_timeout:50000000" type="search" ng-model='searchElement' class="dream-search pre-radius active" placeholder="Rechercher" ng-keydown="$event.which == 13 && search(searchElement)">
                             </div>
                             <div class="small-2 columns">
                                 <a href="#/search/{{searchElement}}" class="button-search button expand red post-radius"><i class="fi-magnifying-glass"></i></a>
@@ -95,6 +61,48 @@
             </section>
         </nav>
     </div>
+
+    <div id="auto-completion" class="f-dropdown content" data-dropdown-content tabindex="-1">
+        <div ng-show="isSearching">
+            <i class="text-center fa fa-circle-o-notch fa-spin"></i>
+        </div>
+        <div ng-show="!isSearching">
+            <div ng-show="searchesResult.total <= 0">
+                <p class="text-center">Pas de résultats</p>
+            </div>
+            <div ng-show="searchesResult.total > 0">
+                <div ng-show="searchesResult.artists.length > 0">
+                    <p class="text-center"><strong>Artistes</strong></p>
+                    <div class="item-row" ng-repeat="artist in searchesResult.artists track by $index" ng-if="$index < itemLimit">
+                        <a class="item-text ellipsis" href="#/artist/{{artist.artistId}}">
+                            <img class="img-circular item-img" id="img-artist" ng-src="{{artist.image.url}}"/> {{artist.artistName}}</a>
+                    </div>
+                </div>
+
+                <div ng-show="searchesResult.albums.length > 0">
+                    <p class="text-center"><strong>Albums</strong></p>
+                    <div class="item-row" ng-repeat="album in searchesResult.albums track by $index" ng-if="$index < itemLimit">
+                        <a class="item-text ellipsis" href="#/album/{{album.collectionId}}"><img class="item-img" ng-src="{{album.artworkUrl60}}"/>{{album.collectionName}}</a>
+                    </div>
+                </div>
+
+                <div ng-show="searchesResult.users.length > 0 && sharedProperties.isConnected()">
+                    <p class="text-center"><strong>Utilisateurs</strong></p>
+                    <div ng-repeat="user in searchesResult.users track by $index" ng-if="$index < itemLimit">
+                        <a class="item-text ellipsis" href="#/user/{{user.id}}"><img class="item-img" ng-src="{{sharedProperties.getGravatar(user.email, 50)}}"/>{{user.name}}</a>
+                    </div>
+                </div>
+                <div class="top-border text-center">
+                    <a href="#/search/{{searchElement}}" ng-show="searchesResult.total > itemLimit">
+                        <strong>
+                            Voir tous les résultats
+                        </strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="sign-in-modal" class="reveal-modal" data-reveal>
         <div class="row">
             <div class="small-12 large-6 columns auth-plain small-centered">

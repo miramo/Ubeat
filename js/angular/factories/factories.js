@@ -26,10 +26,12 @@
         {
             if (isOnlySecure)
             {
+                console.log("IsConnected");
                 return factories.localSecureUbeatUrl;
             }
             else
             {
+                console.log("IsConnected");
                 return factories.isSecure ? factories.localSecureUbeatUrl : factories.localUnsecureUbeatUrl;
             }
         }
