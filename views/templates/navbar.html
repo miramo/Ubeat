@@ -13,7 +13,9 @@
                     <li class="has-form">
                         <div class="row collapse">
                             <div class="large-10 small-10 columns">
-                                <input data-dropdown="auto-completion" data-options="is_hover:true; hover_timeout:50000000" type="search" ng-model='searchElement' class="dream-search pre-radius active" placeholder="Rechercher" ng-keydown="$event.which == 13 && search(searchElement)">
+                                <input id="search-input" data-dropdown="auto-completion" type="search" ng-model='searchElement'
+                                       class="dream-search pre-radius active" placeholder="Rechercher"
+                                       ng-keydown="$event.which == 13 && search(searchElement)">
                             </div>
                             <div class="small-2 columns">
                                 <a href="#/search/{{searchElement}}" class="button-search button expand red post-radius"><i class="fi-magnifying-glass"></i></a>
@@ -62,7 +64,7 @@
         </nav>
     </div>
 
-    <div id="auto-completion" class="f-dropdown content" data-dropdown-content tabindex="-1">
+    <div id="auto-completion" class="f-dropdown content" data-dropdown-content>
         <div ng-show="isSearching">
             <i class="text-center fa fa-circle-o-notch fa-spin"></i>
         </div>

@@ -205,6 +205,14 @@
             $(document).foundation();
             $(document).foundation('dropdown', 'reflow');
         });
+
+        angular.element(document).ready(function()
+        {
+            //$('#auto-completion').property.watch('aria-expanded', function(id, oldVal, newVal)
+            //{
+            //    console.log("newVal: " + newVal);
+            //});
+        });
     });
 
     controllers.controller('PlaybarController', function ($scope, $route, $location,
