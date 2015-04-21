@@ -154,7 +154,7 @@
         });
     });
 
-    controllers.controller('ArtistController', function ($scope, $routeParams, sharedPagesStatus, session, albumTracksFactory,
+    controllers.controller('ArtistController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties, session, albumTracksFactory,
                                                          artistFactory, artistAlbumsFactory, artistBiographiesFactory, spotifyArtistFactory, spotifySearchFactory)
     {
         sharedPagesStatus.resetPageStatus();
@@ -256,7 +256,7 @@
 
         $scope.addAlbumToPlayQueue = function (album)
         {
-            s.addAlbumToPlayQueue(album);
+            sharedProperties.addAlbumToPlayQueue(album);
         }
 
         $scope.$on('$routeChangeSuccess', function (next, current)
