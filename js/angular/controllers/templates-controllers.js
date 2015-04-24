@@ -43,10 +43,11 @@
                 {
                     autoCompletDropdownElement.css('left', searchInputRow.offset().left);
                     autoCompletDropdownElement.css('top', searchInputRow.offset().bottom - 20);
+                    autoCompletDropdownElement.css('display', 'initial');
                 }
                 else
                 {
-                    autoCompletDropdownElement.css('left', -999999999);
+                    autoCompletDropdownElement.css('display', 'none');
                 }
             }
         }
