@@ -262,17 +262,6 @@
             localStorageService.set("isRandom", $scope.isRandom);
         }
 
-        //angular.element(document).keydown(function (evt)
-        //{
-        //    if (evt.keyCode == 32)
-        //    {
-        //        evt.preventDefault();
-        //
-        //        if (sharedProperties.getPlayQueueLength() > 0)
-        //            $scope.play();
-        //    }
-        //});
-
         $scope.currentTrack =
         {
             currentTime: 0,
@@ -346,7 +335,7 @@
             var track = null;
 
             if ($scope.isRandom)
-                track = sharedProperties.getRandomQueueTrack($scope.isRandom && $scope.isLooping);
+                track = sharedProperties.getRandomQueueTrack($scope.isRandom);
             else
                 track = sharedProperties.getPlayQueueNextTrack(true);
 
