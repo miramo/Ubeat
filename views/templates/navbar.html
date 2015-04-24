@@ -12,10 +12,10 @@
                 <ul class="right">
                     <li class="has-form">
                         <div class="row collapse">
-                            <div class="large-10 small-10 columns">
-                                <input id="search-input" data-dropdown="auto-completion" type="search" ng-model='searchElement'
+                            <div id="search-input-row" class="large-10 small-10 columns">
+                                <input id="search-input" type="search" ng-model='searchElement'
                                        class="dream-search pre-radius active" placeholder="Rechercher"
-                                       ng-keydown="$event.which == 13 && search(searchElement)">
+                                       ng-keydown="$event.which == 13 && search(searchElement)" ng-focus="setInputFocus(true)" ng-blur="setInputFocus(false)">
                             </div>
                             <div class="small-2 columns">
                                 <a href="#/search/{{searchElement}}" class="button-search button expand red post-radius"><i class="fi-magnifying-glass"></i></a>
@@ -64,8 +64,8 @@
         </nav>
     </div>
 
-    <div id="auto-completion" class="f-dropdown content" data-dropdown-content>
-        <div ng-show="isSearching">
+    <div id="auto-completion" class="f-dropdown content" ng-class="isInputFocused ? 'open f-open-dropdown' : ''">
+        <div ng-show="isSearching"  >
             <i class="text-center fa fa-circle-o-notch fa-spin"></i>
         </div>
         <div ng-show="!isSearching">
@@ -76,7 +76,7 @@
                 <div ng-show="searchesResult.artists.length > 0">
                     <p class="text-center"><strong>Artistes</strong></p>
                     <div class="item-row" ng-repeat="artist in searchesResult.artists track by $index" ng-if="$index < itemLimit">
-                        <a class="item-text ellipsis" href="#/artist/{{artist.artistId}}">
+                        <a class="item-text ellipsis" ng-mousedown="sharedPagesStatus.redirectToPage('/artist/' + artist.artistId)">
                             <img class="img-circular item-img" id="img-artist" ng-src="{{artist.image.url}}"/> {{artist.artistName}}</a>
                     </div>
                 </div>
@@ -84,18 +84,17 @@
                 <div ng-show="searchesResult.albums.length > 0">
                     <p class="text-center"><strong>Albums</strong></p>
                     <div class="item-row" ng-repeat="album in searchesResult.albums track by $index" ng-if="$index < itemLimit">
-                        <a class="item-text ellipsis" href="#/album/{{album.collectionId}}"><img class="item-img" ng-src="{{album.artworkUrl60}}"/>{{album.collectionName}}</a>
+                        <a class="item-text ellipsis" ng-mousedown="sharedPagesStatus.redirectToPage('/album/' + album.collectionId)"><img class="item-img" ng-src="{{album.artworkUrl60}}"/>{{album.collectionName}}</a>
                     </div>
                 </div>
-
                 <div ng-show="searchesResult.users.length > 0 && session.isConnected()">
                     <p class="text-center"><strong>Utilisateurs</strong></p>
                     <div class="item-row" ng-repeat="user in searchesResult.users track by $index" ng-if="$index < itemLimit">
-                        <a class="item-text ellipsis" href="#/user/{{user.id}}"><img class="item-img" ng-src="{{sharedProperties.getGravatar(user.email, 50)}}"/>{{user.name}}</a>
+                        <a class="item-text ellipsis" ng-mousedown="sharedPagesStatus.redirectToPage('/user/' + user.id)"><img class="item-img" ng-src="{{sharedProperties.getGravatar(user.email, 50)}}"/>{{user.name}}</a>
                     </div>
                 </div>
                 <div class="top-border text-center">
-                    <a href="#/search/{{searchElement}}" ng-show="searchesResult.total > itemLimit">
+                    <a ng-mousedown="sharedPagesStatus.redirectToPage('/search/' + searchElement)" ng-show="searchesResult.total > itemLimit">
                         <strong>
                             Voir tous les résultats
                         </strong>

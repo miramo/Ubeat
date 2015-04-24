@@ -1008,6 +1008,12 @@
             return saveQueuePreviousPage;
         }
 
+        this.redirectToPage = function(url)
+        {
+            $location.path(url);
+            $route.reload();
+        }
+
         this.redirectToHome = function ()
         {
             $location.path("/");

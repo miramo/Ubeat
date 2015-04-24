@@ -24,12 +24,32 @@
         $scope.signupInfo = {name: "", email: "", password: "", confirmPassword: ""};
         $scope.errorMsg = "";
         $scope.searchesResult = sharedProperties.getSearchResultObj();
-        $scope.sharedProperties = sharedProperties;
+        $scope.sharedPagesStatus = sharedPagesStatus;
         $scope.itemLimit = 3;
         $scope.isSearching = false;
+        $scope.isInputFocused = false;
         var searchValue = "";
         var searches = [];
         var currentSearchDone = true;
+        var autoCompletDropdownElement = null;
+        var searchInputRow = null;
+
+        $scope.setInputFocus = function(val)
+        {
+            $scope.isInputFocused = val;
+            if (autoCompletDropdownElement && searchInputRow)
+            {
+                if ($scope.isInputFocused)
+                {
+                    autoCompletDropdownElement.css('left', searchInputRow.offset().left);
+                    autoCompletDropdownElement.css('top', searchInputRow.offset().bottom - 20);
+                }
+                else
+                {
+                    autoCompletDropdownElement.css('left', -999999999);
+                }
+            }
+        }
 
         $scope.login = function ()
         {
@@ -208,10 +228,8 @@
 
         angular.element(document).ready(function()
         {
-            //$('#auto-completion').property.watch('aria-expanded', function(id, oldVal, newVal)
-            //{
-            //    console.log("newVal: " + newVal);
-            //});
+            autoCompletDropdownElement = $('#auto-completion');
+            searchInputRow = $('#search-input-row');
         });
     });
 
