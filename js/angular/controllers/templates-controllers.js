@@ -255,6 +255,19 @@
 
         $scope.switchIsLooping = function ()
         {
+            switch ($scope.repeatState)
+            {
+                case $scope.repeatStatesEnum.none:
+                    $scope.repeatStatesEnum = $scope.repeatStatesEnum.repeat;
+                    break;
+                case $scope.repeatStatesEnum.repeat:
+                    $scope.repeatStatesEnum = $scope.repeatStatesEnum.repeatOne;
+                    break;
+                case $scope.repeatStatesEnum.repeatOne:
+                    $scope.repeatStatesEnum = $scope.repeatStatesEnum.none;
+                    break;
+            }
+
             $scope.isLooping = !$scope.isLooping;
             localStorageService.set("isLooping", $scope.isLooping);
         }
