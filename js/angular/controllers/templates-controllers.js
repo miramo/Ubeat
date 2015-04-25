@@ -246,6 +246,9 @@
         $scope.playQueue = sharedProperties.getPlayQueue().queue;
         $scope.volume = localStorageService.get("volume");
         $scope.isLooping = localStorageService.get("isLooping");
+        $scope.repeatStatesEnum = {none : 1, repeat : 2, repeatOne : 3};
+        $scope.repeatState = $scope.repeatStatesEnum.none;
+
         var currentTrackTime = localStorageService.get("currentTrackTime");
         var currentTrackId = localStorageService.get("currentTrackId");
         var isFirstLoad = true;
