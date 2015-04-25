@@ -8,7 +8,9 @@
             <div id="time-container-duration" ng-show="myAudio.currentTrack != 0">{{myAudio.formatDuration}}</div>
         </div>
         <div class="player-center">
-            <a class="player-button" ng-click="switchIsLooping()" ng-class="isLooping ? 'active' : ''"><i class="md md-repeat md-lg"></i></a>
+            <a class="player-button" ng-click="switchIsLooping()" ng-class="{'active': repeatState != repeatStatesEnum.none}">
+                <i class="md md-lg" ng-class="{'md-repeat': (repeatState == repeatStatesEnum.repeat || repeatState == repeatStatesEnum.none), 'md-repeat-one': (repeatState == repeatStatesEnum.repeatOne)}"></i>
+            </a>
             <a class="player-button" ng-click="prev()" ng-class="sharedProperties.getPlayQueueLength() > 1 ? '' : 'disabled'"><i class="fa fa-fast-backward fa-2x"></i></a>
             <a class="player-button play" ng-click='play()' ng-class="sharedProperties.getPlayQueueLength() > 0 ? '' : 'disabled'"><i class="fa fa-2x" ng-class="{'fa-pause': myAudio.playing, 'fa-play': !myAudio.playing}"></i></a>
             <a class="player-button" ng-click="next()" ng-class="sharedProperties.getPlayQueueLength() > 1 ? '' : 'disabled'"><i class="fa fa-fast-forward fa-2x"></i></a>
