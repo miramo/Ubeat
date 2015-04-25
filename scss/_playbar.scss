@@ -44,6 +44,8 @@
   .player-button
   {
     @extend .disable-select;
+    $color: $white;
+    $color-active: $primary-color;
     &.disabled
     {
       cursor: not-allowed;
@@ -53,7 +55,15 @@
     }
     &.active > i
     {
-      color: $primary-color;
+      color: $color-active;
+      &:hover
+      {
+        color: lighten($color-active, 10%);
+      }
+      &:active
+      {
+        color: $color-active;
+      }
     }
     &.play > i
     {
@@ -63,13 +73,13 @@
     {
       &:hover
       {
-        color: $aluminum;
+        color: darken($color, 40%);
       }
       &:active
       {
-        color: $steel;
+        color: darken($color, 60%);
       }
-      color: $white;
+      color: $color;
       height: ($footer-height - $slider-player-height);
       line-height: ($footer-height - $slider-player-height);
       vertical-align: middle;
@@ -173,7 +183,6 @@
       }
     }
   }
-
   .player-right
   {
     #player-right-wrapper
