@@ -999,31 +999,33 @@
                                     break;
                             }
                         }
-
-                        if (session.isConnected())
-                        {
-                            searchUsersFactory.get(session.getToken(),
-                                encodeURIComponent(searchStr), function (data)
-                                {
-                                    if (data && data.length > 0)
-                                    {
-                                        searchResult.users = data;
-                                    }
-                                    callback(searchResult);
-                                },
-                                function (err)
-                                {
-                                    callback(searchResult);
-                                });
-                        }
-                        else
-                        {
-                            callback(searchResult);
-                        }
                     }
                     else
                     {
                         sharedPagesStatus.setIsPageLoaded(true);
+                    }
+
+                    if (session.isConnected())
+                    {
+                        console.log("SearchStr: " + searchStr);
+                        searchUsersFactory.get(session.getToken(),
+                            encodeURIComponent(searchStr), function (data)
+                            {
+                                if (data && data.length > 0)
+                                {
+                                    console.log("DataUsers: " + data.length);
+                                    searchResult.users = data;
+                                    ++searchResult.total;
+                                }
+                                callback(searchResult);
+                            },
+                            function (err)
+                            {
+                                callback(searchResult);
+                            });
+                    }
+                    else
+                    {
                         callback(searchResult);
                     }
                 }, function (err)
