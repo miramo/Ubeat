@@ -1,33 +1,9 @@
-<div ng-show="sharedPagesStatus.getIsPageLoaded()">
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && !sharedPagesStatus.getIsCriticalError()">
     <div class="row">
         <div class="small-12 columns">
             <div class="panel new-artists radius">
                 <h2 class="text-center"><i class="md-recent-actors md-lg left"></i> Derniers artistes</h2>
-                <div id="artists-slider" class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
-                    <slick class="slider-index" ng-switch-when="true"
-                           speed="300" center-mode="true" infinite="true" focus-on-select="true" dots="true"
-                           slides-to-show="5" slides-to-scroll="1" swipe-to-slide="true" autoplay="true"
-                           autoplay-speed="10000"
-                           responsive="[{breakpoint: 1280,settings  : {autoplay    : false,slidesToShow: 5}},{breakpoint: 700,settings  : {autoplay    : false,slidesToShow: 3}},{breakpoint: 580,settings  : {autoplay    : false,dots        : false,slidesToShow: 1}}]">
-                        <div class="slider-index-element"
-                             ng-repeat="homeArtist in sharedProperties.homeArtists track by $index">
-                            <a href="#/artist/{{homeArtist.artistId}}">
-                                <div class="row bump">
-                                    <div class="row">
-                                        <div class="card">
-                                            <div class="responsive-img" back-img="{{homeArtist.image.url}}"></div>
-                                            <div class="row collapse text-card">
-                                                <div class="text-center">
-                                                    <p class="first-text-card ellipsis">{{homeArtist.artistName}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </slick>
-                </div>
+                <home-artist-slider></home-artist-slider>
             </div>
         </div>
     </div>
@@ -35,35 +11,7 @@
         <div class="small-12 columns">
             <div class="panel new-albums radius">
                 <h2 class="text-center"><i class="md-album md-lg left"></i> Derniers albums</h2>
-                <div id="albums-slider" class="row" ng-switch on="sharedPagesStatus.getIsPageLoaded()">
-                    <slick class="slider-index" ng-switch-when="true"
-                           speed="300" center-mode="true" infinite="true" focus-on-select="true" dots="true"
-                           slides-to-show="5" slides-to-scroll="1" swipe-to-slide="true" autoplay="false"
-                           responsive="[{breakpoint: 1280,settings  : {autoplay    : false,slidesToShow: 5}},{breakpoint: 700,settings  : {autoplay    : false,slidesToShow: 3}},{breakpoint: 580,settings  : {autoplay    : false,dots        : false,slidesToShow: 1}}]">
-                        <div class="slider-index-element"
-                             ng-repeat="album in sharedProperties.homeAlbums track by $index">
-                            <div load-progress="{{$index}}" data-callback="albumLoad" }>
-                                <a href="#/album/{{album.collectionId}}">
-                                    <div class="row bump">
-                                        <div class="row">
-                                            <div class="card">
-                                                <div class="responsive-img" back-img="{{album.artworkUrl300}}"></div>
-                                                <div class="row collapse text-card">
-                                                    <div class="text-center">
-                                                        <p class="first-text-card ellipsis">{{album.collectionName}}</p>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <p class="second-text-card ellipsis">{{album.artistName}}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </slick>
-                </div>
+                <home-album-slider></home-album-slider>
             </div>
         </div>
     </div>

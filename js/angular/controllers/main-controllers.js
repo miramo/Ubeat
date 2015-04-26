@@ -4,9 +4,9 @@
 
 (function ()
 {
-    var controllers = angular.module('mainControllers', ['factories', 'directives', 'services', 'ngAudio', 'truncate']);
+    var controllers = angular.module('mainControllers', ['factories', 'directives', 'services', 'truncate']);
 
-    controllers.controller('MainController', function ($scope, sharedProperties, sharedPagesStatus)
+    controllers.controller('MainController', function ($scope, $http, sharedProperties, sharedPagesStatus, tokenInfoFactory, localStorageService)
     {
         $scope.isPageLoaded = sharedPagesStatus.getIsPageLoaded();
         $scope.sharedProperties = sharedProperties;
@@ -15,7 +15,29 @@
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
             $("body").css("background-image", "none");
-            // call your functions here
+        });
+
+        $(document).ready(function ()
+        {
+            var token = localStorageService.cookie.get('token');
+
+            if (token)
+            {
+                tokenInfoFactory.get(token, function (data)
+                    {
+                        if (data.email && data.name && data.token && data.id)
+                        {
+                            sharedProperties.setInfoConnection(data.email, data.name, data.token, data.id);
+                            sharedProperties.setConnected(true);
+                            //console.log(data);
+                        }
+                    },
+                    function (err)
+                    {
+                        sharedProperties.setConnected(false);
+                        console.log(err);
+                    });
+            }
         });
     });
 

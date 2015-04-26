@@ -181,9 +181,18 @@ button.radius, .button.radius {
   border-radius: 3px;
 }
 
-.button.red {
-  background-color: $primary-color;
-}
-.button.red:hover, .button.red:focus {
-  background-color: scale-color($primary-color, $lightness: 15%);
+button, .button
+{
+  &.red
+  {
+    background-color: $primary-color;
+  }
+  &.red:hover, &.red:focus
+  {
+    background-color: scale-color($primary-color, $lightness: 15%);
+    &.disabled
+    {
+      background-color: $primary-color;
+    }
+  }
 }

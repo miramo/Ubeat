@@ -35,6 +35,7 @@
     input, a
     {
       margin-top: rem-calc(7);
+      height: rem-calc(37);
     }
     .icon
     {
@@ -81,8 +82,6 @@
     {
       display: inline;
       width: 100%;
-//      height: rem-calc(100);
-//      line-height: rem-calc(100);
     }
   }
 }
@@ -100,7 +99,7 @@
     height: rem-calc(35);
     line-height: rem-calc(35);
   }
-  a
+  button
   {
     margin-top: rem-calc(3);
   }

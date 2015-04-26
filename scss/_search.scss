@@ -1,0 +1,69 @@
+.search
+{
+  .artists-limit-list, .albums-limit-list, .users-limit-list,
+  .artists-list, .albums-list, .users-list
+  {
+    @media #{$small-only}
+    {
+      @include block-grid(3);
+    }
+    @media #{$medium-only}
+    {
+      @include block-grid(4);
+    }
+    @media #{$large-up}
+    {
+      @include block-grid(6);
+    }
+  }
+  #tabs-container
+  {
+    text-align: center;
+    .tabs
+    {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      @media #{$small-only}
+      {
+        width: 100%;
+      }
+      .tab-title
+      {
+        @media #{$medium-up}
+        {
+          width: inherit !important;
+        }
+        &:first-child > a
+        {
+          @include border-left-radius(rem-calc(5));
+        }
+        &:last-child > a
+        {
+          @include border-right-radius(rem-calc(5));
+        }
+        &.active > a
+        {
+          border-bottom: solid thick $primary-color;
+          border-bottom-width: rem-calc(5);
+        }
+        a
+        {
+          &:hover
+          {
+            background-color: $oil;
+          }
+          padding: rem-calc(16) rem-calc(32);
+          @media #{$small-only}
+          {
+            padding: rem-calc(10) 0;
+          }
+          background-color: $jet;
+          color: $white;
+          border-bottom: solid thick $tuatara;
+          border-bottom-width: rem-calc(5);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@mixin ui-slider($display, $backgroundSlider, $heightSlider, $widthSlider, $backgroundRange, $handleSize, $handleBackground,
+                  $handleSizeBorder, $handleColorBorder, $handleBorderRadius, $handleSizeHover, $handleSizeBorderHover, $handleBackgroundHover)
+{
+  .ui-slider
+  {
+    position: relative;
+    display: $display;
+    background: $backgroundSlider;
+    border: none;
+    z-index: 1;
+    height: $heightSlider;
+    width: $widthSlider;
+    border-radius: 0;
+    cursor: pointer;
+    .ui-slider-range
+    {
+      background: $backgroundRange;
+      height: $heightSlider;
+      border-radius: 0;
+    }
+    .ui-slider-handle
+    {
+      z-index: 2;
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      height: $handleSize;
+      width: $handleSize;
+      background: $handleBackground;
+      border: $handleSizeBorder solid $handleColorBorder;
+      outline: 0;
+      @include border-radius($handleBorderRadius);
+      @include translate(-50%, -30%);
+      &:hover, &.ui-state-active
+      {
+        height: $handleSizeHover;
+        width: $handleSizeHover;
+        border-width: $handleSizeBorderHover;
+        background: $handleBackgroundHover;
+      }
+    }
+  }
+}

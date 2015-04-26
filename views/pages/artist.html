@@ -1,4 +1,4 @@
-<div ng-show="sharedPagesStatus.getIsPageLoaded() && !sharedPagesStatus.getIsCriticalError()">
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && !sharedPagesStatus.getIsCriticalError()" class="artist">
     <div class="artist-header">
         <div class="row bloc-artist-img-infos">
             <div class="album-artist-picture" ng-switch on="artistPictureLoaded">
@@ -26,12 +26,12 @@
             <div class="panel radius">
                 <h2>Albums</h2>
                 <ul class="artist-albums-list">
-                    <li class="artist-panel" ng-repeat="album in albums | orderBy:'-releaseDateObj'">
+                    <li class="artist-panel album-card" ng-repeat="album in albums | orderBy:'-releaseDateObj'">
                         <div class="row bump">
                             <div class="row">
                                 <div class="card-shadow">
-                                    <div class="artist-albums-img" back-img="{{album.artworkUrl300}}"></div>
-                                    <div class="row collapse text-card-artist-album">
+                                    <div class="responsive-img" ng-click="addAlbumToPlayQueue(album)" back-img="{{album.artworkUrl300}}"></div>
+                                    <div class="row collapse text-card">
                                         <a href="#/album/{{album.collectionId}}">
                                             <div class="text-center">
                                                 <p class="first-text-card ellipsis">{{album.collectionName}}</p>
@@ -50,7 +50,3 @@
         </div>
     </div>
 </div>
-<div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsCriticalError()">
-    <notfound></notfound>
-</div>
-<script type="text/javascript" src="js/libs/stackblur.js"></script>

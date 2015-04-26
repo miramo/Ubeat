@@ -1,23 +1,27 @@
 .notfound
 {
-  width      : rem-calc(800);
-  height     : rem-calc(320);
-  max-width  : 100%;
-  max-height : 100%;
-  position   : fixed;
-  color      : #ffffff;
-  top        : 50%;
-  bottom     : 50%;
-  right      : 50%;
-  left       : 50%;
-  margin     : rem_calc(-200) 0 0 rem-calc(-400);
-  text-align : center;
-  z-index    : -20;
+  img
+  {
+    display : block;
+    margin  : 0 auto;
+  }
+  width    : 100%;
+  position : fixed;
+  top      : 50%;
+  left     : 50%;
+  @include translate(-50%, -50%);
+  z-index  : -20;
+}
+
+.warning
+{
+  width  : rem_calc(200px);
+  height : rem_calc(200px);
 }
 
 .error-msg
 {
-  width: 100%;
-  position: fixed;
-  top: 45%;
+  width    : 100%;
+  position : fixed;
+  top      : 45%;
 }

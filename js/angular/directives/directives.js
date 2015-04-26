@@ -4,7 +4,7 @@
 
 (function ()
 {
-    var ubeatApp = angular.module('directives', []);
+    var ubeatApp = angular.module('directives', ['homeDirectives', 'albumDirectives']);
 
     ubeatApp.directive('navBar', function ()
     {
@@ -61,6 +61,22 @@
         };
     });
 
+    ubeatApp.directive('preventDefault', function ()
+    {
+        var linkFn = function (scope, element, attrs)
+        {
+            $(element).on("click", function (event)
+            {
+                event.preventDefault();
+            });
+        };
+
+        return {
+            restrict: 'A',
+            link: linkFn
+        }
+    });
+
     ubeatApp.directive('backImg', function ()
     {
         return function (scope, element, attrs)
@@ -71,6 +87,18 @@
                     'background-image': 'url(' + value + ')',
                     'background-size' : 'cover'
                 });
+            });
+        };
+    });
+
+    ubeatApp.directive('beforeImg', function ()
+    {
+        return function (scope, element, attrs)
+        {
+            attrs.$observe('beforeImg', function (value)
+            {
+                var style = "<style>#"+element[0].id+":before{background-image:url("+value+")}</style>";
+                angular.element("head").append(style);
             });
         };
     });

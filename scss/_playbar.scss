@@ -1,172 +1,218 @@
 .play-bar
 {
+  $slider-player-background: $base;
+  $slider-player-range-background: $primary-color;
+  $slider-player-height: rem-calc(5);
+  $slider-player-width: 100%;
+  $slider-player-handle-size: rem-calc(15);
+  $slider-player-handle-size-hover: $slider-player-handle-size + rem-calc(5);
+  $slider-player-handle-radius: rem-calc(50);
+  $slider-player-handle-color: $base;
+  $slider-player-handle-color-border: $vapor;
+  $slider-player-handle-border-width: rem-calc(5);
+  $slider-player-handle-border-width-hover: $slider-player-handle-border-width + rem-calc(1);
+  $slider-player-handle-color-hover: $primary-color;
+
+  .background
+  {
+    @include background-image(linear-gradient(top, rgba(black, 0) 0%,rgba(black, .9) 100%));
+    @include sticky-bottom-footer($footer-height);
+    z-index: -1;
+  }
   background: rgba(0, 0, 0, .7);
   @include single-transition(all, 300ms, linear);
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: $footer-height;
-  @include background-image(linear-gradient(top, rgba(black, 0) 0%,rgba(black, .9) 100%));
+  @include sticky-bottom-footer($footer-height);
+  &:hover .player-top #time-container-current, &:hover .player-top #time-container-duration
+  {
+    opacity: 1;
+    visibility: visible;
+  }
   &:hover
   {
     background: rgba(0, 0, 0, .9);
     @include box-shadow(0 0 4px rgba(black, .14), 0 -4px 8px rgba(black, .28));
   }
-}
-
-.bottom-bar
-{
-  height: $footer-height;
-}
-
-.bottom-bar i:hover
-{
-  color: $primary-color;
-  cursor: pointer;
-}
-
-.play-area
-{
-  text-align: center;
-  @include grid-column(6);
-  @media #{$small-only} {
-    @include grid-column(12);
-  }
-}
-
-.play-button
-{
-  color: #FFFFFF;
-  padding-right: rem-calc(5);
-  padding-left: rem-calc(5);
-  padding-top: rem-calc(15);
-  list-style-type: none;
-  display: inline-block;
-}
-
-.volume
-{
-  color: #FFFFFF;
-  padding-right: rem-calc(0);
-  padding-left: rem-calc(0);
-
-  list-style-type: none;
-
-  display: inline-block;
-}
-
-.bottom-right
-{
-  color: #FFFFFF;
-  padding-right: rem-calc(5);
-  padding-left: rem-calc(5);
-
-  padding: rem-calc(0);
-  list-style-type: none;
-
-  display: inline-block;
-
-  margin-right: rem-calc(5);
-}
-
-.test
-{
-  overflow:hidden;
-  width: rem-calc(35);
-  height: rem-calc(50);
-  margin-bottom: rem-calc(0);
-  margin-left: rem-calc(5);
-  padding: rem-calc(0);
-  -webkit-transition:width 0.5s;
-  transition:width 0.5s;
-
-}
-
-.test i
-{
-  width: rem-calc(35);
-  padding-top: rem-calc(15);
-}
-
-.test li
-{
-  white-space:nowrap;
-}
-
-.test:hover
-{
-  width: rem-calc(150);
-  height: rem-calc(50);
-  visibility: visible;
-}
-
-.bottom-music-list
-{
-  line-height: rem-calc(0);
-  margin-top: rem-calc(15);
-
-}
-
-#seek-volume
-{
-  vertical-align:middle;
-  -webkit-appearance: none;
-  border-radius: rem-calc(10);
-  background: #9b9ea1;
-  width: rem-calc(100);
-  height: rem-calc(10);
-  margin: rem-calc(0);
-  margin-bottom: rem-calc(15);
-  outline: 0;
-}
-
-#seek-volume::-webkit-slider-thumb
-{
-  -webkit-appearance: none;
-  width: rem-calc(12);
-  height: rem-calc(12);
-  border-radius: rem-calc(10);
-
-  background: $primary-color;
-}
-
-#seek-music
-{
-  -webkit-appearance: none;
-//  border-radius: rem-calc(5);
-  border-bottom-right-radius: rem-calc(5);
-  border-bottom-left-radius: rem-calc(5);
-
-  border-top: rem-calc(0);
-  margin-top: rem-calc(0);
-
-  position: absolute;
-  top: rem-calc(0);
-  width: 100%;
-
-  z-index: 99;
-
-  height: rem-calc(8);
-  background: #9b9ea1;
-  outline: 0;
-}
-
-#seek-music::-webkit-slider-thumb
-{
-  -webkit-appearance: none;
-  width: rem-calc(18);
-  height: rem-calc(18);
-  border-radius: rem-calc(10);
-
-  background: $primary-color;
-}
-
-.ul-volume
-{
-
-  @media #{$medium-up}
+  i.player-button
   {
-    @include grid-column(8);
+    @extend .disable-select;
+    color: $white;
+    height: ($footer-height - $slider-player-height);
+    line-height: ($footer-height - $slider-player-height);
+    vertical-align: middle;
+    margin: 0 rem-calc(15);
+  }
+  .player-button
+  {
+    @extend .disable-select;
+    $color: $white;
+    $color-active: $primary-color;
+    &.disabled
+    {
+      cursor: not-allowed;
+      pointer-events: none;
+      opacity: .65;
+      filter: alpha(opacity=65);
+    }
+    &.active > i
+    {
+      color: $color-active;
+      &:hover
+      {
+        color: lighten($color-active, 10%);
+      }
+      &:active
+      {
+        color: $color-active;
+      }
+    }
+    &.play > i
+    {
+      width: rem-calc(27);
+    }
+    i
+    {
+      &:hover
+      {
+        color: darken($color, 40%);
+      }
+      &:active
+      {
+        color: darken($color, 60%);
+      }
+      color: $color;
+      height: ($footer-height - $slider-player-height);
+      line-height: ($footer-height - $slider-player-height);
+      vertical-align: middle;
+      margin: 0 rem-calc(15);
+    }
+  }
+  .player-center
+  {
+    position: absolute;
+    display: flex;
+    left: 50%;
+    @include translateX(-50%);
+  }
+  .player-top
+  {
+    #time-container-current, #time-container-duration
+    {
+      z-index: 3;
+      font-size: rem-calc(10);
+      font-weight: bold;
+      position: absolute;
+      top: 0;
+      line-height: rem-calc(13);
+      padding: rem-calc(4);
+      opacity: 0;
+      visibility: hidden;
+      cursor: default;
+      @include single-transition(opacity, 300ms, linear);
+      @include translateY(-30%);
+    }
+    #time-container-current
+    {
+      left: 0;
+      background: $primary-color;
+      color: $white;
+      @include border-right-radius(rem-calc(4));
+    }
+    #time-container-duration
+    {
+      right: 0;
+      background: $gainsboro;
+      color: $aluminum;
+      @include border-left-radius(rem-calc(4));
+    }
+    @include ui-slider(block, $slider-player-background, $slider-player-height, $slider-player-width,
+            $slider-player-range-background, $slider-player-handle-size, $slider-player-handle-color,
+            $slider-player-handle-border-width, $slider-player-handle-color-border, $slider-player-handle-radius,
+            $slider-player-handle-size-hover, $slider-player-handle-border-width-hover, $slider-player-handle-color-hover);
+  }
+  .player-left
+  {
+    height: $footer-height;
+    width: 30%;
+    .image-wrapper
+    {
+      position: relative;
+      top: 0;
+      left: 0;
+      display: inline-block;
+      margin-right: rem-calc(10);
+      height: $footer-height;
+      width: $footer-height;
+      border: 0;
+      .img
+      {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        height: 100%;
+        width: 100%;
+      }
+    }
+    .text-wrapper
+    {
+      color: $white;
+      display: inline-block;
+      height: $footer-height;
+      width: calc(100% - 80px);
+      overflow: hidden;
+      white-space: nowrap;
+      #player-song-title
+      {
+        height: ($footer-height - $slider-player-height) / 2;
+        line-height: ($footer-height - $slider-player-height) / 2;
+        font-weight: bold;
+        font-size: rem-calc(18);
+      }
+      .player-artist-album-wrapper
+      {
+        #player-artist, .player-dash, #player-album
+        {
+          color: $smoke;
+          height: ($footer-height - $slider-player-height) / 2;
+          line-height: ($footer-height - $slider-player-height) / 2;
+          font-size: rem-calc(14);
+          display: inline;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+  .player-right
+  {
+    #player-right-wrapper
+    {
+      display: inline;
+      height: ($footer-height - $slider-player-height);
+      width: auto;
+      .player-button-queue, .player-button-volume
+      {
+        float: right;
+      }
+      .player-button-volume:hover + #slider-wrapper,
+      #slider-wrapper:hover,
+      #slider-wrapper.ui-slider-active
+      {
+        opacity: 1;
+        visibility: visible;
+      }
+      #slider-wrapper
+      {
+        display: inline-block;
+        height: $footer-height;
+        opacity: 0;
+        visibility: hidden;
+        @include single-transition(opacity, 300ms, linear);
+        @include ui-slider(inline-block, $slider-player-background, $slider-player-height, rem-calc(90),
+                $slider-player-range-background, $slider-player-handle-size, $slider-player-handle-color,
+                $slider-player-handle-border-width, $slider-player-handle-color-border, $slider-player-handle-radius,
+                $slider-player-handle-size-hover, $slider-player-handle-border-width-hover, $slider-player-handle-color-hover);
+      }
+    }
   }
 }

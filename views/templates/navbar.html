@@ -12,54 +12,111 @@
                 <ul class="right">
                     <li class="has-form">
                         <div class="row collapse">
-                            <div class="large-10 small-10 columns">
-                                <input type="text" class="dream-search pre-radius" placeholder="Rechercher">
+                            <div id="search-input-row" class="large-10 small-10 columns">
+                                <input id="search-input" type="search" ng-model='searchElement'
+                                       class="dream-search pre-radius active" placeholder="Rechercher"
+                                       ng-keydown="$event.which == 13 && search(searchElement)" ng-focus="setInputFocus(true)" ng-blur="setInputFocus(false)">
                             </div>
                             <div class="small-2 columns">
-                                <a href="" class="button-search button expand red post-radius"><i class="fi-magnifying-glass"></i></a>
+                                <a href="#/search/{{searchElement}}" class="button-search button expand red post-radius"><i class="fi-magnifying-glass"></i></a>
                             </div>
                         </div>
                     </li>
                     <li class="divider"></li>
-                    <li class="hide-for-small-only sign-up-button"><a href="" class="button red sign-up" data-reveal-id="sign-up-modal">Inscription</a></li>
-                    <li class="show-for-small-only"><a href="" class="sign-up" data-reveal-id="sign-up-modal"><i class="md md-person-add md-lg"></i> Inscription</a></li>
-                    <li class="hide-for-small-only sign-in-button"><a href="" class="sign-in" data-reveal-id="sign-in-modal">Connection</a></li>
-                    <li class="show-for-small-only"><a href="" class="sign-in" data-reveal-id="sign-in-modal"><i class="fa fa-sign-in fa-lg"></i> Connection</a></li>
-                    <!--<li class="has-dropdown not-click">-->
-                        <!--<a href="">-->
-                            <!--<div id="profile-topbar">-->
-                                <!--<div class="img-circular" id="profile-picture" back-img="http://i.imgur.com/ztQQtqn.jpg"></div>-->
-                                <!--<div class="hide-for-medium-only">-->
-                                    <!--<div id="profile-name">John Doe</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</a>-->
-                        <!--<ul class="dropdown">-->
-                            <!--<li ng-class="{active: sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().playlist)}"><a href="#/playlists/"><i class="md md-my-library-music md-lg"></i> Listes de lectures</a></li>-->
-                            <!--<li><a href=""><i class="fa fa-cog fa-lg"></i> Paramètres</a></li>-->
-                            <!--<li class="divider"></li>-->
-                            <!--<li><a href=""><i class="fa fa-sign-out fa-lg"></i> Se déconnecter</a></li>-->
-                        <!--</ul>-->
-                    <!--</li>-->
+                    <ul id="connection-button-large" ng-class="{hide: sharedProperties.getConnected()}">
+                        <li class="hide-for-small-only"><a href="" class="button red sign-up" data-reveal-id="sign-up-modal">Inscription</a></li>
+                        <li class="hide-for-small-only"><a href="" class="sign-in" data-reveal-id="sign-in-modal">Connexion</a></li>
+                    </ul>
+                    <ul id="connection-button-mobile" ng-class="{hide: sharedProperties.getConnected()}">
+                        <li class="show-for-small-only"><a href="" class="sign-up" data-reveal-id="sign-up-modal"><i class="md md-person-add md-lg"></i>&nbsp;Inscription</a></li>
+                        <li class="show-for-small-only"><a href="" class="sign-in" data-reveal-id="sign-in-modal"><i class="fa fa-sign-in fa-lg"></i>&nbsp;Connexion</a></li>
+                    </ul>
+                    <li class="has-dropdown not-click" ng-class="{hide: !sharedProperties.getConnected()}">
+                        <a href="">
+                            <div id="profile-topbar">
+                                <div class="img-circular" id="profile-picture" back-img="{{sharedProperties.getGravatar(sharedProperties.getInfoConnection().email, 50)}}"></div>
+                                <div class="hide-for-medium-only">
+                                    <div id="profile-name">{{sharedProperties.getInfoConnection().name}}</div>
+                                </div>
+                            </div>
+                        </a>
+                        <ul class="dropdown">
+                            <li ng-class="{active: sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().playlist)}">
+                                <a href="#/playlists/"><i class="md md-my-library-music md-lg"></i>&nbsp;Listes de lectures</a>
+                            </li>
+                            <li ng-class="{active: (sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().user) && (sharedProperties.getInfoConnection().id == sharedPagesStatus.getCurrentIdUser()))}">
+                                <a href="#/user/{{sharedProperties.getInfoConnection().id}}"><i class="fa fa-user fa-lg"></i>&nbsp;Mon profil</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li ng-click="logout()"><a href=""><i class="fa fa-sign-out fa-lg"></i>&nbsp;Se déconnecter</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <!-- Left Nav Section -->
                 <ul class="left">
+                    <li class="show-for-small-only" ng-class="{active: sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().playQueue)}">
+                        <a ng-click="sharedPagesStatus.togglePlayQueue()" ng-href="{{sharedProperties.getQueuePageUrl()}}">
+                            <i class="md md-queue-music md-lg"></i>&nbsp;File d'attente
+                        </a>
+                    </li>
                 </ul>
             </section>
         </nav>
     </div>
+
+    <div id="auto-completion" class="f-dropdown content" ng-class="isInputFocused ? 'open f-open-dropdown' : ''">
+        <div ng-show="isSearching"  >
+            <i class="text-center fa fa-circle-o-notch fa-spin"></i>
+        </div>
+        <div ng-show="!isSearching">
+            <div ng-show="searchesResult.total <= 0">
+                <p class="text-center">Pas de résultats</p>
+            </div>
+            <div ng-show="searchesResult.total > 0">
+                <div ng-show="searchesResult.artists.length > 0">
+                    <p class="text-center"><strong>Artistes</strong></p>
+                    <div class="item-row" ng-repeat="artist in searchesResult.artists track by $index" ng-if="$index < itemLimit">
+                        <a class="item-text ellipsis" ng-mousedown="sharedPagesStatus.redirectToPage('/artist/' + artist.artistId)">
+                            <img class="img-circular item-img" id="img-artist" ng-src="{{artist.image.url}}"/> {{artist.artistName}}</a>
+                    </div>
+                </div>
+
+                <div ng-show="searchesResult.albums.length > 0">
+                    <p class="text-center"><strong>Albums</strong></p>
+                    <div class="item-row" ng-repeat="album in searchesResult.albums track by $index" ng-if="$index < itemLimit">
+                        <a class="item-text ellipsis" ng-mousedown="sharedPagesStatus.redirectToPage('/album/' + album.collectionId)"><img class="item-img" ng-src="{{album.artworkUrl60}}"/>{{album.collectionName}}</a>
+                    </div>
+                </div>
+                <div ng-show="searchesResult.users.length > 0 && session.isConnected()">
+                    <p class="text-center"><strong>Utilisateurs</strong></p>
+                    <div class="item-row" ng-repeat="user in searchesResult.users track by $index" ng-if="$index < itemLimit">
+                        <a class="item-text ellipsis" ng-mousedown="sharedPagesStatus.redirectToPage('/user/' + user.id)"><img class="item-img" ng-src="{{sharedProperties.getGravatar(user.email, 50)}}"/>{{user.name}}</a>
+                    </div>
+                </div>
+                <div class="top-border text-center">
+                    <a ng-mousedown="sharedPagesStatus.redirectToPage('/search/' + searchElement)" ng-show="searchesResult.total > itemLimit">
+                        <strong>
+                            Voir tous les résultats
+                        </strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="sign-in-modal" class="reveal-modal" data-reveal>
         <div class="row">
             <div class="small-12 large-6 columns auth-plain small-centered">
                 <div class="signup-panel left-solid">
                     <p class="welcome">Merci de saisir votre adresse e-mail et votre mot de passe</p>
-                    <form data-abide>
+                    <h4><small id="error-msg-sign-in" class="error-msg-sign hide">{{errorMsg}}</small></h4>
+                    <form id="sign-in-form" name="signInForm" data-abide>
                         <div class="row collapse">
                             <div class="small-2 columns">
                                 <span class="prefix"><i class="md md-email md-lg"></i></span>
                             </div>
                             <div class="small-10 columns">
-                                <input type="email" placeholder="Adresse e-mail" required>
+                                <input type="email" name="email" autocomplete="email" placeholder="Adresse e-mail" ng-model="connectionInfo.email" required>
                                 <small class="error">Vous devez entrer une adresse e-mail valide.</small>
                             </div>
                         </div>
@@ -68,12 +125,12 @@
                                 <span class="prefix"><i class="md md-lock md-lg"></i></span>
                             </div>
                             <div class="small-10 columns">
-                                <input type="password" placeholder="Mot de passe" required>
+                                <input type="password" name="password" placeholder="Mot de passe" ng-model="connectionInfo.password" required>
                                 <small class="error">Vous devez entrer un mot de passe.</small>
                             </div>
                         </div>
+                        <button type="submit" class="red small radius right" ng-click="login()" ng-disabled="signInForm.$invalid" ng-class="{disabled: signInForm.$invalid}">Connexion</button>
                     </form>
-                    <a href="#" class="button red radius right">Connection</a>
                 </div>
             </div>
         </div>
@@ -84,13 +141,14 @@
             <div class="small-12 large-6 columns auth-plain small-centered">
                 <div class="signup-panel left-solid">
                     <p class="welcome">Merci de renseigner tous les champs</p>
-                    <form data-abide>
+                    <h4><small id="error-msg-sign-up" class="error-msg-sign hide">{{errorMsg}}</small></h4>
+                    <form id="sign-up-form" name="signUpForm" data-abide>
                         <div class="row collapse">
                             <div class="small-2 columns">
                                 <span class="prefix"><i class="md md-person md-lg"></i></span>
                             </div>
                             <div class="small-10 columns">
-                                <input type="text" placeholder="Nom d'utilisateur" required>
+                                <input type="text" name="login" autocomplete="login" placeholder="Nom d'utilisateur" ng-model="signupInfo.name" required>
                                 <small class="error">Vous devez entrer un nom d'utilisateur.</small>
                             </div>
                         </div>
@@ -99,7 +157,7 @@
                                 <span class="prefix"><i class="md md-email md-lg"></i></span>
                             </div>
                             <div class="small-10 columns">
-                                <input type="email" placeholder="Adresse e-mail" required>
+                                <input type="email" name="email" autocomplete="email" placeholder="Adresse e-mail" ng-model="signupInfo.email" required>
                                 <small class="error">Vous devez entrer une adresse e-mail valide.</small>
                             </div>
                         </div>
@@ -108,7 +166,7 @@
                                 <span class="prefix"><i class="md md-lock md-lg"></i></span>
                             </div>
                             <div class="small-10 columns">
-                                <input type="password" id="password" placeholder="Mot de passe" required>
+                                <input type="password" name="password" id="password" placeholder="Mot de passe" ng-model="signupInfo.password" required>
                                 <small class="error">Vous devez entrer un mot de passe.</small>
                             </div>
                         </div>
@@ -117,12 +175,12 @@
                                 <span class="prefix"><i class="md md-lock md-lg"></i></span>
                             </div>
                             <div class="small-10 columns">
-                                <input type="password" placeholder="Confirmer le mot de passe" data-equalto="password" required>
+                                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirmer le mot de passe" data-equalto="password" ng-model="signupInfo.confirmPassword" required>
                                 <small class="error">Les mots de passe saisis ne sont pas identiques.</small>
                             </div>
                         </div>
+                        <button type="submit" class="red small radius right" ng-click="signup()" ng-disabled="signUpForm.$invalid || (signupInfo.password != signupInfo.confirmPassword)" ng-class="{disabled: signUpForm.$invalid || (signupInfo.password != signupInfo.confirmPassword)}">Créer un compte</button>
                     </form>
-                    <a href="#" class="button red radius right">Créer un compte</a>
                 </div>
             </div>
         </div>

@@ -4,12 +4,13 @@ add_import_path "bower_components/foundation-icon-fonts"
 add_import_path "bower_components/slick-carousel/slick"
 add_import_path "bower_components/fontawesome/scss"
 add_import_path "bower_components/material-design-iconic-font/scss"
+add_import_path "bower_components/animate.css"
 
 # Set this to the root of your project when deployed:
 http_path = "/"
 css_dir = "stylesheets"
 sass_dir = "scss"
-images_dir = "images"
+images_dir = "img"
 javascripts_dir = "js"
 
 # You can select your preferred output style here (can be overridden via the command line):

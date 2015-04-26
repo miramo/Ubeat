@@ -2,7 +2,7 @@
     <div class="top-page"></div>
     <div class="row">
         <div class="small-12 columns">
-            <h1><i class="md md-my-library-music"></i> Playlists</h1>
+            <h1><i class="md md-my-library-music"></i> Playlist</h1>
         </div>
     </div>
     <div class="row">
@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li ng-repeat="playlist in sharedProperties.getPlaylists() | orderBy:'-id' track by $index"
+                        <li ng-repeat="playlist in getActualPlaylists() | orderBy:'-id' track by $index"
                             ng-click="setPlaylistActive(playlist.id)" ng-mouseover="setHover(playlist, true)"
                             ng-mouseleave="setHover(playlist, false)" class="playlist-item" ng-class="{active: isActivePlaylist(playlist)}">
                             <div class="row collapse">
@@ -68,8 +68,11 @@
                     <div class="row">
                         <div class="small-12 columns">
                             <div class="header-description">
-                                <a ng-click="" class="button red small radius right disabled"><i class="md-play-arrow md-lg"></i> Lire</a>
-                               <p>{{active.tracks.length}} titres, {{getFormatedTotalTime(active)}}</p>
+                                <button ng-click="sharedProperties.replacePlayQueue(active.tracks)"
+                                        ng-disabled="!active.tracks.length" ng-class="{disabled: !active.tracks.length}" class="red small radius right">
+                                    <i class="md-play-arrow md-lg"></i> Lire
+                                </button>
+                               <p>{{active.tracks.length}} titres, {{sharedProperties.getFormatedTotalTime(active)}}</p>
                             </div>
                         </div>
                     </div>
@@ -81,7 +84,7 @@
                                     <th width="30">#</th>
                                     <th width="600">Titre de la musique</th>
                                     <th width="300">Album</th>
-                                    <th width="300" class="hide-for-small-only">Nom de l'artiste</th>
+                                    <th width="300" class="hide-for-small-only">Artiste</th>
                                     <th width="50" class="text-center hide-for-small-only"><i class="fa fa-clock-o fa-lg"></i></th>
                                     <th width="30"><i class="md-delete md-lg"></i></th>
                                 </tr>
@@ -92,11 +95,11 @@
                                     <td class="disable-select text-center">
                                         <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
                                             <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter">
-                                                <i ng-click="sharedProperties.setCurrentTrack(track)" class="fa fa-play fa-lg"></i>
+                                                <i ng-click="sharedProperties.setCurrentTrack(track, true)" class="fa fa-play fa-lg"></i>
                                             </span>
                                         </div>
                                         <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
-                                            {{track.number}}
+                                            {{$index + 1}}
                                         </div>
                                         <div ng-show="track.playState == sharedProperties.getPlayStates().play">
                                             <i class="fa fa-circle-o-notch fa-spin"></i>
@@ -105,12 +108,12 @@
                                             <i class="fa fa-pause"></i>
                                         </div>
                                     </td>
-                                    <td>{{track.name | characters:30:false}}</td>
-                                    <td><a href="#/album/{{track.albumId}}">{{track.albumName | characters:20:false}}</a></td>
+                                    <td>{{track.trackName | characters:30:false}}</td>
+                                    <td><a href="#/album/{{track.collectionId}}">{{track.collectionName | characters:20:false}}</a></td>
                                     <td class="hide-for-small-only"><a href="#/artist/{{track.artistId}}">{{track.artistName | characters:20:false}}</a></td>
                                     <td class="text-center hide-for-small-only">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
                                     <td class="text-center disable-select delete-track">
-                                        <i class="md-delete md-lg on-hover" ng-click="sharedProperties.removeTrackFromPlaylist($index, active.id)"></i>
+                                        <i class="md-delete md-lg on-hover" ng-click="removeTrackFromPlaylist(track.trackId, active.id)"></i>
                                     </td>
                                 </tr>
                             </tbody>

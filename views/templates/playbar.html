@@ -1,41 +1,48 @@
 <div ng-controller="PlaybarController as playbarCtrl">
-    <div class="contain-to-grid disable-select play-bar">
-        <div class="bottom-bar row collapse">
-            <div class="first small-12 columns">
-                 <input class="form-control" id="seek-music" type=range min=0 max=1 step=0.00001 ng-model='audio.progress'/>
+    <div class="play-bar clearfix">
+        <div class="background"></div>
+        <audio media-player="myAudio"></audio>
+        <div class="player-top">
+            <div id="time-container-current" ng-show="myAudio.currentTrack != 0">{{myAudio.formatTime}}</div>
+            <div ui-slider="sliderPlayer.options" min="0" max="{{currentTrack.duration * speed}}" ng-model="currentTrack.currentTime" ng-disabled="myAudio.currentTrack == 0"></div>
+            <div id="time-container-duration" ng-show="myAudio.currentTrack != 0">{{myAudio.formatDuration}}</div>
+        </div>
+        <div class="player-center">
+            <a class="player-button" ng-click="switchIsLooping()" ng-class="{'active': repeatState != repeatStatesEnum.none}">
+                <i class="md md-lg" ng-class="{'md-repeat': (repeatState == repeatStatesEnum.repeat || repeatState == repeatStatesEnum.none), 'md-repeat-one': (repeatState == repeatStatesEnum.repeatOne)}"></i>
+            </a>
+            <a class="player-button" ng-click="prev()" ng-class="sharedProperties.getPlayQueueLength() > 1 ? '' : 'disabled'"><i class="fa fa-fast-backward fa-2x"></i></a>
+            <a class="player-button play" ng-click='play()' ng-class="sharedProperties.getPlayQueueLength() > 0 ? '' : 'disabled'"><i class="fa fa-2x" ng-class="{'fa-pause': myAudio.playing, 'fa-play': !myAudio.playing}"></i></a>
+            <a class="player-button" ng-click="next()" ng-class="sharedProperties.getPlayQueueLength() > 1 ? '' : 'disabled'"><i class="fa fa-fast-forward fa-2x"></i></a>
+            <a class="player-button" ng-click="switchIsRandom()" ng-class="isRandom ? 'active' : ''"><i class="md md-shuffle md-lg"></i></a>
+        </div>
+        <div class="player-right right hide-for-small-only">
+            <div id="player-right-wrapper">
+                <a class="player-button player-button-queue" ng-click="sharedPagesStatus.togglePlayQueue()" ng-class="{active: sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().playQueue)}">
+                    <i class="md md-queue-music md-2x bottom-music-list"></i>
+                </a>
+                <a class="player-button player-button-volume show-for-large-up" ng-click="switchMute()">
+                    <i class="md md-2x" ng-class="{'md-volume-up': !myAudio.muted, 'md-volume-off': myAudio.muted}"></i>
+                </a>
+                <span id="slider-wrapper" class="">
+                    <i class="player-button player-button-volume-down fa fa-volume-down"></i>
+                    <div ui-slider="sliderVolume.options" min="0" max="100" ng-model="volume"></div>
+                </span>
             </div>
-            <div class="second small-12 columns">
-                <ul class="small-3 columns left hide-for-small-only test" >
-                        <li class="volume small-2 columns left">
-                            <i ng-click="switchMute()" class="fa fa-volume-off fa-2x" ng-show="getVolume() <= 0"></i>
-                            <i ng-click="switchMute()" class="fa fa-volume-down fa-2x" ng-show="getVolume() <= 50 && getVolume() > 0"></i>
-                            <i ng-click="switchMute()" class="fa fa-volume-up fa-2x" ng-show="getVolume() > 50"></i>
-                            <input id="seek-volume" class='form-control' type=range min=0 max=1 step=0.01 ng-model='audio.volume' >
-                        </li>
-                </ul>
-                <ul class="small-3 columns right hide-for-small-only" >
-                    <li class="bottom-right small-2 columns right">
-                        <a href=""><i class="md md-queue-music md-2x bottom-music-list"></i></a>
-                    </li>
-                </ul>
-                <ul class="play-area small-centered columns">
-                    <li class="play-button small-1 columns left">
-                        <i  class="fa fa-repeat fa-lg"></i>
-                    </li>
-                    <li class="play-button small-3 small-centered columns">
-                        <i class="fa fa-fast-backward fa-2x"></i>
-                    </li>
-                    <li class="play-button small-3 small-centered columns">
-                        <i ng-click='audio.paused && canPlay() ? audio.play() : audio.pause()' class="fa fa-play fa-2x" ng-show="audio.paused"></i>
-                        <i ng-click='audio.paused ? audio.play() : audio.pause()' class="fa fa-pause fa-2x" ng-hide="audio.paused"></i>
-                    </li>
-                    <li class="play-button small-3 small-centered columns">
-                        <i class="fa fa-fast-forward fa-2x"></i>
-                    </li>
-                    <li class="play-button small-1 columns right">
-                        <i class="fa fa-random fa-lg"></i>
-                    </li>
-                </ul>
+        </div>
+        <div class="player-left left hide-for-small-only" ng-show="sharedProperties.getCurrentTrack()">
+            <div class="image-wrapper">
+                <a ng-href="#/album/{{sharedProperties.getCurrentTrack().collectionId}}">
+                    <div class="img" back-img="{{sharedProperties.getCurrentTrack().artworkUrl60}}"></div>
+                </a>
+            </div>
+            <div class="text-wrapper">
+                <div id="player-song-title">{{sharedProperties.getCurrentTrack().trackName}}</div>
+                <div class="player-artist-album-wrapper">
+                    <a id="player-artist" ng-href="#/artist/{{sharedProperties.getCurrentTrack().artistId}}">{{sharedProperties.getCurrentTrack().artistName}}</a>
+                    <div class="player-dash">&nbsp;-&nbsp;</div>
+                    <a id="player-album" ng-href="#/album/{{sharedProperties.getCurrentTrack().collectionId}}">{{sharedProperties.getCurrentTrack().collectionName}}</a>
+                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,122 @@
+<div ng-show="sharedPagesStatus.getIsPageLoaded() && !sharedPagesStatus.getIsCriticalError()">
+    <div class="user">
+        <div class="user-header">
+            <div class="row bloc-artist-img-infos">
+                <div class="album-artist-picture">
+                    <div class="show-for-medium-up">
+                        <a href="http://www.gravatar.com/{{userData.email | gravatar}}" target="_blank">
+                            <div class="img-circular responsive-img" id="img-user" ng-class="{me: (userData.id == sharedProperties.getInfoConnection().id)}" back-img="{{gravatarImgUrl}}"></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="album-artist-infos">
+                    <div class="artist-title">
+                        <h1>{{userData.name}}</h1>
+                    </div>
+                    <div class="album-artist-description">
+                        <h3>
+                            <small><a href="mailto:{{userData.email}}">{{userData.email}}</a></small>
+                        </h3>
+                    </div>
+                    <div class="button-follow" ng-if="userData.id != sharedProperties.getInfoConnection().id">
+                        <button ng-if="!isFollowing" ng-click="follow()" class="red small radius"><i class="md-add md-lg"></i> Suivre</button>
+                        <button ng-if="isFollowing" ng-click="unfollow()" class="red small radius"><i class="md-remove md-lg"></i> Ne plus suivre</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" data-equalizer>
+            <div class="small-12 columns">
+                <div class="panel radius panel-following">
+                    <h2 class="text-center title"><i class="fa fa-users fa-lg left"></i>Amis</h2>
+                    <h4 class="text-center" ng-hide="userData.following.length">{{(userData.id == sharedProperties.getInfoConnection().id) ? "Vous ne suivez personne actuellement." : "Cet utilisateur ne suis personne."}}</h4>
+                    <ul class="following-list no-bullet">
+                        <li class="following-item" ng-repeat="follower in userData.following">
+                            <div class="row bump">
+                                <div class="row">
+                                    <div class="card-shadow">
+                                        <div class="responsive-img" ng-class="isFollowingId(follower.id) ? 'remove' : 'add'" ng-click="isFollowingId(follower.id) ? unfollow(follower.id) : follow(follower.id)" back-img="{{sharedProperties.getGravatar(follower.email, 150)}}"></div>
+                                        <div class="row collapse text-card">
+                                            <a href="#/user/{{follower.id}}">
+                                                <div class="text-center">
+                                                    <p class="first-text-card ellipsis">{{follower.name ? follower.name : 'Inconnu'}}</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row" data-equalizer>
+            <div class="small-12 columns">
+                <div class="panel radius panel-playlist">
+                    <h2 class="text-center title"><i class="md md-my-library-music md-lg left"></i>&nbsp;Playlist</h2>
+                    <h4 class="text-center" ng-hide="playlists.length">{{(userData.id == sharedProperties.getInfoConnection().id) ? "Vous n'avez pas de playlist." : "Cet utilisateur n'a pas de playlist."}}</h4>
+                    <dl class="accordion">
+                        <dd class="accordion-navigation" ng-repeat="playlist in playlists | orderBy:'-id' track by $index">
+                            <a href id="link-{{playlist.id}}" class="playlist-item clearfix" ng-click="setActive(playlist.id)">
+                                <div class="img left" back-img="{{sharedProperties.getPlaylistImg(playlist, 50)}}"></div>
+                                <span class="playlist-name ellipsis left">{{playlist.name}}</span>
+                                <span class="playlist-nb-songs ellipsis right text-right">{{playlist.tracks.length}}&nbsp;pistes</span>
+                            </a>
+                            <div id="panel-accordion-{{playlist.id}}" class="content" ng-class="{active: (activePlaylist == playlist.id)}">
+                                <div class="row">
+                                    <div class="small-12 columns">
+                                        <div class="header-description">
+                                            <button ng-click="sharedProperties.addTrackArrayToPlayQueue(playlist.tracks, true)" ng-disabled="!playlist.tracks.length" ng-class="{disabled: !playlist.tracks.length}" class="red small radius right"><i class="md-play-arrow md-lg"></i> Lire</button>
+                                            <p>{{sharedProperties.getFormatedTotalTime(playlist)}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th width="30">#</th>
+                                                <th width="500">Titre de la musique</th>
+                                                <th width="400">Album</th>
+                                                <th width="300" class="hide-for-small-only">Artiste</th>
+                                                <th width="50" class="text-center hide-for-small-only"><i class="fa fa-clock-o fa-lg"></i></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="music-row" ng-repeat="track in playlist.tracks track by $index"
+                                                ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
+                                                <td class="disable-select text-center">
+                                                    <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
+                                                        <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter">
+                                                            <i ng-click="sharedProperties.setCurrentTrack(track, true)" class="fa fa-play fa-lg"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
+                                                        {{$index + 1}}
+                                                    </div>
+                                                    <div ng-show="track.playState == sharedProperties.getPlayStates().play">
+                                                        <i class="fa fa-circle-o-notch fa-spin"></i>
+                                                    </div>
+                                                    <div ng-show="track.playState == sharedProperties.getPlayStates().pause">
+                                                        <i class="fa fa-pause"></i>
+                                                    </div>
+                                                </td>
+                                                <td>{{track.trackName}}</td>
+                                                <td><a href="#/album/{{track.collectionId}}">{{track.collectionName}}</a></td>
+                                                <td class="hide-for-small-only"><a href="#/artist/{{track.artistId}}">{{track.artistName}}</a></td>
+                                                <td class="text-center hide-for-small-only">{{track.time.Minutes}}:{{track.time.Seconds}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <h4 class="text-center" ng-hide="playlist.tracks.length">Cette playlist ne contient aucun titre.</h4>
+                                </div>
+                            </div>
+                            </li>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

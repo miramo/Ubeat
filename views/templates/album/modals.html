@@ -1,0 +1,32 @@
+<div id="addTrackToPlaylistModal" class="reveal-modal" data-reveal>
+    <h2>Ajouter le titre à une nouvelle playlist</h2>
+    <h2>
+        <small>{{trackToAddToNewPlaylist.trackName}}</small>
+    </h2>
+    <div class="row collapse">
+        <div class="small-10 columns">
+            <input class="pre-radius" ng-keydown="$event.which == 13 && createPlaylistByTrack(playlistToAdd, '#addTrackToPlaylistModal')"
+                   ng-model="playlistToAdd" type="text" placeholder="Nom de la playlist"/>
+        </div>
+        <div class="small-2 columns">
+            <a ng-click="createPlaylistByTrack(playlistToAdd, '#addTrackToPlaylistModal')" class="button expand red post-radius">Confirmer</a>
+        </div>
+    </div>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+<div id="addAlbumToPlaylistModal" class="reveal-modal" data-reveal>
+    <h2>Ajouter l'album à une nouvelle playlist</h2>
+    <h2>
+        <small>{{trackArrayToAddToNewPlaylist[0].collectionName}}</small>
+    </h2>
+    <div class="row collapse">
+        <div class="small-10 columns">
+            <input class="pre-radius" ng-model="playlistToAdd" ng-keydown="$event.which == 13 && createPlaylistByTrackArray(playlistToAdd, '#addAlbumToPlaylistModal')"
+                   type="text" placeholder="Nom de la playlist"/>
+        </div>
+        <div class="small-2 columns">
+            <a ng-click="createPlaylistByTrackArray(playlistToAdd, '#addAlbumToPlaylistModal')" class="button expand red post-radius">Confirmer</a>
+        </div>
+    </div>
+    <a class="close-reveal-modal">&#215;</a>
+</div>

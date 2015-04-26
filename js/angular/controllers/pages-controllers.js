@@ -4,14 +4,14 @@
 
 (function ()
 {
-    var controllers = angular.module('pagesControllers', ['factories', 'directives', 'services', 'ngAudio', 'truncate']);
+    var controllers = angular.module('pagesControllers', ['factories', 'directives', 'services', 'truncate']);
 
-    controllers.controller('HomeController', function ($scope, sharedPagesStatus, sharedProperties,
+    controllers.controller('HomeController', function ($scope, sharedPagesStatus, sharedProperties, session,
                                                        artistFactory, albumFactory, spotifyArtistFactory, spotifySearchFactory)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.artistIds = [115429828, 371362363, 994656, 405129701, 263132120, 285976572, 185933496, 111051];
-        $scope.albumsIds = [598997036, 422478077, 266075192, 669445575,305792965, 289081371, 260725492, 731756766];
+        $scope.albumsIds = [598997036, 422478077, 266075192, 669445575, 305792965, 289081371, 260725492, 731756766];
         sharedPagesStatus.setTitle('Accueil');
 
         $scope.artistsLoadedCount = 0;
@@ -25,7 +25,7 @@
 
         angular.forEach($scope.artistIds, function (value, key)
         {
-            artistFactory.get({id: value}).$promise.then(function (data)
+            artistFactory.get(session.getToken(), value, function (data)
                 {
                     $scope.artistsTab[key] = data.results[0];
                     //sharedProperties.setTitle($scope.artists[i].artistName);
@@ -45,21 +45,24 @@
                                     ++$scope.artistsLoadedCount;
                                 }, function (err)
                                 {
+                                    sharedPagesStatus.setDefaultCriticalError(err);
                                 });
 
                             }, function (err)
                             {
+                                // sharedPagesStatus.setCriticalError(0, '');
                             });
                     }
                 },
                 function (err)
                 {
+                    sharedPagesStatus.setDefaultCriticalError(err);
                 });
         });
 
         angular.forEach($scope.albumsIds, function (value, key)
         {
-            albumFactory.get({id: value}).$promise.then(function (data)
+            albumFactory.get(session.getToken(), value, function (data)
                 {
                     $scope.albumsTab[key] = data.results[0];
                     $scope.albumsTab[key].artworkUrl300 = itunesLinkImageSizeTo($scope.albumsTab[key].artworkUrl100, 300);
@@ -67,7 +70,7 @@
                 },
                 function (err)
                 {
-                    console.log("Album Err: " + err);
+                    //sharedPagesStatus.setDefaultCriticalError(err);
                 });
         });
 
@@ -78,7 +81,7 @@
             fullscreen: true
         });
 
-        var albumsSliderChange = function(currentSlide)
+        var albumsSliderChange = function (currentSlide)
         {
             blur.init({
                 el  : document.querySelector('body'),
@@ -86,7 +89,7 @@
             });
         }
 
-        var artistsSliderChange = function(currentSlide)
+        var artistsSliderChange = function (currentSlide)
         {
             blur.init({
                 el  : document.querySelector('body'),
@@ -111,6 +114,7 @@
 
             artistsSliderChange(0);
             sharedPagesStatus.setIsPageLoaded(true);
+            $(document).foundation();
         }
 
         $scope.$watch('artistsLoadedCount', function (newVal, oldVal)
@@ -145,11 +149,12 @@
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
+            angular.element(document).find('body').backgroundColor = 'white';
             $(document).foundation();
         });
     });
 
-    controllers.controller('ArtistController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties,
+    controllers.controller('ArtistController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties, session, albumTracksFactory,
                                                          artistFactory, artistAlbumsFactory, artistBiographiesFactory, spotifyArtistFactory, spotifySearchFactory)
     {
         sharedPagesStatus.resetPageStatus();
@@ -161,7 +166,7 @@
 
         if (isValidArtist)
         {
-            artistFactory.get({id: $routeParams.id}).$promise.then(function (data)
+            artistFactory.get(session.getToken(), $routeParams.id, function (data)
                 {
                     $scope.artist = data.results[0];
                     if (data && data.results.length > 0)
@@ -189,6 +194,7 @@
 
                                     }, function (err)
                                     {
+                                        sharedPagesStatus.setDefaultCriticalError(err);
                                     });
                                 spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
                                 {
@@ -196,7 +202,7 @@
                                     $scope.artistPictureLoaded = true;
 
                                     var blur = new Blur({
-                                        el        : document.querySelector('body'),
+                                        el        : document.querySelector('.artist-header'),
                                         path      : '',
                                         radius    : 50,
                                         fullscreen: true
@@ -209,12 +215,14 @@
 
                                 }, function (err)
                                 {
+                                    sharedPagesStatus.setDefaultCriticalError(err);
                                 });
 
                             }, function (err)
                             {
+                                sharedPagesStatus.setDefaultCriticalError(err);
                             });
-                        artistAlbumsFactory.get({id: $routeParams.id}).$promise.then(function (data)
+                        artistAlbumsFactory.get(session.getToken(), $routeParams.id, function (data)
                             {
                                 $scope.albums = data.results;
 
@@ -228,31 +236,39 @@
                             },
                             function (err)
                             {
+                                sharedPagesStatus.setDefaultCriticalError(err);
                             });
                     }
                     else
                     {
-                        sharedPagesStatus.pageCriticFailure();
+                        sharedPagesStatus.setCriticalError(404, "Artist not found");
                     }
                 },
                 function (err)
                 {
+                    sharedPagesStatus.setDefaultCriticalError(err);
                 });
         }
         else
         {
-            sharedPagesStatus.pageCriticFailure();
+            sharedPagesStatus.setCriticalError(404, "Artist not found");
         }
 
+        $scope.addAlbumToPlayQueue = function (album)
+        {
+            sharedProperties.addAlbumToPlayQueue(album);
+        }
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
+            angular.element(document).find('body').backgroundColor = 'white';
             $(document).foundation('interchange', 'reflow');
         });
     });
 
-    controllers.controller('AlbumController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties,
-                                                        albumFactory, artistFactory, albumTracksFactory, trackFactory)
+
+    controllers.controller('AlbumController', function ($scope, $routeParams, session, sharedPagesStatus, sharedProperties,
+                                                        albumFactory, artistFactory, albumTracksFactory)
     {
         sharedPagesStatus.resetPageStatus();
         $scope.isResolved = false;
@@ -260,12 +276,29 @@
         $scope.playStates = sharedProperties.getPlayStates();
         $scope.trackToAddToNewPlaylist = null;
         $scope.trackArrayToAddToNewPlaylist = [];
-        $scope.tracks = [];
+        $scope.tracks = [[]];
         $scope.album = null;
-        $scope.isPageFailedLoad = false;
+        $scope.playlits = [];
+        $scope.isPageFailedLoad = false
+        $scope.isConnected = false;
         $scope.errorTitle = "Erreur 503";
         $scope.errorMsg = "Service temporairement indisponible.";
+        var executeSplit = true;
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().album);
+
+        var getPlaylistsCallback = function (playlists)
+        {
+            if (playlists)
+            {
+                $scope.playlists = playlists;
+            }
+        }
+
+        if (session.isConnected())
+        {
+            sharedProperties.getPlaylists(getPlaylistsCallback);
+            $scope.isConnected = true;
+        }
 
         var updateTracks = function ()
         {
@@ -275,16 +308,26 @@
             {
                 for (var i = 0; i < $scope.tracks.length; ++i)
                 {
-                    if (currentTrack.trackId == $scope.tracks[i].trackId)
+                    for (var j = 0; j < $scope.tracks[i].length; ++j)
                     {
-                        $scope.tracks[i].playState = currentTrack.playState;
-                    }
-                    else
-                    {
-                        $scope.tracks[i].playState = $scope.playStates.idle;
+                        if (currentTrack.trackId == $scope.tracks[i][j].trackId)
+                        {
+                            $scope.tracks[i][j].playState = currentTrack.playState;
+                        }
+                        else
+                        {
+                            $scope.tracks[i][j].playState = $scope.playStates.idle;
+                        }
                     }
                 }
             }
+        }
+
+        var pageIsLoaded = function ()
+        {
+            sharedPagesStatus.setIsPageLoaded(true);
+
+            $(document).foundation('dropdown', 'reflow');
         }
 
         $scope.$watch('sharedProperties.getCurrentTrack()', function (newVal, oldVal)
@@ -295,6 +338,42 @@
         {
             updateTracks();
         });
+
+        $scope.executePlayAll = function (isSpan)
+        {
+            if (isSpan)
+            {
+                executeSplit = false;
+            }
+            else if (executeSplit)
+            {
+                var concatTracks = [];
+
+                for (var i = 0; i < $scope.tracks.length; ++i)
+                {
+                    concatTracks = concatTracks.concat($scope.tracks[i]);
+                }
+                sharedProperties.replacePlayQueue(concatTracks, true);
+                executeSplit = true;
+            }
+            else if (!executeSplit)
+                executeSplit = true;
+        }
+
+        $scope.playAfter = function ()
+        {
+            sharedProperties.addToPlayQueueAtCurrentTrack($scope.tracks);
+        }
+
+        $scope.playInLast = function ()
+        {
+            sharedProperties.addTrackArrayToPlayQueue($scope.tracks, true);
+        }
+
+        $scope.replacePlayQueue = function ()
+        {
+            sharedProperties.replacePlayQueue();
+        }
 
         $scope.modifyFilter = function (id)
         {
@@ -317,35 +396,51 @@
             $scope.trackArrayToAddToNewPlaylist = tracks;
         }
 
+        $scope.getActualPlaylists = function ()
+        {
+            return $scope.playlists;
+        }
+
+        var createPlaylistByTrackCallback = function (data)
+        {
+            if (data)
+            {
+                sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, data.id);
+                sharedProperties.getPlaylists(getPlaylistsCallback);
+            }
+        }
+
         $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
         {
             if (playlistToAdd)
             {
-                var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
+                sharedProperties.createPlaylist(playlistToAdd, createPlaylistByTrackCallback);
 
-                sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, newPlaylist.id);
                 $scope.closeModal(modalId);
                 return true;
             }
             return false;
+        }
+
+        var createPlaylistByTrackArrayCallback = function (data)
+        {
+            if (data)
+            {
+                sharedProperties.addTrackArrayToPlaylist($scope.trackArrayToAddToNewPlaylist, data.id);
+                sharedProperties.getPlaylists(getPlaylistsCallback);
+            }
         }
 
         $scope.createPlaylistByTrackArray = function (playlistToAdd, modalId)
         {
             if (playlistToAdd)
             {
-                var newPlaylist = sharedProperties.createPlaylist(playlistToAdd);
+                sharedProperties.createPlaylist(playlistToAdd, createPlaylistByTrackArrayCallback);
 
-                sharedProperties.addTrackArrayToPlaylist($scope.trackArrayToAddToNewPlaylist, newPlaylist.id);
                 $scope.closeModal(modalId);
                 return true;
             }
             return false;
-        }
-
-        $scope.trackArrayToAddIsValid = function ()
-        {
-            return ($scope.trackArrayToAddToNewPlaylist && $scope.trackArrayToAddToNewPlaylist.length > 0);
         }
 
         $scope.createPlaylistByAlbum = function (playlistToAdd, modalId)
@@ -361,18 +456,40 @@
             return false;
         }
 
-        var blur = new Blur({
-            el        : document.querySelector('body'),
-            path      : '',
-            radius    : 50,
-            fullscreen: true
-        });
+        var setTracksData = function (dataTracks)
+        {
+            var j;
+            var index;
+
+            for (var i = 0; i < dataTracks.length; ++i)
+            {
+                j = dataTracks[i].discNumber - 1;
+                if (!$scope.tracks[j])
+                    $scope.tracks[j] = [];
+                index = $scope.tracks[j].length;
+                $scope.tracks[j][index] = dataTracks[i];
+
+                var currentTrack = sharedProperties.getCurrentTrack();
+
+                if (currentTrack && currentTrack.trackId == $scope.tracks[j][index].trackId)
+                {
+                    $scope.tracks[j][index].playState = currentTrack.playState;
+                }
+                else
+                {
+                    $scope.tracks[j][index].playState = sharedProperties.getPlayStates().idle;
+                }
+                $scope.tracks[j][index].filter = $scope.filter;
+                $scope.tracks[j][index].time = millisToTime($scope.tracks[j][index].trackTimeMillis);
+                $scope.tracks[j][index].displayPlayButton = false;
+            }
+        }
 
         var isAlbumIdValid = /^\d+$/.test($routeParams.id);
 
         if (isAlbumIdValid)
         {
-            albumFactory.get({id: $routeParams.id}, function (data)
+            albumFactory.get(session.getToken(), $routeParams.id, function (data)
             {
                 if (data && data.results.length > 0)
                 {
@@ -380,44 +497,38 @@
                     sharedPagesStatus.setTitle($scope.album.collectionName);
                     $scope.album.artworkUrl300 = itunesLinkImageSizeTo($scope.album.artworkUrl100, 300);
                     $scope.album.releaseDateObj = new Date($scope.album.releaseDate);
-                    $scope.filtersValues = ['number', 'name', 'artistName', '-time.Minutes', 'time.Minutes'];
+                    $scope.filtersValues = ['trackNumber', 'trackName', 'artistName', '-time.Minutes', 'time.Minutes'];
                     $scope.filtersNames = ['Numéro de piste', 'Chanson', 'Artiste', 'Durée'];
                     $scope.currentFilterName = $scope.filtersNames[0];
                     $scope.filter = $scope.filtersValues[0];
 
-                    blur.init({el: document.querySelector('.artist-header'), path: $scope.album.artworkUrl300});
-
-                    artistFactory.get({id: $scope.album.artistId}, function (data)
-                    {
-                        $scope.artist = data.results[0];
+                    var blur = new Blur({
+                        el        : document.querySelector('.artist-header'),
+                        path      : '',
+                        radius    : 50,
+                        fullscreen: true
                     });
 
-                    albumTracksFactory.get({id: $routeParams.id}, function (data)
+                    blur.init({el: document.querySelector('.artist-header'), path: $scope.album.artworkUrl300});
+
+                    artistFactory.get(session.getToken(), $scope.album.artistId, function (data)
+                    {
+                        $scope.artist = data.results[0];
+                    }, function (err)
+                    {
+                        sharedPagesStatus.setDefaultCriticalError(err);
+                    });
+
+                    albumTracksFactory.get(session.getToken(), $routeParams.id, function (data)
                     {
                         var dataTracks = data.results;
 
-                        for (var i = 0; i < dataTracks.length; ++i)
-                        {
-                            var trackFacto = new trackFactory();
-                            trackFacto.fillFromData(dataTracks[i]);
-                            $scope.tracks[i] = trackFacto;
+                        setTracksData(dataTracks);
 
-                            var currentTrack = sharedProperties.getCurrentTrack();
-
-                            if (currentTrack && currentTrack.trackId == $scope.tracks[i].trackId)
-                            {
-                                $scope.tracks[i].playState = currentTrack.playState;
-                            }
-                            else
-                            {
-                                $scope.tracks[i].playState = sharedProperties.getPlayStates().idle;
-                            }
-                            $scope.tracks[i].filter = $scope.filter;
-                            $scope.tracks[i].time = millisToTime($scope.tracks[i].trackTimeMillis);
-                            $scope.tracks[i].displayPlayButton = false;
-                        }
-
-                        sharedPagesStatus.setIsPageLoaded(true);
+                        pageIsLoaded();
+                    }, function (err)
+                    {
+                        sharedPagesStatus.setDefaultCriticalError(err);
                     });
 
                     $scope.displayPlayButton = function (track)
@@ -432,19 +543,17 @@
                 }
                 else
                 {
-                    sharedPagesStatus.pageCriticFailure();
+                    sharedPagesStatus.setCriticalError(404, "Album not found");
                 }
 
+            }, function (err)
+            {
+                sharedPagesStatus.setDefaultCriticalError(err);
             });
         }
         else
         {
-            sharedPagesStatus.pageCriticFailure();
-        }
-
-        $scope.check = function ()
-        {
-            console.log("FAIL");
+            sharedPagesStatus.setCriticalError(404, "Album not found");
         }
 
         $scope.$on('$routeChangeSuccess', function (next, current)
@@ -453,27 +562,68 @@
             $(document).foundation('interchange', 'reflow');
             $(document).foundation('tooltip', 'reflow');
             $(document).foundation('reveal', 'reflow');
+            $(document).foundation('dropdown', 'reflow');
         });
     });
 
-    controllers.controller('PlaylistsController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties)
+    controllers.controller('PlaylistsController', function ($scope, $location, $route, $routeParams,
+                                                            session, sharedPagesStatus, sharedProperties)
     {
         sharedPagesStatus.resetPageStatus();
-        $scope.missingImgPlaylist = './img/missing-album.png';
         $scope.sharedProperties = sharedProperties;
         $scope.playlistToAdd = {};
         $scope.playlistToAdd.defaultName = "Nouvelle playlist";
         $scope.playlistToAdd.name = $scope.playlistToAdd.defaultName;
-        $scope.playlists = sharedProperties.getPlaylists();
         $scope.alertMessages = [];
-        $scope.active = sharedProperties.getPlaylist(0);
+        $scope.defaultPlaylist = {name: "Pas de playlist"};
+        $scope.active = $scope.defaultPlaylist;
         $scope.isNewPlaylistClicked = false;
         $scope.playlistCurrentRename = {};
         $scope.playlistCurrentRename.name = '';
         $scope.playStates = sharedProperties.getPlayStates();
-        $scope.defaultPlaylist = {};
-        $scope.defaultPlaylist.name = "Pas de playlist";
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().playlist);
+        sharedPagesStatus.setTitle('Playlists');
+
+        var isRemovingPlaylist = false;
+
+        if (session.isConnected() == false)
+        {
+            sharedPagesStatus.redirectToHome();
+        }
+
+        $scope.getActualPlaylists = function ()
+        {
+            if ($scope.playlists && $scope.playlists.length <= 0)
+            {
+                $scope.active = $scope.defaultPlaylist;
+            }
+            return $scope.playlists;
+        }
+
+        var getPlaylistsCallback = function (playlists, isError)
+        {
+            if (playlists && playlists.length > 0)
+            {
+                $scope.active = playlists[playlists.length - 1];
+                $scope.playlists = playlists;
+
+                for (var i = 0; i < playlists.length; ++i)
+                {
+                    playlists[i].isEdit = false;
+                }
+            }
+            else
+            {
+                $scope.playlists = [];
+            }
+            sharedPagesStatus.setIsPageLoaded(true);
+            if (isError)
+            {
+                sharedPagesStatus.redirectToHome();
+            }
+        }
+
+        sharedProperties.getPlaylists(getPlaylistsCallback);
 
         var refreshPlaylists = function ()
         {
@@ -498,92 +648,21 @@
             return false;
         }
 
-        var getTotalTime = function(playlist)
-        {
-            var totalTime = 0;
-
-            playlist.tracks.forEach(function (entry)
-            {
-                totalTime += entry.trackTimeMillis;
-            });
-            return millisToTime(totalTime);
-        }
-
-        $scope.getFormatedTotalTime = function(playlist)
-        {
-            var totalTime = getTotalTime(playlist);
-            var formatedStr = "";
-
-            if ((totalTime.Hours + totalTime.Minutes + totalTime.Seconds) <= 0)
-            {
-                formatedStr += "0 s";
-            }
-            else
-            {
-                if (totalTime.Hours > 0)
-                    formatedStr += totalTime.Hours + " h ";
-                if (totalTime.Minutes > 0)
-                    formatedStr += totalTime.Minutes + " min ";
-                else if (totalTime.Seconds > 0)
-                    formatedStr += totalTime.Seconds + " s ";
-            }
-
-            return formatedStr;
-        }
-
-        $scope.$watch('sharedProperties.getPlaylists()', function (newVal, oldVal)
-        {
-            $scope.playlists = sharedProperties.getPlaylists();
-
-            sharedPagesStatus.setIsPageLoaded(true);
-            if (newVal)
-            {
-                for (var i = 0; i < newVal.length; ++i)
-                {
-                    newVal[i].id = i;
-                }
-            }
-            if (!$scope.playlists || $scope.playlists.length <= 0)
-            {
-                $scope.active = $scope.defaultPlaylist;
-            }
-            else if ($scope.playlists && $scope.playlists.length > 0)
-            {
-                $scope.active = $scope.playlists[$scope.playlists.length - 1];
-            }
-        });
-
         $scope.getPlaylistImg = function (playlist, size)
         {
-            if (playlist && playlist.tracks && playlist.tracks.length > 0)
-            {
-                var firstTrack = playlist.tracks[0];
-                var artwork = firstTrack.artworkUrl100;
-                if (size && size != 100)
-                {
-                    artwork = itunesLinkImageSizeTo(firstTrack.artworkUrl100, size);
-                }
-                return artwork;
-            }
-            else
-            {
-                return $scope.missingImgPlaylist;
-            }
+            return sharedProperties.getPlaylistImg(playlist, size);
         }
 
-        $scope.removePlaylist = function (id)
+        var removePlaylistCallback = function ()
         {
-            sharedProperties.removePlaylist(id);
-            $scope.playlists = sharedProperties.getPlaylists();
+            sharedProperties.getPlaylists(getPlaylistsCallback);
+            isRemovingPlaylist = false;
+        }
 
-            if ($scope.playlists.length > 0)
-            {
-                $scope.active = $scope.playlists[0];
-            }
-            else
-            {
-                $scope.active = $scope.defaultPlaylist;
-            }
+        $scope.removePlaylist = function (playlistId)
+        {
+            isRemovingPlaylist = true;
+            sharedProperties.removePlaylist(playlistId, removePlaylistCallback);
         }
 
         $scope.switchNewPlaylistClicked = function ()
@@ -605,13 +684,12 @@
         $scope.setEdit = function (id, playlist, isEdit)
         {
             playlist.isEdit = isEdit;
-            var playlists = sharedProperties.getPlaylists();
 
-            for (var i = 0; i < playlists.length; ++i)
+            for (var i = 0; i < $scope.playlists.length; ++i)
             {
-                if (i != id)
+                if ($scope.playlists[i].id != id)
                 {
-                    playlists[i].isEdit = false;
+                    $scope.playlists[i].isEdit = false;
                 }
             }
         }
@@ -636,42 +714,623 @@
             track.displayPlayButton = false;
         }
 
+        var removeTrackFromPlaylistCallback = function (data)
+        {
+            sharedProperties.getPlaylists(getPlaylistsCallback);
+        }
+
+        $scope.removeTrackFromPlaylist = function (trackId, playlistId)
+        {
+            sharedProperties.removeTrackFromPlaylist(trackId, playlistId, removePlaylistCallback);
+        }
+
+        var confirmRenameCallback = function ()
+        {
+            sharedProperties.getPlaylists(getPlaylistsCallback);
+        }
+
         $scope.confirmRename = function (id, playlist, newName)
         {
-            var val = sharedProperties.renamePlaylist(id, newName);
             playlist.isEdit = false;
             playlist.isHover = false;
+            sharedProperties.renamePlaylist(id, playlist, newName, confirmRenameCallback);
             $scope.setPlaylistCurrentRename(newName);
             $scope.active = playlist;
         }
 
-        $scope.createPlaylist = function (value)
+        var createPlaylistCallback = function (playlist)
         {
-            $scope.active = sharedProperties.createPlaylist(value);
-            $scope.playlistToAdd.name = $scope.playlistToAdd.defaultName;
+            if (playlist)
+            {
+                $scope.active = playlist;
+                sharedProperties.getPlaylists(getPlaylistsCallback);
+            }
         }
 
-        $scope.createPlaylistUI = function (value)
+        $scope.createPlaylist = function (playlistName)
         {
-            $scope.createPlaylist(value);
+            if (playlistName && playlistName.length > 0)
+            {
+                sharedProperties.createPlaylist(playlistName, createPlaylistCallback);
+            }
+        }
+
+        $scope.createPlaylistUI = function (playlistName)
+        {
+            $scope.createPlaylist(playlistName);
             $scope.switchNewPlaylistClicked();
+        }
+
+        var setPlaylistActiveCallback = function (playlist)
+        {
+            if (playlist)
+            {
+                $scope.active = playlist;
+            }
         }
 
         $scope.setPlaylistActive = function (id)
         {
-            //console.log("setPlaylistActive: " + id);
-            $scope.active = sharedProperties.getPlaylist(id);
+            if (isRemovingPlaylist == false)
+            {
+                var actualPlaylists = $scope.getActualPlaylists();
+
+                for (var i = 0; i < actualPlaylists.length; ++i)
+                {
+                    if (actualPlaylists[i].id == id)
+                    {
+                        $scope.active = actualPlaylists[i];
+                        return;
+                    }
+                }
+            }
         }
 
         $scope.$on('$routeChangeSuccess', function (next, current)
         {
+            angular.element(document).find('body').backgroundColor = 'white';
             $(document).foundation();
             $(document).foundation('dropdown', 'reflow');
         });
     });
 
-    controllers.controller('ErrorPageController', function ($scope, $routeParams, sharedPagesStatus, sharedProperties)
+    controllers.controller('ErrorPageController', function ($scope, $routeParams, sharedPagesStatus, session)
     {
         sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().error);
+        sharedPagesStatus.setIsPageLoaded(true);
+    })
+
+    controllers.controller('PlayQueueController', function ($scope, $routeParams, session, sharedPagesStatus, sharedProperties)
+    {
+        sharedPagesStatus.setTitle("File d'attente");
+        sharedPagesStatus.resetPageStatus();
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().playQueue);
+        $scope.sharedProperties = sharedProperties;
+        sharedPagesStatus.setIsPageLoaded(true);
+        $scope.trackToAddToNewPlaylist = null;
+        $scope.trackArrayToAddToNewPlaylist = [];
+        $scope.playlists = [];
+        $scope.isConnected = false;
+
+        var getPlaylistsCallback = function (playlists)
+        {
+            if (playlists)
+            {
+                $scope.playlists = playlists;
+            }
+        }
+
+        if (session.isConnected())
+        {
+            sharedProperties.getPlaylists(getPlaylistsCallback);
+            $scope.isConnected = true;
+        }
+
+        $scope.getActualPlaylists = function ()
+        {
+            return $scope.playlists;
+        }
+
+        var createPlaylistByTrackCallback = function (data)
+        {
+            if (data)
+            {
+                sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, data.id);
+                sharedProperties.getPlaylists(getPlaylistsCallback);
+            }
+        }
+
+        $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
+        {
+            if (playlistToAdd)
+            {
+                sharedProperties.createPlaylist(playlistToAdd, createPlaylistByTrackCallback);
+
+                $scope.closeModal(modalId);
+                return true;
+            }
+            return false;
+        }
+
+        var createPlaylistByTrackArrayCallback = function (data)
+        {
+            if (data)
+            {
+                sharedProperties.addTrackArrayToPlaylist($scope.trackArrayToAddToNewPlaylist, data.id);
+                sharedProperties.getPlaylists(getPlaylistsCallback);
+            }
+        }
+
+        $scope.createPlaylistByTrackArray = function (playlistToAdd, modalId)
+        {
+            if (playlistToAdd)
+            {
+                sharedProperties.createPlaylist(playlistToAdd, createPlaylistByTrackArrayCallback);
+
+                $scope.closeModal(modalId);
+                return true;
+            }
+            return false;
+        }
+
+        $scope.displayPlayButton = function (track)
+        {
+            track.displayPlayButton = true;
+        }
+
+        $scope.hidePlayButton = function (track)
+        {
+            track.displayPlayButton = false;
+        }
+
+        $scope.addTrackToAdd = function (track)
+        {
+            $scope.trackToAddToNewPlaylist = track;
+        }
+
+        $scope.addTrackArrayToAdd = function (tracks)
+        {
+            $scope.trackArrayToAddToNewPlaylist = tracks;
+        }
+
+        $scope.trackArrayToAddIsValid = function ()
+        {
+            return ($scope.trackArrayToAddToNewPlaylist && $scope.trackArrayToAddToNewPlaylist.length > 0);
+        }
+
+        $scope.closeModal = function (id)
+        {
+            $(id).foundation('reveal', 'close');
+        }
+    });
+
+    controllers.controller('SearchController', function ($scope, $routeParams, session, sharedPagesStatus, sharedProperties,
+                                                         searchFactory, spotifySearchFactory, spotifyArtistFactory,
+                                                         albumFactory, searchUsersFactory)
+    {
+        sharedPagesStatus.setTitle("Recherche: " + $routeParams.element);
+        sharedPagesStatus.resetPageStatus();
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().search);
+        $scope.userDataConnection = sharedProperties.userDataConnectionObj();
+        $scope.elementToSearch = $routeParams.element;
+        $scope.tracks = [];
+        $scope.artists = [];
+        $scope.albums = [];
+        $scope.results = [];
+        $scope.usersResults = [];
+        $scope.trackToAddToNewPlaylist = null;
+        $scope.trackArrayToAddToNewPlaylist = null;
+        $scope.elementsLoaded = 0;
+        $scope.playlists = [];
+        $scope.itemsDisplayLimit = 6;
+        $scope.isConnected = session.isConnected();
+
+        var updateUserDataConnectionCallback = function (userDataConnection)
+        {
+            if (userDataConnection)
+            {
+                $scope.userDataConnection = userDataConnection;
+            }
+
+            sharedPagesStatus.setIsPageLoaded(true);
+        }
+
+        var updateUserDataConnection = function ()
+        {
+            if (session.isConnected())
+            {
+                sharedProperties.getUserDataConnection(updateUserDataConnectionCallback);
+                //searchUsersFactory.get(sharedProperties.getTokenCookie(),
+                //    encodeURIComponent($routeParams.element), function (data)
+                //    {
+                //        if (data && data.length > 0)
+                //        {
+                //            $scope.usersResults = data;
+                //        }
+                //    },
+                //    function (err)
+                //    {
+                //
+                //    });
+            }
+        }
+
+        var updateFollowStatus = function (id)
+        {
+            updateUserDataConnection();
+        }
+
+        $scope.activeTab = function (tabName)
+        {
+            angular.element(tabName).click();
+        }
+
+        var getPlaylistsCallback = function (playlists)
+        {
+            if (playlists)
+            {
+                $scope.playlists = playlists;
+            }
+
+            updateUserDataConnection();
+        }
+
+        var createPlaylistByTrackCallback = function (data)
+        {
+            if (data)
+            {
+                sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, data.id);
+                sharedProperties.getPlaylists(getPlaylistsCallback);
+            }
+        }
+
+        $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
+        {
+            if (playlistToAdd)
+            {
+                sharedProperties.createPlaylist(playlistToAdd, createPlaylistByTrackCallback);
+
+                $scope.closeModal(modalId);
+                return true;
+            }
+            return false;
+        }
+
+        $scope.getActualPlaylists = function ()
+        {
+            return $scope.playlists;
+        }
+
+        $scope.$watch('elementsLoaded', function (oldVal, newVal)
+        {
+            //if (newVal > 0 && newVal >= ($scope.results.length - 1))
+            //{
+            //    sharedPagesStatus.setIsPageLoaded(true);
+            //    $(document).foundation('reveal', 'reflow');
+            //    $(document).foundation('dropdown', 'reflow');
+            //    $(document).foundation('tab', 'reflow');
+            //}
+        });
+
+        var computeIsLengthNull = function ()
+        {
+            var total = 0;
+            for (var i = 0; i < arguments.length; ++i)
+            {
+                total += arguments[i].length ? 1 : 0;
+            }
+            return total;
+        }
+
+        var setWidthTabs = function (artists, albums, usersResults, tracks)
+        {
+            var nbShow = 1;
+            nbShow += computeIsLengthNull(artists, albums, usersResults, tracks);
+            $('.tab-title').width((1 / nbShow) * 100 + '%');
+        }
+
+        var searchCallback = function (searchResult)
+        {
+            if (searchResult)
+            {
+                $scope.elementsLoaded = searchResult.total;
+                $scope.albums = searchResult.albums;
+                $scope.artists = searchResult.artists;
+                $scope.usersResults = searchResult.users;
+                $scope.tracks = searchResult.tracks;
+
+                setWidthTabs($scope.artists, $scope.albums, $scope.usersResults, $scope.tracks);
+                angular.forEach($scope.albums, function (value, key)
+                {
+                    albumFactory.get(session.getToken(), value.collectionId, function (data)
+                        {
+                            $scope.albums[key].artworkUrl300 = itunesLinkImageSizeTo($scope.albums[key].artworkUrl100, 300);
+                        },
+                        function (err)
+                        {
+                            sharedPagesStatus.setDefaultCriticalError(err);
+                        });
+                });
+
+                angular.forEach($scope.artists, function (value, key)
+                {
+                    spotifySearchFactory.get({
+                        name: value.artistName,
+                        type: 'artist'
+                    }).$promise.then(function (data)
+                        {
+                            if (data && data.artists && data.artists.items.length > 0)
+                            {
+                                spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
+                                {
+                                    value.image = data.images[0];
+                                    ++$scope.elementsLoaded;
+                                }, function (err)
+                                {
+                                });
+                            }
+                            else
+                            {
+                                ++$scope.elementsLoaded;
+                            }
+
+                        }, function (err)
+                        {
+                        });
+                });
+                if (session.isConnected())
+                {
+                    sharedProperties.getPlaylists(getPlaylistsCallback);
+                }
+                else
+                {
+                    sharedPagesStatus.setIsPageLoaded(true);
+                }
+            }
+        }
+
+        if ($routeParams.element != null && $routeParams.element != "")
+        {
+            sharedProperties.executeSearch(searchFactory, searchUsersFactory, searchCallback, 100, $routeParams.element);
+        }
+        else
+        {
+            sharedPagesStatus.setIsPageLoaded(true);
+        }
+
+        var createPlaylistByTrackCallback = function (data)
+        {
+            if (data)
+            {
+                sharedProperties.addTrackToPlaylist($scope.trackToAddToNewPlaylist, data.id);
+                sharedProperties.getPlaylists(getPlaylistsCallback);
+            }
+        }
+
+        $scope.createPlaylistByTrack = function (zzToAdd, modalId)
+        {
+            if (playlistToAdd)
+            {
+                sharedProperties.createPlaylist(playlistToAdd, createPlaylistByTrackCallback);
+
+                $scope.closeModal(modalId);
+                return true;
+            }
+            return false;
+        }
+
+        $scope.displayPlayButton = function (track)
+        {
+            track.displayPlayButton = true;
+        }
+
+        $scope.hidePlayButton = function (track)
+        {
+            track.displayPlayButton = false;
+        }
+
+        $scope.addTrackToAdd = function (track)
+        {
+            $scope.trackToAddToNewPlaylist = track;
+        }
+
+
+        $scope.addTrackArrayToAdd = function (tracks)
+        {
+            $scope.trackArrayToAddToNewPlaylist = tracks;
+        }
+
+        $scope.trackArrayToAddIsValid = function ()
+        {
+            return ($scope.trackArrayToAddToNewPlaylist && $scope.trackArrayToAddToNewPlaylist.length > 0);
+        }
+
+        $scope.closeModal = function (id)
+        {
+            $(id).foundation('reveal', 'close');
+        }
+
+        var followCallback = function (id, data)
+        {
+            if (data)
+                updateFollowStatus(id);
+        }
+
+        $scope.follow = function (id)
+        {
+            sharedProperties.follow(id ? id : $routeParams.id, followCallback);
+        };
+
+        $scope.unfollow = function (id)
+        {
+            sharedProperties.unfollow(id ? id : $routeParams.id, followCallback);
+        };
+
+        $scope.$on('$routeChangeSuccess', function (next, current)
+        {
+            angular.element('body').backgroundColor = 'white';
+            $(document).foundation();
+            $(document).foundation('reveal', 'reflow');
+            $(document).foundation('dropdown', 'reflow');
+        });
+    });
+
+    controllers.controller('SingleUserController', function ($location, $scope, $http, $routeParams, session,
+                                                             sharedPagesStatus, sharedProperties, singleUserFactory)
+    {
+        sharedPagesStatus.setCurrentPage(sharedPagesStatus.getPageEnum().user);
+        sharedPagesStatus.resetPageStatus();
+        $scope.sharedPagesStatus = sharedPagesStatus;
+        $scope.sharedProperties = sharedProperties;
+        $scope.userData = sharedProperties.userDataConnectionObj();
+        $scope.userDataConnection = sharedProperties.userDataConnectionObj();
+        $scope.gravatarImgUrl = "img/mystery-man-red.png";
+        $scope.activePlaylist = 0;
+        $scope.isFollowing = false;
+
+        if (session.isConnected() == false)
+        {
+            sharedPagesStatus.redirectToHome();
+        }
+
+        var blur = new Blur({
+            el        : document.querySelector('.user-header'),
+            path      : '',
+            radius    : 50,
+            fullscreen: true
+        });
+
+        singleUserFactory.get(session.getToken(), $routeParams.id, function (data)
+            {
+                if (data.email && data.name && data.id && data.following)
+                {
+                    sharedPagesStatus.setTitle(data.name);
+                    sharedPagesStatus.setCurrentIdUser(data.id);
+                    $scope.userData = {email: data.email, name: data.name, id: data.id, following: data.following};
+                    if (urlExist("http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg&d=404"))
+                        $scope.gravatarImgUrl = "http://www.gravatar.com/avatar/" + md5(data.email) + "?s=300&r=pg";
+                    sharedProperties.getPlaylists(getPlaylistsCallback, data.id);
+                    setBlur($scope.gravatarImgUrl);
+                    sharedPagesStatus.setIsPageLoaded(true);
+                    setIsFollowing();
+                    updateUserDataConnection();
+                }
+            },
+            function (err)
+            {
+                if (err && err.errorCode && err.message)
+                    sharedPagesStatus.setCriticalError(err.errorCode, err.message);
+            });
+
+        var updateUserDataConnectionCallback = function (userDataConnection)
+        {
+            if (userDataConnection)
+                $scope.userDataConnection = userDataConnection;
+        }
+
+        var updateUserDataConnection = function ()
+        {
+            sharedProperties.getUserDataConnection(updateUserDataConnectionCallback);
+        }
+
+        var updateUserData = function ()
+        {
+            singleUserFactory.get(session.getToken(), $routeParams.id, function (data)
+                {
+                    if (data.email && data.name && data.id && data.following)
+                    {
+                        $scope.userData = {email: data.email, name: data.name, id: data.id, following: data.following};
+                    }
+                },
+                function (err)
+                {
+                    if (err && err.errorCode && err.message)
+                        sharedPagesStatus.setCriticalError(err.errorCode, err.message);
+                });
+        }
+
+        var setIsFollowing = function ()
+        {
+            singleUserFactory.get(session.getToken(), sharedProperties.getInfoConnection().id, function (data)
+                {
+                    if (data.following)
+                    {
+                        $scope.isFollowing = false;
+                        data.following.forEach(function (entry)
+                        {
+                            if (entry.id == $routeParams.id)
+                                $scope.isFollowing = true;
+                        });
+                    }
+                },
+                function (err)
+                {
+                    if (err && err.errorCode && err.message)
+                        sharedPagesStatus.setCriticalError(err.errorCode, err.message);
+                });
+        }
+
+        var getPlaylistsCallback = function (playlists, isError)
+        {
+            if (playlists && playlists.length > 0)
+                $scope.playlists = playlists;
+            else
+                $scope.playlists = [];
+        };
+
+        var setBlur = function (path)
+        {
+            blur.init({
+                el  : document.querySelector('.user-header'),
+                path: path
+            });
+        };
+
+        $scope.setActive = function (id)
+        {
+            $scope.activePlaylist = (id != $scope.activePlaylist) ? id : 0;
+        };
+
+        $scope.displayPlayButton = function (track)
+        {
+            track.displayPlayButton = true;
+        };
+
+        $scope.hidePlayButton = function (track)
+        {
+            track.displayPlayButton = false;
+        };
+
+        var updateFollowStatus = function (id)
+        {
+            if (id)
+            {
+                updateUserData();
+                updateUserDataConnection();
+            }
+            else
+                setIsFollowing();
+        }
+
+        var followCallback = function (id, data)
+        {
+            if (data)
+                updateFollowStatus(id);
+        }
+
+        $scope.follow = function (id)
+        {
+            sharedProperties.follow(id ? id : $routeParams.id, followCallback);
+        };
+
+        $scope.unfollow = function (id)
+        {
+            sharedProperties.unfollow(id ? id : $routeParams.id, followCallback);
+        };
+
+        $scope.isFollowingId = function (id)
+        {
+            return sharedProperties.isFollowingUserId($scope.userDataConnection.following, id);
+        };
     });
 })();
