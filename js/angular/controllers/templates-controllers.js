@@ -37,7 +37,6 @@
         $scope.setInputFocus = function (val)
         {
             $scope.isInputFocused = val;
-            if (autoCompletDropdownElement && searchInputRow)
             {
                 if ($scope.isInputFocused)
                 {
