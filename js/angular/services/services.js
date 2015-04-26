@@ -298,7 +298,7 @@
 
         this.getSinglePlaylist = function (playlistId, callback)
         {
-            singlePlaylistFactory.get(getServiceTokenCookie(), playlistId, function (data)
+            singlePlaylistFactory.get(session.getToken(), playlistId, function (data)
             {
                 if (data && callback)
                 {
@@ -332,7 +332,7 @@
 
         this.addTrackToPlaylist = function (trackToAdd, playlistId)
         {
-            singlePlaylistTracksFactory.post(getServiceTokenCookie(), playlistId, trackToAdd, function (data)
+            singlePlaylistTracksFactory.post(session.getToken(), playlistId, trackToAdd, function (data)
             {
 
             }, function (err)
@@ -344,13 +344,13 @@
 
         this.addTrackArrayToPlaylist = function (tracks, playlistId)
         {
-            singlePlaylistFactory.get(getServiceTokenCookie(), playlistId, function (data)
+            singlePlaylistFactory.get(session.getToken(), playlistId, function (data)
             {
                 if (data)
                 {
                     data.tracks = data.tracks.concat(tracks);
 
-                    singlePlaylistFactory.put(getServiceTokenCookie(), playlistId, data, function (data)
+                    singlePlaylistFactory.put(session.getToken(), playlistId, data, function (data)
                     {
                     }, function (err)
                     {
@@ -365,7 +365,7 @@
 
         this.removeTrackFromPlaylist = function (trackId, playlistId, callback)
         {
-            singlePlaylistSingleTrackFactory.delete(getServiceTokenCookie(), playlistId, trackId,
+            singlePlaylistSingleTrackFactory.delete(session.getToken(), playlistId, trackId,
                 function (data)
                 {
                     if (callback)
@@ -385,11 +385,11 @@
 
         this.createPlaylist = function (name, callback)
         {
-            tokenInfoFactory.get(getServiceTokenCookie(), function (tokenData)
+            tokenInfoFactory.get(session.getToken(), function (tokenData)
             {
                 if (tokenData)
                 {
-                    totalPlaylistsFactory.post(getServiceTokenCookie(), {name: name, owner: tokenData}, function (data)
+                    totalPlaylistsFactory.post(session.getToken(), {name: name, owner: tokenData}, function (data)
                     {
                         if (data && data.name == name)
                         {
@@ -423,7 +423,7 @@
 
         this.removePlaylist = function (id, callback)
         {
-            singlePlaylistFactory.delete(getServiceTokenCookie(), id, function (data)
+            singlePlaylistFactory.delete(session.getToken(), id, function (data)
             {
                 if (callback)
                 {
@@ -436,12 +436,12 @@
 
         this.renamePlaylist = function (id, playlist, newName, callback)
         {
-            singlePlaylistFactory.get(getServiceTokenCookie(), id, function (data)
+            singlePlaylistFactory.get(session.getToken(), id, function (data)
             {
                 if (data)
                 {
                     data.name = newName;
-                    singlePlaylistFactory.put(getServiceTokenCookie(), id, data, function (data)
+                    singlePlaylistFactory.put(session.getToken(), id, data, function (data)
                     {
                         if (callback)
                         {

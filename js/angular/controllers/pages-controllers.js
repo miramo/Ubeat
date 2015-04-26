@@ -940,18 +940,6 @@
             if (session.isConnected())
             {
                 sharedProperties.getUserDataConnection(updateUserDataConnectionCallback);
-                //searchUsersFactory.get(sharedProperties.getTokenCookie(),
-                //    encodeURIComponent($routeParams.element), function (data)
-                //    {
-                //        if (data && data.length > 0)
-                //        {
-                //            $scope.usersResults = data;
-                //        }
-                //    },
-                //    function (err)
-                //    {
-                //
-                //    });
             }
         }
 
@@ -1000,17 +988,6 @@
         {
             return $scope.playlists;
         }
-
-        $scope.$watch('elementsLoaded', function (oldVal, newVal)
-        {
-            //if (newVal > 0 && newVal >= ($scope.results.length - 1))
-            //{
-            //    sharedPagesStatus.setIsPageLoaded(true);
-            //    $(document).foundation('reveal', 'reflow');
-            //    $(document).foundation('dropdown', 'reflow');
-            //    $(document).foundation('tab', 'reflow');
-            //}
-        });
 
         var computeIsLengthNull = function ()
         {
