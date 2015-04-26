@@ -77,7 +77,7 @@
                     <p class="text-center"><strong>Artistes</strong></p>
                     <div class="item-row" ng-repeat="artist in searchesResult.artists track by $index" ng-if="$index < itemLimit">
                         <a class="item-text ellipsis" ng-mousedown="$event.which == 1 && sharedPagesStatus.redirectToPage('/artist/' + artist.artistId)">
-                            <img class="img-circular item-img" id="img-artist" ng-src="{{artist.image.url}}"/> {{artist.artistName}}</a>
+                            <img class="img-circular item-img" back-img="{{artist.image.url}}"/> {{artist.artistName}}</a>
                     </div>
                 </div>
 

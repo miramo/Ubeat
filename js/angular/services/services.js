@@ -566,18 +566,6 @@
             callPlayCallback();
         }
 
-        this.removeTrackFromPlayQueue = function (id)
-        {
-            if (id == playQueue.queue.currentTrackId)
-            {
-                setCurrentTrack(playQueue.queue[0], false, playStates.idle);
-            }
-
-            playQueue.queue.splice(id, 1);
-
-            savePlayQueue();
-        }
-
         this.getPlayQueue = function ()
         {
             return playQueue;
@@ -629,7 +617,7 @@
             return playQueue.currentTrackId;
         }
 
-        this.getPlayQueueNextTrack = function (setCurrentTrackId)
+        var getServicePlayQueueNextTrack = function (setCurrentTrackId)
         {
             var track = null;
 
@@ -648,11 +636,16 @@
 
             if (track != null)
             {
-                this.setCurrentTrack(track, false, track.playState);
+                setServiceCurrentTrack(track, false, track.playState);
             }
 
             savePlayQueue();
             return track;
+        }
+
+        this.getPlayQueueNextTrack = function (setCurrentTrackId)
+        {
+            return getServicePlayQueueNextTrack(setCurrentTrackId);
         }
 
         this.addAlbumToPlayQueue = function (album)
@@ -768,7 +761,7 @@
             }
         }
 
-        this.setCurrentTrack = function (track, addToPlayQueue, state, setCurrentTrackId)
+        var setServiceCurrentTrack = function (track, addToPlayQueue, state, setCurrentTrackId)
         {
             currentTrack = track;
 
@@ -782,12 +775,33 @@
 
             if (addToPlayQueue)
             {
-                this.addTrackToPlayQueue(currentTrack);
+                addTrackToPlayQueue(currentTrack);
             }
             else if (setCurrentTrackId && (trackIdInQueue = getTrackIdInPlayQueue(track)) > -1)
             {
                 playQueue.currentTrackId = trackIdInQueue;
             }
+
+            savePlayQueue();
+            callPlayCallback();
+        }
+
+        this.setCurrentTrack = function (track, addToPlayQueue, state, setCurrentTrackId)
+        {
+            setServiceCurrentTrack(track, addToPlayQueue, state, setCurrentTrackId);
+        }
+
+        this.removeTrackFromPlayQueue = function (id)
+        {
+            if (id == playQueue.currentTrackId && playQueue.queue.length > 0)
+            {
+                var nextTrack = getServicePlayQueueNextTrack(false);
+                playQueue.queue.splice(id, 1);
+                setServiceCurrentTrack(nextTrack, false, playStates.play, true);
+                currentTrack.playState = playStates.play;
+            }
+            else
+                playQueue.queue.splice(id, 1);
 
             savePlayQueue();
             callPlayCallback();
@@ -985,31 +999,31 @@
                                     break;
                             }
                         }
-
-                        if (session.isConnected())
-                        {
-                            searchUsersFactory.get(session.getToken(),
-                                encodeURIComponent(searchStr), function (data)
-                                {
-                                    if (data && data.length > 0)
-                                    {
-                                        searchResult.users = data;
-                                    }
-                                    callback(searchResult);
-                                },
-                                function (err)
-                                {
-                                    callback(searchResult);
-                                });
-                        }
-                        else
-                        {
-                            callback(searchResult);
-                        }
                     }
                     else
                     {
                         sharedPagesStatus.setIsPageLoaded(true);
+                    }
+
+                    if (session.isConnected())
+                    {
+                        searchUsersFactory.get(session.getToken(),
+                            encodeURIComponent(searchStr), function (data)
+                            {
+                                if (data && data.length > 0)
+                                {
+                                    searchResult.users = data;
+                                    ++searchResult.total;
+                                }
+                                callback(searchResult);
+                            },
+                            function (err)
+                            {
+                                callback(searchResult);
+                            });
+                    }
+                    else
+                    {
                         callback(searchResult);
                     }
                 }, function (err)

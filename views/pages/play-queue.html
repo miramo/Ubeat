@@ -65,18 +65,18 @@
                         <tr ng-show="sharedProperties.getPlayQueue().queue.length > 0" class="music-row" ng-repeat="track in sharedProperties.getPlayQueue().queue track by $index"
                             ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
                             <td class="text-center">
-                                <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
+                                <div ng-show="track.displayPlayButton && sharedProperties.playingTrackState(track) == sharedProperties.getPlayStates().idle">
                                 <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter"><i
                                       ng-click="sharedProperties.setCurrentTrackById($index)"
                                       class="fa fa-play fa-lg"></i></span>
                                 </div>
-                                <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
+                                <div ng-hide="track.displayPlayButton || sharedProperties.playingTrackState(track) != sharedProperties.getPlayStates().idle">
                                     {{$index + 1}}
                                 </div>
-                                <div ng-show="track.playState == sharedProperties.getPlayStates().play">
+                                <div ng-show="sharedProperties.playingTrackState(track) == sharedProperties.getPlayStates().play">
                                     <i class="fa fa-circle-o-notch fa-spin"></i>
                                 </div>
-                                <div ng-show="track.playState == sharedProperties.getPlayStates().pause">
+                                <div ng-show="sharedProperties.playingTrackState(track) == sharedProperties.getPlayStates().pause">
                                     <i class="fa fa-pause"></i>
                                 </div>
                             </td>

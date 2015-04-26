@@ -178,45 +178,48 @@
                             type: 'artist'
                         }).$promise.then(function (data)
                             {
-                                artistBiographiesFactory.get({
-                                    artist: ":artist:",
-                                    id    : data.artists.items[0].id
-                                }).$promise.then(function (data)
+                                if (data && data.artists && data.artists.items && data.artists.items[0])
+                                {
+                                    artistBiographiesFactory.get({
+                                        artist: ":artist:",
+                                        id    : data.artists.items[0].id
+                                    }).$promise.then(function (data)
+                                        {
+                                            if (data.response.biographies.length > 0)
+                                            {
+                                                $scope.artist.description = getSentencesNb(data.response.biographies[0].text, 3);
+                                            }
+                                            else
+                                            {
+                                                $scope.artist.description = "Aucune description disponible.";
+                                            }
+
+                                        }, function (err)
+                                        {
+                                            sharedPagesStatus.setDefaultCriticalError(err);
+                                        });
+                                    spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
                                     {
-                                        if (data.response.biographies.length > 0)
-                                        {
-                                            $scope.artist.description = getSentencesNb(data.response.biographies[0].text, 3);
-                                        }
-                                        else
-                                        {
-                                            $scope.artist.description = "Aucune description disponible.";
-                                        }
+                                        $scope.artist.image = data.images[0];
+                                        $scope.artistPictureLoaded = true;
+
+                                        var blur = new Blur({
+                                            el        : document.querySelector('.artist-header'),
+                                            path      : '',
+                                            radius    : 50,
+                                            fullscreen: true
+                                        });
+
+                                        blur.init({
+                                            el  : document.querySelector('.artist-header'),
+                                            path: $scope.artist.image.url
+                                        });
 
                                     }, function (err)
                                     {
                                         sharedPagesStatus.setDefaultCriticalError(err);
                                     });
-                                spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
-                                {
-                                    $scope.artist.image = data.images[0];
-                                    $scope.artistPictureLoaded = true;
-
-                                    var blur = new Blur({
-                                        el        : document.querySelector('.artist-header'),
-                                        path      : '',
-                                        radius    : 50,
-                                        fullscreen: true
-                                    });
-
-                                    blur.init({
-                                        el  : document.querySelector('.artist-header'),
-                                        path: $scope.artist.image.url
-                                    });
-
-                                }, function (err)
-                                {
-                                    sharedPagesStatus.setDefaultCriticalError(err);
-                                });
+                                }
 
                             }, function (err)
                             {
@@ -1282,6 +1285,13 @@
                 path: path
             });
         };
+
+        $scope.setCurrentTrack = function(track, tracks, addToPlayQueue, state, setCurrentTrackId)
+        {
+            sharedProperties.resetPlayQueue();
+            sharedProperties.addTrackArrayToPlayQueue(tracks, false);
+            sharedProperties.setCurrentTrack(track, false, state, setCurrentTrackId);
+        }
 
         $scope.setActive = function (id)
         {

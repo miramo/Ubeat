@@ -9,7 +9,7 @@
                     <li class="tab-title" ng-show="artists.length > 0"><a id="artistsTab" href="#artistsPanel" prevent-default>Artistes</a></li>
                     <li class="tab-title" ng-show="albums.length > 0"><a id="albumsTab"  href="#albumsPanel" prevent-default>Albums</a></li>
                     <li class="tab-title" ng-show="usersResults.length > 0 && isConnected"><a id="usersTab" href="#usersPanel" prevent-default>Utilisateurs</a></li>
-                    <li class="tab-title" ng-show="tracks.length > 0"><a id="tracksTab"  href="#tracksPanel" prevent-default>Titres</a></li>
+                    <li class="tab-title"><a id="tracksTab"  href="#tracksPanel" prevent-default>Titres</a></li>
                 </ul>
             </div>
         </div>
@@ -137,18 +137,18 @@
                     <tbody>
                         <tr class="music-row" ng-repeat="track in tracks | orderBy:filter track by $index" ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
                             <td class="text-center">
-                                <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
+                                <div ng-show="track.displayPlayButton && sharedProperties.playingTrackState(track)== sharedProperties.getPlayStates().idle">
                                 <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter">
                                     <i ng-click="sharedProperties.setCurrentTrack(track, true)" class="fa fa-play fa-lg"></i>
                                 </span>
                                 </div>
-                                <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
+                                <div ng-hide="track.displayPlayButton || sharedProperties.playingTrackState(track) != sharedProperties.getPlayStates().idle">
                                     {{$index + 1}}
                                 </div>
-                                <div ng-show="track.playState == sharedProperties.getPlayStates().play">
+                                <div ng-show="sharedProperties.playingTrackState(track) == sharedProperties.getPlayStates().play">
                                     <i class="fa fa-circle-o-notch fa-spin"></i>
                                 </div>
-                                <div ng-show="track.playState == sharedProperties.getPlayStates().pause">
+                                <div ng-show="sharedProperties.playingTrackState(track) == sharedProperties.getPlayStates().pause">
                                     <i class="fa fa-pause"></i>
                                 </div>
                             </td>
@@ -297,18 +297,18 @@
                     <tbody>
                         <tr class="music-row" ng-repeat="track in tracks | orderBy:filter track by $index" ng-mouseover="displayPlayButton(track)" ng-mouseleave="hidePlayButton(track)">
                             <td class="text-center">
-                                <div ng-show="track.displayPlayButton && track.playState == sharedProperties.getPlayStates().idle">
+                                <div ng-show="track.displayPlayButton && sharedProperties.playingTrackState(track) == sharedProperties.getPlayStates().idle">
                             <span data-tooltip aria-haspopup="true" class="has-tip" title="Écouter">
                                 <i ng-click="sharedProperties.setCurrentTrack(track, true)" class="fa fa-play fa-lg"></i>
                             </span>
                                 </div>
-                                <div ng-hide="track.displayPlayButton || track.playState != sharedProperties.getPlayStates().idle">
+                                <div ng-hide="track.displayPlayButton || sharedProperties.playingTrackState(track) != sharedProperties.getPlayStates().idle">
                                     {{$index + 1}}
                                 </div>
-                                <div ng-show="track.playState == sharedProperties.getPlayStates().play">
+                                <div ng-show="sharedProperties.playingTrackState(track) == sharedProperties.getPlayStates().play">
                                     <i class="fa fa-circle-o-notch fa-spin"></i>
                                 </div>
-                                <div ng-show="track.playState == sharedProperties.getPlayStates().pause">
+                                <div ng-show="sharedProperties.playingTrackState(track) == sharedProperties.getPlayStates().pause">
                                     <i class="fa fa-pause"></i>
                                 </div>
                             </td>
