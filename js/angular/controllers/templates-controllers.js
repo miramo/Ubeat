@@ -378,10 +378,7 @@
         {
             if (value == true)
             {
-                if (($scope.repeatState == $scope.repeatStatesEnum.none && !sharedProperties.isLastSongInQueue())
-                    || $scope.repeatState == $scope.repeatStatesEnum.repeat || $scope.isRandom)
-                    $scope.next();
-                else if ($scope.repeatState == $scope.repeatStatesEnum.repeatOne)
+                if ($scope.repeatState == $scope.repeatStatesEnum.repeatOne)
                 {
                     var track = sharedProperties.getCurrentTrack();
                     if (track)
@@ -390,6 +387,9 @@
                         $scope.myAudio.playPause();
                     }
                 }
+                else if (($scope.repeatState == $scope.repeatStatesEnum.none && !sharedProperties.isLastSongInQueue())
+                    || $scope.repeatState == $scope.repeatStatesEnum.repeat || $scope.isRandom)
+                    $scope.next();
             }
         });
 
