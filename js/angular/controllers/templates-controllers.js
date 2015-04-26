@@ -37,6 +37,7 @@
         $scope.setInputFocus = function (val)
         {
             $scope.isInputFocused = val;
+            if (autoCompletDropdownElement && searchInputRow && Foundation.utils.is_medium_up())
             {
                 if ($scope.isInputFocused)
                 {
