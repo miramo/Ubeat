@@ -377,7 +377,7 @@
         $scope.playAfter = function ()
         {
             sharedProperties.addToPlayQueueAtCurrentTrack(concatTracksAlbum());
-        }
+         }
 
         $scope.playInLast = function ()
         {
