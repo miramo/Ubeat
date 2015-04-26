@@ -42,7 +42,7 @@
                         </a>
                         <ul class="dropdown">
                             <li ng-class="{active: sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().playlist)}">
-                                <a href="#/playlists/"><i class="md md-my-library-music md-lg"></i>&nbsp;Listes de lectures</a>
+                                <a href="#/playlists/"><i class="md md-my-library-music md-lg"></i>&nbsp;Playlists</a>
                             </li>
                             <li ng-class="{active: (sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().user) && (sharedProperties.getInfoConnection().id == sharedPagesStatus.getCurrentIdUser()))}">
                                 <a href="#/user/{{sharedProperties.getInfoConnection().id}}"><i class="fa fa-user fa-lg"></i>&nbsp;Mon profil</a>

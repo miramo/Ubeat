@@ -653,6 +653,13 @@
 
         refreshPlaylists();
 
+        $scope.setCurrentTrack = function(track, tracks, addToPlayQueue, state, setCurrentTrackId)
+        {
+            sharedProperties.resetPlayQueue();
+            sharedProperties.addTrackArrayToPlayQueue(tracks, false);
+            sharedProperties.setCurrentTrack(track, false, state, setCurrentTrackId);
+        }
+
         $scope.isActivePlaylist = function (playlist)
         {
             if (playlist && $scope.active)
