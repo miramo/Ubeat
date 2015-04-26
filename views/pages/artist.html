@@ -25,6 +25,7 @@
         <div class="small-12 columns">
             <div class="panel radius">
                 <h2>Albums</h2>
+                <h4 class="text-center" ng-hide="albums.length > 0">Aucun album disponible.</h4>
                 <ul class="artist-albums-list">
                     <li class="artist-panel album-card" ng-repeat="album in albums | orderBy:'-releaseDateObj'">
                         <div class="row bump">
