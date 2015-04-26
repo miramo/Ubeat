@@ -1007,13 +1007,11 @@
 
                     if (session.isConnected())
                     {
-                        console.log("SearchStr: " + searchStr);
                         searchUsersFactory.get(session.getToken(),
                             encodeURIComponent(searchStr), function (data)
                             {
                                 if (data && data.length > 0)
                                 {
-                                    console.log("DataUsers: " + data.length);
                                     searchResult.users = data;
                                     ++searchResult.total;
                                 }
