@@ -328,6 +328,7 @@
             sharedPagesStatus.setIsPageLoaded(true);
 
             $(document).foundation('dropdown', 'reflow');
+            $(document).foundation();
         }
 
         $scope.setCurrentTrack = function(track, tracks, addToPlayQueue, state, setCurrentTrackId)
@@ -346,6 +347,18 @@
             updateTracks();
         });
 
+        var concatTracksAlbum = function()
+        {
+            var concatTracks = [];
+
+            for (var i = 0; i < $scope.tracks.length; ++i)
+            {
+                concatTracks = concatTracks.concat($scope.tracks[i]);
+            }
+
+            return concatTracks;
+        }
+
         $scope.executePlayAll = function (isSpan)
         {
             if (isSpan)
@@ -354,13 +367,7 @@
             }
             else if (executeSplit)
             {
-                var concatTracks = [];
-
-                for (var i = 0; i < $scope.tracks.length; ++i)
-                {
-                    concatTracks = concatTracks.concat($scope.tracks[i]);
-                }
-                sharedProperties.replacePlayQueue(concatTracks, true);
+                sharedProperties.replacePlayQueue(concatTracksAlbum(), true);
                 executeSplit = true;
             }
             else if (!executeSplit)
@@ -369,17 +376,17 @@
 
         $scope.playAfter = function ()
         {
-            sharedProperties.addToPlayQueueAtCurrentTrack($scope.tracks);
+            sharedProperties.addToPlayQueueAtCurrentTrack(concatTracksAlbum());
         }
 
         $scope.playInLast = function ()
         {
-            sharedProperties.addTrackArrayToPlayQueue($scope.tracks, true);
+            sharedProperties.addTrackArrayToPlayQueue(concatTracksAlbum(), true);
         }
 
         $scope.replacePlayQueue = function ()
         {
-            sharedProperties.replacePlayQueue();
+            sharedProperties.replacePlayQueue(concatTracksAlbum());
         }
 
         $scope.modifyFilter = function (id)
@@ -1091,7 +1098,7 @@
             }
         }
 
-        $scope.createPlaylistByTrack = function (zzToAdd, modalId)
+        $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
         {
             if (playlistToAdd)
             {
