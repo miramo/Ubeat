@@ -328,6 +328,14 @@
             sharedPagesStatus.setIsPageLoaded(true);
 
             $(document).foundation('dropdown', 'reflow');
+            $(document).foundation();
+        }
+
+        $scope.setCurrentTrack = function(track, tracks, addToPlayQueue, state, setCurrentTrackId)
+        {
+            sharedProperties.resetPlayQueue();
+            sharedProperties.addTrackArrayToPlayQueue(tracks, false);
+            sharedProperties.setCurrentTrack(track, false, state, setCurrentTrackId);
         }
 
         $scope.$watch('sharedProperties.getCurrentTrack()', function (newVal, oldVal)
@@ -339,6 +347,18 @@
             updateTracks();
         });
 
+        var concatTracksAlbum = function()
+        {
+            var concatTracks = [];
+
+            for (var i = 0; i < $scope.tracks.length; ++i)
+            {
+                concatTracks = concatTracks.concat($scope.tracks[i]);
+            }
+
+            return concatTracks;
+        }
+
         $scope.executePlayAll = function (isSpan)
         {
             if (isSpan)
@@ -347,13 +367,7 @@
             }
             else if (executeSplit)
             {
-                var concatTracks = [];
-
-                for (var i = 0; i < $scope.tracks.length; ++i)
-                {
-                    concatTracks = concatTracks.concat($scope.tracks[i]);
-                }
-                sharedProperties.replacePlayQueue(concatTracks, true);
+                sharedProperties.replacePlayQueue(concatTracksAlbum(), true);
                 executeSplit = true;
             }
             else if (!executeSplit)
@@ -362,17 +376,17 @@
 
         $scope.playAfter = function ()
         {
-            sharedProperties.addToPlayQueueAtCurrentTrack($scope.tracks);
-        }
+            sharedProperties.addToPlayQueueAtCurrentTrack(concatTracksAlbum());
+         }
 
         $scope.playInLast = function ()
         {
-            sharedProperties.addTrackArrayToPlayQueue($scope.tracks, true);
+            sharedProperties.addTrackArrayToPlayQueue(concatTracksAlbum(), true);
         }
 
         $scope.replacePlayQueue = function ()
         {
-            sharedProperties.replacePlayQueue();
+            sharedProperties.replacePlayQueue(concatTracksAlbum());
         }
 
         $scope.modifyFilter = function (id)
@@ -391,9 +405,9 @@
             $scope.trackToAddToNewPlaylist = track;
         }
 
-        $scope.addTrackArrayToAdd = function (tracks)
+        $scope.addTrackArrayToAdd = function ()
         {
-            $scope.trackArrayToAddToNewPlaylist = tracks;
+            $scope.trackArrayToAddToNewPlaylist = concatTracksAlbum();
         }
 
         $scope.getActualPlaylists = function ()
@@ -638,6 +652,13 @@
         }
 
         refreshPlaylists();
+
+        $scope.setCurrentTrack = function(track, tracks, addToPlayQueue, state, setCurrentTrackId)
+        {
+            sharedProperties.resetPlayQueue();
+            sharedProperties.addTrackArrayToPlayQueue(tracks, false);
+            sharedProperties.setCurrentTrack(track, false, state, setCurrentTrackId);
+        }
 
         $scope.isActivePlaylist = function (playlist)
         {
@@ -940,18 +961,6 @@
             if (session.isConnected())
             {
                 sharedProperties.getUserDataConnection(updateUserDataConnectionCallback);
-                //searchUsersFactory.get(sharedProperties.getTokenCookie(),
-                //    encodeURIComponent($routeParams.element), function (data)
-                //    {
-                //        if (data && data.length > 0)
-                //        {
-                //            $scope.usersResults = data;
-                //        }
-                //    },
-                //    function (err)
-                //    {
-                //
-                //    });
             }
         }
 
@@ -1000,17 +1009,6 @@
         {
             return $scope.playlists;
         }
-
-        $scope.$watch('elementsLoaded', function (oldVal, newVal)
-        {
-            //if (newVal > 0 && newVal >= ($scope.results.length - 1))
-            //{
-            //    sharedPagesStatus.setIsPageLoaded(true);
-            //    $(document).foundation('reveal', 'reflow');
-            //    $(document).foundation('dropdown', 'reflow');
-            //    $(document).foundation('tab', 'reflow');
-            //}
-        });
 
         var computeIsLengthNull = function ()
         {
@@ -1107,7 +1105,7 @@
             }
         }
 
-        $scope.createPlaylistByTrack = function (zzToAdd, modalId)
+        $scope.createPlaylistByTrack = function (playlistToAdd, modalId)
         {
             if (playlistToAdd)
             {
@@ -1133,7 +1131,6 @@
         {
             $scope.trackToAddToNewPlaylist = track;
         }
-
 
         $scope.addTrackArrayToAdd = function (tracks)
         {

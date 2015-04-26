@@ -82,11 +82,25 @@
             }
         }
 
+        var savePlayQueue = function ()
+        {
+            localStorageService.set(playQueueStorageName, playQueue);
+        }
+
         sharedPagesStatus.pageChangedCallback = pageChangedCallback;
 
         this.setPlayCallback = function (callback)
         {
             playCallback = callback;
+        }
+
+        var callPlayCallback = function ()
+        {
+            if (playCallback && currentTrack)
+            {
+                currentTrack.playState = playStates.play;
+                playCallback();
+            }
         }
 
         var updateTrackStates = function ()
@@ -217,10 +231,14 @@
             if (playlist && playlist.tracks && playlist.tracks.length > 0)
             {
                 var firstTrack = playlist.tracks[0];
-                var artwork = firstTrack.artworkUrl100;
-                if (size && size != 100)
+
+                if (firstTrack)
                 {
-                    artwork = itunesLinkImageSizeTo(firstTrack.artworkUrl100, size);
+                    var artwork = firstTrack.artworkUrl100;
+                    if (size && size != 100)
+                    {
+                        artwork = itunesLinkImageSizeTo(firstTrack.artworkUrl100, size);
+                    }
                 }
                 return artwork;
             }
@@ -252,9 +270,12 @@
 
                                             for (var j = 0; j < dataPlaylist.tracks.length; ++j)
                                             {
-                                                dataPlaylist.tracks[j].playState = playStates.idle;
-                                                dataPlaylist.tracks[j].displayPlayButton = false;
-                                                dataPlaylist.tracks[j].time = millisToTime(dataPlaylist.tracks[j].trackTimeMillis);
+                                                if (dataPlaylist.tracks[j])
+                                                {
+                                                    dataPlaylist.tracks[j].playState = playStates.idle;
+                                                    dataPlaylist.tracks[j].displayPlayButton = false;
+                                                    dataPlaylist.tracks[j].time = millisToTime(dataPlaylist.tracks[j].trackTimeMillis);
+                                                }
                                             }
                                         }
                                     }
@@ -298,7 +319,7 @@
 
         this.getSinglePlaylist = function (playlistId, callback)
         {
-            singlePlaylistFactory.get(getServiceTokenCookie(), playlistId, function (data)
+            singlePlaylistFactory.get(session.getToken(), playlistId, function (data)
             {
                 if (data && callback)
                 {
@@ -332,7 +353,7 @@
 
         this.addTrackToPlaylist = function (trackToAdd, playlistId)
         {
-            singlePlaylistTracksFactory.post(getServiceTokenCookie(), playlistId, trackToAdd, function (data)
+            singlePlaylistTracksFactory.post(session.getToken(), playlistId, trackToAdd, function (data)
             {
 
             }, function (err)
@@ -344,13 +365,13 @@
 
         this.addTrackArrayToPlaylist = function (tracks, playlistId)
         {
-            singlePlaylistFactory.get(getServiceTokenCookie(), playlistId, function (data)
+            singlePlaylistFactory.get(session.getToken(), playlistId, function (data)
             {
                 if (data)
                 {
                     data.tracks = data.tracks.concat(tracks);
 
-                    singlePlaylistFactory.put(getServiceTokenCookie(), playlistId, data, function (data)
+                    singlePlaylistFactory.put(session.getToken(), playlistId, data, function (data)
                     {
                     }, function (err)
                     {
@@ -365,7 +386,7 @@
 
         this.removeTrackFromPlaylist = function (trackId, playlistId, callback)
         {
-            singlePlaylistSingleTrackFactory.delete(getServiceTokenCookie(), playlistId, trackId,
+            singlePlaylistSingleTrackFactory.delete(session.getToken(), playlistId, trackId,
                 function (data)
                 {
                     if (callback)
@@ -385,11 +406,11 @@
 
         this.createPlaylist = function (name, callback)
         {
-            tokenInfoFactory.get(getServiceTokenCookie(), function (tokenData)
+            tokenInfoFactory.get(session.getToken(), function (tokenData)
             {
                 if (tokenData)
                 {
-                    totalPlaylistsFactory.post(getServiceTokenCookie(), {name: name, owner: tokenData}, function (data)
+                    totalPlaylistsFactory.post(session.getToken(), {name: name, owner: tokenData}, function (data)
                     {
                         if (data && data.name == name)
                         {
@@ -423,7 +444,7 @@
 
         this.removePlaylist = function (id, callback)
         {
-            singlePlaylistFactory.delete(getServiceTokenCookie(), id, function (data)
+            singlePlaylistFactory.delete(session.getToken(), id, function (data)
             {
                 if (callback)
                 {
@@ -436,12 +457,12 @@
 
         this.renamePlaylist = function (id, playlist, newName, callback)
         {
-            singlePlaylistFactory.get(getServiceTokenCookie(), id, function (data)
+            singlePlaylistFactory.get(session.getToken(), id, function (data)
             {
                 if (data)
                 {
                     data.name = newName;
-                    singlePlaylistFactory.put(getServiceTokenCookie(), id, data, function (data)
+                    singlePlaylistFactory.put(session.getToken(), id, data, function (data)
                     {
                         if (callback)
                         {
@@ -462,32 +483,59 @@
             return {total: 0, artists: [], albums: [], tracks: [], users: []};
         }
 
+        this.playingTrackState = function (track)
+        {
+            if (currentTrack && track && currentTrack.trackId == track.trackId)
+            {
+                return currentTrack.playState;
+            }
+            return playStates.idle;
+        }
+
         this.addTrackToPlayQueue = function (track)
         {
             playQueue.queue[playQueue.queue.length] = track;
             playQueue.currentTrackId = playQueue.queue.length - 1;
 
-            localStorageService.set(playQueueStorageName, playQueue);
-            if (playCallback)
-                playCallback();
+            savePlayQueue();
+            callPlayCallback();
         }
 
         this.addToPlayQueueAtCurrentTrack = function (trackArray)
         {
-            if (playQueue.currentTrackId < (playQueue.queue.length - 1))
+            if (trackArray && trackArray.length > 0)
             {
-                var leftTracks = playQueue.queue.splice(playQueue.currentTrackId + 1, (playQueue.queue.length - (playQueue.currentTrackId + 1)))
+                if (playQueue.currentTrackId < (playQueue.queue.length - 1))
+                {
+                    var leftTracks = [];
+                    var nextTracks = [];
 
-                playQueue.queue = playQueue.queue.concat(trackArray);
-                playQueue.queue = playQueue.queue.concat(leftTracks);
-                if (playCallback)
-                    playCallback();
-            }
-            else if (playQueue.currentTrackId >= (playQueue.queue.length - 1))
-            {
-                this.addTrackArrayToPlayQueue(trackArray, true);
-                if (playCallback)
-                    playCallback();
+                    var i = 0;
+                    for (i = 0; i <= playQueue.currentTrackId; ++i)
+                    {
+                        leftTracks.push(playQueue.queue[i]);
+                    }
+                    while (i < playQueue.queue.length)
+                    {
+                        nextTracks.push(playQueue.queue[i]);
+                        ++i;
+                    }
+
+                    playQueue.queue = [];
+                    playQueue.queue = playQueue.queue.concat(leftTracks);
+
+                    var saveId = playQueue.queue.length;
+
+                    playQueue.queue = playQueue.queue.concat(trackArray);
+                    playQueue.queue = playQueue.queue.concat(nextTracks);
+
+                    this.setCurrentTrack(playQueue.queue[saveId], false, playStates.play);
+                }
+                else if (playQueue.currentTrackId >= (playQueue.queue.length - 1))
+                {
+                    this.addTrackArrayToPlayQueue(trackArray, true);
+                    callPlayCallback();
+                }
             }
         }
 
@@ -504,11 +552,10 @@
             {
                 this.setCurrentTrack(playQueue.queue[playQueue.currentTrackId], false, playStates.play);
 
-                if (playCallback)
-                    playCallback();
+                callPlayCallback();
             }
 
-            localStorageService.set(playQueueStorageName, playQueue);
+            savePlayQueue();
         }
 
         this.replacePlayQueue = function (tracks)
@@ -516,8 +563,7 @@
             this.resetPlayQueue();
             this.addTrackArrayToPlayQueue(tracks, true);
 
-            if (playCallback)
-                playCallback();
+            callPlayCallback();
         }
 
         this.removeTrackFromPlayQueue = function (id)
@@ -529,7 +575,7 @@
 
             playQueue.queue.splice(id, 1);
 
-            localStorageService.set(playQueueStorageName, playQueue);
+            savePlayQueue();
         }
 
         this.getPlayQueue = function ()
@@ -541,7 +587,6 @@
         {
             return playQueue.queue.length;
         }
-
 
         this.getRandomQueueTrack = function (isRedundancy)
         {
@@ -571,7 +616,7 @@
         this.resetPlayQueue = function ()
         {
             playQueue.queue = [];
-            localStorageService.set(playQueueStorageName, playQueue);
+            savePlayQueue();
         }
 
         this.getPlayQueueCurrentTrack = function ()
@@ -606,7 +651,7 @@
                 this.setCurrentTrack(track, false, track.playState);
             }
 
-            localStorageService.set(playQueueStorageName, playQueue);
+            savePlayQueue();
             return track;
         }
 
@@ -660,7 +705,7 @@
                 this.setCurrentTrack(track, false, track.playState);
             }
 
-            localStorageService.set(playQueueStorageName, playQueue);
+            savePlayQueue();
             return track;
         }
 
@@ -726,10 +771,13 @@
         this.setCurrentTrack = function (track, addToPlayQueue, state, setCurrentTrackId)
         {
             currentTrack = track;
+
+            updateTrackStates();
+
             var trackIdInQueue = -1;
             if (state)
             {
-                currentTrack.playState = state;
+                currentTrack.playState = playStates.play;
             }
 
             if (addToPlayQueue)
@@ -741,9 +789,8 @@
                 playQueue.currentTrackId = trackIdInQueue;
             }
 
-            if (playCallback)
-                playCallback();
-            updateTrackStates();
+            savePlayQueue();
+            callPlayCallback();
         }
 
         this.getPlayStates = function ()
@@ -1008,7 +1055,7 @@
             return saveQueuePreviousPage;
         }
 
-        this.redirectToPage = function(url)
+        this.redirectToPage = function (url)
         {
             $location.path(url);
             $route.reload();

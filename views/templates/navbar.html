@@ -42,7 +42,7 @@
                         </a>
                         <ul class="dropdown">
                             <li ng-class="{active: sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().playlist)}">
-                                <a href="#/playlists/"><i class="md md-my-library-music md-lg"></i>&nbsp;Listes de lectures</a>
+                                <a href="#/playlists/"><i class="md md-my-library-music md-lg"></i>&nbsp;Playlists</a>
                             </li>
                             <li ng-class="{active: (sharedPagesStatus.isCurrentPage(sharedPagesStatus.getPageEnum().user) && (sharedProperties.getInfoConnection().id == sharedPagesStatus.getCurrentIdUser()))}">
                                 <a href="#/user/{{sharedProperties.getInfoConnection().id}}"><i class="fa fa-user fa-lg"></i>&nbsp;Mon profil</a>
@@ -65,7 +65,7 @@
     </div>
 
     <div id="auto-completion" class="f-dropdown content" ng-class="isInputFocused ? 'open f-open-dropdown' : ''">
-        <div ng-show="isSearching"  >
+        <div ng-show="isSearching">
             <i class="text-center fa fa-circle-o-notch fa-spin"></i>
         </div>
         <div ng-show="!isSearching">
@@ -76,7 +76,7 @@
                 <div ng-show="searchesResult.artists.length > 0">
                     <p class="text-center"><strong>Artistes</strong></p>
                     <div class="item-row" ng-repeat="artist in searchesResult.artists track by $index" ng-if="$index < itemLimit">
-                        <a class="item-text ellipsis" ng-mousedown="sharedPagesStatus.redirectToPage('/artist/' + artist.artistId)">
+                        <a class="item-text ellipsis" ng-mousedown="$event.which == 1 && sharedPagesStatus.redirectToPage('/artist/' + artist.artistId)">
                             <img class="img-circular item-img" id="img-artist" ng-src="{{artist.image.url}}"/> {{artist.artistName}}</a>
                     </div>
                 </div>
@@ -84,13 +84,13 @@
                 <div ng-show="searchesResult.albums.length > 0">
                     <p class="text-center"><strong>Albums</strong></p>
                     <div class="item-row" ng-repeat="album in searchesResult.albums track by $index" ng-if="$index < itemLimit">
-                        <a class="item-text ellipsis" ng-mousedown="sharedPagesStatus.redirectToPage('/album/' + album.collectionId)"><img class="item-img" ng-src="{{album.artworkUrl60}}"/>{{album.collectionName}}</a>
+                        <a class="item-text ellipsis" ng-mousedown="$event.which == 1 && sharedPagesStatus.redirectToPage('/album/' + album.collectionId)"><img class="item-img" ng-src="{{album.artworkUrl60}}"/>{{album.collectionName}}</a>
                     </div>
                 </div>
                 <div ng-show="searchesResult.users.length > 0 && session.isConnected()">
                     <p class="text-center"><strong>Utilisateurs</strong></p>
                     <div class="item-row" ng-repeat="user in searchesResult.users track by $index" ng-if="$index < itemLimit">
-                        <a class="item-text ellipsis" ng-mousedown="sharedPagesStatus.redirectToPage('/user/' + user.id)"><img class="item-img" ng-src="{{sharedProperties.getGravatar(user.email, 50)}}"/>{{user.name}}</a>
+                        <a class="item-text ellipsis" ng-mousedown="$event.which == 1 && sharedPagesStatus.redirectToPage('/user/' + user.id)"><img class="item-img" ng-src="{{sharedProperties.getGravatar(user.email, 50)}}"/>{{user.name}}</a>
                     </div>
                 </div>
                 <div class="top-border text-center">
