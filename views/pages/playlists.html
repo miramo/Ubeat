@@ -101,10 +101,10 @@
                                         <div ng-hide="track.displayPlayButton || sharedProperties.playingTrackState(track) != sharedProperties.getPlayStates().idle">
                                             {{$index + 1}}
                                         </div>
-                                        <div ng-show="track.playState == sharedProperties.getPlayStates().play">
+                                        <div ng-show="sharedProperties.playingTrackState(track) == sharedProperties.getPlayStates().play">
                                             <i class="fa fa-circle-o-notch fa-spin"></i>
                                         </div>
-                                        <div ng-show="track.playState == sharedProperties.getPlayStates().pause">
+                                        <div ng-show="sharedProperties.playingTrackState(track) == sharedProperties.getPlayStates().pause">
                                             <i class="fa fa-pause"></i>
                                         </div>
                                     </td>

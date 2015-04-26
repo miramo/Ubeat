@@ -406,9 +406,17 @@
             sharedPagesStatus.togglePlayQueue();
         }
 
-        $scope.play = function ()
+        $scope.play = function (needLoad)
         {
-            $scope.myAudio.playPause();
+
+            if (needLoad)
+                loadTrack(sharedProperties.getCurrentTrack(), true);
+            else
+                $scope.myAudio.playPause();
+            if ($scope.myAudio.playing)
+            {
+                sharedProperties.getCurrentTrack().playState = 'play';
+            }
         }
 
         sharedProperties.setPlayCallback($scope.play);
@@ -460,7 +468,7 @@
                 {
                     $scope.myAudio.playPause();
                 }
-                newVal.playState = sharedProperties.getPlayStates().play;
+                sharedProperties.getCurrentTrack().playState = 'play';
             }
         });
 
