@@ -408,14 +408,14 @@
 
         $scope.play = function (needLoad)
         {
-
             if (needLoad)
                 loadTrack(sharedProperties.getCurrentTrack(), true);
             else
                 $scope.myAudio.playPause();
-            if ($scope.myAudio.playing)
+            var track = sharedProperties.getCurrentTrack();
+            if (track && $scope.myAudio.playing)
             {
-                sharedProperties.getCurrentTrack().playState = 'play';
+                track.playState = 'play';
             }
         }
 
