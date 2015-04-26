@@ -542,7 +542,6 @@
             return playQueue.queue.length;
         }
 
-
         this.getRandomQueueTrack = function (isRedundancy)
         {
             if (!isRedundancy)

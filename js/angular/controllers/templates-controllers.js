@@ -352,7 +352,7 @@
 
             if ($scope.isRandom)
             {
-                track = sharedProperties.getRandomQueueTrack(false);    
+                track = sharedProperties.getRandomQueueTrack(false);
             }
             else
                 track = sharedProperties.getPlayQueueNextTrack(true);
