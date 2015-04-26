@@ -6,8 +6,6 @@ function displayPlayButton()
 {
     var elements = document.getElementsByClassName("music-row");
 
-    console.log("Elements: " + elements.length);
-
     for (var i = 0; i < elements.length; ++i)
     {
         elements[i].addEventListener('mouseover', mouseOver, false);
