@@ -452,8 +452,10 @@
                 $scope.myAudio.load([{"src": newVal.previewUrl, "type": audioType}])
                 if (isFirstLoad)
                     isFirstLoad = false;
-                else
+                else if (!$scope.myAudio.playing)
+                {
                     $scope.myAudio.playPause();
+                }
                 newVal.playState = sharedProperties.getPlayStates().play;
             }
         });
