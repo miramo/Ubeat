@@ -405,9 +405,9 @@
             $scope.trackToAddToNewPlaylist = track;
         }
 
-        $scope.addTrackArrayToAdd = function (tracks)
+        $scope.addTrackArrayToAdd = function ()
         {
-            $scope.trackArrayToAddToNewPlaylist = tracks;
+            $scope.trackArrayToAddToNewPlaylist = concatTracksAlbum();
         }
 
         $scope.getActualPlaylists = function ()
@@ -1124,7 +1124,6 @@
         {
             $scope.trackToAddToNewPlaylist = track;
         }
-
 
         $scope.addTrackArrayToAdd = function (tracks)
         {

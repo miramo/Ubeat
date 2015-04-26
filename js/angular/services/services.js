@@ -231,10 +231,14 @@
             if (playlist && playlist.tracks && playlist.tracks.length > 0)
             {
                 var firstTrack = playlist.tracks[0];
-                var artwork = firstTrack.artworkUrl100;
-                if (size && size != 100)
+
+                if (firstTrack)
                 {
-                    artwork = itunesLinkImageSizeTo(firstTrack.artworkUrl100, size);
+                    var artwork = firstTrack.artworkUrl100;
+                    if (size && size != 100)
+                    {
+                        artwork = itunesLinkImageSizeTo(firstTrack.artworkUrl100, size);
+                    }
                 }
                 return artwork;
             }
@@ -266,9 +270,12 @@
 
                                             for (var j = 0; j < dataPlaylist.tracks.length; ++j)
                                             {
-                                                dataPlaylist.tracks[j].playState = playStates.idle;
-                                                dataPlaylist.tracks[j].displayPlayButton = false;
-                                                dataPlaylist.tracks[j].time = millisToTime(dataPlaylist.tracks[j].trackTimeMillis);
+                                                if (dataPlaylist.tracks[j])
+                                                {
+                                                    dataPlaylist.tracks[j].playState = playStates.idle;
+                                                    dataPlaylist.tracks[j].displayPlayButton = false;
+                                                    dataPlaylist.tracks[j].time = millisToTime(dataPlaylist.tracks[j].trackTimeMillis);
+                                                }
                                             }
                                         }
                                     }
