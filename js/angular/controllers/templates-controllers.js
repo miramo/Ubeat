@@ -34,7 +34,7 @@
         var autoCompletDropdownElement = null;
         var searchInputRow = null;
 
-        $scope.setInputFocus = function(val)
+        $scope.setInputFocus = function (val)
         {
             $scope.isInputFocused = val;
             if (autoCompletDropdownElement && searchInputRow)
@@ -227,7 +227,7 @@
             $(document).foundation('dropdown', 'reflow');
         });
 
-        angular.element(document).ready(function()
+        angular.element(document).ready(function ()
         {
             autoCompletDropdownElement = $('#auto-completion');
             searchInputRow = $('#search-input-row');
@@ -245,9 +245,11 @@
         $scope.speed = 1000000;
         $scope.playQueue = sharedProperties.getPlayQueue().queue;
         $scope.volume = localStorageService.get("volume");
-        $scope.isLooping = localStorageService.get("isLooping");
-        $scope.repeatStatesEnum = {none : 1, repeat : 2, repeatOne : 3};
-        $scope.repeatState = $scope.repeatStatesEnum.none;
+        $scope.repeatStatesEnum = {none: 1, repeat: 2, repeatOne: 3};
+        $scope.repeatState = localStorageService.get("repeatState");
+
+        if ($scope.repeatState == null)
+            $scope.repeatState = $scope.repeatStatesEnum.none;
 
         var currentTrackTime = localStorageService.get("currentTrackTime");
         var currentTrackId = localStorageService.get("currentTrackId");
@@ -267,8 +269,7 @@
                     $scope.repeatState = $scope.repeatStatesEnum.none;
                     break;
             }
-            $scope.isLooping = !$scope.isLooping;
-            localStorageService.set("isLooping", $scope.isLooping);
+            localStorageService.set("repeatState", $scope.repeatState);
         }
 
         $scope.switchIsRandom = function ()
@@ -354,7 +355,9 @@
             else
                 track = sharedProperties.getPlayQueueNextTrack(true);
 
-            loadTrack(track, true);
+            if (track)
+                loadTrack(track, true);
+            $scope.myAudio.playPause();
         }
 
         $scope.prev = function ()
@@ -363,7 +366,7 @@
 
             $scope.myAudio.stop();
             if (track = sharedProperties.getPlayQueuePreviousTrack(true))
-                $scope.myAudio.load([{"src": track.previewUrl, "type": audioType}]);
+                loadTrack(track, true);
             $scope.myAudio.playPause();
         }
 
@@ -371,9 +374,18 @@
         {
             if (value == true)
             {
-                if (($scope.isLooping == false && sharedProperties.isLastSongInQueue() == false)
-                    || ($scope.isLooping))
+                if (($scope.repeatState == $scope.repeatStatesEnum.none && !sharedProperties.isLastSongInQueue())
+                    || $scope.repeatState == $scope.repeatStatesEnum.repeat)
                     $scope.next();
+                else if ($scope.repeatState == $scope.repeatStatesEnum.repeatOne)
+                {
+                    var track = sharedProperties.getCurrentTrack();
+                    if (track)
+                    {
+                        loadTrack(track, true);
+                        $scope.myAudio.playPause();
+                    }
+                }
             }
         });
 
