@@ -1,7 +1,15 @@
-# team02
-# Foundation Compass Template
+# [Ubeat](http://miramo.github.io/Ubeat/)
 
-The easiest way to get started with Foundation + Compass.
+## Creators
+
+[Ubeat](http://miramo.github.io/Ubeat/) was created by and is maintained by **Adrien ALBERTINI**, **Maxime MIRAMOND** and **Cyrille ANDRE**.
+
+* https://github.com/blackwires
+
+* https://github.com/miramo
+* https://fr.linkedin.com/in/maximemiramond
+
+* https://github.com/andre-g
 
 ## Requirements
 
@@ -10,21 +18,6 @@ The easiest way to get started with Foundation + Compass.
   * [compass](http://compass-style.org/): `gem install compass`
   * [bower](http://bower.io): `npm install bower -g`
 
-## Quickstart
+## Copyright and License
 
-  * [Download this starter compass project and unzip it](https://github.com/zurb/foundation-compass-template/archive/master.zip)
-  * Run `bower install` to install the latest version of Foundation
-  
-Then when you're working on your project, just run the following command:
-
-```bash
-bundle exec compass watch
-```
-
-## Upgrading
-
-If you'd like to upgrade to a newer version of Foundation down the road just run:
-
-```bash
-bower update
-```
+Copyright © 2014 - 2015, LLC. Code released under the [MIT](https://github.com/miramo/Ubeat/blob/master/LICENSE) license.
