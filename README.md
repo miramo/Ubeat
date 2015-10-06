@@ -6,8 +6,7 @@
 
 * https://github.com/blackwires
 
-* https://github.com/miramo
-* https://fr.linkedin.com/in/maximemiramond
+* https://github.com/miramo – https://fr.linkedin.com/in/maximemiramond
 
 * https://github.com/andre-g
 
