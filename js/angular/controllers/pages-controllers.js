@@ -11,7 +11,7 @@
     {
         sharedPagesStatus.resetPageStatus();
         $scope.artistIds = [115429828, 371362363, 994656, 405129701, 263132120, 285976572, 185933496, 111051];
-        $scope.albumsIds = [598997036, 422478077, 266075192, 669445575, 305792965, 289081371, 260725492, 731756766];
+        $scope.albumsIds = [598997036, 422478077, 563633043, 669445575, 305792965, 289081371, 260725492, 731756766];
         sharedPagesStatus.setTitle('Accueil');
 
         $scope.artistsLoadedCount = 0;
@@ -65,7 +65,8 @@
             albumFactory.get(session.getToken(), value, function (data)
                 {
                     $scope.albumsTab[key] = data.results[0];
-                    $scope.albumsTab[key].artworkUrl300 = itunesLinkImageSizeTo($scope.albumsTab[key].artworkUrl100, 300);
+                    if (!!data.results[0] && data.results[0].artworkUrl100)
+                        $scope.albumsTab[key].artworkUrl300 = itunesLinkImageSizeTo(data.results[0].artworkUrl100, 300);
                     ++$scope.albumsLoadedCount;
                 },
                 function (err)
