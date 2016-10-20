@@ -6,8 +6,8 @@
 {
     var factories = angular.module('factories', ['ngResource']);
 
-    factories.ubeatBaseUnsecureUrl = 'http://ubeat.herokuapp.com/unsecure/';
-    factories.ubeatBaseSecureUrl = 'http://ubeat.herokuapp.com/';
+    factories.ubeatBaseUnsecureUrl = 'https://ubeat.herokuapp.com/unsecure/';
+    factories.ubeatBaseSecureUrl = 'https://ubeat.herokuapp.com/';
     factories.localSecureUbeatUrl = "http://localhost:3000/";
     factories.localUnsecureUbeatUrl = "http://localhost:3000/unsecure/";
     factories.isSecure = false;
@@ -173,7 +173,7 @@
 
     factories.factory('artistBiographiesFactory', function ($http, $resource)
     {
-        return $resource('http://developer.echonest.com/api/v4/artist/biographies?api_key=ATWBC2GU7RT2GCRTE&id=spotify:artist:id&format=json&results=1&start=0&license=cc-by-sa');
+        return $resource('https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=:name&lang=fr&api_key=96e32d771a05237e0a77d0fd3f4b2401&format=json');
     });
 
     factories.factory('spotifyArtistFactory', function ($http, $resource)

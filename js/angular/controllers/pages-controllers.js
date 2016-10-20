@@ -174,6 +174,23 @@
                     {
                         sharedPagesStatus.setTitle($scope.artist.artistName);
 
+                        artistBiographiesFactory.get({
+                            artist: ":artist:",
+                            name  : $scope.artist.artistName
+                        }).$promise.then(function (data)
+                        {
+                            if (data.artist.bio.content)
+                            {
+                                $scope.artist.description = getSentencesNb(data.artist.bio.content, 2);
+                            }
+                            else
+                            {
+                                $scope.artist.description = "Aucune description disponible.";
+                            }
+                        }, function (err)
+                        {
+                            $scope.artist.description = "Aucune description disponible.";
+                        });
                         spotifySearchFactory.get({
                             name: $scope.artist.artistName,
                             type: 'artist'
@@ -181,24 +198,6 @@
                             {
                                 if (data && data.artists && data.artists.items && data.artists.items[0])
                                 {
-                                    artistBiographiesFactory.get({
-                                        artist: ":artist:",
-                                        id    : data.artists.items[0].id
-                                    }).$promise.then(function (data)
-                                        {
-                                            if (data.response.biographies.length > 0)
-                                            {
-                                                $scope.artist.description = getSentencesNb(data.response.biographies[0].text, 3);
-                                            }
-                                            else
-                                            {
-                                                $scope.artist.description = "Aucune description disponible.";
-                                            }
-
-                                        }, function (err)
-                                        {
-                                            sharedPagesStatus.setDefaultCriticalError(err);
-                                        });
                                     spotifyArtistFactory.get({id: data.artists.items[0].id}).$promise.then(function (data)
                                     {
                                         $scope.artist.image = data.images[0];

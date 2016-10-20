@@ -1,67 +1,67 @@
 <!DOCTYPE html>
-<html ng-app="ubeat" lang="fr">
-<head ng-controller="MainController as mainCtrl">
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="theme-color" content="#C60000">
-    <meta property="og:locale" content="en_US"/>
-    <meta property="og:site_name" content="Ubeat"/>
-    <meta property="og:title" content="Ubeat"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="http://miramo.github.io/Ubeat/"/>
-    <meta property="og:image" content="http://miramo.github.io/Ubeat/img/logo/logo-Ubeat.png"/>
-    <meta property="og:image:width" content="1500"/>
-    <meta property="og:image:height" content="600"/>
-    <meta property="og:description" content="Ubeat is free music and so much more."/>
-    <title ng-bind="sharedPagesStatus.getTitle() ? sharedPagesStatus.getTitle() + ' - Ubeat' : 'Ubeat'">Ubeat</title>
-    <link rel="shortcut icon" type="image/x-icon" href="img/logo/logo.png"/>
-    <link rel="image_src" href="http://miramo.github.io/Ubeat/img/logo/logo-Ubeat.png"/>
-    <link rel="stylesheet" href="stylesheets/app.css"/>
-    <script src="bower_components/modernizr/modernizr.js"></script>
-</head>
-<body ng-controller="MainController as mainCtrl">
-    <headroom tolerance='2' offset='48' classes="{pinned:'headroom--pinned',unpinned:'headroom--unpinned',initial:'headroom'}">
-        <nav-bar></nav-bar>
-    </headroom>
-    <main>
-        <loader ng-hide="sharedPagesStatus.getIsPageLoaded()"></loader>
-        <div ng-view></div>
-        <div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsCriticalError()">
-            <error-msg error-nb="Error {{sharedPagesStatus.getErrorStatus()}}" msg="{{sharedPagesStatus.getErrorMessage()}}"></error-msg>
-        </div>
-    </main>
-    <footer>
-        <footer-bar></footer-bar>
-    </footer>
-    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-media-player/dist/angular-media-player.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
-    <script type="text/javascript" src="bower_components/foundation/js/foundation.min.js"></script>
-    <script type="text/javascript" src="bower_components/fastclick/lib/fastclick.js"></script>
-    <script type="text/javascript" src="bower_components/slick-carousel/slick/slick.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-slick/dist/slick.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-truncate/src/truncate.js"></script>
-    <script type="text/javascript" src="bower_components/headroom.js/dist/headroom.min.js"></script>
-    <script type="text/javascript" src="bower_components/headroom.js/dist/angular.headroom.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-md5/angular-md5.min.js"></script>
-    <script type="text/javascript" src="bower_components/md5/build/md5.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-ui-slider/src/slider.js"></script>
-    <script type="text/javascript" src="js/libs/class.js"></script>
-    <script type="text/javascript" src="js/libs/stackblur.js"></script>
-    <script type="text/javascript" src="js/libs/angular-responsive-include.js"></script>
-    <script type="text/javascript" src="js/utilities.js"></script>
-    <script type="text/javascript" src="js/angular/directives/directives.js"></script>
-    <script type="text/javascript" src="js/angular/directives/home-directives.js"></script>
-    <script type="text/javascript" src="js/angular/directives/album-directives.js"></script>
-    <script type="text/javascript" src="js/angular/services/services.js"></script>
-    <script type="text/javascript" src="js/angular/factories/factories.js"></script>
-    <script type="text/javascript" src="js/angular/controllers/main-controllers.js"></script>
-    <script type="text/javascript" src="js/angular/controllers/pages-controllers.js"></script>
-    <script type="text/javascript" src="js/angular/controllers/templates-controllers.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-</body>
+<html ng-app="ubeat" lang="fr" ng-controller="MainController as mainCtrl">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="theme-color" content="#C60000">
+        <meta property="og:locale" content="en_US"/>
+        <meta property="og:site_name" content="Ubeat"/>
+        <meta property="og:title" content="Ubeat"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="http://miramo.github.io/Ubeat/"/>
+        <meta property="og:image" content="http://miramo.github.io/Ubeat/img/logo/logo-Ubeat.png"/>
+        <meta property="og:image:width" content="1500"/>
+        <meta property="og:image:height" content="600"/>
+        <meta property="og:description" content="Ubeat is free music and so much more."/>
+        <title ng-bind="sharedPagesStatus.getTitle() ? sharedPagesStatus.getTitle() + ' - Ubeat' : 'Ubeat'">Ubeat</title>
+        <link rel="shortcut icon" type="image/x-icon" href="img/logo/logo.png"/>
+        <link rel="image_src" href="http://miramo.github.io/Ubeat/img/logo/logo-Ubeat.png"/>
+        <link rel="stylesheet" href="stylesheets/app.css"/>
+        <script src="bower_components/modernizr/modernizr.js"></script>
+    </head>
+    <body>
+        <headroom tolerance='2' offset='48' classes="{pinned:'headroom--pinned',unpinned:'headroom--unpinned',initial:'headroom'}">
+            <nav-bar></nav-bar>
+        </headroom>
+        <main>
+            <loader ng-hide="sharedPagesStatus.getIsPageLoaded()"></loader>
+            <div ng-view></div>
+            <div ng-show="sharedPagesStatus.getIsPageLoaded() && sharedPagesStatus.getIsCriticalError()">
+                <error-msg error-nb="Error {{sharedPagesStatus.getErrorStatus()}}" msg="{{sharedPagesStatus.getErrorMessage()}}"></error-msg>
+            </div>
+        </main>
+        <footer>
+            <footer-bar></footer-bar>
+        </footer>
+        <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-media-player/dist/angular-media-player.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+        <script type="text/javascript" src="bower_components/foundation/js/foundation.min.js"></script>
+        <script type="text/javascript" src="bower_components/fastclick/lib/fastclick.js"></script>
+        <script type="text/javascript" src="bower_components/slick-carousel/slick/slick.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-slick/dist/slick.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-truncate/src/truncate.js"></script>
+        <script type="text/javascript" src="bower_components/headroom.js/dist/headroom.min.js"></script>
+        <script type="text/javascript" src="bower_components/headroom.js/dist/angular.headroom.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-md5/angular-md5.min.js"></script>
+        <script type="text/javascript" src="bower_components/md5/build/md5.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-ui-slider/src/slider.js"></script>
+        <script type="text/javascript" src="js/libs/class.js"></script>
+        <script type="text/javascript" src="js/libs/stackblur.js"></script>
+        <script type="text/javascript" src="js/libs/angular-responsive-include.js"></script>
+        <script type="text/javascript" src="js/utilities.js"></script>
+        <script type="text/javascript" src="js/angular/directives/directives.js"></script>
+        <script type="text/javascript" src="js/angular/directives/home-directives.js"></script>
+        <script type="text/javascript" src="js/angular/directives/album-directives.js"></script>
+        <script type="text/javascript" src="js/angular/services/services.js"></script>
+        <script type="text/javascript" src="js/angular/factories/factories.js"></script>
+        <script type="text/javascript" src="js/angular/controllers/main-controllers.js"></script>
+        <script type="text/javascript" src="js/angular/controllers/pages-controllers.js"></script>
+        <script type="text/javascript" src="js/angular/controllers/templates-controllers.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+    </body>
 </html>
