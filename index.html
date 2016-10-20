@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html ng-app="ubeat" lang="fr" ng-controller="MainController as mainCtrl">
-    <head>
+<html ng-app="ubeat" lang="fr">
+    <head ng-controller="MainController as mainCtrl">
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta name="theme-color" content="#C60000">
@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="stylesheets/app.css"/>
         <script src="bower_components/modernizr/modernizr.js"></script>
     </head>
-    <body>
+    <body ng-controller="MainController as mainCtrl">
         <headroom tolerance='2' offset='48' classes="{pinned:'headroom--pinned',unpinned:'headroom--unpinned',initial:'headroom'}">
             <nav-bar></nav-bar>
         </headroom>
@@ -35,7 +35,7 @@
         </footer>
         <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular/angular.js"></script>
         <script type="text/javascript" src="bower_components/angular-media-player/dist/angular-media-player.min.js"></script>
         <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
         <script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
