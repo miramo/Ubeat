@@ -1,6 +1,6 @@
 @mixin gwf($fonts...)
 {
-  $url: "http://fonts.googleapis.com/css?family=";
+  $url: "https://fonts.googleapis.com/css?family=";
   $nb: 0;
 
   @each $font-name in $fonts
